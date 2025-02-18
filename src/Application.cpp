@@ -1,11 +1,10 @@
 #include "Application.h"
 
-Application::Application() : menuState(MenuState()) {
-    InitWindow(1600, 900, "Data Structure Visualization");
-    SetTargetFPS(60);
-}
+Application::Application(){}
 
 void Application::run(){
+    InitWindow(1600, 900, "Data Structure Visualization");
+    SetTargetFPS(60);
     while (!WindowShouldClose()){
         BeginDrawing();
         ClearBackground(RAYWHITE);
@@ -16,6 +15,9 @@ void Application::run(){
         else{
             this->panel.update();
             this->panel.draw();
+            if(this->panel.isBackPressed()){
+                this->menuState.isStarted=false;
+            }
         }
         EndDrawing();
     }

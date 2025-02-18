@@ -25,19 +25,25 @@ void Button::setRectangle(){
     rectangle = {position.x - size.x/2,position.y-(size.y/2-fontSize/2),size.x,size.y};
 }
 
+void Button::setColor(Color normal, Color hovered, Color pressed){
+    this->normal=normal;
+    this->hovered=hovered;
+    this->pressed=pressed;
+}
+
 void Button::update(){
-    if(this->isSeclected){
-        color=RED;
+    if(this->isSelected){
+        color=pressed;
     }
     else if(this->isHovered()){
         if(this->isPressed()){
-            color=RED;
+            color=pressed;
         }else{
-            color=YELLOW;
+            color=hovered;
         }
     }
     else{
-        color=BLUE;
+        color=normal;
     }
 }
 
@@ -82,9 +88,9 @@ bool Button::isHovered(){
 }
 
 void Button::Selected(){
-    this->isSeclected = true;
+    this->isSelected = true;
 }
 
 void Button::deSelected(){
-    this->isSeclected = false;
+    this->isSelected = false;
 }

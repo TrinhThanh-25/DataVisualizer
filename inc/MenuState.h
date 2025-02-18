@@ -1,6 +1,5 @@
 #pragma once
 
-#include "raylib.h"
 #include "GUI/Button.h"
 
 class MenuState{

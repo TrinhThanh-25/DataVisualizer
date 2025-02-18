@@ -7,7 +7,12 @@ class Panel{
         Panel();
         void draw();
         void update();
+        bool isBackPressed();
     private:
+        Rectangle dataTitle;
+        Button Back;
+        Texture2D backTexture;
+
         Rectangle panelHolder;
         Button Create;
         Button Add;

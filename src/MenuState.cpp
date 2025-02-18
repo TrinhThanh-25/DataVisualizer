@@ -7,36 +7,43 @@ MenuState::MenuState(){
     this->exit.setText("Exit",20);
     this->exit.setSize(70,50);
     this->exit.setPosition(1500,800);
+    this->exit.setColor(menuNormal,menuHovered,menuPressed);
     this->exit.setRectangle();
 
     this->SLL.setText("Singly Linked List",20);
     this->SLL.setSize(300,50);
     this->SLL.setPosition(400,550);
+    this->SLL.setColor(menuNormal,menuHovered,menuPressed);
     this->SLL.setRectangle();
     
     this->LinearHT.setText("Linear Hashing Table",20);
     this->LinearHT.setSize(300,50);
     this->LinearHT.setPosition(800 ,550);
+    this->LinearHT.setColor(menuNormal,menuHovered,menuPressed);
     this->LinearHT.setRectangle();
 
     this->Tree234.setText("2-3-4 Tree",20);
     this->Tree234.setSize(300,50);
     this->Tree234.setPosition(1200 ,550);
+    this->Tree234.setColor(menuNormal,menuHovered,menuPressed);
     this->Tree234.setRectangle();
 
     this->RBTree.setText("Red-Black Tree",20);
     this->RBTree.setSize(300,50);
     this->RBTree.setPosition(400 ,700);
+    this->RBTree.setColor(menuNormal,menuHovered,menuPressed);
     this->RBTree.setRectangle();
 
     this->MinSpanningTree.setText("Minimum Spanning Tree",20);
     this->MinSpanningTree.setSize(300,50);
     this->MinSpanningTree.setPosition(800, 700);
+    this->MinSpanningTree.setColor(menuNormal,menuHovered,menuPressed);
     this->MinSpanningTree.setRectangle();
 
     this->ShortestPath.setText("Shortest Path",20);
     this->ShortestPath.setSize(300,50);
     this->ShortestPath.setPosition(1200 ,700);
+    this->ShortestPath.setColor(menuNormal,menuHovered,menuPressed);
     this->ShortestPath.setRectangle();
 }
 
@@ -44,13 +51,13 @@ void MenuState::draw(){
     DrawTexture(this->background, 0, 0, WHITE);
     DrawText(this->title, 800 - MeasureText(this->title, 40)/2, 350, 40, BLACK);
 
-    this->exit.drawRectangleRounded(0.7);
-    this->SLL.drawRectangleRounded(0.7);
-    this->LinearHT.drawRectangleRounded(0.7);
-    this->Tree234.drawRectangleRounded(0.7);
-    this->RBTree.drawRectangleRounded(0.7);
-    this->MinSpanningTree.drawRectangleRounded(0.7);
-    this->ShortestPath.drawRectangleRounded(0.7);
+    this->exit.drawRectangleRounded(70);
+    this->SLL.drawRectangleRounded(70);
+    this->LinearHT.drawRectangleRounded(70);
+    this->Tree234.drawRectangleRounded(70);
+    this->RBTree.drawRectangleRounded(70);
+    this->MinSpanningTree.drawRectangleRounded(70);
+    this->ShortestPath.drawRectangleRounded(70);
 
     this->exit.drawText(BLACK);
     this->SLL.drawText(BLACK);
