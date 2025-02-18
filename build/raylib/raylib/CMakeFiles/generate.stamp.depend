@@ -6,14 +6,14 @@ C:/Program Files/CMake/share/cmake-3.31/Modules/FindPackageHandleStandardArgs.cm
 C:/Program Files/CMake/share/cmake-3.31/Modules/FindPackageMessage.cmake
 C:/Program Files/CMake/share/cmake-3.31/Modules/GNUInstallDirs.cmake
 C:/Program Files/CMake/share/cmake-3.31/Templates/CPackConfig.cmake.in
-C:/Users/TrinhThanh/Desktop/Data-structure-Visualization/raylib/cmake/CompileDefinitions.cmake
-C:/Users/TrinhThanh/Desktop/Data-structure-Visualization/raylib/cmake/GlfwImport.cmake
-C:/Users/TrinhThanh/Desktop/Data-structure-Visualization/raylib/cmake/InstallConfigurations.cmake
-C:/Users/TrinhThanh/Desktop/Data-structure-Visualization/raylib/cmake/JoinPaths.cmake
-C:/Users/TrinhThanh/Desktop/Data-structure-Visualization/raylib/cmake/LibraryConfigurations.cmake
-C:/Users/TrinhThanh/Desktop/Data-structure-Visualization/raylib/cmake/LibraryPathToLinkerFlags.cmake
-C:/Users/TrinhThanh/Desktop/Data-structure-Visualization/raylib/cmake/PackConfigurations.cmake
-C:/Users/TrinhThanh/Desktop/Data-structure-Visualization/raylib/cmake/PopulateConfigVariablesLocally.cmake
-C:/Users/TrinhThanh/Desktop/Data-structure-Visualization/raylib/cmake/raylib-config-version.cmake
-C:/Users/TrinhThanh/Desktop/Data-structure-Visualization/raylib/raylib.pc.in
-C:/Users/TrinhThanh/Desktop/Data-structure-Visualization/raylib/src/CMakeLists.txt
+C:/Users/TrinhThanh/Desktop/DataVisualization/raylib/cmake/CompileDefinitions.cmake
+C:/Users/TrinhThanh/Desktop/DataVisualization/raylib/cmake/GlfwImport.cmake
+C:/Users/TrinhThanh/Desktop/DataVisualization/raylib/cmake/InstallConfigurations.cmake
+C:/Users/TrinhThanh/Desktop/DataVisualization/raylib/cmake/JoinPaths.cmake
+C:/Users/TrinhThanh/Desktop/DataVisualization/raylib/cmake/LibraryConfigurations.cmake
+C:/Users/TrinhThanh/Desktop/DataVisualization/raylib/cmake/LibraryPathToLinkerFlags.cmake
+C:/Users/TrinhThanh/Desktop/DataVisualization/raylib/cmake/PackConfigurations.cmake
+C:/Users/TrinhThanh/Desktop/DataVisualization/raylib/cmake/PopulateConfigVariablesLocally.cmake
+C:/Users/TrinhThanh/Desktop/DataVisualization/raylib/cmake/raylib-config-version.cmake
+C:/Users/TrinhThanh/Desktop/DataVisualization/raylib/raylib.pc.in
+C:/Users/TrinhThanh/Desktop/DataVisualization/raylib/src/CMakeLists.txt

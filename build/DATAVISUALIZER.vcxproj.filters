@@ -1,25 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="C:\Users\TrinhThanh\Desktop\Data-structure-Visualization\src\Application.cpp">
+    <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\Application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\TrinhThanh\Desktop\Data-structure-Visualization\src\Button.cpp">
+    <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\Button.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\TrinhThanh\Desktop\Data-structure-Visualization\src\MenuState.cpp">
+    <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\MenuState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\TrinhThanh\Desktop\Data-structure-Visualization\src\main.cpp">
+    <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\TrinhThanh\Desktop\Data-structure-Visualization\CMakeLists.txt" />
+    <CustomBuild Include="C:\Users\TrinhThanh\Desktop\DataVisualization\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{77A38B5E-BB95-39BE-80C2-3DAD28B3E934}</UniqueIdentifier>
+      <UniqueIdentifier>{8112A7E1-2640-386B-952F-D0CB4C3B26B9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
