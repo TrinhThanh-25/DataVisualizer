@@ -10,8 +10,12 @@ void Application::run(){
         BeginDrawing();
         ClearBackground(RAYWHITE);
         if(!this->menuState.isStarted){
-            this->menuState.draw();
             this->menuState.update();
+            this->menuState.draw();
+        }
+        else{
+            this->panel.update();
+            this->panel.draw();
         }
         EndDrawing();
     }

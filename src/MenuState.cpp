@@ -4,52 +4,61 @@ MenuState::MenuState(){
     this->background = LoadTexture("button.png");
     this->title = "Data Structure Visualization";
 
-    this->exit.setTexture("button.png", "button.png", "buttonPress.png");
-    this->exit.setPosition({1400, 800});
-    this->exit.setSize();
+    this->exit.setText("Exit",20);
+    this->exit.setSize(70,50);
+    this->exit.setPosition(1500,800);
+    this->exit.setRectangle();
 
-    this->SLL.setTexture("button.png", "button.png", "buttonPress.png");
-    this->SLL.setPosition({600, 500});
-    this->SLL.setSize();
+    this->SLL.setText("Singly Linked List",20);
+    this->SLL.setSize(300,50);
+    this->SLL.setPosition(400,550);
+    this->SLL.setRectangle();
+    
+    this->LinearHT.setText("Linear Hashing Table",20);
+    this->LinearHT.setSize(300,50);
+    this->LinearHT.setPosition(800 ,550);
+    this->LinearHT.setRectangle();
 
-    this->LinearHT.setTexture("button.png", "button.png", "buttonPress.png");
-    this->LinearHT.setPosition({800, 500});
-    this->LinearHT.setSize();
+    this->Tree234.setText("2-3-4 Tree",20);
+    this->Tree234.setSize(300,50);
+    this->Tree234.setPosition(1200 ,550);
+    this->Tree234.setRectangle();
 
-    this->Tree234.setTexture("button.png", "button.png", "buttonPress.png");
-    this->Tree234.setPosition({1000, 500});
-    this->Tree234.setSize();
+    this->RBTree.setText("Red-Black Tree",20);
+    this->RBTree.setSize(300,50);
+    this->RBTree.setPosition(400 ,700);
+    this->RBTree.setRectangle();
 
-    this->RBTree.setTexture("button.png", "button.png", "buttonPress.png");
-    this->RBTree.setPosition({600, 700});
-    this->RBTree.setSize();
+    this->MinSpanningTree.setText("Minimum Spanning Tree",20);
+    this->MinSpanningTree.setSize(300,50);
+    this->MinSpanningTree.setPosition(800, 700);
+    this->MinSpanningTree.setRectangle();
 
-    this->MinSpanningTree.setTexture("button.png", "button.png", "buttonPress.png");
-    this->MinSpanningTree.setPosition({800, 700});
-    this->MinSpanningTree.setSize();
-
-    this->ShortestPath.setTexture("button.png", "button.png", "buttonPress.png");
-    this->ShortestPath.setPosition({1000, 700});
-    this->ShortestPath.setSize();
+    this->ShortestPath.setText("Shortest Path",20);
+    this->ShortestPath.setSize(300,50);
+    this->ShortestPath.setPosition(1200 ,700);
+    this->ShortestPath.setRectangle();
 }
 
 void MenuState::draw(){
     DrawTexture(this->background, 0, 0, WHITE);
     DrawText(this->title, 800 - MeasureText(this->title, 40)/2, 350, 40, BLACK);
-    this->exit.drawTexture({1500,800});
-    this->exit.drawText("Exit", {1500.0f - exit.measureText("Exit",20) ,800}, 20, BLACK);
-    this->SLL.drawTexture({600,500});
-    this->SLL.drawText("Singly Linked List", {500.0f - SLL.measureText("Singly Linked List",20)/2 ,550}, 20, BLACK);
-    this->LinearHT.drawTexture({800,500});
-    this->LinearHT.drawText("Linear Hash Table", {800.0f - LinearHT.measureText("Linear Hash Table",20)/2 ,550}, 20, BLACK);
-    this->Tree234.drawTexture({1000,500});
-    this->Tree234.drawText("2-3-4 Tree", {1100.0f - Tree234.measureText("2-3-4 Tree",20)/2 ,550}, 20, BLACK);
-    this->RBTree.drawTexture({600,700});
-    this->RBTree.drawText("Red-Black Tree", {500.0f - RBTree.measureText("Red-Black Tree",20)/2 ,700}, 20, BLACK);
-    this->MinSpanningTree.drawTexture({800,700});
-    this->MinSpanningTree.drawText("Minimum Spanning Tree", {800.0f - MinSpanningTree.measureText("Minimum Spanning Tree",20)/2 ,700}, 20, BLACK);
-    this->ShortestPath.drawTexture({1000,700});
-    this->ShortestPath.drawText("Shortest Path", {1100.0f - ShortestPath.measureText("Shortest Path",20)/2 ,700}, 20, BLACK);
+
+    this->exit.drawRectangleRounded(0.7);
+    this->SLL.drawRectangleRounded(0.7);
+    this->LinearHT.drawRectangleRounded(0.7);
+    this->Tree234.drawRectangleRounded(0.7);
+    this->RBTree.drawRectangleRounded(0.7);
+    this->MinSpanningTree.drawRectangleRounded(0.7);
+    this->ShortestPath.drawRectangleRounded(0.7);
+
+    this->exit.drawText(BLACK);
+    this->SLL.drawText(BLACK);
+    this->LinearHT.drawText(BLACK);
+    this->Tree234.drawText(BLACK);
+    this->RBTree.drawText(BLACK);
+    this->MinSpanningTree.drawText(BLACK);
+    this->ShortestPath.drawText(BLACK);
 }
 
 void MenuState::update(){

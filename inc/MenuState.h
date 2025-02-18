@@ -1,7 +1,7 @@
 #pragma once
 
 #include "raylib.h"
-#include "Button.h"
+#include "GUI/Button.h"
 
 class MenuState{
     public:
