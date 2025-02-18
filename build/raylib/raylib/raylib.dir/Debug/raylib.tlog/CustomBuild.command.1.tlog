@@ -1,6 +1,6 @@
-^C:\USERS\TRINHTHANH\DESKTOP\DATA-STRUCTURE-VISUALIZATION\RAYLIB\SRC\CMAKELISTS.TXT
+^C:\USERS\TRINHTHANH\DESKTOP\DATAVISUALIZATION\RAYLIB\SRC\CMAKELISTS.TXT
 setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/TrinhThanh/Desktop/Data-structure-Visualization -BC:/Users/TrinhThanh/Desktop/Data-structure-Visualization/build --check-stamp-file C:/Users/TrinhThanh/Desktop/Data-structure-Visualization/build/raylib/raylib/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/TrinhThanh/Desktop/DataVisualization -BC:/Users/TrinhThanh/Desktop/DataVisualization/build --check-stamp-file C:/Users/TrinhThanh/Desktop/DataVisualization/build/raylib/raylib/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
