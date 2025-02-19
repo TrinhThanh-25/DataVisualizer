@@ -1,4 +1,5 @@
-#pragma once
+#ifndef MENUSTATE_H
+#define MENUSTATE_H
 
 #include "GUI/Button.h"
 
@@ -26,3 +27,5 @@ class MenuState{
         Button MinSpanningTree;
         Button ShortestPath;
 };
+
+#endif

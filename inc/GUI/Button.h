@@ -1,4 +1,5 @@
-#pragma once
+#ifndef BUTTON_H
+#define BUTTON_H
 
 #include "raylib.h"
 #include "GUI/Resources.h"
@@ -43,3 +44,5 @@ class Button{
         const char* text;
         int fontSize=0;
 };
+
+#endif

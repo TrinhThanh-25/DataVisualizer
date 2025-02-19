@@ -1,4 +1,5 @@
-#pragma once 
+#ifndef RESOURCES_H
+#define RESOURCES_H
 
 #include "raylib.h"
 
@@ -9,4 +10,6 @@ const Color panelNormal({161,161,161,255});
 const Color panelHovered({133,133,133,255});
 const Color panelPressed({110,110,110,255});
 const Color titleColor({185,185,185,255});
+const Color highlightColor({255,253,85,255});
 
+#endif

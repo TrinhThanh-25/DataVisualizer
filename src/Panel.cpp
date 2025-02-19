@@ -52,6 +52,10 @@ bool Panel::isBackPressed(){
 }
 
 void Panel::draw(){
+    DrawRectangle(1200,600-(Clear.getSize().y/2-Clear.getfontSize()/2),400,350,panelNormal);
+    DrawRectangle(550,800,500,100,panelNormal);
+
+    
     DrawRectangleRounded(dataTitle,100,0,titleColor);
     DrawRectangleRounded(panelHolder,0,0,panelNormal);
     this->Back.drawRectangleRounded(100);

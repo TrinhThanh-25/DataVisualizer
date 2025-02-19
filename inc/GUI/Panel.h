@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PANEL_H
+#define PANEL_H
 
 #include "GUI/Button.h"
 
@@ -14,6 +15,7 @@ class Panel{
         Texture2D backTexture;
 
         Rectangle panelHolder;
+
         Button Create;
         Button Add;
         Button Remove;
@@ -22,3 +24,5 @@ class Panel{
         Button Clear;
         Button* isUsing=nullptr;
 };
+
+#endif

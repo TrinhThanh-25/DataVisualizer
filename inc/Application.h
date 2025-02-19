@@ -1,4 +1,5 @@
-#pragma once
+#ifndef APPLICATION_H
+#define APPLICATION_H
 
 #include "MenuState.h"
 #include "GUI/Panel.h"
@@ -11,3 +12,5 @@ class Application{
         MenuState menuState;
         Panel panel;
 };
+
+#endif
