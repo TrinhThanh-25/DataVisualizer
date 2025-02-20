@@ -64,7 +64,7 @@ void Button::drawTexture(Vector2 position){
 }
 
 void Button::drawText(Color color){
-    DrawText(this->text, position.x - MeasureText(text,fontSize)/2 ,position.y, this->fontSize, color);
+    DrawText(this->text, position.x - MeasureText(text, fontSize)/2 ,position.y, this->fontSize, color);
 }
 
 Vector2 Button::getSize(){

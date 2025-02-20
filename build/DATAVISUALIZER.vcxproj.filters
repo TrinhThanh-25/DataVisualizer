@@ -7,13 +7,28 @@
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\Button.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\CodeBlock.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\InputBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\MenuState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\Panel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\linkedlist_temp\linkedlist.cpp">
+    <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\SLLArrow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\SLLNode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\SLLState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\SinglyLinkedList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\main.cpp">

@@ -1,5 +1,5 @@
 // InputBox.cpp
-#include "InputBox.h"
+#include "GUI/InputBox.h"
 
 InputBox::InputBox(float x, float y, float width, float height, int maxLen, Color boxCol, Color txtCol)
     : box{x, y, width, height}, maxLength(maxLen), isActive(false), boxColor(boxCol), textColor(txtCol), blinkTimer(0), showCursor(true) {}
