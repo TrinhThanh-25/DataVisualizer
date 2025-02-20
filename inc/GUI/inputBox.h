@@ -15,6 +15,7 @@ private:
     Color textColor;
     float blinkTimer;
     bool showCursor;
+    bool isMouseonBox;
 
 public:
     InputBox(float x, float y, float width, float height, int maxLen = 20, Color boxCol = LIGHTGRAY, Color txtCol = BLACK);
