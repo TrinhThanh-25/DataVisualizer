@@ -11,6 +11,13 @@ void InputBox::Update() {
         isActive = false;
     }
 
+    if(CheckCollisionPointRec(GetMousePosition(), box)){
+        isMouseonBox = true;
+    }
+    else{
+        isMouseonBox = false;
+    }
+
     if (isActive) {
         int key = GetCharPressed();
         while (key > 0) {
@@ -25,6 +32,13 @@ void InputBox::Update() {
         }
     }
 
+    if(isMouseonBox){
+        boxColor = GRAY;
+    }
+    else{
+        boxColor = LIGHTGRAY;
+    }
+    
     blinkTimer += GetFrameTime();
     if (blinkTimer >= 0.5f) {
         blinkTimer = 0;
