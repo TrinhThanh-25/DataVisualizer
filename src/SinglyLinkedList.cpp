@@ -5,7 +5,6 @@ SinglyLinkedList::SinglyLinkedList() : head(new SLLArrow({SLLposition.x,SLLposit
     head->setTarget({head->getPosition().x+SLLArrowLength,head->getPosition().y});
     head->setLabel("head");
     head->setNull();
-    insertNode(0,5);
 }
 
 SinglyLinkedList::~SinglyLinkedList() {
