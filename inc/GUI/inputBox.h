@@ -24,4 +24,4 @@ public:
     std::string GetText() const;
 };
 
-#endif // INPUTBOX_H
+#endif

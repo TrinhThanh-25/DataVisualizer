@@ -8,14 +8,14 @@ class Button{
     public:
         Button();
         void setTexture(const char* path);
-        void setPosition(int posX, int posY);
-        void setSize(int width, int height);
+        void setPosition(Vector2 position);
+        void setSize(Vector2 size);
         void setText(const char* text, int fontSize);
         void setRectangle();
         void setColor(Color normal, Color hovered, Color pressed);
         void update();
         
-        void drawRectangle(int width, int height);
+        void drawRectangle(Vector2 recSize);
         void drawRectangleRounded(int roundness);
         void drawRectangleRoundedLinesEx(int roundness, int segments, int lineThick, Color color);
         

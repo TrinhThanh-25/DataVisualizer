@@ -1,11 +1,11 @@
 # CMake generation dependency list for this directory.
-C:/Program Files/CMake/share/cmake-3.31/Modules/CPack.cmake
-C:/Program Files/CMake/share/cmake-3.31/Modules/CPackComponent.cmake
-C:/Program Files/CMake/share/cmake-3.31/Modules/FindOpenGL.cmake
-C:/Program Files/CMake/share/cmake-3.31/Modules/FindPackageHandleStandardArgs.cmake
-C:/Program Files/CMake/share/cmake-3.31/Modules/FindPackageMessage.cmake
-C:/Program Files/CMake/share/cmake-3.31/Modules/GNUInstallDirs.cmake
-C:/Program Files/CMake/share/cmake-3.31/Templates/CPackConfig.cmake.in
+C:/Program Files/CMake/share/cmake-4.0/Modules/CPack.cmake
+C:/Program Files/CMake/share/cmake-4.0/Modules/CPackComponent.cmake
+C:/Program Files/CMake/share/cmake-4.0/Modules/FindOpenGL.cmake
+C:/Program Files/CMake/share/cmake-4.0/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files/CMake/share/cmake-4.0/Modules/FindPackageMessage.cmake
+C:/Program Files/CMake/share/cmake-4.0/Modules/GNUInstallDirs.cmake
+C:/Program Files/CMake/share/cmake-4.0/Templates/CPackConfig.cmake.in
 C:/Users/TrinhThanh/Desktop/DataVisualization/raylib/cmake/CompileDefinitions.cmake
 C:/Users/TrinhThanh/Desktop/DataVisualization/raylib/cmake/GlfwImport.cmake
 C:/Users/TrinhThanh/Desktop/DataVisualization/raylib/cmake/InstallConfigurations.cmake

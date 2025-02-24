@@ -12,4 +12,8 @@ const Color panelPressed({110,110,110,255});
 const Color titleColor({185,185,185,255});
 const Color highlightColor({255,253,85,255});
 
+const Vector2 SLLNodeSize({80,60});
+const Vector2 SLLposition({150,250});
+const int SLLArrowLength = 50;
+
 #endif

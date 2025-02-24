@@ -30,8 +30,9 @@ void CodeBlock::draw(){
 
 void CodeBlock::getLinePosition() {
     std::string text = text;
-    for (int i = 0; i < text.size(); ++i)
+    for (int i = 0; i < text.size(); ++i){
         if (i == 0 || text[i - 1] == '\n') {
             linePosition.push_back({0, 0});
         }
+    }
 }

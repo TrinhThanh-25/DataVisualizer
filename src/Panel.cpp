@@ -3,44 +3,44 @@
 Panel::Panel(){
     this->dataTitle = {800-200,30-15,400,50};
 
-    this->Back.setSize(50,50);
-    this->Back.setPosition(dataTitle.y+dataTitle.height/2,dataTitle.y+dataTitle.height/2);
+    this->Back.setSize({50,50});
+    this->Back.setPosition({dataTitle.y+dataTitle.height/2,dataTitle.y+dataTitle.height/2});
     this->Back.setColor(panelNormal,panelHovered,panelPressed);
     this->Back.setRectangle();
 
     this->Create.setText("Create",15);
-    this->Create.setSize(80, 40);
-    this->Create.setPosition(Create.getSize().x/2+(Create.getSize().y/2-Create.getfontSize()/2), 600+(Create.getSize().y/2-Create.getfontSize()/2));
+    this->Create.setSize({80, 40});
+    this->Create.setPosition({Create.getSize().x/2+(Create.getSize().y/2-Create.getfontSize()/2), 600+(Create.getSize().y/2-Create.getfontSize()/2)});
     this->Create.setColor(panelNormal,panelHovered,panelPressed);
     this->Create.setRectangle();
 
     this->Add.setText("Add",15);
-    this->Add.setSize(80, 40);
-    this->Add.setPosition(Add.getSize().x/2+(Add.getSize().y/2-Add.getfontSize()/2), 650+(Add.getSize().y/2-Add.getfontSize()/2));
+    this->Add.setSize({80, 40});
+    this->Add.setPosition({Add.getSize().x/2+(Add.getSize().y/2-Add.getfontSize()/2), 650+(Add.getSize().y/2-Add.getfontSize()/2)});
     this->Add.setColor(panelNormal,panelHovered,panelPressed);
     this->Add.setRectangle();
 
     this->Remove.setText("Remove",15);
-    this->Remove.setSize(80, 40);
-    this->Remove.setPosition(Remove.getSize().x/2+(Remove.getSize().y/2-Remove.getfontSize()/2), 700+(Remove.getSize().y/2-Remove.getfontSize()/2));
+    this->Remove.setSize({80, 40});
+    this->Remove.setPosition({Remove.getSize().x/2+(Remove.getSize().y/2-Remove.getfontSize()/2), 700+(Remove.getSize().y/2-Remove.getfontSize()/2)});
     this->Remove.setColor(panelNormal,panelHovered,panelPressed);
     this->Remove.setRectangle();
 
     this->Update.setText("Update",15);
-    this->Update.setSize(80, 40);
-    this->Update.setPosition(Update.getSize().x/2+(Update.getSize().y/2-Update.getfontSize()/2), 750+(Update.getSize().y/2-Update.getfontSize()/2));
+    this->Update.setSize({80, 40});
+    this->Update.setPosition({Update.getSize().x/2+(Update.getSize().y/2-Update.getfontSize()/2), 750+(Update.getSize().y/2-Update.getfontSize()/2)});
     this->Update.setColor(panelNormal,panelHovered,panelPressed);
     this->Update.setRectangle();
 
     this->Search.setText("Search",15);
-    this->Search.setSize(80, 40);
-    this->Search.setPosition(Search.getSize().x/2+(Search.getSize().y/2-Search.getfontSize()/2), 800+(Search.getSize().y/2-Search.getfontSize()/2));
+    this->Search.setSize({80, 40});
+    this->Search.setPosition({Search.getSize().x/2+(Search.getSize().y/2-Search.getfontSize()/2), 800+(Search.getSize().y/2-Search.getfontSize()/2)});
     this->Search.setColor(panelNormal,panelHovered,panelPressed);
     this->Search.setRectangle();
 
     this->Clear.setText("Clear",15);
-    this->Clear.setSize(80, 40);
-    this->Clear.setPosition(Clear.getSize().x/2+(Clear.getSize().y/2-Clear.getfontSize()/2), 850+(Clear.getSize().y/2-Clear.getfontSize()/2));
+    this->Clear.setSize({80, 40});
+    this->Clear.setPosition({Clear.getSize().x/2+(Clear.getSize().y/2-Clear.getfontSize()/2), 850+(Clear.getSize().y/2-Clear.getfontSize()/2)});
     this->Clear.setColor(panelNormal,panelHovered,panelPressed);
     this->Clear.setRectangle();
 

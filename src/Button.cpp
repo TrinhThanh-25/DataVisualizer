@@ -6,14 +6,12 @@ void Button::setTexture(const char* path){
     this->texture = LoadTexture(path);
 }
 
-void Button::setPosition(int posX, int posY){
-    this->position.x = posX;
-    this->position.y = posY;
+void Button::setPosition(Vector2 position){
+    this->position=position;
 }
 
-void Button::setSize(int width, int height){
-    this->size.x=width;
-    this->size.y=height;
+void Button::setSize(Vector2 size){
+    this->size=size;
 }
 
 void Button::setText(const char* text, int fontSize){
@@ -47,8 +45,8 @@ void Button::update(){
     }
 }
 
-void Button::drawRectangle(int width, int height){
-    DrawRectangle(this->position.x, this->position.y, width, height, this->color);
+void Button::drawRectangle(Vector2 recSize){
+    DrawRectangle(this->position.x, this->position.y, recSize.x, recSize.y, this->color);
 }
 
 void Button::drawRectangleRounded(int roundness){

@@ -59,5 +59,3 @@ void InputBox::Draw() {
 std::string InputBox::GetText() const {
     return text;
 }
-
-

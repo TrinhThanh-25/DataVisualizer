@@ -10,7 +10,7 @@
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\CodeBlock.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\InputBox.cpp">
+    <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\HashTable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\MenuState.cpp">
@@ -29,6 +29,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\SinglyLinkedList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\inputBox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\main.cpp">

@@ -3,6 +3,7 @@
 
 #include "MenuState.h"
 #include "GUI/Panel.h"
+#include "SLL/SinglyLinkedList.h"
 
 class Application{
     public:
@@ -11,6 +12,7 @@ class Application{
     private:
         MenuState menuState;
         Panel panel;
+        SinglyLinkedList SLL;
 };
 
 #endif
