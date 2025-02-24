@@ -15,8 +15,10 @@ void Application::run(){
         else{
             this->panel.update();
             this->panel.draw();
-            this->SLL.update();
-            this->SLL.draw();
+            if(this->menuState.isSLL){
+                this->SLL.update();
+                this->SLL.draw();
+            }
             if(this->panel.isBackPressed()){
                 this->menuState.isStarted=false;
             }

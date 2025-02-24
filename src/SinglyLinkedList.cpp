@@ -37,7 +37,8 @@ void SinglyLinkedList::update(){
         head->setTarget(list[0]->getStartPos());
     }
     else{
-        head->setTarget({head->getPosition().x+SLLArrowLength,head->getPosition().y});
+        head->setTarget({head->getPosition().x+200,head->getPosition().y});
+        
     }
     head->update();
     if (!list.empty()) {

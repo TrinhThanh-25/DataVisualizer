@@ -6,6 +6,9 @@
 class MenuState{
     public:
         MenuState();
+
+        void isSLLPressed();
+
         void draw();
         void update();
     public:
