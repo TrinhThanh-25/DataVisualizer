@@ -59,3 +59,16 @@ void InputBox::Draw() {
 std::string InputBox::GetText() const {
     return text;
 }
+
+void InputBox::resetBox(){
+    text="";
+}
+
+void InputBox::setText(std::string text){
+    this->text=text;
+}
+
+void InputBox::setPosition(Vector2 position){
+    box.x = position.x;
+    box.y = position.y;
+}

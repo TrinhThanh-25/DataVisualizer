@@ -36,9 +36,6 @@ Vector2 SLLNode::getPosition(){
     return position;
 }
 
-Rectangle SLLNode::getRecSize(){
-    return node;
-}
 
 int SLLNode::getValue(){
     return value;
@@ -53,6 +50,7 @@ void SLLNode::updateCur(Vector2 targetPos){
 
 void SLLNode::drawCur(){
     DrawRectangleRounded(node, 50, 0, LIGHTGRAY);
+    DrawText(std::to_string(this->value).c_str(),position.x+SLLNodeSize.x/2-MeasureText(std::to_string(this->value).c_str(),24)/2.0f,position.y+SLLNodeSize.y/2-12,24,BLACK);
     if (Pointer) {
         Pointer->draw();
     }

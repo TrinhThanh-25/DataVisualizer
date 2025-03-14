@@ -2,22 +2,28 @@
 #define CODEBLOCK_H
 
 #include "GUI/Resources.h"
-#include <map>
 #include <vector>
+#include <string>
+#include <sstream>
 
 class CodeBlock{
     public:
         CodeBlock();
-        void loadCode(const char* text);
-        void setHighLight(const std::vector<int>& lineID);
+        void update();
         void draw();
-        void getLinePosition();
+
+        void setCode(std::string code);
+        void clearCode();
+        void drawCode(int x, int y, int fontSize, Color color);
+
+        void setHighlight(std::vector<int> ID);
+        void drawHighlight(int fontSize);
+        void clearHighlight();
 
     private:
         const Color highlightColor;
-        const char* text="";
-        std::map<int, Rectangle> highlightBlock;
-        std::vector<Vector2> linePosition;
+        std::string code;
+        std::vector<int> highlightID;
 };
 
 #endif

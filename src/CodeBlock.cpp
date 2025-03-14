@@ -1,38 +1,45 @@
 #include "GUI/CodeBlock.h"
-#include <string>
 
 CodeBlock::CodeBlock() : highlightColor(highlightColor){}
 
-void CodeBlock::loadCode(const char* text){
-    if(text==this->text){
-        return;
-    }
-    this->text=text;
-    highlightBlock.clear();
-    std::vector<Vector2>().swap(linePosition);
-    getLinePosition();
-}
+void CodeBlock::update(){
 
-void CodeBlock::setHighLight(const std::vector<int>& lineID){
-    highlightBlock.clear();
-    for (int id : lineID){
-        if(id<0||id>=linePosition.size())
-            continue;
-        highlightBlock[id] = {linePosition[id].x,linePosition[id].y,500,25};
-    }
 }
 
 void CodeBlock::draw(){
-    for (auto block : highlightBlock)
-        DrawRectangleRounded(block.second,0,0,highlightColor);
-        DrawText(text,0,0,18,BLACK);
+    drawHighlight(16);
+    drawCode(1215,600,16,BLACK);
 }
 
-void CodeBlock::getLinePosition() {
-    std::string text = text;
-    for (int i = 0; i < text.size(); ++i){
-        if (i == 0 || text[i - 1] == '\n') {
-            linePosition.push_back({0, 0});
-        }
+void CodeBlock::setCode(std::string code){
+    this->code=code;
+}
+
+void CodeBlock::clearCode(){
+    this->code="";
+}
+
+void CodeBlock::drawCode( int x, int y, int fontSize, Color color){
+    std::stringstream stream(code);
+    std::string line;
+    int lineDis=fontSize+5;
+    int pos=0;
+    while(std::getline(stream,line)){
+        DrawText(line.c_str(),x,y+pos,fontSize,color);
+        pos+=lineDis;
     }
+}
+
+void CodeBlock::setHighlight(std::vector<int> ID){
+    highlightID=ID;
+}
+
+void CodeBlock::drawHighlight(int fontSize){
+    for (int x : highlightID){
+        DrawRectangle(1200,600+x*(fontSize+5),400,fontSize+2.5f,YELLOW);
+    }
+}
+
+void CodeBlock::clearHighlight(){
+    highlightID.clear();
 }

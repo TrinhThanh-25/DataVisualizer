@@ -78,11 +78,11 @@ int Button::getfontSize(){
 }
 
 bool Button::isPressed(){
-    return IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && CheckCollisionPointRec(GetMousePosition(), {this->position.x-this->size.x/2, this->position.y-(this->size.y/2-this->fontSize/2), this->size.x, this->size.y});
+    return isActive&&IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && CheckCollisionPointRec(GetMousePosition(), {this->position.x-this->size.x/2, this->position.y-(this->size.y/2-this->fontSize/2), this->size.x, this->size.y});
 }
 
 bool Button::isHovered(){
-    return CheckCollisionPointRec(GetMousePosition(), {this->position.x-this->size.x/2, this->position.y-(this->size.y/2-this->fontSize/2), this->size.x, this->size.y});
+    return isActive&&CheckCollisionPointRec(GetMousePosition(), {this->position.x-this->size.x/2, this->position.y-(this->size.y/2-this->fontSize/2), this->size.x, this->size.y});
 }
 
 void Button::Selected(){
@@ -91,4 +91,12 @@ void Button::Selected(){
 
 void Button::deSelected(){
     this->isSelected = false;
+}
+
+void Button::setActive(){
+    isActive=true;
+}
+
+void Button::deActive(){
+    isActive=false;
 }

@@ -30,6 +30,8 @@ class Button{
         bool isHovered();
         void Selected();
         void deSelected();
+        void setActive();
+        void deActive();
 
     private:
         Rectangle rectangle;
@@ -43,6 +45,8 @@ class Button{
         bool isSelected = false;
         const char* text;
         int fontSize=0;
+
+        bool isActive=true;
 };
 
 #endif

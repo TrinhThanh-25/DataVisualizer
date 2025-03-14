@@ -2,6 +2,7 @@
 #define PANEL_H
 
 #include "GUI/Button.h"
+#include "GUI/inputBox.h"
 
 class Panel{
     public:
@@ -9,6 +10,13 @@ class Panel{
         void draw();
         void update();
         bool isBackPressed();
+        bool isAnyButtonPressed();
+
+        bool isCreateUsed();
+        bool isAddUsed();
+        bool isRemoveUsed();
+        bool isSearchUsed();
+        bool isUpdateUsed();
     private:
         Rectangle dataTitle;
         Button Back;
@@ -21,7 +29,6 @@ class Panel{
         Button Remove;
         Button Update;
         Button Search;
-        Button Clear;
         Button* isUsing=nullptr;
 };
 

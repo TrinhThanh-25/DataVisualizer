@@ -12,16 +12,24 @@ void Application::run(){
             this->menuState.update();
             this->menuState.draw();
         }
+        else if(this->menuState.isSLL){
+            this->SLL.update();
+            this->SLL.draw();
+        }
+        else if(this->menuState.isAVLTree){
+            this->AVL.update();
+            this->AVL.draw();
+        }
+        else if(this->menuState.isShortestPath){
+            this->ST.update();
+            this->ST.draw();
+        }
         else{
             this->panel.update();
-            this->panel.draw();
-            if(this->menuState.isSLL){
-                this->SLL.update();
-                this->SLL.draw();
-            }
-            if(this->panel.isBackPressed()){
-                this->menuState.isStarted=false;
-            }
+            this->panel.draw();   
+        }
+        if(this->panel.isBackPressed()){
+            this->menuState.isStarted=false;
         }
         EndDrawing();
     }

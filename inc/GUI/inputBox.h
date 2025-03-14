@@ -18,10 +18,14 @@ private:
     bool isMouseonBox;
 
 public:
-    InputBox(float x, float y, float width, float height, int maxLen = 20, Color boxCol = LIGHTGRAY, Color txtCol = BLACK);
+    InputBox(float x, float y, float width, float height, int maxLen, Color boxCol, Color txtCol);
     void Update();
     void Draw();
     std::string GetText() const;
+    void resetBox();
+    void setText(std::string text);
+
+    void setPosition(Vector2 position);
 };
 
 #endif

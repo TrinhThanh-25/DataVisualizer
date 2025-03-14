@@ -16,9 +16,10 @@ class MenuState{
         bool isSLL = false;
         bool isLinearHT = false;
         bool isTree234 = false;
-        bool isRBTree = false;
+        bool isAVLTree = false;
         bool isMinSpanningTree = false;
         bool isShortestPath = false;
+        bool* isUsed=nullptr;
     private:
         Texture2D background;
         const char* title;
@@ -26,7 +27,7 @@ class MenuState{
         Button SLL;
         Button LinearHT;
         Button Tree234;
-        Button RBTree;
+        Button AVLTree;
         Button MinSpanningTree;
         Button ShortestPath;
 };

@@ -18,7 +18,6 @@ class SLLNode{
         Vector2 getStartPos();
         Vector2 getEndPos();
         Vector2 getPosition();
-        Rectangle getRecSize();
         int getValue();
         
         void updateCur(Vector2 targetPos);
@@ -33,13 +32,3 @@ class SLLNode{
 };
 
 #endif
-
-//std::unique_ptr<NodeData> dataPtr(mData);
-//std::unique_ptr<Pointer> nextNodePtr(mPointer);
-
-//attachChild(std::move(dataPtr));
-//attachChild(std::move(nextNodePtr));
-
-//float arrowEdge = thickness + 4.f;
- //   float arrowLength = sqrt(3.f) / 2.f * arrowEdge;
- //   float lineLength = sqrt(line.x * line.x + line.y * line.y);

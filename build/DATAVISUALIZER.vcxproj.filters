@@ -1,7 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\AVL.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\AVLArrow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\AVLNode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\AVLState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\Application.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\Arrow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\Button.cpp">
@@ -19,6 +34,9 @@
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\Panel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\ProcessController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\SLLArrow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -26,6 +44,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\SLLState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\STArrow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\ShortestPath.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\ShortestPathNode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\ShortestPathState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\SinglyLinkedList.cpp">

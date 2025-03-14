@@ -324,15 +324,25 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\AVL.cpp" />
+    <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\AVLArrow.cpp" />
+    <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\AVLNode.cpp" />
+    <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\AVLState.cpp" />
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\Application.cpp" />
+    <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\Arrow.cpp" />
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\Button.cpp" />
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\CodeBlock.cpp" />
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\HashTable.cpp" />
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\MenuState.cpp" />
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\Panel.cpp" />
+    <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\ProcessController.cpp" />
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\SLLArrow.cpp" />
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\SLLNode.cpp" />
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\SLLState.cpp" />
+    <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\STArrow.cpp" />
+    <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\ShortestPath.cpp" />
+    <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\ShortestPathNode.cpp" />
+    <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\ShortestPathState.cpp" />
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\SinglyLinkedList.cpp" />
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\inputBox.cpp" />
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\main.cpp" />

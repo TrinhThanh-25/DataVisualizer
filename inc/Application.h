@@ -3,7 +3,9 @@
 
 #include "MenuState.h"
 #include "GUI/Panel.h"
-#include "SLL/SinglyLinkedList.h"
+#include "SLL/SLLState.h"
+#include "AVL/AVLState.h"
+#include "ShortestPath/ShortestPathState.h"
 
 class Application{
     public:
@@ -12,7 +14,9 @@ class Application{
     private:
         MenuState menuState;
         Panel panel;
-        SinglyLinkedList SLL;
+        SLLState SLL;
+        AVLState AVL;
+        ShortestPathState ST;
 };
 
 #endif

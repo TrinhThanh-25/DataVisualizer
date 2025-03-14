@@ -1,25 +1,35 @@
 #include "SLL/SinglyLinkedList.h"
-#include <iostream>
+#include <sstream>
 
 SinglyLinkedList::SinglyLinkedList() : head(new SLLArrow({SLLposition.x,SLLposition.y+SLLNodeSize.y/2.0f})){
-    head->setTarget({head->getPosition().x+SLLArrowLength,head->getPosition().y});
+    head->setTarget({head->getPosition().x+ArrowLength,head->getPosition().y});
     head->setLabel("head");
     head->setNull();
 }
 
 SinglyLinkedList::~SinglyLinkedList() {
-    for (auto node : list) {
-        delete node;
-    }
+    clearList();
     delete head;
 }
 
+void SinglyLinkedList::createList(std::string text){
+    clearList();
+    isCreated=true;
+    std::string value;
+    std::stringstream ss(text);
+    int i=0;
+    while (std::getline(ss, value, ',')) {
+        insertNode(i++,std::stoi(value));
+    }
+}
+
 void SinglyLinkedList::insertNode(const int& index, int value) {
+    if(!isCreated) isCreated=true;
     SLLNode* newNode = new SLLNode();
     newNode->setValue(value);
     list.insert(list.begin()+index,newNode);
     for (int i=index;i<list.size();i++){
-        list[i]->setPosition({head->getPosition().x+SLLArrowLength + (i) * (SLLNodeSize.x+50), SLLposition.y});
+        list[i]->setPosition({head->getPosition().x+ArrowLength + (i) * (SLLNodeSize.x+50), SLLposition.y});
     }
 }
 
@@ -28,35 +38,50 @@ void SinglyLinkedList::removeNode(const int& index) {
     delete list[index];
     list.erase(list.begin() + index);
     for (int i=index;i<list.size();i++){
-        list[i]->setPosition({head->getPosition().x+SLLArrowLength + (i) * (SLLNodeSize.x+50), SLLposition.y});
+        list[i]->setPosition({head->getPosition().x+ArrowLength + (i) * (SLLNodeSize.x+50), SLLposition.y});
     }
 }
 
-void SinglyLinkedList::update(){
-    if(!list.empty()){
-        head->setTarget(list[0]->getStartPos());
+void SinglyLinkedList::updateNode(const int &index,int value){
+    list[index]->setValue(value);
+}
+
+void SinglyLinkedList::searchNode(int value){}
+
+void SinglyLinkedList::clearList(){
+    for (auto node : list) {
+        delete node;
     }
-    else{
-        head->setTarget({head->getPosition().x+200,head->getPosition().y});
-        
+    list.clear();
+    isCreated=false;
+}
+
+int SinglyLinkedList::getListSize(){
+    return list.size();
+}
+
+void SinglyLinkedList::update(){
+    if(list.empty()){
+        head->setTarget({head->getPosition().x+ArrowLength,head->getPosition().y});
+        head->setNull();
     }
     head->update();
     if (!list.empty()) {
+        head->setTarget(list[0]->getStartPos());
         for (int index = 0; index < list.size() - 1; index++) {
             list[index]->updateCur(list[index + 1]->getStartPos());
         }
-        list[list.size() - 1]->updateCur({list[list.size() - 1]->getEndPos().x + SLLArrowLength, list[list.size() - 1]->getEndPos().y});
+        list[list.size() - 1]->updateCur({list[list.size() - 1]->getEndPos().x + ArrowLength, list[list.size() - 1]->getEndPos().y});
         list[list.size() - 1]->setNull();
     }
 }
 
 void SinglyLinkedList::draw(){
-    head->draw();
+    if(isCreated)
+        head->draw();
     for (auto node : list) {
         if (!node) continue;
         node->drawCur();
-        const char* txt = std::to_string(node->getValue()).c_str();
-        DrawText(txt, node->getPosition().x + SLLNodeSize.x / 2.0f - MeasureText(txt, 16) / 2.0f, node->getPosition().y + SLLNodeSize.y / 2.0f - 8.0f, 16, BLACK);
     }
 }
 
