@@ -24,6 +24,7 @@ public:
     std::string GetText() const;
     void resetBox();
     void setText(std::string text);
+    void clearBox();
 
     void setPosition(Vector2 position);
 };
