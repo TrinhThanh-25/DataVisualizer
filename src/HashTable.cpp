@@ -1,128 +1,87 @@
 #include "HashTable/HashTable.h"
 
-HashTable::HashTable() : table(TABLE_SIZE), animationKey(-1), animationIndex(-1), isAnimating(false), found(false),
-    inputBox(50, 20, 200, 40, 10, DARKGRAY, WHITE) {
+HashTable::HashTable(int size) {
+    this->size = size;
+    table.resize(size);
     
-    insertButton.setPosition({300, 20});
-    insertButton.setSize({100, 40});
-    insertButton.setText("Insert", 20);
-    insertButton.setColor(GRAY, LIGHTGRAY, DARKGRAY);
-
-    deleteButton.setPosition({420, 20});
-    deleteButton.setSize({100, 40});
-    deleteButton.setText("Delete", 20);
-    deleteButton.setColor(RED, MAROON, DARKGRAY);
-
-    findButton.setPosition({540, 20});
-    findButton.setSize({100, 40});
-    findButton.setText("Find", 20);
-    findButton.setColor(GREEN, DARKGREEN, DARKGRAY);
+    for (int i = 0; i < size; ++i) {
+        table[i] = nullptr;
+    }
 }
 
-int HashTable::HashFunction(int key) {
-    return key % TABLE_SIZE;
-}
-
-void HashTable::Insert(int key) {
-    animationKey = key;
-    animationIndex = HashFunction(key);
-    isAnimating = true;
-    std::this_thread::sleep_for(std::chrono::seconds(1)); // Delay for animation
-    float startX = animationIndex * CELL_WIDTH + 10;
-    float startY = 100 + table[animationIndex].size() * (CELL_HEIGHT + 5);
-    table[animationIndex].push_back(Node(key, startX, startY, GREEN));
-    isAnimating = false;
-    animationKey = -1;
-}
-
-void HashTable::Delete(int key) {
-    int index = HashFunction(key);
-    for (auto it = table[index].begin(); it != table[index].end(); ++it) {
-        if (it->key == key) {
-            table[index].erase(it);
-            break;
+HashTable::~HashTable() {
+    for (int i = 0; i < size; ++i) {
+        Node* current = table[i];
+        while (current != nullptr) {
+            Node* next = current->next;
+            delete current;
+            current = next;
         }
     }
 }
 
-bool HashTable::Find(int key) {
-    int index = HashFunction(key);
-    for (auto &node : table[index]) {
-        if (node.key == key) {
-            node.color = YELLOW;
+Node * HashTable::getTable(int index){
+    return table[index];
+}
+
+void HashTable::Insert(int key, const std::string& value) {
+    int index = key % size;
+    Node* newNode = new Node(key);
+    Node * current = table[index];
+    if (current == nullptr) {
+        table[index] = newNode;
+    } else {
+        while (current->next != nullptr) {
+            current = current->next;
+        }
+        current->next = newNode;
+    }
+
+    newNode->position = {100.0f, 100.0f + static_cast<float>(index) * 50.0f};
+    newNode->size = {600, 40};
+    newNode->color = LIGHTGRAY;
+
+}
+
+void HashTable::Delete(int key) {
+    int index = key % size;
+    Node* current = table[index];
+    Node* prev = nullptr;
+    while (current != nullptr) {
+        if (current->data == key) {
+            if (prev == nullptr) {
+                table[index] = current->next;
+            } else {
+                prev->next = current->next;
+            }
+            delete current;
+            return;
+        }
+        prev = current;
+        current = current->next;
+    }
+}
+
+bool HashTable::Find(int key) const {
+    int index = key % size;
+    Node* current = table[index];
+    while (current != nullptr) {
+        if (current->data == key) {
             return true;
         }
+        current = current->next;
     }
     return false;
 }
 
-void HashTable::DrawTable() {
-    for (int i = 0; i < TABLE_SIZE; i++) {
-        DrawRectangleLines(i * CELL_WIDTH, 50, CELL_WIDTH, CELL_HEIGHT, WHITE);
-        DrawText(TextFormat("%d", i), i * CELL_WIDTH + 10, 60, 20, WHITE);
-        float yOffset = 100;
-        for (auto &node : table[i]) {
-            DrawRectangle(node.x, node.y, CELL_WIDTH - 20, CELL_HEIGHT - 10, node.color);
-            DrawText(TextFormat("%d", node.key), node.x + 10, node.y + 10, 20, BLACK);
-            yOffset += CELL_HEIGHT + 5;
+void HashTable::InitTable(int size) {
+    srand(time(0)); // Khởi tạo seed theo thời gian thực để có số ngẫu nhiên khác nhau mỗi lần chạy
+
+    for (int i = 0; i < size; ++i) {
+        int randomSizeList = 0 + rand() % (7 - 0 + 1);
+        for (int j = 0; j < randomSizeList; ++j) {
+            int randomKey = 0 + rand() % (100 - 0 + 1);
+            Insert(randomKey, "Value");
         }
     }
-    if (isAnimating && animationKey != -1) {
-        DrawText(TextFormat("%d %% %d = %d", animationKey, TABLE_SIZE, animationIndex), SCREEN_WIDTH - 200, 200, 20, RED);
-    }
 }
-
-void HashTable::HandleInput() {
-    inputBox.Update();
-    insertButton.update();
-    deleteButton.update();
-    findButton.update();
-
-    if (insertButton.isPressed() && inputBox.GetText() != "") {
-        int inputKey = std::stoi(inputBox.GetText());
-        std::thread insertThread(&HashTable::Insert, this, inputKey);
-        insertThread.detach();
-        inputBox = InputBox(50, 20, 200, 40, 10, DARKGRAY, WHITE); // Reset InputBox
-    }
-
-    if (deleteButton.isPressed() && inputBox.GetText() != "") {
-        int inputKey = std::stoi(inputBox.GetText());
-        Delete(inputKey);
-        inputBox = InputBox(50, 20, 200, 40, 10, DARKGRAY, WHITE); // Reset InputBox
-    }
-
-    if (findButton.isPressed() && inputBox.GetText() != "") {
-        int inputKey = std::stoi(inputBox.GetText());
-        found = Find(inputKey);
-        inputBox = InputBox(50, 20, 200, 40, 10, DARKGRAY, WHITE); // Reset InputBox
-    }
-}
-
-void HashTable::DrawUI() {
-    inputBox.Draw();
-    insertButton.drawRectangle(insertButton.getSize());
-    deleteButton.drawRectangle(deleteButton.getSize());
-    findButton.drawRectangle(findButton.getSize());
-
-    insertButton.drawText(WHITE);
-    deleteButton.drawText(WHITE);
-    findButton.drawText(WHITE);
-}
-
-void HashTable::Run() {
-    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Hash Table Chaining Visualization with Buttons");
-    SetTargetFPS(60);
-
-    while (!WindowShouldClose()) {
-        HandleInput();
-
-        BeginDrawing();
-        ClearBackground(BLACK);
-        DrawTable();
-        DrawUI();
-        EndDrawing();
-    }
-
-    CloseWindow();
-}
-
