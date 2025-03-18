@@ -7,29 +7,15 @@
 class Panel{
     public:
         Panel();
-        void draw();
-        void update();
+        virtual void draw()=0;
+        virtual void update()=0;
         bool isBackPressed();
-        bool isAnyButtonPressed();
-
-        bool isCreateUsed();
-        bool isAddUsed();
-        bool isRemoveUsed();
-        bool isSearchUsed();
-        bool isUpdateUsed();
-    private:
+        virtual bool isAnyButtonPressed()=0;
+    protected:
         Rectangle dataTitle;
         Button Back;
-        Texture2D backTexture;
 
         Rectangle panelHolder;
-
-        Button Create;
-        Button Add;
-        Button Remove;
-        Button Update;
-        Button Search;
-        Button* isUsing=nullptr;
 };
 
 #endif

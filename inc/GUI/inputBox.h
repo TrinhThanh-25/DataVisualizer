@@ -2,13 +2,16 @@
 #ifndef INPUTBOX_H
 #define INPUTBOX_H
 
-#include "raylib.h"
 #include <string>
+
+#include "raylib.h"
+#include "GUI/Resources.h"
 
 class InputBox {
 private:
     Rectangle box;
     std::string text;
+    std::string nameBox;
     int maxLength;
     bool isActive;
     Color boxColor;
@@ -24,6 +27,7 @@ public:
     std::string GetText() const;
     void resetBox();
     void setText(std::string text);
+    void setNameBox(std::string nameBox);
 
     void setPosition(Vector2 position);
 };

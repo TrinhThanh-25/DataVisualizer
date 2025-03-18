@@ -2,17 +2,26 @@
 #define SINGLYLINKEDLIST_H
 
 #include <vector>
+#include <sstream>
 
 #include "SLL/SLLNode.h"
-#include "SLL/SLLArrow.h"
 
-class SinglyLinkedList{
+enum class AnimationState {
+    IDLE,       
+    INSERTING,  
+    DELETING,   
+    SEARCHING,  
+    UPDATING    
+};
+
+class SinglyLinkedList {
     public:
         SinglyLinkedList();
         ~SinglyLinkedList();
 
         void createList(std::string text);
         void insertNode(const int& index, int value);
+        void updateInsertAnimation(const int& index);
         void removeNode(const int& index);
         void updateNode(const int& index, int value);
         void searchNode(int value);
@@ -22,14 +31,18 @@ class SinglyLinkedList{
 
         void update();
         void draw();
+
+    public:
+        AnimationState animationState = AnimationState::IDLE;
         
     private:
         std::vector<SLLNode*> list;
-        SLLNode* temp;
 
         SLLArrow* head;
+        SLLArrow* cur;
+        bool isCreated = false;
 
-        bool isCreated=false;
+        int animationStep = 0;
 };
 
 #endif

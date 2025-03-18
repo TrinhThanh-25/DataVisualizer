@@ -327,6 +327,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\AVL.cpp" />
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\AVLArrow.cpp" />
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\AVLNode.cpp" />
+    <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\AVLPanel.cpp" />
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\AVLState.cpp" />
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\Application.cpp" />
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\Arrow.cpp" />
@@ -338,8 +339,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\ProcessController.cpp" />
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\SLLArrow.cpp" />
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\SLLNode.cpp" />
+    <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\SLLPanel.cpp" />
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\SLLState.cpp" />
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\STArrow.cpp" />
+    <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\STPanel.cpp" />
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\ShortestPath.cpp" />
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\ShortestPathNode.cpp" />
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\ShortestPathState.cpp" />

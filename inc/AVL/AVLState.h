@@ -1,17 +1,12 @@
 #ifndef AVLSTATE_H
 #define AVLSTATE_H
 
-#include "AVL/AVLCode.h"
-#include "AVL/AVL.h"
-#include "GUI/Panel.h"
-#include "GUI/CodeBlock.h"
-#include "GUI/inputBox.h"
-#include "GUI/Button.h"
-
-#include <sstream>
-#include <vector>
 #include <random>
 
+#include "AVL/AVLCode.h"
+#include "AVL/AVL.h"
+#include "AVL/AVLPanel.h"
+#include "GUI/CodeBlock.h"
 class AVLState {   
     public: 
         AVLState();
@@ -20,11 +15,12 @@ class AVLState {
 
         void resetBox();
         std::string getRandomInput();
+        bool isBackPressed();
         
     private:
         AVL AVL;
         CodeBlock AVLCode;
-        Panel panel;
+        AVLPanel panel;
         
         InputBox createBox;
         InputBox valueBox;

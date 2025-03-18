@@ -5,31 +5,64 @@ Application::Application(){}
 void Application::run(){
     InitWindow(1600, 900, "Data Structure Visualization");
     SetTargetFPS(60);
+    srand(time(NULL));
+    Arrow a({0,0});
+    a.setTarget({1600,900});
     while (!WindowShouldClose()){
         BeginDrawing();
         ClearBackground(RAYWHITE);
-        if(!this->menuState.isStarted){
+        switch (menuState.currentSelection){
+        case MenuSelection::NONE:
             this->menuState.update();
             this->menuState.draw();
-        }
-        else if(this->menuState.isSLL){
+            break;
+
+        case MenuSelection::SLL:
             this->SLL.update();
             this->SLL.draw();
-        }
-        else if(this->menuState.isAVLTree){
+            if(SLL.isBackPressed()){
+                menuState.currentSelection=MenuSelection::NONE;
+            }
+            break;
+
+        case MenuSelection::LINEAR_HT:
+            
+            if(AVL.isBackPressed()){
+                menuState.currentSelection=MenuSelection::NONE;
+            }
+            break;
+
+        case MenuSelection::TREE_234:
+            
+            if(AVL.isBackPressed()){
+                menuState.currentSelection=MenuSelection::NONE;
+            }
+            break;
+
+        case MenuSelection::AVL_TREE:
             this->AVL.update();
             this->AVL.draw();
-        }
-        else if(this->menuState.isShortestPath){
+            if(AVL.isBackPressed()){
+                menuState.currentSelection=MenuSelection::NONE;
+            }
+            break;
+
+        case MenuSelection::MIN_SPANNING_TREE:
+
+            if(AVL.isBackPressed()){
+                menuState.currentSelection=MenuSelection::NONE;
+            }
+            break;
+
+        case MenuSelection::SHORTEST_PATH:
             this->ST.update();
             this->ST.draw();
-        }
-        else{
-            this->panel.update();
-            this->panel.draw();   
-        }
-        if(this->panel.isBackPressed()){
-            this->menuState.isStarted=false;
+            if(ST.isBackPressed()){
+                menuState.currentSelection=MenuSelection::NONE;
+            }
+            break;
+        default:
+            break;
         }
         EndDrawing();
     }

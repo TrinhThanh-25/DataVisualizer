@@ -1,8 +1,6 @@
 #ifndef SHORTESTPATH_H
 #define SHORTESTPATH_H
 
-#include <vector>
-
 #include "ShortestPath/ShortestPathNode.h"
 
 class ShortestPath{
@@ -10,7 +8,7 @@ class ShortestPath{
         ShortestPath();
         ~ShortestPath();
 
-        void createGraph(int nodes, int edges);
+        void createGraph(int numNodes, int edges);
         void addEdge(int node1, int node2);
         void removeEdge(int node1, int node2);
         void searchPath(int startNode, int endNode);
@@ -20,17 +18,18 @@ class ShortestPath{
         void deWeighted();
         void setDirected();
         void deDirected();
-
-        void GridBasedPlacement(std::vector<ShortestPathNode*>& graph,int screenWidth, int screenHeight);
-
+        
         void update();
         void draw();
-
+        
         void Dijkstra(int startNode);
-
+        void FruchtermanReingold();
+        Vector2 ComputeRepulsiveForce(ShortestPathNode* &v, ShortestPathNode* &u);    
+        Vector2 ComputeAttractiveForce(ShortestPathNode* &v, ShortestPathNode* &u);
+        
     private:
         std::vector<ShortestPathNode*> graph;
-
+        float k;
         bool isWeighted;
         bool isDirected;
 };

@@ -1,8 +1,8 @@
 #pragma once
 
 #include "raylib.h"
-#include "Button.h"
-#include "InputBox.h"
+#include "GUI/Button.h"
+#include "GUI/InputBox.h"
 #include <vector>
 #include <list>
 #include <string>

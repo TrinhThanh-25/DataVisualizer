@@ -1,42 +1,46 @@
 #include "SLL/SLLState.h"
 
-SLLState::SLLState(): createBox(120,650,260,40,20,LIGHTGRAY,BLACK), indexBox(120,650,260,40,20,LIGHTGRAY,BLACK), valueBox(120,775,260,40,20,LIGHTGRAY,BLACK){
-    this->Random.setText("Random",15);
+SLLState::SLLState(): createBox(120,700,SLLBoxSize.x, SLLBoxSize.y,SLLBoxFontSize,SLLBoxColor, SLLBoxTextColor), indexBox(120,700,SLLBoxSize.x, SLLBoxSize.y,SLLBoxFontSize,SLLBoxColor, SLLBoxTextColor), valueBox(120,825,SLLBoxSize.x, SLLBoxSize.y,SLLBoxFontSize,SLLBoxColor, SLLBoxTextColor){
+    this->Random.setText("Random",SLLButtonFontSize);
     this->Random.setSize({120, 30});
-    this->Random.setPosition({180,710});
+    this->Random.setPosition({180,760});
     this->Random.setColor(panelNormal,panelHovered,panelPressed);
     this->Random.setRectangle();
 
-    this->LoadFile.setText("Load File",15);
+    this->LoadFile.setText("Load File",SLLButtonFontSize);
     this->LoadFile.setSize({120, 30});
-    this->LoadFile.setPosition({320,710});
+    this->LoadFile.setPosition({320,760});
     this->LoadFile.setColor(panelNormal,panelHovered,panelPressed);
     this->LoadFile.setRectangle();
 
-    this->Front.setText("Front",15);
+    this->Front.setText("Front",SLLButtonFontSize);
     this->Front.setSize({120, 30});
-    this->Front.setPosition({180,710});
+    this->Front.setPosition({180,760});
     this->Front.setColor(panelNormal,panelHovered,panelPressed);
     this->Front.setRectangle();
 
-    this->End.setText("Back",15);
+    this->End.setText("Back",SLLButtonFontSize);
     this->End.setSize({120, 30});
-    this->End.setPosition({320,710});
+    this->End.setPosition({320,760});
     this->End.setColor(panelNormal,panelHovered,panelPressed);
     this->End.setRectangle();
 
-    this->Apply.setText("Apply",15);
+    this->Apply.setText("Apply",SLLButtonFontSize);
     this->Apply.setSize({260, 30});
-    this->Apply.setPosition({250,750});
+    this->Apply.setPosition({250,800});
     this->Apply.setColor(panelNormal,panelHovered,panelPressed);
     this->Apply.setRectangle();
+
+    createBox.setNameBox("Input Elements");
+    indexBox.setNameBox("Index");
+    valueBox.setNameBox("Value");
 }
 
 void SLLState::update(){
     SLL.update();
     panel.update();
     if(panel.isCreateUsed()){
-        valueBox.setPosition({120,775});
+        valueBox.setPosition({120,825});
         Random.setActive();
         LoadFile.setActive();
         Apply.setActive();
@@ -45,7 +49,9 @@ void SLLState::update(){
     }
     else if(panel.isAddUsed()||panel.isRemoveUsed()){
         if(panel.isAddUsed())
-            valueBox.setPosition({120,775});
+            valueBox.setPosition({120,825});
+        else
+            valueBox.setPosition({120,700});
         Front.setActive();
         End.setActive();
         Random.deActive();
@@ -53,7 +59,7 @@ void SLLState::update(){
         Apply.deActive();
     }
     else if(panel.isUpdateUsed()){
-        valueBox.setPosition({120,775});
+        valueBox.setPosition({120,825});
         Front.deActive();
         End.deActive();
         Random.deActive();
@@ -61,7 +67,7 @@ void SLLState::update(){
         Apply.deActive();
     }
     else if(panel.isSearchUsed()){
-        valueBox.setPosition({120,650});
+        valueBox.setPosition({120,700});
         Front.deActive();
         End.deActive();
         Random.deActive();
@@ -130,23 +136,23 @@ void SLLState::update(){
 void SLLState::draw(){
     SLL.draw();
     panel.draw();
-    DrawText("Singly Linked List",800-MeasureText("Singly Linked List",24)/2.0f,40-12,24, BLACK);
+    DrawText("Singly Linked List",GetScreenWidth()/2.0f-MeasureText("Singly Linked List",dataTitleFontSize)/2.0f,40-dataTitleFontSize/2.0f,dataTitleFontSize, dataTitleTextColor);
     SLLCode.draw();
     if(panel.isCreateUsed()){
         createBox.Draw();
         this->Random.drawRectangleRounded(100);
-        this->Random.drawText(BLACK);
+        this->Random.drawText(panelSubButtonTextColor);
         this->LoadFile.drawRectangleRounded(100);
-        this->LoadFile.drawText(BLACK);
+        this->LoadFile.drawText(panelSubButtonTextColor);
         this->Apply.drawRectangleRounded(100);
-        this->Apply.drawText(BLACK);
+        this->Apply.drawText(panelSubButtonTextColor);
     }
     else if(panel.isAddUsed()||panel.isRemoveUsed()||panel.isUpdateUsed()){
         if(!panel.isUpdateUsed()){
             this->Front.drawRectangleRounded(100);
-            this->Front.drawText(BLACK);
+            this->Front.drawText(panelSubButtonTextColor);
             this->End.drawRectangleRounded(100);
-            this->End.drawText(BLACK);
+            this->End.drawText(panelSubButtonTextColor);
         }
         indexBox.Draw();
         if(!panel.isRemoveUsed())
@@ -164,7 +170,6 @@ void SLLState::resetBox(){
 }
 
 std::string SLLState::getRandomInput(){
-    srand(time(NULL));
     int numElement=rand()%10;
     std::string elements="";
     for (int i=0;i<=numElement;i++){
@@ -175,4 +180,8 @@ std::string SLLState::getRandomInput(){
         elements+= std::to_string(rand()%100) +",";
     }
     return elements;
+}
+
+bool SLLState::isBackPressed(){
+    return panel.isBackPressed();
 }

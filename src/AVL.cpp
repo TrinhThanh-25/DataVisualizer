@@ -1,5 +1,4 @@
 #include "AVL/AVL.h"
-#include <sstream>
 
 AVL::AVL() : root(nullptr) {}
 
@@ -22,6 +21,7 @@ void AVL::insertNode(int value){
         root->setValue(value);
         calculateHeight();
         root->setPosition({(float)GetScreenWidth()/2,150});
+        root->setTargetPosition({(float)GetScreenWidth()/2,150});
         return;
     }
     AVLNode* cur = root;
@@ -32,7 +32,8 @@ void AVL::insertNode(int value){
                 cur->left->setValue(value);
                 cur->left->parent = cur;
                 calculateHeight();
-                cur->left->setPosition({cur->getOrigin().x-(cur->left->getHeight()*(AVLSpace+AVLNodeSize.x)/2.0f),cur->getOrigin().y+60});
+                cur->left->setPosition({cur->getOrigin().x-(cur->left->getHeight()*(AVLLeafSpace+AVLNodeSize.x)/2.0f),cur->getOrigin().y+AVLLevelSpace});
+                cur->left->setTargetPosition({cur->getOrigin().x-(cur->left->getHeight()*(AVLLeafSpace+AVLNodeSize.x)/2.0f),cur->getOrigin().y+AVLLevelSpace});
                 break;
             }
             cur = cur->left;
@@ -43,7 +44,8 @@ void AVL::insertNode(int value){
                 cur->right->setValue(value);
                 cur->right->parent = cur;
                 calculateHeight();
-                cur->right->setPosition({cur->getOrigin().x+(cur->right->getHeight()*(AVLSpace+AVLNodeSize.x)/2.0f),cur->getOrigin().y+60});
+                cur->right->setPosition({cur->getOrigin().x+(cur->right->getHeight()*(AVLLeafSpace+AVLNodeSize.x)/2.0f),cur->getOrigin().y+AVLLevelSpace});
+                cur->right->setTargetPosition({cur->getOrigin().x+(cur->right->getHeight()*(AVLLeafSpace+AVLNodeSize.x)/2.0f),cur->getOrigin().y+AVLLevelSpace});
                 break;
             }
             cur = cur->right;
@@ -235,16 +237,19 @@ void AVL::calculateDepth(AVLNode* root){
 
 void AVL::updatePosition(){
     root->setPosition({(float)GetScreenWidth()/2,150});
+    root->setTargetPosition({(float)GetScreenWidth()/2,150});
     updatePosition(root);
 }
 
 void AVL::updatePosition(AVLNode* root){
     if(!root) return;
     if(root->left){
-        root->left->setPosition({(float)(root->getOrigin().x-(pow(2,root->left->getHeight()-1)*(AVLSpace+AVLNodeSize.x)/2.0f)),root->getOrigin().y+60});
+        root->left->setPosition({(float)(root->getOrigin().x-(pow(2,root->left->getHeight()-1)*(AVLLeafSpace+AVLNodeSize.x)/2.0f)),root->getOrigin().y+AVLLevelSpace});
+        root->left->setTargetPosition({(float)(root->getOrigin().x-(pow(2,root->left->getHeight()-1)*(AVLLeafSpace+AVLNodeSize.x)/2.0f)),root->getOrigin().y+AVLLevelSpace});
     }
     if(root->right){
-        root->right->setPosition({(float)(root->getOrigin().x+(pow(2,root->right->getHeight()-1)*(AVLSpace+AVLNodeSize.x)/2.0f)),root->getOrigin().y+60});
+        root->right->setPosition({(float)(root->getOrigin().x+(pow(2,root->right->getHeight()-1)*(AVLLeafSpace+AVLNodeSize.x)/2.0f)),root->getOrigin().y+AVLLevelSpace});
+        root->right->setTargetPosition({(float)(root->getOrigin().x+(pow(2,root->right->getHeight()-1)*(AVLLeafSpace+AVLNodeSize.x)/2.0f)),root->getOrigin().y+AVLLevelSpace});
     }
     updatePosition(root->left);
     updatePosition(root->right);

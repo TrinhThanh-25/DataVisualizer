@@ -50,7 +50,7 @@ void Button::drawRectangle(Vector2 recSize){
 }
 
 void Button::drawRectangleRounded(int roundness){
-    DrawRectangleRounded(this->rectangle, roundness, 0, this->color);
+    DrawRectangleRounded(this->rectangle, roundness, 100, this->color);
 }
 
 void Button::drawRectangleRoundedLinesEx(int roundness, int segments, int lineThick, Color color){

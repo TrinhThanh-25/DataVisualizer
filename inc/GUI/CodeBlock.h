@@ -1,10 +1,11 @@
 #ifndef CODEBLOCK_H
 #define CODEBLOCK_H
 
-#include "GUI/Resources.h"
 #include <vector>
 #include <string>
 #include <sstream>
+
+#include "GUI/Resources.h"
 
 class CodeBlock{
     public:

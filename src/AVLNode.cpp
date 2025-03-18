@@ -22,6 +22,10 @@ void AVLNode::setPosition(Vector2 position){
     rightPointer = new AVLArrow({position.x,position.y});
 }
 
+void AVLNode::setTargetPosition(Vector2 targetPos){
+    this->targetPosition=targetPos;
+}
+
 void AVLNode::setHeight(int value){
     height=value;
 }
@@ -65,7 +69,25 @@ void AVLNode::updateHeight(){
     else height=1+std::max(left->getHeight(),right->getHeight());
 }
 
+void AVLNode::updateNode(){
+    if (position.x == targetPosition.x&&position.y == targetPosition.y) return;
+    float deltaTime=GetFrameTime();
+    float disX=targetPosition.x-position.x, disY=targetPosition.y-position.y;
+    float dis=sqrt(disX*disX+disY*disY);
+    float deltaX=disX/dis*speed*deltaTime;
+    float deltaY=disY/dis*speed*deltaTime;
+    if(deltaX>=disX&&deltaY>=disY){
+        position=targetPosition;
+    }
+    else{
+        position.x+=deltaX;
+        position.y+=deltaY;
+    }
+}
+
 void AVLNode::updateCur(){
+    updateNode();
+    node={position.x-AVLNodeSize.x/2.0f,position.y-AVLNodeSize.y/2.0f, AVLNodeSize.x, AVLNodeSize.y};
     if(left&&leftPointer){
         leftPointer->setTarget(left->getOrigin());
         leftPointer->update();
@@ -87,5 +109,5 @@ void AVLNode::drawCur(){
         DrawRectangleRounded(node,100,0,LIGHTGRAY);
     else  
         DrawRectangleRounded(node,100,0,RED);
-    DrawText(std::to_string(this->value).c_str(),position.x-MeasureText(std::to_string(this->value).c_str(),24)/2.0f,position.y-12,24,BLACK);
+    DrawText(std::to_string(this->value).c_str(),position.x-MeasureText(std::to_string(this->value).c_str(),AVLNodeFontSize)/2.0f,position.y-AVLNodeFontSize/2.0f,AVLNodeFontSize,AVLNodeTextColor);
 }

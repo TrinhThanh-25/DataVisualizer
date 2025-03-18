@@ -1,10 +1,11 @@
 #include "ShortestPath/ShortestPathNode.h"
 
-ShortestPathNode::ShortestPathNode() {
+ShortestPathNode::ShortestPathNode(Vector2 pos) {
     id = 0;
-    cost = 0;
+    cost = -1;
     isKnown = false;
     visited = false;
+    position=pos;
 }
 
 ShortestPathNode::ShortestPathNode(int id) {
@@ -16,17 +17,9 @@ ShortestPathNode::ShortestPathNode(int id) {
 
 ShortestPathNode::~ShortestPathNode() {
     for(auto node : adj){
-        delete node;
+        node=nullptr;
     }
     adj.clear();
-}
-
-void ShortestPathNode::addAdj(ShortestPathNode* node) {
-    adj.push_back(node);
-}
-
-std::vector<ShortestPathNode*> ShortestPathNode::getAdj() {
-    return adj;
 }
 
 void ShortestPathNode::setID(int id) {
@@ -81,8 +74,16 @@ void ShortestPathNode::setPosition(Vector2 position) {
     }
 }
 
+Vector2 ShortestPathNode::getForce(){
+    return force;
+}
+
+void ShortestPathNode::setForce(Vector2 force){
+    this->force=force;
+}
+
 void ShortestPathNode::addEdge(ShortestPathNode* node) {
-    STArrow* a = new STArrow(position);
+    STArrow* a = new STArrow(position,node->getID());
     a->setFrom(id);
     a->setTo(node->getID());
     a->setTarget(node->getPosition());
@@ -90,10 +91,10 @@ void ShortestPathNode::addEdge(ShortestPathNode* node) {
 }
 
 void ShortestPathNode::removeEdge(ShortestPathNode* node) {
-    for(auto a : arrow){
-        if(a->getTo() == node->getID()){
-            arrow.erase(std::remove(arrow.begin(), arrow.end(), a), arrow.end());
-            delete a;
+    for (auto it = arrow.begin(); it != arrow.end(); ++it) {
+        if ((*it)->getTo() == node->getID()) {
+            delete *it;  
+            arrow.erase(it);  
             break;
         }
     }
@@ -107,18 +108,32 @@ void ShortestPathNode::clearEdges() {
 }
 
 void ShortestPathNode::update() {
-    for(auto arrow : arrow){
-        arrow->setTarget(adj[arrow->getTo()]->getPosition());
-        arrow->update();
+    node={position.x-STNodeSize.x/2.0f,position.y-STNodeSize.y/2.0f,STNodeSize.x,STNodeSize.y};
+    for(auto ar : arrow){
+        for(auto node : adj){
+            if(ar&&ar->getTo()==node->getID()){
+                ar->setTarget(node->getPosition());
+                ar->update();
+            }
+        }
     }
 }
 
 void ShortestPathNode::draw(bool isWeighted, bool isDirected) {
-    for(auto arrow : arrow){
-        arrow->draw(isWeighted, isDirected);
+    for(auto ar : arrow){
+        if(ar)
+            ar->draw(isWeighted, isDirected);
     }
+}
+
+void ShortestPathNode::drawNode(){
     DrawRectangleRounded(node, 100, 0, visited ? RED : LIGHTGRAY);
-    DrawText(std::to_string(cost).c_str(), position.x+STNodeSize.x/2.0f, position.y-STNodeSize.y/2.0f, 12, BLACK);
-    DrawText(std::to_string(id).c_str(), position.x-MeasureText(std::to_string(id).c_str(),24)/2.0f,position.y-12,24,BLACK);
+    if(cost==-1){
+        DrawText("INF", position.x+STNodeSize.x/2.0f, position.y-STNodeSize.y/2.0f, STNodeIDFontSize, STNodeIDColor);
+    }
+    else{
+        DrawText(std::to_string(cost).c_str(), position.x+STNodeSize.x/2.0f, position.y-STNodeSize.y/2.0f, STNodeIDFontSize, STNodeIDColor);
+    }
+    DrawText(std::to_string(id).c_str(), position.x-MeasureText(std::to_string(id).c_str(),STNodeCostFontSize)/2.0f,position.y-STNodeCostFontSize/2.0f,STNodeCostFontSize,STNodeCostColor);
 }
 

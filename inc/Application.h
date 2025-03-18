@@ -2,7 +2,6 @@
 #define APPLICATION_H
 
 #include "MenuState.h"
-#include "GUI/Panel.h"
 #include "SLL/SLLState.h"
 #include "AVL/AVLState.h"
 #include "ShortestPath/ShortestPathState.h"
@@ -13,7 +12,6 @@ class Application{
         void run();
     private:
         MenuState menuState;
-        Panel panel;
         SLLState SLL;
         AVLState AVL;
         ShortestPathState ST;

@@ -1,10 +1,8 @@
 #ifndef AVLNODE_H
 #define AVLNODE_H
 
-#include <string>
 #include <algorithm>
 
-#include "raylib.h"
 #include "GUI/Resources.h"
 #include "AVL/AVLArrow.h"
 
@@ -15,6 +13,7 @@ class AVLNode{
 
         void setValue(int value);
         void setPosition(Vector2 position);
+        void setTargetPosition(Vector2 targetPos);
         void setHeight(int value);
         void setDepth(int value);
         void setHighlight();
@@ -28,6 +27,7 @@ class AVLNode{
 
         void updateHeight();
 
+        void updateNode();
         void updateCur();
         void drawCur();
     public:
@@ -37,10 +37,14 @@ class AVLNode{
     private:
         Rectangle node;
 
+        Color nodeColor;
+        Color textColor;
+
         AVLArrow* leftPointer;
         AVLArrow* rightPointer;
 
         Vector2 position;
+        Vector2 targetPosition; 
         int value;
         int height=0;
         int depth=0;

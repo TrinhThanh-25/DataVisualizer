@@ -1,4 +1,3 @@
-// InputBox.cpp
 #include "GUI/InputBox.h"
 
 InputBox::InputBox(float x, float y, float width, float height, int maxLen, Color boxCol, Color txtCol)
@@ -49,10 +48,10 @@ void InputBox::Update() {
 void InputBox::Draw() {
     DrawRectangleRec(box, isActive ? DARKGRAY : boxColor);
     DrawRectangleLinesEx(box, 2, BLACK);
-    DrawText(text.c_str(), box.x + 5, box.y + box.height / 4, 20, textColor);
-    
+    DrawText(text.c_str(), box.x + 5, box.y + box.height / 4.0f, inputBoxFontSize, textColor);
+    DrawText(nameBox.c_str(), box.x, box.y -inputBoxNameFontSize, inputBoxNameFontSize, textColor);
     if (isActive && showCursor) {
-        DrawText("|", box.x + 5 + MeasureText(text.c_str(), 20), box.y + box.height / 4, 20, textColor);
+        DrawText("|", box.x + 5 + MeasureText(text.c_str(), inputBoxFontSize), box.y + box.height / 4.0f, inputBoxFontSize, textColor);
     }
 }
 
@@ -66,6 +65,10 @@ void InputBox::resetBox(){
 
 void InputBox::setText(std::string text){
     this->text=text;
+}
+
+void InputBox::setNameBox(std::string nameBox){
+    this->nameBox=nameBox;
 }
 
 void InputBox::setPosition(Vector2 position){

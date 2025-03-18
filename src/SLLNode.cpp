@@ -24,6 +24,19 @@ void SLLNode::setPosition(Vector2 position){
     Pointer = new SLLArrow(getEndPos());
 }
 
+void SLLNode::setTarget(Vector2 target){
+    if(Pointer)
+    Pointer->setTarget(target);
+}
+
+void SLLNode::setTargetPosition(Vector2 targetPos){
+    this->targetPosition=targetPos;
+}
+
+void SLLNode::setDestination(Vector2 targetPos){
+    Pointer->setDestination(targetPos);
+}
+
 Vector2 SLLNode::getStartPos(){
     return {position.x, position.y+node.height/2.0f};
 }
@@ -41,16 +54,34 @@ int SLLNode::getValue(){
     return value;
 }
 
-void SLLNode::updateCur(Vector2 targetPos){
+void SLLNode::updateNode(){
+    if (position.x == targetPosition.x&&position.y == targetPosition.y) return;
+    float deltaTime=GetFrameTime();
+    float disX=targetPosition.x-position.x, disY=targetPosition.y-position.y;
+    float dis=sqrt(disX*disX+disY*disY);
+    float deltaX=disX/dis*speed*deltaTime;
+    float deltaY=disY/dis*speed*deltaTime;
+    if(deltaX>=disX&&deltaY>=disY){
+        position=targetPosition;
+    }
+    else{
+        position.x+=deltaX;
+        position.y+=deltaY;
+    }
+}
+
+void SLLNode::updateCur(){
+    updateNode();
+    node={position.x, position.y, SLLNodeSize.x, SLLNodeSize.y};
     if (Pointer) {
-        Pointer->setTarget(targetPos);
+        Pointer->setPosition(getEndPos());
         Pointer->update();
     }
 }
 
 void SLLNode::drawCur(){
-    DrawRectangleRounded(node, 50, 0, LIGHTGRAY);
-    DrawText(std::to_string(this->value).c_str(),position.x+SLLNodeSize.x/2-MeasureText(std::to_string(this->value).c_str(),24)/2.0f,position.y+SLLNodeSize.y/2-12,24,BLACK);
+    DrawRectangleRounded(node, 50, 100, LIGHTGRAY);
+    DrawText(std::to_string(this->value).c_str(),position.x+SLLNodeSize.x/2.0f-MeasureText(std::to_string(this->value).c_str(),SLLNodeFontSize)/2.0f,position.y+SLLNodeSize.y/2.0f-SLLNodeFontSize/2.0f,SLLNodeFontSize,SLLNodeTextColor);
     if (Pointer) {
         Pointer->draw();
     }

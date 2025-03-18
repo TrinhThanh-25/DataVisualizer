@@ -12,5 +12,5 @@ void AVLArrow::update(){
 }
 
 void AVLArrow::draw(){
-    DrawLineEx(this->position,this->destination,2,BLACK);
+    DrawLineEx(this->position,this->destination,2,color);
 }

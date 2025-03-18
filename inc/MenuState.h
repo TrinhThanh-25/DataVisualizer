@@ -3,23 +3,23 @@
 
 #include "GUI/Button.h"
 
-class MenuState{
+enum class MenuSelection {
+    NONE,
+    SLL,
+    LINEAR_HT,
+    TREE_234,
+    AVL_TREE,
+    MIN_SPANNING_TREE,
+    SHORTEST_PATH
+};
+
+class MenuState {
     public:
         MenuState();
-
-        void isSLLPressed();
-
         void draw();
         void update();
     public:
-        bool isStarted = false;
-        bool isSLL = false;
-        bool isLinearHT = false;
-        bool isTree234 = false;
-        bool isAVLTree = false;
-        bool isMinSpanningTree = false;
-        bool isShortestPath = false;
-        bool* isUsed=nullptr;
+        MenuSelection currentSelection = MenuSelection::NONE;
     private:
         Texture2D background;
         const char* title;

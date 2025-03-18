@@ -1,12 +1,10 @@
 #ifndef SHORTESTPATHSTATE_H
 #define SHORTESTPATHSTATE_H
 
-#include<random>
+#include <random>
 
 #include "ShortestPath/ShortestPath.h"
-#include "GUI/Button.h"
-#include "GUI/inputBox.h"
-#include "GUI/Panel.h"
+#include "ShortestPath/STPanel.h"
 #include "GUI/CodeBlock.h"
 
 class ShortestPathState{
@@ -16,12 +14,12 @@ class ShortestPathState{
         void draw();
 
         void resetBox();
-        std::string getRandomInput(int nodes);
+        bool isBackPressed();
 
     private:
         ShortestPath ST;
         CodeBlock STCode;
-        Panel panel;
+        STPanel panel;
 
         InputBox NodesBox;
         InputBox EdgesBox;

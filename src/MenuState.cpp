@@ -49,7 +49,7 @@ MenuState::MenuState(){
 
 void MenuState::draw(){
     DrawTexture(this->background, 0, 0, WHITE);
-    DrawText(this->title, 800 - MeasureText(this->title, 40)/2, 350, 40, BLACK);
+    DrawText(this->title, GetScreenWidth()/2.0f - MeasureText(this->title, appTitleFontSize)/2.0f, 350, 40, appTitleColor);
 
     this->exit.drawRectangleRounded(70);
     this->SLL.drawRectangleRounded(70);
@@ -59,13 +59,13 @@ void MenuState::draw(){
     this->MinSpanningTree.drawRectangleRounded(70);
     this->ShortestPath.drawRectangleRounded(70);
 
-    this->exit.drawText(BLACK);
-    this->SLL.drawText(BLACK);
-    this->LinearHT.drawText(BLACK);
-    this->Tree234.drawText(BLACK);
-    this->AVLTree.drawText(BLACK);
-    this->MinSpanningTree.drawText(BLACK);
-    this->ShortestPath.drawText(BLACK);
+    this->exit.drawText(menuButtonTextColor);
+    this->SLL.drawText(menuButtonTextColor);
+    this->LinearHT.drawText(menuButtonTextColor);
+    this->Tree234.drawText(menuButtonTextColor);
+    this->AVLTree.drawText(menuButtonTextColor);
+    this->MinSpanningTree.drawText(menuButtonTextColor);
+    this->ShortestPath.drawText(menuButtonTextColor);
 }
 
 void MenuState::update(){
@@ -73,52 +73,22 @@ void MenuState::update(){
         CloseWindow();
     }
     if(this->SLL.isPressed()){
-        this->isSLL = true;
-        this->isStarted = true;
-        if(this->isUsed&&isUsed!=&isSLL){
-            *isUsed=false;
-        }
-        isUsed=&isSLL;
+        currentSelection=MenuSelection::SLL;
     }
     else if(this->LinearHT.isPressed()){
-        this->isLinearHT = true;
-        this->isStarted = true;
-        if(this->isUsed&&isUsed!=&isLinearHT){
-            *isUsed=false;
-        }
-        isUsed=&isLinearHT;
+        currentSelection=MenuSelection::LINEAR_HT;
     }
     else if(this->Tree234.isPressed()){
-        this->isTree234 = true;
-        this->isStarted = true;
-        if(this->isUsed&&isUsed!=&isTree234){
-            *isUsed=false;
-        }
-        isUsed=&isTree234;
+        currentSelection=MenuSelection::TREE_234;
     }
     else if(this->AVLTree.isPressed()){
-        this->isAVLTree = true;
-        this->isStarted = true;
-        if(this->isUsed&&isUsed!=&isAVLTree){
-            *isUsed=false;
-        }
-        isUsed=&isAVLTree;
+        currentSelection=MenuSelection::AVL_TREE;
     }
     else if(this->MinSpanningTree.isPressed()){
-        this->isMinSpanningTree = true;
-        this->isStarted = true;
-        if(this->isUsed&&isUsed!=&isMinSpanningTree){
-            *isUsed=false;
-        }
-        isUsed=&isMinSpanningTree;
+        currentSelection=MenuSelection::MIN_SPANNING_TREE;
     }
     else if(this->ShortestPath.isPressed()){
-        this->isShortestPath = true;
-        this->isStarted = true;
-        if(this->isUsed&&isUsed!=&isShortestPath){
-            *isUsed=false;
-        }
-        isUsed=&isShortestPath;
+        currentSelection=MenuSelection::SHORTEST_PATH;
     }
     this->exit.update();
     this->SLL.update();

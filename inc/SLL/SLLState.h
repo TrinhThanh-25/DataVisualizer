@@ -1,16 +1,17 @@
 #ifndef SLLSTATE_H
 #define SLLSTATE_H
 
+#include <sstream>
+#include <vector>
+#include <random>
+
 #include "SLL/SLLCode.h"
 #include "SLL/SinglyLinkedList.h"
-#include "GUI/Panel.h"
+#include "SLL/SLLPanel.h"
 #include "GUI/CodeBlock.h"
 #include "GUI/inputBox.h"
 #include "GUI/Button.h"
 
-#include <sstream>
-#include <vector>
-#include <random>
 class SLLState{
     public:
         SLLState();
@@ -19,11 +20,12 @@ class SLLState{
         
         void resetBox();
         std::string getRandomInput();
+        bool isBackPressed();
 
     private:
         SinglyLinkedList SLL;
         CodeBlock SLLCode;
-        Panel panel;
+        SLLPanel panel;
 
         InputBox createBox;
         InputBox indexBox;
