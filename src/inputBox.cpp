@@ -75,3 +75,7 @@ void InputBox::setPosition(Vector2 position){
     box.x = position.x;
     box.y = position.y;
 }
+
+void InputBox::clearBox(){
+    text.clear();
+}
