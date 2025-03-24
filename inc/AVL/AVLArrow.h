@@ -6,7 +6,6 @@
 class AVLArrow : public Arrow{
     public:
         AVLArrow(Vector2 pos);
-        void setTarget(Vector2 targetPos) override;
         void update() override;
         void draw() override;
 };

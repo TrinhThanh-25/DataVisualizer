@@ -6,7 +6,7 @@
 class STArrow : public Arrow{
     public:
         STArrow(Vector2 pos,int to);
-        void setTarget(Vector2 targetPos) override;
+        void setTargetDestination(Vector2 targetDes) override;
         void update() override;
         void draw(bool isWeighted, bool isDirected);
         void setWeight(int weight);

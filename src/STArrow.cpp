@@ -5,10 +5,10 @@ STArrow::STArrow(Vector2 pos,int to) : Arrow(pos){
     this->weight=0;
 }
 
-void STArrow::setTarget(Vector2 targetPos){
-    float disX=targetPos.x-position.x, disY=targetPos.y-position.y;
+void STArrow::setTargetDestination(Vector2 targetDes){
+    float disX=targetDes.x-position.x, disY=targetDes.y-position.y;
     float dis=sqrt(disX*disX+disY*disY);
-    this->targetDestination={targetPos.x-STNodeSize.x/(2.0f*dis)*disX,targetPos.y-STNodeSize.y/(2.0f*dis)*disY};
+    this->targetDestination={targetDes.x-STNodeSize.x/(2.0f*dis)*disX,targetDes.y-STNodeSize.y/(2.0f*dis)*disY};
 }
 
 void STArrow::update(){

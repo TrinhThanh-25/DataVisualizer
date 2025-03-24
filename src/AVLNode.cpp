@@ -76,7 +76,7 @@ void AVLNode::updateNode(){
     float dis=sqrt(disX*disX+disY*disY);
     float deltaX=disX/dis*speed*deltaTime;
     float deltaY=disY/dis*speed*deltaTime;
-    if(deltaX>=disX&&deltaY>=disY){
+    if(fabs(deltaX)>=fabs(disX)&&fabs(deltaY)>=fabs(disY)){
         position=targetPosition;
     }
     else{
@@ -89,11 +89,11 @@ void AVLNode::updateCur(){
     updateNode();
     node={position.x-AVLNodeSize.x/2.0f,position.y-AVLNodeSize.y/2.0f, AVLNodeSize.x, AVLNodeSize.y};
     if(left&&leftPointer){
-        leftPointer->setTarget(left->getOrigin());
+        leftPointer->setTargetDestination(left->getOrigin());
         leftPointer->update();
     }
     if(right&&rightPointer){
-        rightPointer->setTarget(right->getOrigin());
+        rightPointer->setTargetDestination(right->getOrigin());
         rightPointer->update();
     }
 }
@@ -105,9 +105,30 @@ void AVLNode::drawCur(){
     if(right&&rightPointer){
         rightPointer->draw();
     }
-    if(!isHighlight)
-        DrawRectangleRounded(node,100,0,LIGHTGRAY);
-    else  
-        DrawRectangleRounded(node,100,0,RED);
-    DrawText(std::to_string(this->value).c_str(),position.x-MeasureText(std::to_string(this->value).c_str(),AVLNodeFontSize)/2.0f,position.y-AVLNodeFontSize/2.0f,AVLNodeFontSize,AVLNodeTextColor);
+    DrawRectangleRounded(node,100,0,(isHighlight)? highlightColor : nodeColor);
+    DrawText(std::to_string(this->value).c_str(),position.x-MeasureText(std::to_string(this->value).c_str(),AVLNodeFontSize)/2.0f,position.y-AVLNodeFontSize/2.0f,AVLNodeFontSize,(isHighlight)? textHighlight:textColor);
+}
+
+void AVLNode::setDestinationLeft(Vector2 targetDes){
+    if(leftPointer){
+        leftPointer->setDestination(targetDes);
+    }
+}
+
+void AVLNode::setDestinationRight(Vector2 targetDes){
+    if(rightPointer){
+        rightPointer->setDestination(targetDes);
+    }
+}
+
+void AVLNode::setTargetDestinationLeft(Vector2 targetDes){
+    if(leftPointer){
+        leftPointer->setTargetDestination(targetDes);
+    }
+}
+
+void AVLNode::setTargetDestinationRight(Vector2 targetDes){
+    if(rightPointer){
+        rightPointer->setTargetDestination(targetDes);
+    }
 }

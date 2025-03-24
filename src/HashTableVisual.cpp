@@ -199,4 +199,3 @@ void HashTableVisualization::Draw() {
         inputBox.Draw();
     }
 }
-

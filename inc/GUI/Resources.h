@@ -20,7 +20,7 @@ const Color dataTitleColor({185,185,185,255});
 const Color dataTitleTextColor({BLACK});
 const int dataTitleFontSize = 24;
 const Vector2 dataTitleSize({400,50});
-const Vector2 dataTitlePosition({GetScreenWidth()/2.0f-dataTitleSize.x/2.0f,15});
+const Vector2 dataTitlePosition({800,15+dataTitleSize.y/2.0f});
 
 const Vector2 panelButtonSize({80, 40});//Create, Add, Remove ...
 const int panelButtonFontSize(15);
@@ -33,6 +33,8 @@ const Color panelSubButtonTextColor({BLACK});
 
 const Color highlightColor({255,253,85,255});
 
+const Vector2 backSize({50,50});
+
 //InputBox
 const int inputBoxFontSize(20);
 const int inputBoxNameFontSize(20);
@@ -41,7 +43,6 @@ const int inputBoxNameFontSize(20);
 const Vector2 SLLNodeSize({80,60});
 const Vector2 SLLposition({150,250});
 const int SLLNodeFontSize(24);
-const Color SLLNodeTextColor({BLACK});
 
 const Vector2 SLLBoxSize({260,40});
 const int SLLBoxFontSize(20);
@@ -80,5 +81,10 @@ const int STButtonFontSize(15);
 
 //Arrow
 const int ArrowLength = 50;
+
+//Controller
+const Vector2 controllerButtonSize({50,50});
+const Vector2 controllerPosition({800,860});
+const Vector2 controllerSize({400,2*(900-controllerPosition.y)});
 
 #endif

@@ -31,13 +31,13 @@
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\HashTable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\HashTableVisual.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\MenuState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\Panel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\ProcessController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\SLLArrow.cpp">

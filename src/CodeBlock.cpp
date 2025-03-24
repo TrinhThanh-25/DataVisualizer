@@ -8,7 +8,7 @@ void CodeBlock::update(){
 
 void CodeBlock::draw(){
     drawHighlight(16);
-    drawCode(1215,600,16,BLACK);
+    drawCode(1215,700,16,BLACK);
 }
 
 void CodeBlock::setCode(std::string code){
@@ -36,7 +36,7 @@ void CodeBlock::setHighlight(std::vector<int> ID){
 
 void CodeBlock::drawHighlight(int fontSize){
     for (int x : highlightID){
-        DrawRectangle(1200,600+x*(fontSize+5),400,fontSize+2.5f,YELLOW);
+        DrawRectangle(1200,700+x*(fontSize+5),400,fontSize+2.5f,YELLOW);
     }
 }
 

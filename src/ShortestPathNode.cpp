@@ -86,7 +86,7 @@ void ShortestPathNode::addEdge(ShortestPathNode* node) {
     STArrow* a = new STArrow(position,node->getID());
     a->setFrom(id);
     a->setTo(node->getID());
-    a->setTarget(node->getPosition());
+    a->setTargetDestination(node->getPosition());
     arrow.push_back(a);
 }
 
@@ -112,7 +112,7 @@ void ShortestPathNode::update() {
     for(auto ar : arrow){
         for(auto node : adj){
             if(ar&&ar->getTo()==node->getID()){
-                ar->setTarget(node->getPosition());
+                ar->setTargetDestination(node->getPosition());
                 ar->update();
             }
         }

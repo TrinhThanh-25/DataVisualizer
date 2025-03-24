@@ -1,6 +1,6 @@
 #include "AVL/AVL.h"
 
-AVL::AVL() : root(nullptr) {}
+AVL::AVL() : root(nullptr), curNode(nullptr) {}
 
 AVL::~AVL(){
     clearTree();
@@ -53,7 +53,17 @@ void AVL::insertNode(int value){
     }
     calculateDepth();
     balanceTree();
-    update();
+}
+
+void AVL::updateInsertAnimation(int value){
+    if(!root){
+        root = new AVLNode();
+        root->setValue(value);
+        calculateHeight();
+        root->setPosition({(float)GetScreenWidth()/2,150});
+        root->setTargetPosition({(float)GetScreenWidth()/2,150});
+        return;
+    }
 }
 
 void AVL::balanceTree(){

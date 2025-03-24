@@ -10,7 +10,7 @@ class Arrow{
      public:
           Arrow(Vector2 pos);
           
-          virtual void setTarget(Vector2 targetPos);
+          virtual void setTargetDestination(Vector2 targetDes);
           void setDestination(Vector2 destination);
           void setPosition(Vector2 position);
           void setTargetPosition(Vector2 targetPos);

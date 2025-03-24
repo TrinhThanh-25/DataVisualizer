@@ -30,6 +30,11 @@ class AVLNode{
         void updateNode();
         void updateCur();
         void drawCur();
+
+        void setDestinationLeft(Vector2 targetDes);
+        void setDestinationRight(Vector2 targetDes);
+        void setTargetDestinationLeft(Vector2 targetDes);
+        void setTargetDestinationRight(Vector2 targetDes);
     public:
         AVLNode* left;
         AVLNode* right;
@@ -37,8 +42,10 @@ class AVLNode{
     private:
         Rectangle node;
 
-        Color nodeColor;
-        Color textColor;
+        Color nodeColor=LIGHTGRAY;
+        Color textColor=BLACK;
+        Color highlight = GREEN;
+        Color textHighlight = WHITE;
 
         AVLArrow* leftPointer;
         AVLArrow* rightPointer;

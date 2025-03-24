@@ -12,6 +12,7 @@ class AVL{
 
         void createTree(std::string text);
         void insertNode(int value);
+        void updateInsertAnimation(int value);
         void balanceTree();
         void balanceTree(AVLNode*& root);
         void rotateRight(AVLNode*& root);
@@ -36,6 +37,9 @@ class AVL{
         void draw(AVLNode* root);
     private:
         AVLNode* root;
+        AVLNode* curNode;
+
+        int animationStep = 0;
 };
 
 #endif

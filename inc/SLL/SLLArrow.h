@@ -8,10 +8,11 @@ class SLLArrow : public Arrow{
         void setLabel(const std::string &text);
         void setNull();
         bool checkNull();
-        void setTarget(Vector2 targetPos) override;
+        void setTargetDestination(Vector2 targetDes) override;
+        void moveNode(Vector2 targetPos, Vector2 targetDes);
         void draw() override;
     private:
-        std::string label="";         
+        std::string label;         
         bool isNull=false;  
 };
 

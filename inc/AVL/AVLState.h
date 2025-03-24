@@ -7,11 +7,20 @@
 #include "AVL/AVL.h"
 #include "AVL/AVLPanel.h"
 #include "GUI/CodeBlock.h"
+
+enum class AVLAnimationMode{
+    IDLE, INSERTING, REMOVING, SEARCHING
+};
+
 class AVLState {   
     public: 
         AVLState();
         void update();
         void draw();
+
+        void animateInsert(int value);
+        void animateRemove(int value);
+        void animateSearch(int value);
 
         void resetBox();
         std::string getRandomInput();
@@ -28,6 +37,8 @@ class AVLState {
         Button Random;
         Button LoadFile;
         Button Apply;
+
+        AVLAnimationMode animationState=AVLAnimationMode::IDLE;
 };
 
 #endif

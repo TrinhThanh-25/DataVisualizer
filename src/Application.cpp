@@ -6,8 +6,6 @@ void Application::run(){
     InitWindow(1600, 900, "Data Structure Visualization");
     SetTargetFPS(60);
     srand(time(NULL));
-    Arrow a({0,0});
-    a.setTarget({1600,900});
     while (!WindowShouldClose()){
         BeginDrawing();
         ClearBackground(RAYWHITE);

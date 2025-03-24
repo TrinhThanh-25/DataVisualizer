@@ -7,7 +7,7 @@
 #include <ctime>
 #include "raylib.h"
 #include "GUI/Button.h"
-#include "inputBox.h"
+#include "GUI/inputBox.h"
 #include "Node.h"
 #include "HashTable.h"
 

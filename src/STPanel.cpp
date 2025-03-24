@@ -25,10 +25,7 @@ bool STPanel::isAnyButtonPressed(){
 }
 
 void STPanel::draw(){
-    DrawRectangle(550,800,500,100,panelNormal);
-    
-    DrawRectangleRounded(dataTitle,100,0,dataTitleColor);
-    DrawRectangleRounded(panelHolder,0,0,panelNormal);
+    drawController();
     this->Back.drawRectangleRounded(100);
     this->Create.drawRectangleRounded(100);
     this->Create.drawText(panelButtonTextColor);
@@ -39,6 +36,7 @@ void STPanel::draw(){
 }
 
 void STPanel::update(){
+    updateController();
     if(this->Create.isPressed()){
         this->Create.Selected();
         if(isUsing&&isUsing!=&Create) this->isUsing->deSelected();

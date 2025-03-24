@@ -1,14 +1,6 @@
 #include "SLL/SLLPanel.h"
 
 SLLPanel::SLLPanel(){
-    this->dataTitle = {600,15,400,50};
-    this->panelHolder = {0,650-(panelButtonSize.y/2.0f-panelButtonFontSize/2.0f),400,350};
-
-    this->Back.setSize({50,50});
-    this->Back.setPosition({dataTitle.y+dataTitle.height/2.0f,dataTitle.y+dataTitle.height/2.0f});
-    this->Back.setColor(panelNormal,panelHovered,panelPressed);
-    this->Back.setRectangle();
-
     this->Create.setText("Create",panelButtonFontSize);
     this->Create.setSize(panelButtonSize);
     this->Create.setPosition({Create.getSize().x/2.0f+(Create.getSize().y/2.0f-Create.getfontSize()/2.0f), 650+(Create.getSize().y/2.0f-Create.getfontSize()/2.0f)});
@@ -45,11 +37,7 @@ bool SLLPanel::isAnyButtonPressed(){
 }
 
 void SLLPanel::draw(){
-    DrawRectangle(550,800,500,100,panelNormal);
-
-    
-    DrawRectangleRounded(dataTitle,100,0,dataTitleColor);
-    DrawRectangleRounded(panelHolder,0,0,panelNormal);
+    drawController();
     this->Back.drawRectangleRounded(100);
     this->Create.drawRectangleRounded(100);
     this->Create.drawText(panelButtonTextColor);
@@ -64,6 +52,7 @@ void SLLPanel::draw(){
 }
 
 void SLLPanel::update(){
+    updateController();
     if(this->Create.isPressed()){
         this->Create.Selected();
         if(isUsing&&isUsing!=&Create) this->isUsing->deSelected();
