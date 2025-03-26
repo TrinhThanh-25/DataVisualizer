@@ -1,4 +1,4 @@
-#include "HashTableVisual.h"
+#include "HashTable/HashTableVisual.h"
 #include <algorithm>
 
 HashTableVisualization::HashTableVisualization(const Texture2D& hollowCircle, const Texture2D& solidCircle, const Texture2D& arrowEdge, const Font& fontNumber, const Font& fontText, const bool& isLightMode, const float& speed)

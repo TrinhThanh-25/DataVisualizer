@@ -1,4 +1,4 @@
-#include "HashTable.h"
+#include "HashTable/HashTable.h"
 #include <ctime> // Để sử dụng time() trong InitTable
 
 HashTable::HashTable(int size) {

@@ -3,7 +3,7 @@
 #include "raylib.h"
 #include "raymath.h"
 #include "GUI/Button.h"
-#include "inputBox.h"
+#include "GUI/inputBox.h"
 #include "HashTable.h"
 #include "animation/Presentation.h"
 

@@ -15,6 +15,9 @@ class InputBox {
         void resetBox();
         void setText(std::string text);
         void setNameBox(std::string nameBox);
+        bool isAppear = false;
+        void clearText();
+
 
         void setPosition(Vector2 position);
     private:
