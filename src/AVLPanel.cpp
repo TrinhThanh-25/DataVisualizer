@@ -31,7 +31,7 @@ bool AVLPanel::isAnyButtonPressed(){
 }
 
 void AVLPanel::draw(){
-    drawController();
+    drawPanel();
     this->Back.drawRectangleRounded(100);
     this->Create.drawRectangleRounded(100);
     this->Create.drawText(panelButtonTextColor);
@@ -44,7 +44,7 @@ void AVLPanel::draw(){
 }
 
 void AVLPanel::update(){
-    updateController();
+    updatePanel();
     if(this->Create.isPressed()){
         this->Create.Selected();
         if(isUsing&&isUsing!=&Create) this->isUsing->deSelected();

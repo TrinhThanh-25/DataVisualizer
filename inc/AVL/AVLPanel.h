@@ -1,7 +1,7 @@
 #ifndef AVLSLLPANEL_H
 #define AVLPANEL_H
 
-#include "GUI/Panel.h"
+#include <GUI/Panel.h>
 
 class AVLPanel : public Panel{
     public:

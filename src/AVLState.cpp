@@ -24,8 +24,65 @@ AVLState::AVLState(): createBox(120,700,AVLBoxSize.x, AVLBoxSize.y,AVLBoxFontSiz
 }
 
 void AVLState::update(){
-    AVL.update();
+    if (panel.isPlayPressed()) {
+        if(currentStep==stateList.size()-1){
+            restart();
+        }
+        else if(currentStep==0){
+            play();
+        }
+        else if(isPlaying&&!isPaused){
+            pause();
+        }
+        else if(isPlaying&&isPaused){
+            resume();
+        }
+    }
+    else if (panel.isNextPressed()) {
+        nextStep();
+    }
+    else if (panel.isPrevPressed()) {
+        prevStep();
+    }
+    else if (panel.isEndPressed()) {
+        moveEnd();
+    }
+    else if (panel.isStartPressed()) {
+        moveStart();
+    }
+
+    AVLTree.update();
     panel.update();
+    code.update();
+
+    switch (animationState) {
+        case AVLAnimationMode::INSERT:
+            if (!isStateSaved) {
+                saveInsertState(std::stoi(valueText));
+                isStateSaved = true;
+            }
+            animateInsert(std::stoi(valueText));
+            break;
+        case AVLAnimationMode::REMOVE:
+            if (!isStateSaved) {
+                saveRemoveState(std::stoi(valueText));
+                isStateSaved = true; 
+            }
+            animateRemove(std::stoi(valueText));
+            break;
+        case AVLAnimationMode::SEARCH:
+            if (!isStateSaved) {
+                saveSearchState(std::stoi(valueText));
+                isStateSaved = true;
+            }
+            animateSearch(std::stoi(valueText));
+            break;
+        case AVLAnimationMode::IDLE:
+            break;
+        default:
+            break;
+    }
+
     if(panel.isCreateUsed()){
         Random.setActive();
         LoadFile.setActive();
@@ -40,28 +97,46 @@ void AVLState::update(){
         createBox.setText(getRandomInput());
     }
     else if(LoadFile.isPressed()){
-        
+        //createBox.setText(loadFileContent());
     }
     else if(IsKeyPressed(KEY_ENTER)||Apply.isPressed()){
-        if(panel.isCreateUsed()&&createBox.GetText()!=""){
-            AVL.createTree(createBox.GetText());
-        }
-        else if(panel.isAddUsed()&&valueBox.GetText()!=""){
-            AVL.insertNode(std::stoi(valueBox.GetText()));
-        }
-        else if(panel.isRemoveUsed()&&valueBox.GetText()!=""){
-            AVL.removeNode(std::stoi(valueBox.GetText()));
-        }
-        else if(panel.isSearchUsed()&&valueBox.GetText()!=""){
-            AVL.searchNode(std::stoi(valueBox.GetText()));
-        } 
+        valueText=valueBox.GetText();
+        createText=createBox.GetText();
         resetBox();
+        if(panel.isCreateUsed()&&createText!=""){
+            AVLTree.createTree(createText);
+        }
+        else if(panel.isAddUsed()&&valueText!=""){
+            isStateSaved=false;
+            clearState();
+            isPlaying=true;
+            isPaused=false;
+            animationState=AVLAnimationMode::INSERT;
+            //AVLTree.insertNode(std::stoi(valueText));
+        }
+        else if(panel.isRemoveUsed()&&valueText!=""){
+            isStateSaved=false;
+            clearState();
+            isPlaying=true;
+            isPaused=false;
+            animationState=AVLAnimationMode::REMOVE;
+            //AVLTree.removeNode(std::stoi(valueText));
+        }
+        else if(panel.isSearchUsed()&&valueText!=""){
+            isStateSaved=false;
+            clearState();
+            isPlaying=true;
+            isPaused=false;
+            animationState=AVLAnimationMode::SEARCH;
+            //AVLTree.searchNode(std::stoi(valueText));
+        } 
     }
     else if(panel.isBackPressed()){
-        AVL.clearTree();
+        AVLTree.clearTree();
         resetBox();
     }
     else if(panel.isAnyButtonPressed()){
+        AVLTree.resetHighlight();
         resetBox();
     }
     if(panel.isCreateUsed()){
@@ -76,9 +151,10 @@ void AVLState::update(){
 }
 
 void AVLState::draw(){
-    AVL.draw();
+    code.draw();
+    AVLTree.draw();
     panel.draw();
-    DrawText("AVL Tree",GetScreenWidth()/2.0f-MeasureText("AVL Tree",dataTitleFontSize)/2.0f,40-dataTitleFontSize/2.0f,dataTitleFontSize, dataTitleTextColor);
+    DrawText("AVL Tree",GetScreenWidth()/2.0f-MeasureText("AVL Tree",dataTitleFontSize)/2.0f,dataTitlePosition.y-dataTitleFontSize/2.0f,dataTitleFontSize, dataTitleTextColor);
     AVLCode.draw();
     if(panel.isCreateUsed()){
         createBox.Draw();
@@ -93,6 +169,14 @@ void AVLState::draw(){
         valueBox.Draw();
     }
 }
+
+void AVLState::saveInsertState(int value){}
+void AVLState::saveRemoveState(int value){}
+void AVLState::saveSearchState(int value){}
+
+void AVLState::animateInsert(int value){}
+void AVLState::animateRemove(int value){}
+void AVLState::animateSearch(int value){}
 
 void AVLState::resetBox(){
     createBox.resetBox();
@@ -114,4 +198,88 @@ std::string AVLState::getRandomInput(){
 
 bool AVLState::isBackPressed(){
     return panel.isBackPressed();
+}
+
+void AVLState::play(){
+    if (!stateList.empty()) {
+        isPlaying = true;   
+        isPaused = false;   
+        currentStep = 0;    
+        animationState = stateList[currentStep]->animationState;
+    }
+}
+
+void AVLState::pause() {
+    isPaused = true;  
+}
+
+void AVLState::resume() {
+    isPaused = false;
+}
+
+void AVLState::nextStep(){
+    isPlaying=true;
+    if(currentStep<stateList.size()-1){
+        currentStep++;
+        if(currentStep==stateList.size()-1){
+            isPlaying=false;
+        }
+        applyState();
+    }
+}
+
+void AVLState::prevStep() {
+    isPlaying=true;
+    if (currentStep > 0) {
+        currentStep--;
+        applyState();
+    }
+}
+
+void AVLState::restart(){
+    isPlaying=true;
+    isPaused=false;
+    currentStep=0;
+    applyState();
+}
+
+void AVLState::moveEnd(){
+    isPlaying=false;
+    isPaused=true;
+    currentStep=stateList.size()-1;
+    applyState();
+}
+
+void AVLState::moveStart(){
+    isPlaying=true;
+    currentStep=0;
+    applyState();
+}
+
+void AVLState::saveState(){
+    AVL* currentState = AVLTree.clone();
+    AVLAnimationMode currentMode = this->animationState;
+    stateList.push_back(new AnimationStep{currentState, currentMode});
+}
+
+void AVLState::applyState(){
+    if(stateList.empty()) return;
+    if (currentStep < 0) {
+        currentStep = 0; 
+    }
+    else  if (currentStep >= stateList.size()) {
+        currentStep = stateList.size() - 1;
+    }
+    AVLTree.clear();
+    AVLTree = *stateList[currentStep]->AVLTree->clone();
+    animationState=stateList[currentStep]->animationState;
+}
+void AVLState::clearState(){
+    for (auto state : stateList) {
+        if (state) {
+            delete state;
+            state=nullptr;
+        }
+    }
+    stateList.clear();
 }

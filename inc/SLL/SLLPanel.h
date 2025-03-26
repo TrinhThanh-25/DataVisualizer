@@ -1,7 +1,7 @@
 #ifndef SLLPANEL_H
 #define SLLPANEL_H
 
-#include "GUI/Panel.h"
+#include <GUI/Panel.h>
 
 class SLLPanel : public Panel{
     public:

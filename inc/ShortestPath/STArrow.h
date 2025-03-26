@@ -1,7 +1,7 @@
 #ifndef STARROW_H
 #define STARROW_H
 
-#include "GUI/Arrow.h"
+#include <GUI/Arrow.h>
 
 class STArrow : public Arrow{
     public:

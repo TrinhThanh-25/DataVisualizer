@@ -37,7 +37,7 @@ bool SLLPanel::isAnyButtonPressed(){
 }
 
 void SLLPanel::draw(){
-    drawController();
+    drawPanel();
     this->Back.drawRectangleRounded(100);
     this->Create.drawRectangleRounded(100);
     this->Create.drawText(panelButtonTextColor);
@@ -52,7 +52,7 @@ void SLLPanel::draw(){
 }
 
 void SLLPanel::update(){
-    updateController();
+    updatePanel();
     if(this->Create.isPressed()){
         this->Create.Selected();
         if(isUsing&&isUsing!=&Create) this->isUsing->deSelected();

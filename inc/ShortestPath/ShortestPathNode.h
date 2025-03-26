@@ -3,9 +3,8 @@
 
 #include <vector>
 #include <algorithm>
-
-#include "GUI/Resources.h"
-#include "ShortestPath/STArrow.h"
+#include <GUI/Resources.h>
+#include <ShortestPath/STArrow.h>
 
 class ShortestPathNode{
     public:

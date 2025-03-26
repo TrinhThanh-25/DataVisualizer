@@ -2,10 +2,9 @@
 #define SHORTESTPATHSTATE_H
 
 #include <random>
-
-#include "ShortestPath/ShortestPath.h"
-#include "ShortestPath/STPanel.h"
-#include "GUI/CodeBlock.h"
+#include <ShortestPath/ShortestPath.h>
+#include <ShortestPath/STPanel.h>
+#include <GUI/CodeBlock.h>
 
 class ShortestPathState{
     public:

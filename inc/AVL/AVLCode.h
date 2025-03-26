@@ -3,7 +3,6 @@
 
 #include <string>
 
-
 const std::string Insert(
     "Insert v\n"
     "Check balance factor (bf):\n"

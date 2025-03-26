@@ -1,7 +1,7 @@
 #ifndef SHORTESTPATH_H
 #define SHORTESTPATH_H
 
-#include "ShortestPath/ShortestPathNode.h"
+#include <ShortestPath/ShortestPathNode.h>
 
 class ShortestPath{
     public:

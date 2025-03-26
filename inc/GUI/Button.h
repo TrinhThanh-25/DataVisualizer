@@ -1,7 +1,7 @@
 #ifndef BUTTON_H
 #define BUTTON_H
 
-#include "GUI/Resources.h"
+#include <GUI/Resources.h>
 
 class Button{
     public:

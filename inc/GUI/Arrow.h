@@ -3,9 +3,9 @@
 
 #include <string>
 #include <cmath>
+#include <raylib.h>
+#include <GUI/Resources.h>
 
-#include "raylib.h"
-#include "GUI/Resources.h"
 class Arrow{
      public:
           Arrow(Vector2 pos);

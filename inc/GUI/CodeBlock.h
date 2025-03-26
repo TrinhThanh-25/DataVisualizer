@@ -4,8 +4,7 @@
 #include <vector>
 #include <string>
 #include <sstream>
-
-#include "GUI/Resources.h"
+#include <GUI/Resources.h>
 
 class CodeBlock{
     public:

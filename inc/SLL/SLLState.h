@@ -4,13 +4,12 @@
 #include <sstream>
 #include <vector>
 #include <random>
-
-#include "SLL/SLLCode.h"
-#include "SLL/SinglyLinkedList.h"
-#include "SLL/SLLPanel.h"
-#include "GUI/CodeBlock.h"
-#include "GUI/inputBox.h"
-#include "GUI/Button.h"
+#include <SLL/SLLCode.h>
+#include <SLL/SinglyLinkedList.h>
+#include <SLL/SLLPanel.h>
+#include <GUI/CodeBlock.h>
+#include <GUI/inputBox.h>
+#include <GUI/Button.h>
 
 enum class SLLAnimationMode {
     IDLE, INSERT_FRONT, INSERT_MID, REMOVE_FRONT, REMOVE_MID, SEARCH, UPDATE

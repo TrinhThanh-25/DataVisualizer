@@ -1,7 +1,7 @@
 #ifndef RESOURCES_H
 #define RESOURCES_H
 
-#include "raylib.h"
+#include <raylib.h>
 
 const int speed = 200;
 
@@ -51,6 +51,7 @@ const Color SLLBoxTextColor({BLACK});
 const int SLLButtonFontSize(15);
 
 //AVL
+const Vector2 AVLPosition({800,150});
 const Vector2 AVLNodeSize({40,40});
 const int AVLLeafSpace = 5;
 const int AVLNodeFontSize(24);

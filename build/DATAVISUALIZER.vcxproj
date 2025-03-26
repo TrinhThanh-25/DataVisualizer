@@ -333,6 +333,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\Arrow.cpp" />
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\Button.cpp" />
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\CodeBlock.cpp" />
+    <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\Console.cpp" />
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\HashTable.cpp" />
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\HashTableVisual.cpp" />
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\MenuState.cpp" />
@@ -349,6 +350,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\SinglyLinkedList.cpp" />
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\inputBox.cpp" />
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\main.cpp" />
+    <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\tinyfiledialogs.c" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

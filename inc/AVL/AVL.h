@@ -2,8 +2,7 @@
 #define AVL_H
 
 #include <sstream>
-
-#include "AVL/AVLNode.h"
+#include <AVL/AVLNode.h>
 
 class AVL{
     public:
@@ -12,7 +11,6 @@ class AVL{
 
         void createTree(std::string text);
         void insertNode(int value);
-        void updateInsertAnimation(int value);
         void balanceTree();
         void balanceTree(AVLNode*& root);
         void rotateRight(AVLNode*& root);
@@ -28,14 +26,23 @@ class AVL{
         void calculateHeight(AVLNode* root);
         void calculateDepth();
         void calculateDepth(AVLNode* root);
-        void updatePosition();
-        void updatePosition(AVLNode* root);
+        void setPosition();
+        void setPosition(AVLNode* root);
+        void setTargetPosition();
+        void setTargetPosition(AVLNode* root);
+        void resetHighlight();
+        void resetHighlight(AVLNode* root);
+
+        AVL* clone() const;
+        AVLNode* clone(AVLNode* root) const;
 
         void update();
         void update(AVLNode* root);
         void draw();
         void draw(AVLNode* root);
-    private:
+
+        void clear();
+    public:
         AVLNode* root;
         AVLNode* curNode;
 

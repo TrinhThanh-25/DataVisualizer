@@ -15,6 +15,7 @@ void AVLNode::setValue(int value){
 
 void AVLNode::setPosition(Vector2 position){
     this->position=position;
+    this->targetPosition=position;
     this->node = {position.x-AVLNodeSize.x/2.0f,position.y-AVLNodeSize.y/2.0f, AVLNodeSize.x, AVLNodeSize.y};
     if(leftPointer) delete leftPointer;
     leftPointer = new AVLArrow({position.x,position.y});
@@ -44,6 +45,10 @@ void AVLNode::deHighlight(){
 
 Vector2 AVLNode::getOrigin(){
     return position;
+}
+
+Vector2 AVLNode::getTargetPosition(){
+    return targetPosition;
 }
 
 int AVLNode::getValue(){
@@ -87,6 +92,8 @@ void AVLNode::updateNode(){
 
 void AVLNode::updateCur(){
     updateNode();
+    leftPointer->setPosition({position.x,position.y});
+    rightPointer->setPosition({position.x,position.y});
     node={position.x-AVLNodeSize.x/2.0f,position.y-AVLNodeSize.y/2.0f, AVLNodeSize.x, AVLNodeSize.y};
     if(left&&leftPointer){
         leftPointer->setTargetDestination(left->getOrigin());
@@ -131,4 +138,20 @@ void AVLNode::setTargetDestinationRight(Vector2 targetDes){
     if(rightPointer){
         rightPointer->setTargetDestination(targetDes);
     }
+}
+
+AVLNode* AVLNode::clone() const{
+    AVLNode* newNode = new AVLNode();
+    newNode->node=this->node;
+    newNode->value = this->value;
+    newNode->position = this->position;
+    newNode->targetPosition = this->targetPosition;
+    newNode->nodeColor = this->nodeColor;
+    newNode->textColor = this->textColor;
+    newNode->highlight = this->highlight;
+    newNode->textHighlight = this->textHighlight;
+    newNode->isHighlight = this->isHighlight;
+    newNode->leftPointer = (this->leftPointer)? new AVLArrow(*this->leftPointer):nullptr;
+    newNode->rightPointer = (this->rightPointer)? new AVLArrow(*this->rightPointer):nullptr;
+    return newNode;
 }

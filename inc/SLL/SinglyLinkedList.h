@@ -3,8 +3,7 @@
 
 #include <vector>
 #include <sstream>
-
-#include "SLL/SLLNode.h"
+#include <SLL/SLLNode.h>
 
 class SinglyLinkedList {
     public:

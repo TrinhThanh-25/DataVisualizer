@@ -89,7 +89,7 @@ void ShortestPathState::update(){
         EdgesBox.setText(std::to_string(rand()%(numNodes*(numNodes-1))/2+1));
     }
     else if(LoadFile.isPressed()){
-        
+        //createBox.setText(loadFileContent());
     }
     else if(Weighted.isPressed()){
         Weighted.Selected();
@@ -154,7 +154,7 @@ void ShortestPathState::update(){
 void ShortestPathState::draw(){
     ST.draw();
     panel.draw();
-    DrawText("Shortest Path",GetScreenWidth()/2.0f-MeasureText("Shortest Path",dataTitleFontSize)/2.0f,40-dataTitleFontSize/2.0f,dataTitleFontSize, dataTitleTextColor);
+    DrawText("Shortest Path",GetScreenWidth()/2.0f-MeasureText("Shortest Path",dataTitleFontSize)/2.0f,dataTitlePosition.y-dataTitleFontSize/2.0f,dataTitleFontSize, dataTitleTextColor);
     STCode.draw();
     if(panel.isCreateUsed()){
         NodesBox.Draw();

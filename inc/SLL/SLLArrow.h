@@ -1,7 +1,8 @@
 #ifndef SLLARROW_H
 #define SLLARROW_H
 
-#include "GUI/Arrow.h"
+#include <GUI/Arrow.h>
+
 class SLLArrow : public Arrow{
     public:
         SLLArrow(Vector2 pos);

@@ -1,8 +1,8 @@
 #ifndef SLLNODE_H
 #define SLLNODE_H
 
-#include "SLL/SLLArrow.h"
-#include "GUI/Resources.h"
+#include <SLL/SLLArrow.h>
+#include <GUI/Resources.h>
 
 class SLLNode{
     public:

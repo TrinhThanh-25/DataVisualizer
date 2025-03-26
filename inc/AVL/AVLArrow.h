@@ -1,7 +1,7 @@
 #ifndef AVLARROW_H
 #define AVLARROW_H
 
-#include "GUI/Arrow.h"
+#include <GUI/Arrow.h>
 
 class AVLArrow : public Arrow{
     public:

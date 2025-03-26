@@ -1,4 +1,6 @@
-#include "SLL/SLLState.h"
+//CẦN FIX LOGIC KHI LƯU STATE
+
+#include <SLL/SLLState.h>
 
 SLLState::SLLState(): createBox(120,700,SLLBoxSize.x, SLLBoxSize.y,SLLBoxFontSize,SLLBoxColor, SLLBoxTextColor), indexBox(120,700,SLLBoxSize.x, SLLBoxSize.y,SLLBoxFontSize,SLLBoxColor, SLLBoxTextColor), valueBox(120,825,SLLBoxSize.x, SLLBoxSize.y,SLLBoxFontSize,SLLBoxColor, SLLBoxTextColor){
     this->Random.setText("Random",SLLButtonFontSize);
@@ -63,9 +65,11 @@ void SLLState::update(){
     else if (panel.isStartPressed()) {
         moveStart();
     }
+    
     SLL.update();
     panel.update();
     code.update();
+
     switch (animationState) {
         case SLLAnimationMode::INSERT_FRONT:
             if (!isStateSaved) {
@@ -104,19 +108,17 @@ void SLLState::update(){
             break;
         case SLLAnimationMode::UPDATE:
             if (!isStateSaved) {
-                saveUpdateState(std::stoi(indexBox.GetText()), std::stoi(valueBox.GetText()));
+                saveUpdateState(std::stoi(indexText), std::stoi(valueText));
                 isStateSaved = true;
             }
-            animateUpdate(std::stoi(indexBox.GetText()), std::stoi(valueBox.GetText()));
+            animateUpdate(std::stoi(indexText), std::stoi(valueText));
             break;
         case SLLAnimationMode::IDLE:
-            if (isStateSaved) {
-                isStateSaved = false; 
-            }
             break;
         default:
             break;
     }
+
     if(panel.isCreateUsed()){
         valueBox.setPosition({120,825});
         Random.setActive();
@@ -166,12 +168,9 @@ void SLLState::update(){
         }
     }
     else if(LoadFile.isPressed()){
-        
+        createBox.setText(panel.loadFileContent());
     }
     else if(IsKeyPressed(KEY_ENTER)||Apply.isPressed()){
-        isStateSaved=false;
-        isPlaying=true;
-        isPaused=false;
         indexText=indexBox.GetText();
         valueText=valueBox.GetText();
         createText=createBox.GetText();
@@ -180,6 +179,10 @@ void SLLState::update(){
             SLL.createList(createText);
         }
         else if(panel.isAddUsed()&&indexText!=""&&valueText!=""){
+            isStateSaved=false;
+            clearState();
+            isPlaying=true;
+            isPaused=false;
             if(std::stoi(indexText)==0){
                 animationState=SLLAnimationMode::INSERT_FRONT;
             }
@@ -189,6 +192,10 @@ void SLLState::update(){
             //SLL.insertNode(std::stoi(indexBox.GetText()),std::stoi(valueBox.GetText()));
         }
         else if(panel.isRemoveUsed()&&indexText!=""){
+            isStateSaved=false;
+            clearState();
+            isPlaying=true;
+            isPaused=false;
             if(std::stoi(indexText)==0){
                 animationState=SLLAnimationMode::REMOVE_FRONT;
             }
@@ -198,10 +205,18 @@ void SLLState::update(){
             //SLL.removeNode(std::stoi(indexBox.GetText()));
         }
         else if(panel.isUpdateUsed()&&valueText!=""){
+            isStateSaved=false;
+            clearState();
+            isPlaying=true;
+            isPaused=false;
             animationState=SLLAnimationMode::UPDATE;
             //SLL.updateNode(std::stoi(indexBox.GetText()),std::stoi(valueBox.GetText()));
         }
         else if(panel.isSearchUsed()&&valueText!=""){
+            isStateSaved=false;
+            clearState();
+            isPlaying=true;
+            isPaused=false; 
             animationState=SLLAnimationMode::SEARCH;
             //SLL.searchNode(std::stoi(valueBox.GetText()));
         }
@@ -236,7 +251,7 @@ void SLLState::draw(){
     code.draw();
     SLL.draw();
     panel.draw();
-    DrawText("Singly Linked List",GetScreenWidth()/2.0f-MeasureText("Singly Linked List",dataTitleFontSize)/2.0f,40-dataTitleFontSize/2.0f,dataTitleFontSize, dataTitleTextColor);
+    DrawText("Singly Linked List",GetScreenWidth()/2.0f-MeasureText("Singly Linked List",dataTitleFontSize)/2.0f,dataTitlePosition.y-dataTitleFontSize/2.0f,dataTitleFontSize, dataTitleTextColor);
     if(panel.isCreateUsed()){
         createBox.Draw();
         this->Random.drawRectangleRounded(100);
@@ -263,7 +278,6 @@ void SLLState::draw(){
 }
 
 void SLLState::saveInsertFrontState(int index, int value){
-    clearState();
     if(SLL.indexStep>=index) return;
     saveState();
     if(SLL.indexStep+1==index&&SLL.animationStep==0){
@@ -318,11 +332,11 @@ void SLLState::saveInsertFrontState(int index, int value){
         animationState=SLLAnimationMode::IDLE;
         saveState();
     }
+    currentStep=0;
     applyState();
 }
 
 void SLLState::saveInsertMidState(int index, int value){
-    clearState();
     if(SLL.indexStep>index) return;
     saveState();
     if(!SLL.isCur){
@@ -390,11 +404,12 @@ void SLLState::saveInsertMidState(int index, int value){
         animationState=SLLAnimationMode::IDLE;
         saveState();
     }
+    currentStep=0;
     applyState();
 }
 
 void SLLState::saveRemoveFrontState(int index){
-    clearState();
+    
     if(SLL.indexStep>index) return;
     saveState();
     if(SLL.animationStep==0){
@@ -403,7 +418,6 @@ void SLLState::saveRemoveFrontState(int index){
         SLL.animationStep++;
         SLL.newNode=SLL.list[index];
         SLL.list.erase(SLL.list.begin()+index);
-        SLL.isCur=false;
         resetCursorPosition();
         delete SLL.newNode;
         SLL.newNode=nullptr;
@@ -415,6 +429,7 @@ void SLLState::saveRemoveFrontState(int index){
         SLL.indexStep=-1;
         animationState=SLLAnimationMode::IDLE;
         saveState();
+        currentStep=0;
         applyState();
         return;
     }
@@ -432,11 +447,12 @@ void SLLState::saveRemoveFrontState(int index){
         animationState=SLLAnimationMode::IDLE;
         saveState();
     }
+    currentStep=0;
     applyState();
 }
 
 void SLLState::saveRemoveMidState(int index){
-    clearState();
+    
     if(SLL.indexStep>index) return;
     saveState();
     if(!SLL.isCur){
@@ -473,6 +489,7 @@ void SLLState::saveRemoveMidState(int index){
         SLL.indexStep=-1;
         animationState=SLLAnimationMode::IDLE;
         saveState();
+        currentStep=0;
         applyState();
         return;
     }
@@ -490,11 +507,11 @@ void SLLState::saveRemoveMidState(int index){
         animationState=SLLAnimationMode::IDLE;
         saveState();
     }
+    currentStep=0;
     applyState();
 }
 
 void SLLState::saveSearchState(int value){
-    clearState();
     SLL.resetHighlight();
     saveState();
     if(!SLL.isCur){
@@ -502,30 +519,30 @@ void SLLState::saveSearchState(int value){
         resetCursorPosition();
         saveState();
     }
-    static int index=0;
     while(true){
-        SLL.cur->setDestination(SLL.list[index]->getStartPos());
-        SLL.cur->setPosition({SLL.list[index]->getStartPos().x-50,SLL.list[index]->getStartPos().y+50});
-        if(SLL.list[index]->getValue()!=value){
+        SLL.cur->setDestination(SLL.list[SLL.indexStep+1]->getStartPos());
+        SLL.cur->setPosition({SLL.list[SLL.indexStep+1]->getStartPos().x-50,SLL.list[SLL.indexStep+1]->getStartPos().y+50});
+        if(SLL.list[SLL.indexStep+1]->getValue()!=value){
             saveState();
-            index++;
+            SLL.indexStep++;
         }
         else{
-            SLL.list[index]->setHighlight();
+            SLL.list[SLL.indexStep+1]->setHighlight();
             SLL.isCur=false;
             resetCursorPosition();
-            index=0;
+            SLL.indexStep=-1;
             animationState=SLLAnimationMode::IDLE;
             saveState();
+            currentStep=0;
             applyState();
             return;
         }
     }
+    currentStep=0;
     applyState();
 }
 
 void SLLState::saveUpdateState(int index, int value){
-    clearState();
     if(SLL.indexStep>index) return;
     saveState();
     if(!SLL.isCur){
@@ -563,6 +580,7 @@ void SLLState::saveUpdateState(int index, int value){
         animationState=SLLAnimationMode::IDLE;
         saveState();
     }
+    currentStep=0;
     applyState();
 }
 
@@ -709,8 +727,9 @@ void SLLState::animateInsertMid(int index, int value){
             SLL.isCur=false;
             resetCursorPosition();
             animationState=SLLAnimationMode::IDLE;
-            isStateSaved=false;
             currentStep++;
+            isPlaying=false;
+            isPaused=true;
         }
     }
 }
@@ -736,6 +755,8 @@ void SLLState::animateRemoveFront(int index){
         SLL.indexStep=-1;
         animationState=SLLAnimationMode::IDLE;
         currentStep++;
+        isPlaying=false;
+        isPaused=true;
     }
     else if(SLL.animationStep==1){
         if(SLL.head->getDestination().x==SLL.list[index]->getStartPos().x&&SLL.head->getDestination().y==SLL.list[index]->getStartPos().y){
@@ -752,6 +773,8 @@ void SLLState::animateRemoveFront(int index){
             SLL.indexStep=-1;
             animationState=SLLAnimationMode::IDLE;
             currentStep++;
+            isPlaying=false;
+            isPaused=true;
         }
     }
 }
@@ -801,6 +824,8 @@ void SLLState::animateRemoveMid(int index){
         SLL.indexStep=-1;
         animationState=SLLAnimationMode::IDLE;
         currentStep++;
+        isPlaying=false;
+        isPaused=true;
     }
     else if(SLL.animationStep==2){
         if(SLL.list[index-1]->getDestination().x==SLL.list[index]->getStartPos().x&&SLL.list[index-1]->getDestination().y==SLL.list[index]->getStartPos().y){
@@ -817,6 +842,8 @@ void SLLState::animateRemoveMid(int index){
             SLL.indexStep=-1;
             animationState=SLLAnimationMode::IDLE;
             currentStep++;
+            isPlaying=false;
+            isPaused=true;
         }
     }
 }
@@ -824,32 +851,33 @@ void SLLState::animateRemoveMid(int index){
 void SLLState::animateSearch(int value){
     if(!isPlaying||isPaused) return;
     SLL.resetHighlight();
-    static int index=0;
     static float checkTimer = 0.0f;
-    if((SLL.cur->getDestination().x!=SLL.list[index]->getStartPos().x||SLL.cur->getDestination().y!=SLL.list[index]->getStartPos().y)){
+    if((SLL.cur->getDestination().x!=SLL.list[SLL.indexStep+1]->getStartPos().x||SLL.cur->getDestination().y!=SLL.list[SLL.indexStep+1]->getStartPos().y)){
         if(!SLL.isCur){
             SLL.isCur=true;
             resetCursorPosition();
             currentStep++;
         }
-        SLL.cur->setTargetDestination(SLL.list[index]->getStartPos());
-        SLL.cur->setTargetPosition({SLL.list[index]->getStartPos().x-50,SLL.list[index]->getStartPos().y+50});
+        SLL.cur->setTargetDestination(SLL.list[SLL.indexStep+1]->getStartPos());
+        SLL.cur->setTargetPosition({SLL.list[SLL.indexStep+1]->getStartPos().x-50,SLL.list[SLL.indexStep+1]->getStartPos().y+50});
     }
     else {
         checkTimer+=GetFrameTime();
         if(checkTimer>=0.5f){
-            if(SLL.list[index]->getValue()==value){
-                SLL.list[index]->setHighlight();
+            if(SLL.list[SLL.indexStep+1]->getValue()==value){
+                SLL.list[SLL.indexStep+1]->setHighlight();
                 SLL.isCur=false;
                 SLL.cur->setPosition({SLLposition.x,SLLposition.y+SLLNodeSize.y/2.0f+50});
                 SLL.cur->setDestination({SLLposition.x+ArrowLength,SLLposition.y+SLLNodeSize.y/2.0f+50});
-                index=0;
+                SLL.indexStep=-1;
                 animationState=SLLAnimationMode::IDLE;
                 currentStep++;
+                isPlaying=false;
+                isPaused=true;
                 return;
             }
             currentStep++;
-            index++;
+            SLL.indexStep++;
             checkTimer=0;
         }
     }
@@ -902,6 +930,8 @@ void SLLState::animateUpdate(int index, int value){
             resetCursorPosition();
             animationState=SLLAnimationMode::IDLE;
             currentStep++;
+            isPlaying=false;
+            isPaused=true;
         }
     }
 }
@@ -979,6 +1009,7 @@ void SLLState::restart(){
 
 void SLLState::moveEnd(){
     isPlaying=false;
+    isPaused=true;
     currentStep=stateList.size()-1;
     applyState();
 }
