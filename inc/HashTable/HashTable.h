@@ -1,18 +1,10 @@
 #pragma once
-
-#include <iostream>
 #include <vector>
 #include <string>
-#include <cstdlib>
-#include <ctime>
 #include "raylib.h"
-#include "GUI/Button.h"
-#include "GUI/inputBox.h"
 #include "Node.h"
-#include "HashTable.h"
 
-
-class HashTable{
+class HashTable {
 public:
     HashTable(int size);
     ~HashTable();
@@ -20,9 +12,9 @@ public:
     void Insert(int key, const std::string& value);
     void Delete(int key);
     bool Find(int key) const;
-    void InitTable(int size);
-    Node * getTable(int index);
-    //void Draw();
+    void InitTable(int size); // Hàm khởi tạo HashTable với dữ liệu ngẫu nhiên
+    Node* getTable(int index);
+    int GetSize() const;
 
 private:
     std::vector<Node*> table;
