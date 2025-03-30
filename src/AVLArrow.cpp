@@ -1,6 +1,6 @@
 #include "AVL/AVLArrow.h"
 
-AVLArrow::AVLArrow(Vector2 pos): Arrow(pos){}
+AVLArrow::AVLArrow(Vector2 pos) : Arrow(pos) {}
 
 void AVLArrow::update(){
     if (destination.x == targetDestination.x&&destination.y == targetDestination.y) return;

@@ -36,6 +36,9 @@ class AVLNode{
         void setTargetDestinationLeft(Vector2 targetDes);
         void setTargetDestinationRight(Vector2 targetDes);
 
+        Vector2 getDestinationLeft();
+        Vector2 getDestinationRight();
+
         AVLNode* clone() const;
     public:
         AVLNode* left;

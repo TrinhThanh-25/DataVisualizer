@@ -47,6 +47,7 @@ void ShortestPath::createGraph(int numNodes, int edges){
             }
         }
     }
+    FruchtermanReingold();
 }
 
 void ShortestPath::addEdge(int node1, int node2){
@@ -120,22 +121,24 @@ void ShortestPath::draw(){
     }
 }
 
-void ShortestPath::FruchtermanReingold(){
+void ShortestPath::FruchtermanReingold() {
     float X_min = centerX - rangeX / 2.0f, X_max = centerX + rangeX / 2.0f;
     float Y_min = centerY - rangeY / 2.0f, Y_max = centerY + rangeY / 2.0f;
-    float deltaTime = 0.0016f;
+    float deltaTime = GetFrameTime();
     for (int loops = 0; loops < 8000; loops++) {
         for (auto &node : graph) {
             node->setForce({0, 0});
         }
         for (size_t i = 0; i < graph.size(); i++) {
             if (!graph[i]) continue;
+
             for (size_t j = i + 1; j < graph.size(); j++) {
                 if (!graph[j]) continue;
                 Vector2 force = ComputeRepulsiveForce(graph[i], graph[j]);
                 graph[i]->setForce({graph[i]->getForce().x + force.x, graph[i]->getForce().y + force.y});
                 graph[j]->setForce({graph[j]->getForce().x - force.x, graph[j]->getForce().y - force.y});
             }
+
             for (auto &edge : graph[i]->arrow) {
                 int from = edge->getFrom();
                 int to = edge->getTo();
@@ -144,12 +147,13 @@ void ShortestPath::FruchtermanReingold(){
                 graph[to]->setForce({graph[to]->getForce().x + force.x, graph[to]->getForce().y + force.y});
             }
         }
-        float temperature = 10.0f;
+        float temperature = 10.0f * (1.0f - (float)loops / 8000);
         for (auto &node : graph) {
             float newX = node->getPosition().x + node->getForce().x * temperature * deltaTime;
             float newY = node->getPosition().y + node->getForce().y * temperature * deltaTime;
-            newX = std::max(X_min, std::min(newX, X_max));
-            newY = std::max(Y_min, std::min(newY, Y_max));
+            float boundaryPadding = 10.0f;
+            newX = std::max(X_min + boundaryPadding, std::min(newX, X_max - boundaryPadding));
+            newY = std::max(Y_min + boundaryPadding, std::min(newY, Y_max - boundaryPadding));
 
             node->setPosition({newX, newY});
         }
@@ -172,28 +176,22 @@ void ShortestPath::Dijkstra(int startNode) {
             if (newCost < graph[i]->adj[edge->getTo()]->getCost()) {
                 graph[i]->adj[edge->getTo()]->setCost(newCost);
             }
-            if (!graph[i]->adj[edge->getTo()]->getKnown() && graph[i]->adj[edge->getTo()]->getCost() < minCost) {
-                minCost = graph[i]->adj[edge->getTo()]->getCost();
-                findSmall = graph[i]->adj[edge->getTo()]->getID();
+        }
+        for (auto n : graph) {
+            if (!n->getKnown() && n->getCost() < minCost) {
+                minCost = n->getCost();
+                findSmall = n->getID();
             }
         }
         if (findSmall != -1) {
             i = findSmall;
             graph[i]->setKnown();
         } 
-        else {
-            findSmall = -1;
-            minCost = INT_MAX;
-            for (auto n : graph) {
-                if (!n->getKnown() && n->getCost() < minCost) {
-                    minCost = n->getCost();
-                    findSmall = n->getID();
-                }
-            }
-            if (findSmall == -1) break; 
-            i = findSmall;
-            graph[i]->setKnown();
+        else if (findSmall == -1) {
+            break;
         }
+        i = findSmall;
+        graph[i]->setKnown();
     }
 }
 

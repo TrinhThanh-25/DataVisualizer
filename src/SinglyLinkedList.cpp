@@ -16,10 +16,6 @@ SinglyLinkedList::~SinglyLinkedList() {
     if(cur) delete cur;
     if(myNode) delete myNode;
     if(newNode) delete newNode;
-    head = nullptr;
-    cur = nullptr;
-    myNode = nullptr;
-    newNode = nullptr;
 }
 
 void SinglyLinkedList::createList(std::string text){
@@ -68,59 +64,6 @@ void SinglyLinkedList::clear(){
     newNode = nullptr;
 }
 
-// void SinglyLinkedList::insertNode(const int& index, int value) {
-//     if(!isCreated) isCreated=true;
-//     newNode = new SLLNode();
-//     newNode->setValue(value);
-//     list.insert(list.begin()+index,newNode);
-//     for (int i=index;i<list.size();i++){
-//         list[i]->setPosition({head->getPosition().x+ArrowLength + (i) * (SLLNodeSize.x+50), SLLposition.y});
-//         list[i]->setTargetPosition({head->getPosition().x+ArrowLength + (i) * (SLLNodeSize.x+50), SLLposition.y});
-//     }
-//     for (int i = index; i < list.size() - 1; i++) {
-//         list[i]->setDestination(list[i + 1]->getStartPos());
-//         list[i]->updateCur();
-//     }
-//     list[list.size()-1]->setDestination({list[list.size() - 1]->getEndPos().x + ArrowLength, list[list.size() - 1]->getEndPos().y});
-//     list[list.size() - 1]->updateCur();
-//     list[list.size() - 1]->setNull();
-//     newNode=nullptr;
-//     update();
-// }
-
-// void SinglyLinkedList::removeNode(const int& index) {
-//     if (index < 0 || index >= list.size()) return;
-//     delete list[index];
-//     list.erase(list.begin() + index);
-//     for (int i=index;i<list.size();i++){
-//         list[i]->setPosition({head->getPosition().x+ArrowLength + (i) * (SLLNodeSize.x+50), SLLposition.y});
-//         list[i]->setTargetPosition({head->getPosition().x+ArrowLength + (i) * (SLLNodeSize.x+50), SLLposition.y});
-//     }
-//     if(list.empty()) return;
-//     for (int i = index; i < list.size() - 1; i++) {
-//         list[i]->setDestination(list[i + 1]->getStartPos());
-//         list[i]->updateCur();
-//     }
-//     list[list.size()-1]->setDestination({list[list.size() - 1]->getEndPos().x + ArrowLength, list[list.size() - 1]->getEndPos().y});
-//     list[list.size() - 1]->updateCur();
-//     list[list.size() - 1]->setNull();
-//     update();
-// }
-
-// void SinglyLinkedList::updateNode(const int &index,int value){
-//     list[index]->setValue(value);
-// }
-
-// void SinglyLinkedList::searchNode(int value){
-//     resetHighlight();
-//     for (int i=0;i<list.size();i++){
-//         if(list[i]->getValue()==value){
-//             list[i]->setHighlight();
-//             return;
-//         }
-//     }
-// }
-
 void SinglyLinkedList::clearList(){
     for (auto node : list) {
         delete node;
@@ -128,6 +71,19 @@ void SinglyLinkedList::clearList(){
     }
     list.clear();
     isCreated=false;
+}
+
+void SinglyLinkedList::setArrowDestination(){
+    if(list.empty()) {
+        head->setDestination({head->getPosition().x+ArrowLength,head->getPosition().y});
+        return;
+    }
+    head->setDestination(list[0]->getStartPos());
+    for (int i=0;i<list.size()-1;i++){
+        list[i]->setDestination(list[i+1]->getStartPos());
+    }
+    list[list.size()-1]->setDestination({list[list.size() - 1]->getEndPos().x + ArrowLength, list[list.size() - 1]->getEndPos().y});
+    list[list.size() - 1]->setNull();
 }
 
 void SinglyLinkedList::resetHighlight(){
