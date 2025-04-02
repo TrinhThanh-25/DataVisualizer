@@ -51,6 +51,7 @@ void ShortestPath::createGraph(int numNodes, int edges){
             }
         }
     }
+    FruchtermanReingold();
 }
 
 void ShortestPath::addEdge(int node1, int node2){
