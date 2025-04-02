@@ -3,16 +3,7 @@
 
 #include <vector>
 #include <sstream>
-
-#include "SLL/SLLNode.h"
-
-enum class AnimationState {
-    IDLE,       
-    INSERTING,  
-    DELETING,   
-    SEARCHING,  
-    UPDATING    
-};
+#include <SLL/SLLNode.h>
 
 class SinglyLinkedList {
     public:
@@ -20,29 +11,34 @@ class SinglyLinkedList {
         ~SinglyLinkedList();
 
         void createList(std::string text);
-        void insertNode(const int& index, int value);
-        void updateInsertAnimation(const int& index);
-        void removeNode(const int& index);
-        void updateNode(const int& index, int value);
-        void searchNode(int value);
         void clearList();
+        void resetHighlight();
+        void setArrowDestination();
+        void clear();
 
         int getListSize();
 
+        SinglyLinkedList* clone() const;
+        
         void update();
         void draw();
 
     public:
-        AnimationState animationState = AnimationState::IDLE;
-        
-    private:
         std::vector<SLLNode*> list;
 
         SLLArrow* head;
         SLLArrow* cur;
-        bool isCreated = false;
 
+        SLLArrow* myNode;
+        SLLNode* newNode;
+
+        bool isNewNode=false;
+        bool isCur=false;
+
+        int indexStep=-1;
         int animationStep = 0;
+    private:
+        bool isCreated = false;        
 };
 
 #endif

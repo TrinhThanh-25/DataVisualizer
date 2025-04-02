@@ -7,7 +7,7 @@ project(DATAVISUALIZER)
 
 
 # Thêm tất cả file .cpp trong thư mục src/
-file(GLOB_RECURSE SOURCES src/*.cpp)
+file(GLOB_RECURSE SOURCES src/*.cpp src/tinyfiledialogs.c)
 
 # Thêm tất cả file .h trong thư mục inc/
 include_directories(inc/)

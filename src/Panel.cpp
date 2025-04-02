@@ -1,9 +1,9 @@
 #include "GUI/Panel.h"
 
 Panel::Panel(){
-    this->dataTitle = {600,15,400,50};
+    this->dataTitle = {dataTitlePosition.x-dataTitleSize.x/2.0f,dataTitlePosition.y-dataTitleSize.y/2.0f,dataTitleSize.x,dataTitleSize.y};
 
-    this->Back.setSize({50,50});
+    this->Back.setSize(backSize);
     this->Back.setPosition({dataTitle.y+dataTitle.height/2.0f,dataTitle.y+dataTitle.height/2.0f});
     this->Back.setColor(panelNormal,panelHovered,panelPressed);
     this->Back.setRectangle();
@@ -12,5 +12,15 @@ Panel::Panel(){
 }
 
 bool Panel::isBackPressed(){ 
-    return IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && CheckCollisionPointRec(GetMousePosition(), {dataTitle.y,dataTitle.y,Back.getSize().x,Back.getSize().y});
+    return Back.isPressed();
+}
+
+void Panel::updatePanel(){
+    updateController();
+}
+
+void Panel::drawPanel(){
+    drawController();
+    DrawRectangleRounded(dataTitle,100,0,dataTitleColor);
+    DrawRectangleRounded(panelHolder,0,0,panelNormal);
 }

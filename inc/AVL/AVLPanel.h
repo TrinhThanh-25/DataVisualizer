@@ -1,7 +1,7 @@
 #ifndef AVLSLLPANEL_H
 #define AVLPANEL_H
 
-#include "GUI/Panel.h"
+#include <GUI/Panel.h>
 
 class AVLPanel : public Panel{
     public:
@@ -18,7 +18,7 @@ class AVLPanel : public Panel{
         Button Add;
         Button Remove;
         Button Search;
-        Button* isUsing=nullptr;
+        Button* isUsing;
 };
 
 #endif

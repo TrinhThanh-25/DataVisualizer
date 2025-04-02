@@ -2,9 +2,8 @@
 #define AVLNODE_H
 
 #include <algorithm>
-
-#include "GUI/Resources.h"
-#include "AVL/AVLArrow.h"
+#include <GUI/Resources.h>
+#include <AVL/AVLArrow.h>
 
 class AVLNode{
     public:
@@ -20,6 +19,7 @@ class AVLNode{
         void deHighlight();
 
         Vector2 getOrigin();
+        Vector2 getTargetPosition();
         int getValue();
         int getHeight();
         int getDepth();
@@ -30,6 +30,16 @@ class AVLNode{
         void updateNode();
         void updateCur();
         void drawCur();
+
+        void setDestinationLeft(Vector2 targetDes);
+        void setDestinationRight(Vector2 targetDes);
+        void setTargetDestinationLeft(Vector2 targetDes);
+        void setTargetDestinationRight(Vector2 targetDes);
+
+        Vector2 getDestinationLeft();
+        Vector2 getDestinationRight();
+
+        AVLNode* clone() const;
     public:
         AVLNode* left;
         AVLNode* right;
@@ -39,6 +49,8 @@ class AVLNode{
 
         Color nodeColor;
         Color textColor;
+        Color highlight;
+        Color textHighlight;
 
         AVLArrow* leftPointer;
         AVLArrow* rightPointer;
@@ -46,10 +58,10 @@ class AVLNode{
         Vector2 position;
         Vector2 targetPosition; 
         int value;
-        int height=0;
-        int depth=0;
+        int height;
+        int depth;
 
-        bool isHighlight=false;
+        bool isHighlight;
 };
 
 #endif

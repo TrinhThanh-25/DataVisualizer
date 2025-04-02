@@ -1,9 +1,11 @@
 #include "AVL/AVL.h"
 
-AVL::AVL() : root(nullptr) {}
+AVL::AVL() : root(nullptr), curNode(nullptr), temp(nullptr), animationStep(0) {}
 
 AVL::~AVL(){
     clearTree();
+    if(curNode) delete curNode;
+    curNode=nullptr;
 }
 
 void AVL::createTree(std::string text){
@@ -13,15 +15,18 @@ void AVL::createTree(std::string text){
     while(std::getline(ss,value,',')){
         insertNode(std::stoi(value));
     }
+    curNode=root;
+    setCreatePosition();
+    setTargetPosition();
 }
 
 void AVL::insertNode(int value){
     if(!root){
-        root = new AVLNode();
+        root = new AVLNode(); 
         root->setValue(value);
         calculateHeight();
-        root->setPosition({(float)GetScreenWidth()/2,150});
-        root->setTargetPosition({(float)GetScreenWidth()/2,150});
+        root->setPosition({(float)GetScreenWidth()/2,AVLPosition.y});
+        root->setTargetPosition({(float)GetScreenWidth()/2,AVLPosition.y});
         return;
     }
     AVLNode* cur = root;
@@ -53,7 +58,6 @@ void AVL::insertNode(int value){
     }
     calculateDepth();
     balanceTree();
-    update();
 }
 
 void AVL::balanceTree(){
@@ -64,26 +68,25 @@ void AVL::balanceTree(AVLNode*& root){
     if(!root) return;
     balanceTree(root->left);
     balanceTree(root->right);
-    if(root->left && root->right){
-        if(root->left->getHeight()-root->right->getHeight()>1){
-            if((!root->left->right)||(root->left->left&&root->left->right&&root->left->left->getHeight()>root->left->right->getHeight())) rotateRight(root);
-            else rotateLeftRight(root);
+    int balanceFactor=getBalanceFactor(root);
+    if(abs(balanceFactor)>1){
+        if(balanceFactor>1){
+            if(getBalanceFactor(root->left)<0) rotateLeftRight(root);
+            else rotateRight(root);
         }
-        else if(root->right->getHeight()-root->left->getHeight()>1){
-            if((!root->right->left)||(root->right->right&&root->right->left&&root->right->right->getHeight()>root->right->left->getHeight())) rotateLeft(root);
-            else rotateRightLeft(root);
+        else if(balanceFactor<-1){
+            if(getBalanceFactor(root->right)>0) rotateRightLeft(root);
+            else rotateLeft(root);
         }
     }
-    else if(root->left && root->left->getHeight()>1){
-        if((!root->left->right)||(root->left->left&&root->left->right&&root->left->left->getHeight()>root->left->right->getHeight())) rotateRight(root);
-        else rotateLeftRight(root);
-    }
-    else if(root->right && root->right->getHeight()>1){
-        if((!root->right->left)||(root->right->right&&root->right->left&&root->right->right->getHeight()>root->right->left->getHeight())) rotateLeft(root);
-        else rotateRightLeft(root);
-    }
-    updatePosition();
     calculateDepth();
+}
+
+int AVL::getBalanceFactor(AVLNode* root){
+    int balanceFactor=0;
+    if(root->left) balanceFactor+=root->left->getHeight();
+    if(root->right) balanceFactor-=root->right->getHeight();
+    return balanceFactor;
 }
 
 void AVL::rotateRight(AVLNode*& root) {  
@@ -99,22 +102,23 @@ void AVL::rotateRight(AVLNode*& root) {
     else if (newRoot->parent->left == root) newRoot->parent->left = newRoot;
     else newRoot->parent->right = newRoot;
 
-    root = newRoot;  
+
     calculateHeight();
 }
 
 void AVL::rotateLeft(AVLNode*& root){
+    if (!root || !root->right) return; 
     AVLNode* newRoot = root->right;
     root->right = newRoot->left;
-    newRoot->left = root;
-    newRoot->parent = root->parent;
-    root->parent = newRoot;
-    if(root->right) root->right->parent = root;
-    if(newRoot->parent){
-        if(newRoot->parent->left==root) newRoot->parent->left = newRoot;
-        else newRoot->parent->right = newRoot;
-    }
-    else root = newRoot;
+    if(newRoot->left)newRoot->left->parent=root;
+    newRoot->left=root;
+    newRoot->parent=root->parent;
+    root->parent=newRoot;
+
+    if(!newRoot->parent) this->root=newRoot;
+    else if(newRoot->parent->right == root) newRoot->parent->right=newRoot;
+    else newRoot->parent->left=newRoot;
+    
     calculateHeight();
 }
 
@@ -128,81 +132,19 @@ void AVL::rotateLeftRight(AVLNode*& root){
     rotateRight(root);
 }
 
-void AVL::removeNode(int value){
-    if(!root) return;
-    AVLNode* cur = root;
-    while(cur){
-        if(value<cur->getValue()) cur = cur->left;
-        else if(value>cur->getValue()) cur = cur->right;
-        else break;
-    }
-    if(!cur) return;
-    if(cur->isLeaf()){
-        if(cur->parent){
-            if(cur->parent->left==cur) cur->parent->left = nullptr;
-            else cur->parent->right = nullptr;
-        }
-        else root=nullptr;
-        delete cur;
-    }
-    else if(cur->left && cur->right){
-        AVLNode* temp = cur->left;
-        while (temp->right) temp = temp->right;
-        cur->setValue(temp->getValue());
-        if (temp->left) {
-            if (temp->parent->right == temp) temp->parent->right = temp->left;
-            else temp->parent->left = temp->left;
-            temp->left->parent = temp->parent;
-            temp->left = nullptr;
-        }
-        else {
-            if (temp->parent->right == temp) temp->parent->right = nullptr;
-            else temp->parent->left = nullptr;
-        }
-        delete temp;
-    }
-    else if(cur->left){
-        if(cur->parent){
-            if(cur->parent->left==cur) cur->parent->left = cur->left;
-            else cur->parent->right = cur->left;
-        }
-        else{
-            root=cur->left;
-        }
-        cur->left->parent = cur->parent;
-        cur->left = nullptr;
-        delete cur;
-    }
-    else if(cur->right){
-        if(cur->parent){
-            if(cur->parent->left==cur) cur->parent->left = cur->right;
-            else cur->parent->right = cur->right;
-        }
-        else{
-            root=cur->right;
-        }
-        cur->right->parent = cur->parent;
-        cur->right = nullptr;
-        delete cur;
-    }
-    calculateHeight();
-    calculateDepth();
-    balanceTree();
-    update();
-}
-
-void AVL::searchNode(int value){}
-
 void AVL::clearTree(){
     clearTree(root);
+    root=nullptr;
 }
 
-void AVL::clearTree(AVLNode*& root){
-    if(!root) return;
+void AVL::clearTree(AVLNode*& root) {
+    if (root == nullptr) {
+        return;
+    }
     clearTree(root->left);
     clearTree(root->right);
     delete root;
-    root=nullptr;
+    root = nullptr; 
 }
 
 void AVL::calculateHeight(){
@@ -235,24 +177,133 @@ void AVL::calculateDepth(AVLNode* root){
     calculateDepth(root->right);
 }
 
-void AVL::updatePosition(){
-    root->setPosition({(float)GetScreenWidth()/2,150});
-    root->setTargetPosition({(float)GetScreenWidth()/2,150});
-    updatePosition(root);
+void AVL::setCreatePosition(){
+    root->setPosition({(float)GetScreenWidth()/2,AVLPosition.y});
+    setCreatePosition(root);
 }
 
-void AVL::updatePosition(AVLNode* root){
+void AVL::setCreatePosition(AVLNode* root){
     if(!root) return;
     if(root->left){
-        root->left->setPosition({(float)(root->getOrigin().x-(pow(2,root->left->getHeight()-1)*(AVLLeafSpace+AVLNodeSize.x)/2.0f)),root->getOrigin().y+AVLLevelSpace});
-        root->left->setTargetPosition({(float)(root->getOrigin().x-(pow(2,root->left->getHeight()-1)*(AVLLeafSpace+AVLNodeSize.x)/2.0f)),root->getOrigin().y+AVLLevelSpace});
+        root->left->setPosition({(float)GetScreenWidth()/2,AVLPosition.y});
     }
     if(root->right){
-        root->right->setPosition({(float)(root->getOrigin().x+(pow(2,root->right->getHeight()-1)*(AVLLeafSpace+AVLNodeSize.x)/2.0f)),root->getOrigin().y+AVLLevelSpace});
-        root->right->setTargetPosition({(float)(root->getOrigin().x+(pow(2,root->right->getHeight()-1)*(AVLLeafSpace+AVLNodeSize.x)/2.0f)),root->getOrigin().y+AVLLevelSpace});
+        root->right->setPosition({(float)GetScreenWidth()/2,AVLPosition.y});
     }
-    updatePosition(root->left);
-    updatePosition(root->right);
+    setCreatePosition(root->left);
+    setCreatePosition(root->right);
+}
+
+void AVL::setPosition(){
+    root->setPosition({(float)GetScreenWidth()/2,AVLPosition.y});
+    setPosition(root);
+}
+
+void AVL::setPosition(AVLNode* root){
+    if(!root) return;
+    if(root->left){
+        root->left->setPosition({(float)(root->getTargetPosition().x-(pow(2,root->left->getHeight()-1)*(AVLLeafSpace+AVLNodeSize.x)/2.0f)),root->getTargetPosition().y+AVLLevelSpace});
+    }
+    if(root->right){
+        root->right->setPosition({(float)(root->getTargetPosition().x+(pow(2,root->right->getHeight()-1)*(AVLLeafSpace+AVLNodeSize.x)/2.0f)),root->getTargetPosition().y+AVLLevelSpace});
+    }
+    setPosition(root->left);
+    setPosition(root->right);
+}
+
+void AVL::setTargetPosition(){
+    root->setTargetPosition({(float)GetScreenWidth()/2,AVLPosition.y});
+    setTargetPosition(root);
+}
+
+void AVL::setTargetPosition(AVLNode* root){
+    if(!root) return;
+    if(root->left){
+        root->left->setTargetPosition({(float)(root->getTargetPosition().x-(pow(2,root->left->getHeight()-1)*(AVLLeafSpace+AVLNodeSize.x)/2.0f)),root->getTargetPosition().y+AVLLevelSpace});
+    }
+    if(root->right){
+        root->right->setTargetPosition({(float)(root->getTargetPosition().x+(pow(2,root->right->getHeight()-1)*(AVLLeafSpace+AVLNodeSize.x)/2.0f)),root->getTargetPosition().y+AVLLevelSpace});
+    }
+    setTargetPosition(root->left);
+    setTargetPosition(root->right);
+}
+
+void AVL::resetHighlight(){
+    resetHighlight(root);
+}
+
+void AVL::resetHighlight(AVLNode* root){
+    if(!root) return;
+    root->deHighlight();
+    resetHighlight(root->left);
+    resetHighlight(root->right);
+}
+
+void AVL::setArrowDestination(){
+    setArrowDestination(root);
+}
+
+void AVL::setArrowDestination(AVLNode* root){
+    if(!root) return;
+    if(root->left) root->setDestinationLeft(root->left->getOrigin());
+    if(root->right) root->setDestinationRight(root->right->getOrigin());
+    setArrowDestination(root->left);
+    setArrowDestination(root->right);
+}
+
+bool AVL::checkPosition(){
+    return checkPosition(root);
+}
+
+bool AVL::checkPosition(AVLNode* root){
+    if(!root) return true;
+    return (root->getOrigin().x==root->getTargetPosition().x&&root->getOrigin().y==root->getTargetPosition().y&&checkPosition(root->left)&&checkPosition(root->right));
+}
+
+bool AVL::checkArrowDestination(){
+    return checkArrowDestination(root);
+}
+
+bool AVL::checkArrowDestination(AVLNode* root){
+    if(!root) return true;
+    if(!root->left&&!root->right) return true;
+    if(!root->left){
+        return (root->getDestinationRight().x==root->right->getOrigin().x&&root->getDestinationRight().y==root->right->getOrigin().y&&checkArrowDestination(root->right));
+    }
+    if(!root->right){
+        return (root->getDestinationLeft().x==root->left->getOrigin().x&&root->getDestinationLeft().y==root->left->getOrigin().y&&checkArrowDestination(root->left));
+    }
+    return (root->getDestinationLeft().x==root->left->getOrigin().x&&root->getDestinationLeft().y==root->left->getOrigin().y&&root->getDestinationRight().x==root->right->getOrigin().x&&root->getDestinationRight().y==root->right->getOrigin().y&&checkArrowDestination(root->left)&&checkArrowDestination(root->right));
+}
+
+AVL* AVL::clone() const{
+    AVL* cloneAVL = new AVL();
+    cloneAVL->root = clone(this->root,curNode,cloneAVL->curNode);
+    if(curNode==root){
+        cloneAVL->curNode=cloneAVL->root;
+    }
+    cloneAVL->animationStep=this->animationStep;
+    return cloneAVL;
+}
+
+AVLNode* AVL::clone(AVLNode* root, AVLNode* curNode, AVLNode* &cloneCurNode) const{
+    if(!root) return nullptr;
+    AVLNode* cloneAVL = root->clone();
+    cloneAVL->left = clone(root->left,curNode,cloneCurNode);
+    if(curNode==root->left){
+        cloneCurNode=cloneAVL->left;
+    }
+    if(cloneAVL->left){
+        cloneAVL->left->parent=cloneAVL;
+    }
+    cloneAVL->right = clone(root->right,curNode,cloneCurNode);
+    if(curNode==root->right){
+        cloneCurNode=cloneAVL->right;
+    }
+    if(cloneAVL->right){
+        cloneAVL->right->parent=cloneAVL;
+    }
+    return cloneAVL;
 }
 
 void AVL::update(){

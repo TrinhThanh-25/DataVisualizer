@@ -5,25 +5,30 @@ STArrow::STArrow(Vector2 pos,int to) : Arrow(pos){
     this->weight=0;
 }
 
-void STArrow::setTarget(Vector2 targetPos){
-    float disX=targetPos.x-position.x, disY=targetPos.y-position.y;
+void STArrow::setDestination(Vector2 targetDes){
+    float disX=targetDes.x-position.x, disY=targetDes.y-position.y;
     float dis=sqrt(disX*disX+disY*disY);
-    this->targetDestination={targetPos.x-STNodeSize.x/(2.0f*dis)*disX,targetPos.y-STNodeSize.y/(2.0f*dis)*disY};
-}
-
-void STArrow::update(){
-    destination.x += ((targetDestination.x-destination.x));
-    destination.y += ((targetDestination.y-destination.y));
+    this->destination={targetDes.x-STNodeSize.x/(2.0f*dis)*disX,targetDes.y-STNodeSize.y/(2.0f*dis)*disY};
 }
 
 void STArrow::draw(bool isWeighted, bool isDirected){
-    if(isWeighted)
-        DrawText(std::to_string(this->weight).c_str(),(this->position.x+this->destination.x)/2,(this->position.y+this->destination.y)/2,10,color);
+    if(isWeighted){
+        float midX = (position.x + destination.x) / 2.0f;
+        float midY = (position.y + destination.y) / 2.0f;
+        Vector2 dir = {destination.y - position.y,-(destination.x - position.x)};
+        float length = sqrt(dir.x * dir.x + dir.y * dir.y);
+        float labelX = midX - 5 + dir.x/length * 10;
+        float labelY = midY - 5 + dir.y/length * 10;
+        DrawText(std::to_string(this->weight).c_str(), labelX, labelY, 10,(isHighlight)? highlight : normal);
+    }
     if(isDirected){
+        color=(isHighlight)? highlight:normal;
         drawArrow(this->position,this->destination);
     }
     else{
-        DrawLineEx(this->position,this->destination,2,color);
+        float disX=destination.x-position.x, disY=destination.y-position.y;
+        float dis=sqrt(disX*disX+disY*disY);
+        DrawLineEx(this->position,{this->destination.x+STNodeSize.x/(2.0f*dis)*disX,this->destination.y+STNodeSize.y/(2.0f*dis)*disY},2,(isHighlight)? highlight : normal);
     }
 }
 
@@ -49,4 +54,12 @@ void STArrow::setFrom(int from){
 
 int STArrow::getFrom(){
     return this->from;
+}
+
+void STArrow::setHighlight(){
+    isHighlight=true;
+}
+
+void STArrow::deHighlight(){
+    isHighlight=false;
 }

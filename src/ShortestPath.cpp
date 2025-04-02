@@ -1,9 +1,12 @@
+//FIX BIẾN MẤT NODE KHI TRÙNG LÊN NHAU
 #include "ShortestPath/ShortestPath.h"
 
-ShortestPath::ShortestPath() {
+ShortestPath::ShortestPath() : current(nullptr) {
     isWeighted = false;
     isDirected = false;
     k = 0.0f;
+    cool=1.5f;
+    deltaTime=0.0f;
 }
 
 ShortestPath::~ShortestPath() {
@@ -12,7 +15,7 @@ ShortestPath::~ShortestPath() {
 
 void ShortestPath::createGraph(int numNodes, int edges){
     clearGraph();
-    k=800*450/numNodes;
+    k = sqrt((rangeX * rangeY) / numNodes);
     for(int i = 0; i < numNodes; i++){
         float posX = centerX + (rand() % (int)rangeX - rangeX / 2);
         float posY = centerY + (rand() % (int)rangeY - rangeY / 2);
@@ -43,6 +46,7 @@ void ShortestPath::createGraph(int numNodes, int edges){
                 edge->setFrom(from);
                 edge->setWeight(rand()%100+1);
                 graph[from]->arrow.push_back(edge);
+                allArrows.push_back(edge);
                 i++;
             }
         }
@@ -67,13 +71,15 @@ void ShortestPath::removeEdge(int node1, int node2){
     }
 }
 
-void ShortestPath::searchPath(int startNode, int endNode){}
-
 void ShortestPath::clearGraph(){
-    for (auto n : graph) {
-        if (n) {
-            n->clearEdges();
-            delete n;
+    for (auto arrow : allArrows) {
+        delete arrow;
+    }
+    allArrows.clear();
+    for (auto node : graph) {
+        if (node) {
+            node->clearEdges();
+            delete node;
         }
     }
     graph.clear();
@@ -81,8 +87,9 @@ void ShortestPath::clearGraph(){
 
 void ShortestPath::resetGraph(){
     for(auto n : graph){
-        n->deVisited();
+        n->deHighlight();
         n->deKnown();
+        n->setCost(-1);
     }
 }
 
@@ -102,9 +109,51 @@ void ShortestPath::deDirected(){
     isDirected = false;
 }
 
+ShortestPath* ShortestPath::clone() const {
+    ShortestPath* cloneST = new ShortestPath();
+    for (auto node : graph) {
+        ShortestPathNode* newNode = node->clone();
+        cloneST->graph.push_back(newNode);
+        if (this->current == node) {
+            cloneST->current = newNode;
+        }
+    }
+    for (auto node : cloneST->graph){
+        for (auto arr : node->arrow){
+            cloneST->allArrows.push_back(arr);
+            for (auto adj : cloneST->graph){
+                if(adj->getID()==arr->getTo()){
+                    node->adj.push_back(adj);
+                }
+            }
+        }
+    }
+    cloneST->k = this->k;
+    cloneST->isWeighted = this->isWeighted;
+    cloneST->isDirected = this->isDirected;
+    cloneST->cool = this->cool;
+    cloneST->deltaTime = this->deltaTime;
+    cloneST->animationStep = this->animationStep;
+    cloneST->findSmall = this->findSmall;
+    cloneST->minCost = this->minCost;
+    cloneST->index=this->index;
+    return cloneST;
+}
+
 void ShortestPath::update(){
     for(auto n : graph){
         if(n)
+            n->updateNode();
+    }
+    for (int i=0;i<graph.size();i++){
+        for (int j=0;j<graph.size();j++){
+            if (i != j && graph[i]->isCollision(graph[j])) {
+                graph[i]->applyRepellingForce(graph[j]);
+            }
+        }
+    }
+    for (auto n: graph){
+        if(n)   
             n->update();
     }
 }
@@ -120,81 +169,52 @@ void ShortestPath::draw(){
     }
 }
 
-void ShortestPath::FruchtermanReingold(){
-    float X_min = centerX - rangeX / 2.0f, X_max = centerX + rangeX / 2.0f;
-    float Y_min = centerY - rangeY / 2.0f, Y_max = centerY + rangeY / 2.0f;
-    float deltaTime = 0.0016f;
-    for (int loops = 0; loops < 8000; loops++) {
-        for (auto &node : graph) {
-            node->setForce({0, 0});
-        }
-        for (size_t i = 0; i < graph.size(); i++) {
-            if (!graph[i]) continue;
-            for (size_t j = i + 1; j < graph.size(); j++) {
-                if (!graph[j]) continue;
-                Vector2 force = ComputeRepulsiveForce(graph[i], graph[j]);
-                graph[i]->setForce({graph[i]->getForce().x + force.x, graph[i]->getForce().y + force.y});
-                graph[j]->setForce({graph[j]->getForce().x - force.x, graph[j]->getForce().y - force.y});
-            }
-            for (auto &edge : graph[i]->arrow) {
-                int from = edge->getFrom();
-                int to = edge->getTo();
-                Vector2 force = ComputeAttractiveForce(graph[from], graph[to]);
-                graph[from]->setForce({graph[from]->getForce().x - force.x, graph[from]->getForce().y - force.y});
-                graph[to]->setForce({graph[to]->getForce().x + force.x, graph[to]->getForce().y + force.y});
-            }
-        }
-        float temperature = 10.0f;
-        for (auto &node : graph) {
-            float newX = node->getPosition().x + node->getForce().x * temperature * deltaTime;
-            float newY = node->getPosition().y + node->getForce().y * temperature * deltaTime;
-            newX = std::max(X_min, std::min(newX, X_max));
-            newY = std::max(Y_min, std::min(newY, Y_max));
-
-            node->setPosition({newX, newY});
-        }
-        update();
-        draw();
-    }
-}
-
 void ShortestPath::Dijkstra(int startNode) {
     resetGraph();
     graph[startNode]->setCost(0);
-    graph[startNode]->setKnown();
     int i = startNode;
     while (true) {
-        int findSmall = -1;  
-        int minCost = INT_MAX;
-        for (auto edge : graph[i]->arrow) {
-            int edgeWeight = edge->getWeight();
-            int newCost = graph[i]->getCost() + edgeWeight;
-            if (newCost < graph[i]->adj[edge->getTo()]->getCost()) {
-                graph[i]->adj[edge->getTo()]->setCost(newCost);
-            }
-            if (!graph[i]->adj[edge->getTo()]->getKnown() && graph[i]->adj[edge->getTo()]->getCost() < minCost) {
-                minCost = graph[i]->adj[edge->getTo()]->getCost();
-                findSmall = graph[i]->adj[edge->getTo()]->getID();
-            }
-        }
-        if (findSmall != -1) {
-            i = findSmall;
-            graph[i]->setKnown();
-        } 
-        else {
-            findSmall = -1;
-            minCost = INT_MAX;
-            for (auto n : graph) {
-                if (!n->getKnown() && n->getCost() < minCost) {
-                    minCost = n->getCost();
-                    findSmall = n->getID();
+        if (isDirected) {
+            for (auto edge : graph[i]->arrow) {
+                int to = edge->getTo();
+                int weight = edge->getWeight();
+                int newCost = graph[i]->getCost() + weight;
+                if (graph[to]->getCost() == -1 || newCost < graph[to]->getCost()) {
+                    graph[to]->setCost(newCost);
                 }
             }
-            if (findSmall == -1) break; 
-            i = findSmall;
-            graph[i]->setKnown();
+        } else {
+            for (auto edge : allArrows) {
+                int from = edge->getFrom();
+                int to = edge->getTo();
+                int weight = edge->getWeight();
+                if (from == i) {
+                    int newCost = graph[i]->getCost() + weight;
+                    if (graph[to]->getCost() == -1 || newCost < graph[to]->getCost()) {
+                        graph[to]->setCost(newCost);
+                    }
+                } else if (to == i) {
+                    int newCost = graph[i]->getCost() + weight;
+                    if (graph[from]->getCost() == -1 || newCost < graph[from]->getCost()) {
+                        graph[from]->setCost(newCost);
+                    }
+                }
+            }
         }
+        int findSmall = -1;
+        int minCost = INT_MAX;
+        for (auto n : graph) {
+            if (!n->getKnown() && n->getCost() != -1 && n->getCost() < minCost) {
+                minCost = n->getCost();
+                findSmall = n->getID();
+            }
+        }
+        if (findSmall == -1) break;
+        i = findSmall;
+        graph[i]->setKnown();
     }
+    update();
+    draw();
 }
 
 Vector2 ShortestPath::ComputeRepulsiveForce(ShortestPathNode* &v, ShortestPathNode* &u) {
@@ -202,7 +222,7 @@ Vector2 ShortestPath::ComputeRepulsiveForce(ShortestPathNode* &v, ShortestPathNo
     Vector2 delta = { posV.x - posU.x, posV.y - posU.y };
     float distance = sqrt(delta.x * delta.x + delta.y * delta.y) + 0.01f;
     float force = (k * k) / distance;
-    return { (delta.x / distance) * force, (delta.y / distance) * force };
+    return {(float)(delta.x / distance) * force, (float)(delta.y / distance) * force};
 }
 
 Vector2 ShortestPath::ComputeAttractiveForce(ShortestPathNode* &v, ShortestPathNode* &u) {
@@ -210,5 +230,5 @@ Vector2 ShortestPath::ComputeAttractiveForce(ShortestPathNode* &v, ShortestPathN
     Vector2 delta = { posV.x - posU.x, posV.y - posU.y };  
     float distance = sqrt(delta.x * delta.x + delta.y * delta.y) + 0.01f;
     float force = (distance * distance) / k;
-    return { (delta.x / distance) * force, (delta.y / distance) * force };
+    return {(float)(delta.x / distance) * force, (float)(delta.y / distance) * force};
 }

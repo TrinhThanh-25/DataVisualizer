@@ -28,16 +28,19 @@
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\CodeBlock.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\Console.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\HashTable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\HashTableVisual.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\MenuState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\Panel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\ProcessController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\SLLArrow.cpp">
@@ -74,6 +77,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\TrinhThanh\Desktop\DataVisualization\src\tinyfiledialogs.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

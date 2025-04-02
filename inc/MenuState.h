@@ -1,7 +1,7 @@
 #ifndef MENUSTATE_H
 #define MENUSTATE_H
 
-#include "GUI/Button.h"
+#include <GUI/Button.h>
 
 enum class MenuSelection {
     NONE,

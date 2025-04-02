@@ -1,7 +1,7 @@
 #ifndef STPANEL_H
 #define STPANEL_H
 
-#include "GUI/Panel.h"
+#include <GUI/Panel.h>
 
 class STPanel : public Panel{
     public:

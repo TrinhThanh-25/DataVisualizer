@@ -1,10 +1,10 @@
 #ifndef APPLICATION_H
 #define APPLICATION_H
 
-#include "MenuState.h"
-#include "SLL/SLLState.h"
-#include "AVL/AVLState.h"
-#include "ShortestPath/ShortestPathState.h"
+#include <MenuState.h>
+#include <SLL/SLLState.h>
+#include <AVL/AVLState.h>
+#include <ShortestPath/ShortestPathState.h>
 
 class Application{
     public:

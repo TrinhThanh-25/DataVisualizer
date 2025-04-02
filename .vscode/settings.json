@@ -119,6 +119,10 @@
     "semaphore": "cpp",
     "stop_token": "cpp",
     "thread": "cpp",
-    "set": "cpp"
-  }
+    "set": "cpp",
+    "xmemory": "cpp",
+    "xstring": "cpp",
+    "fstream": "cpp"
+  },
+  "C_Cpp.errorSquiggles": "disabled"
 }

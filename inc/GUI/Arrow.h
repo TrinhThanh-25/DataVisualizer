@@ -3,15 +3,15 @@
 
 #include <string>
 #include <cmath>
+#include <raylib.h>
+#include <GUI/Resources.h>
 
-#include "raylib.h"
-#include "GUI/Resources.h"
 class Arrow{
      public:
           Arrow(Vector2 pos);
           
-          virtual void setTarget(Vector2 targetPos);
-          void setDestination(Vector2 destination);
+          virtual void setTargetDestination(Vector2 targetDes);
+          virtual void setDestination(Vector2 destination);
           void setPosition(Vector2 position);
           void setTargetPosition(Vector2 targetPos);
           Vector2 getPosition();

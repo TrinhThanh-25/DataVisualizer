@@ -1,13 +1,12 @@
 #ifndef STARROW_H
 #define STARROW_H
 
-#include "GUI/Arrow.h"
+#include <GUI/Arrow.h>
 
 class STArrow : public Arrow{
     public:
         STArrow(Vector2 pos,int to);
-        void setTarget(Vector2 targetPos) override;
-        void update() override;
+        void setDestination(Vector2 targetDes) override;
         void draw(bool isWeighted, bool isDirected);
         void setWeight(int weight);
         int getWeight();
@@ -16,10 +15,17 @@ class STArrow : public Arrow{
         void setFrom(int from);
         int getFrom();
 
+        void setHighlight();
+        void deHighlight();
+
     private:
         int from;
         int to;
         int weight;
+
+        Color normal = BLACK;
+        Color highlight = RED;
+        bool isHighlight=false;
 };
 
 #endif
