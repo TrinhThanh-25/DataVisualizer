@@ -15,5 +15,7 @@ add_executable(${PROJECT_NAME} ${SOURCES})
 add_subdirectory("raylib")
 target_link_libraries(${PROJECT_NAME} raylib)
 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /FS")
+
 # Copy thư mục resources vào build để giữ hình ảnh, âm thanh...
 file(COPY ${CMAKE_SOURCE_DIR}/resources DESTINATION ${CMAKE_BINARY_DIR})
