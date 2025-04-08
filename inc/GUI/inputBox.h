@@ -8,7 +8,7 @@
 
 class InputBox {
     public:
-        InputBox(int x, int y, int width, int height, int maxLen, Color boxCol, Color txtCol);
+        InputBox(float x, float y, float width, float height, int maxLen, Color boxCol, Color txtCol);
         void Update();
         void Draw();
         std::string GetText() const;

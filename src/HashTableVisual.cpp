@@ -3,7 +3,7 @@
 
 HashTableVisualization::HashTableVisualization(const Font& fontNumber, const Font& fontText, const bool& isLightMode, const float& speed)
     : hashTable(MAX_TABLE_SIZE), fontNumber(fontNumber), fontText(fontText), isLightMode(isLightMode), speed(speed), presentations(fontNumber, fontText, speed, hashTable),
-      isInserting(false), isDeleting(false), isFinding(false), isInitializing(false), inputBox(10, HASH_TABLE_HEIGHT - 50, INPUT_BOX_WIDTH, INPUT_BOX_HEIGHT, 10, LIGHTGRAY, BLACK) {
+      isInserting(false), isDeleting(false), isFinding(false), isInitializing(false), inputBox(10.0, 600.0 - 50.0, 200.0, 30.0, 10, LIGHTGRAY, BLACK) {
     
     inputBox.isAppear = false;
 

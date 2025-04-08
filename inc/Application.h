@@ -5,7 +5,7 @@
 #include <SLL/SLLState.h>
 #include <AVL/AVLState.h>
 #include <ShortestPath/ShortestPathState.h>
-#include "HashTableVisual.h"
+#include "HashTable/HashTableVisual.h"
 
 class Application{
     public:
