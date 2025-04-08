@@ -19,7 +19,11 @@
 		{
 			"id" : "raylib::@7d429ebd5d102775094d"
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<<< HEAD:build/.cmake/api/v1/reply/target-ALL_BUILD-Debug-c559b9ce9e9198be3419.json
+=======
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/target-ALL_BUILD-Release-c559b9ce9e9198be3419.json
+>>>>>>> fda38782a35f4de04ac5a663b69461d9339b5221
 =======
 <<<<<<<< HEAD:build/.cmake/api/v1/reply/target-ALL_BUILD-Release-c559b9ce9e9198be3419.json
 >>>>>>> fda38782a35f4de04ac5a663b69461d9339b5221
@@ -27,6 +31,7 @@
 		{
 			"id" : "glfw::@a896dd99b4a5c6eab3d9"
 ========
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>>> ace3f3df9f3bf8c8cedba9645fce850ac6c924ba:build/.cmake/api/v1/reply/target-ALL_BUILD-Debug-dff1faff83b6bde52049.json
 		},
@@ -36,6 +41,8 @@
 		{
 			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"
 =======
+=======
+>>>>>>> fda38782a35f4de04ac5a663b69461d9339b5221
 >>>>>>>> ace3f3df9f3bf8c8cedba9645fce850ac6c924ba:build/.cmake/api/v1/reply/target-ALL_BUILD-Release-dff1faff83b6bde52049.json
 		},
 		{
@@ -43,6 +50,9 @@
 		},
 		{
 			"id" : "glfw::@a896dd99b4a5c6eab3d9"
+<<<<<<< HEAD
+>>>>>>> fda38782a35f4de04ac5a663b69461d9339b5221
+=======
 >>>>>>> fda38782a35f4de04ac5a663b69461d9339b5221
 		}
 	],

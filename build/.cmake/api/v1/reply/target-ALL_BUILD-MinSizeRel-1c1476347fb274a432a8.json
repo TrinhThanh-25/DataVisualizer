@@ -19,6 +19,10 @@
 		{
 			"id" : "raylib::@7d429ebd5d102775094d"
 <<<<<<<< HEAD:build/.cmake/api/v1/reply/target-ALL_BUILD-MinSizeRel-1c1476347fb274a432a8.json
+<<<<<<< HEAD
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/target-ALL_BUILD-MinSizeRel-1c1476347fb274a432a8.json
+=======
+>>>>>>> fda38782a35f4de04ac5a663b69461d9339b5221
 		},
 		{
 			"id" : "glfw::@a896dd99b4a5c6eab3d9"
@@ -27,15 +31,35 @@
 		},
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"id" : "glfw::@a896dd99b4a5c6eab3d9"
 		},
 		{
 			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"
 =======
+=======
+>>>>>>> fda38782a35f4de04ac5a663b69461d9339b5221
 			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"
 		},
 		{
 			"id" : "glfw::@a896dd99b4a5c6eab3d9"
+<<<<<<< HEAD
+>>>>>>> fda38782a35f4de04ac5a663b69461d9339b5221
+========
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/target-ALL_BUILD-Debug-1c1476347fb274a432a8.json
+		},
+		{
+			"id" : "glfw::@a896dd99b4a5c6eab3d9"
+========
+>>>>>>>> ace3f3df9f3bf8c8cedba9645fce850ac6c924ba:build/.cmake/api/v1/reply/target-ALL_BUILD-Debug-315e71e9b7fbf799e53f.json
+		},
+		{
+			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"
+		},
+		{
+			"id" : "glfw::@a896dd99b4a5c6eab3d9"
+>>>>>>>> fda38782a35f4de04ac5a663b69461d9339b5221:build/.cmake/api/v1/reply/target-ALL_BUILD-Debug-315e71e9b7fbf799e53f.json
+=======
 >>>>>>> fda38782a35f4de04ac5a663b69461d9339b5221
 		}
 	],

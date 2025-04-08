@@ -27,7 +27,13 @@ void Application::run(){
         case MenuSelection::LINEAR_HT:
             
 <<<<<<< HEAD
+<<<<<<< HEAD
         
+=======
+            this->hashTable.Draw();
+            this->hashTable.HandleInput();
+            this->hashTable.HandleMouseInput();
+>>>>>>> fda38782a35f4de04ac5a663b69461d9339b5221
 =======
             this->hashTable.Draw();
             this->hashTable.HandleInput();
