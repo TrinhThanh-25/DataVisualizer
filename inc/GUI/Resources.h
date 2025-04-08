@@ -7,7 +7,8 @@ const int speed = 200;
 const float delayTime = 0.5f;
 
 //Font
-const Font fontNumber = LoadFontEx("../resources/Ubuntu-Bold.ttf");
+Font fontNumber = LoadFont("../resources/Ubuntu-Bold.ttf");
+Font fontText = LoadFont("../resources/Ubuntu-Bold.ttf");
 //
 float tempSpeed = 0.1f;
 
