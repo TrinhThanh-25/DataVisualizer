@@ -1,6 +1,6 @@
 #include "AVL/AVLPanel.h"
 
-AVLPanel::AVLPanel(){
+AVLPanel::AVLPanel() : isUsing(nullptr) {
     this->Create.setText("Create",panelButtonFontSize);
     this->Create.setSize(panelButtonSize);
     this->Create.setPosition({Create.getSize().x/2.0f+(Create.getSize().y/2.0f-Create.getfontSize()/2.0f), 650+(Create.getSize().y/2.0f-Create.getfontSize()/2.0f)});

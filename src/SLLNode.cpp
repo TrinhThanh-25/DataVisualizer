@@ -4,7 +4,6 @@ SLLNode::SLLNode() : Pointer(nullptr) {}
 
 SLLNode::~SLLNode(){
     delete Pointer;
-    Pointer=nullptr;
 }
 
 void SLLNode::setNull(){

@@ -4,15 +4,15 @@ ShortestPathNode::ShortestPathNode(Vector2 pos) {
     id = 0;
     cost = -1;
     isKnown = false;
-    visited = false;
+    isHighlight = false;
     position=pos;
 }
 
 ShortestPathNode::ShortestPathNode(int id) {
     this->id = id;
-    cost = 0;
+    cost = -1;
     isKnown = false;
-    visited = false;
+    isHighlight = false;
 }
 
 ShortestPathNode::~ShortestPathNode() {
@@ -38,16 +38,16 @@ int ShortestPathNode::getCost() {
     return cost;
 }
 
-void ShortestPathNode::setVisited() {
-    this->visited = true;
+void ShortestPathNode::setHighlight() {
+    this->isHighlight = true;
 }
 
-void ShortestPathNode::deVisited() {
-    this->visited = false;
+void ShortestPathNode::deHighlight() {
+    this->isHighlight = false;
 }
 
-bool ShortestPathNode::getVisited() {
-    return visited;
+bool ShortestPathNode::getHighlight() {
+    return isHighlight;
 }
 
 void ShortestPathNode::setKnown() {
@@ -86,7 +86,7 @@ void ShortestPathNode::addEdge(ShortestPathNode* node) {
     STArrow* a = new STArrow(position,node->getID());
     a->setFrom(id);
     a->setTo(node->getID());
-    a->setTargetDestination(node->getPosition());
+    a->setDestination(node->getPosition());
     arrow.push_back(a);
 }
 
@@ -101,22 +101,113 @@ void ShortestPathNode::removeEdge(ShortestPathNode* node) {
 }
 
 void ShortestPathNode::clearEdges() {
-    for(auto a : arrow){
-        delete a;
-    }
+    adj.clear();
     arrow.clear();
 }
 
-void ShortestPathNode::update() {
-    node={position.x-STNodeSize.x/2.0f,position.y-STNodeSize.y/2.0f,STNodeSize.x,STNodeSize.y};
+void ShortestPathNode::setChosen(){
+    if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && CheckCollisionPointRec(GetMousePosition(),node)){
+            isChosen=true;
+    }
+    else if(!IsMouseButtonDown(MOUSE_LEFT_BUTTON)){
+        isChosen=false;
+    }
+}
+
+bool ShortestPathNode::isCollision(ShortestPathNode* other) {
+    Vector2 pos1 = this->getPosition();
+    Vector2 pos2 = other->getPosition();
+    Vector2 dis = {pos2.x-pos1.x,pos2.y-pos1.y};
+    float distance = sqrt(dis.x*dis.x+dis.y*dis.y);
+    float radius1 = STNodeSize.x / 2.0f;
+    float radius2 = STNodeSize.x / 2.0f;
+    return distance < (radius1 + radius2);
+}
+
+void ShortestPathNode::applyRepellingForce(ShortestPathNode* other) {
+    Vector2 pos1 = this->getPosition();
+    Vector2 pos2 = other->getPosition();
+    Vector2 dis = {pos2.x - pos1.x, pos2.y - pos1.y};
+    float distance=sqrt(dis.x*dis.x+dis.y*dis.y);
+    float pushForce=STNodeSize.x-distance;
+    if (pushForce>0) {
+        Vector2 newPos1, newPos2;
+        if(other->getBoundaryCollision()){
+            newPos1 = {pos1.x - dis.x/distance*pushForce, pos1.y - dis.y/distance*pushForce};
+            this->setPosition(newPos1);
+        }
+        else if (isChosen) {
+            newPos2 = {pos2.x + dis.x/distance*pushForce, pos2.y + dis.y/distance*pushForce};
+            other->setPosition(newPos2);
+        }
+        else {
+            newPos1 = {pos1.x - dis.x/distance*pushForce/2.0f, pos1.y - dis.y/distance*pushForce/2.0f};
+            newPos2 = {pos2.x + dis.x/distance*pushForce/2.0f, pos2.y + dis.y/distance*pushForce/2.0f};
+            this->setPosition(newPos1);
+            other->setPosition(newPos2);
+        }
+    }
+}
+
+void ShortestPathNode::boundaryCollision(){
+    if((position.x+STNodeSize.x/2.0f>=centerX+rangeX/2.0f||position.x-STNodeSize.x/2.0f<=centerX-rangeX/2.0f)&&(position.y+STNodeSize.y/2.0f>=centerY+rangeY/2.0f||position.y-STNodeSize.y/2.0f<=centerY-rangeY/2.0f)){
+        isBoundaryCollision=true;
+    }
+    else{
+        isBoundaryCollision=false;
+    }
+    if(position.x+STNodeSize.x/2.0f>centerX+rangeX/2.0f){
+        setPosition({getPosition().x-(position.x+STNodeSize.x/2.0f-centerX-rangeX/2.0f),getPosition().y});
+    }
+    if(position.x-STNodeSize.x/2.0f<centerX-rangeX/2.0f){
+        setPosition({getPosition().x-(position.x-STNodeSize.x/2.0f-centerX+rangeX/2.0f),getPosition().y});
+    }
+    if(position.y+STNodeSize.y/2.0f>centerY+rangeY/2.0f){
+        setPosition({getPosition().x,getPosition().y-(position.y+STNodeSize.y/2.0f-centerY-rangeY/2.0f)});
+    }
+    if(position.y-STNodeSize.y/2.0f<centerY-rangeY/2.0f){
+        setPosition({getPosition().x,getPosition().y-(position.y-STNodeSize.y/2.0f-centerY+rangeY/2.0f)});
+    }
+}
+
+bool ShortestPathNode::getBoundaryCollision(){
+    return isBoundaryCollision;
+}
+
+ShortestPathNode* ShortestPathNode::clone() const{
+    ShortestPathNode* cloneST= new ShortestPathNode(position);
+    for (auto arr : arrow){
+        cloneST->arrow.push_back(new STArrow(*arr));
+    }
+    cloneST->node=this->node;
+    cloneST->force=this->force;
+    cloneST->nodeColor=this->nodeColor;
+    cloneST->textColor=this->textColor;
+    cloneST->id=this->id;
+    cloneST->cost=this->cost;
+    cloneST->isKnown=this->isKnown;
+    cloneST->isHighlight=this->isHighlight;
+    return cloneST;  
+}
+
+void ShortestPathNode::updateNode() {
+    setChosen();
+    if(isChosen){
+        setPosition(GetMousePosition());
+    }
+    boundaryCollision();
+}
+
+void ShortestPathNode::update(){
     for(auto ar : arrow){
         for(auto node : adj){
             if(ar&&ar->getTo()==node->getID()){
-                ar->setTargetDestination(node->getPosition());
-                ar->update();
+                ar->setDestination(node->getPosition());
+                ar->setPosition(position);
             }
         }
     }
+    node={position.x-STNodeSize.x/2.0f,position.y-STNodeSize.y/2.0f,STNodeSize.x,STNodeSize.y};
 }
 
 void ShortestPathNode::draw(bool isWeighted, bool isDirected) {
@@ -127,13 +218,12 @@ void ShortestPathNode::draw(bool isWeighted, bool isDirected) {
 }
 
 void ShortestPathNode::drawNode(){
-    DrawRectangleRounded(node, 100, 0, visited ? RED : LIGHTGRAY);
+    DrawRectangleRounded(node, 100, 0, (isKnown)? isKnownColor : ((isHighlight) ? highlight : nodeColor));
     if(cost==-1){
-        DrawText("INF", position.x+STNodeSize.x/2.0f, position.y-STNodeSize.y/2.0f, STNodeIDFontSize, STNodeIDColor);
+        DrawText("INF", position.x+STNodeSize.x/2.0f, position.y-STNodeSize.y/2.0f, STNodeCostFontSize, STNodeCostColor);
     }
     else{
-        DrawText(std::to_string(cost).c_str(), position.x+STNodeSize.x/2.0f, position.y-STNodeSize.y/2.0f, STNodeIDFontSize, STNodeIDColor);
+        DrawText(std::to_string(cost).c_str(), position.x+STNodeSize.x/2.0f, position.y-STNodeSize.y/2.0f, STNodeCostFontSize, STNodeCostColor);
     }
-    DrawText(std::to_string(id).c_str(), position.x-MeasureText(std::to_string(id).c_str(),STNodeCostFontSize)/2.0f,position.y-STNodeCostFontSize/2.0f,STNodeCostFontSize,STNodeCostColor);
+    DrawText(std::to_string(id).c_str(), position.x-MeasureText(std::to_string(id).c_str(),STNodeIDFontSize)/2.0f,position.y-STNodeIDFontSize/2.0f,STNodeIDFontSize, (isKnown||isHighlight)? textHighlight:textColor);
 }
-

@@ -18,7 +18,7 @@ class AVLPanel : public Panel{
         Button Add;
         Button Remove;
         Button Search;
-        Button* isUsing=nullptr;
+        Button* isUsing;
 };
 
 #endif

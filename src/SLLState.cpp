@@ -1,4 +1,5 @@
-//CẦN FIX LOGIC KHI LƯU STATE
+//CẦN FIX LOGIC KHI LƯU STATE(1 SỐ STATE KHÔNG CHẠY TIẾP ĐƯỢC)
+//FIX KHI PRESS BACK GIỮA CHỪNG BỊ LỖI
 
 #include <SLL/SLLState.h>
 
@@ -189,7 +190,6 @@ void SLLState::update(){
             else{
                 animationState=SLLAnimationMode::INSERT_MID;
             }
-            //SLL.insertNode(std::stoi(indexBox.GetText()),std::stoi(valueBox.GetText()));
         }
         else if(panel.isRemoveUsed()&&indexText!=""){
             isStateSaved=false;
@@ -202,7 +202,6 @@ void SLLState::update(){
             else{
                 animationState=SLLAnimationMode::REMOVE_MID;
             }
-            //SLL.removeNode(std::stoi(indexBox.GetText()));
         }
         else if(panel.isUpdateUsed()&&valueText!=""){
             isStateSaved=false;
@@ -210,7 +209,6 @@ void SLLState::update(){
             isPlaying=true;
             isPaused=false;
             animationState=SLLAnimationMode::UPDATE;
-            //SLL.updateNode(std::stoi(indexBox.GetText()),std::stoi(valueBox.GetText()));
         }
         else if(panel.isSearchUsed()&&valueText!=""){
             isStateSaved=false;
@@ -218,7 +216,6 @@ void SLLState::update(){
             isPlaying=true;
             isPaused=false; 
             animationState=SLLAnimationMode::SEARCH;
-            //SLL.searchNode(std::stoi(valueBox.GetText()));
         }
     }
     else if(panel.isBackPressed()){
@@ -283,11 +280,11 @@ void SLLState::saveInsertFrontState(int index, int value){
     if(SLL.indexStep+1==index&&SLL.animationStep==0){
         SLL.isNewNode=true;
         SLL.newNode=new SLLNode();
-        SLL.newNode->setPosition({SLL.head->getPosition().x+ArrowLength + index * (SLLNodeSize.x+50), SLLposition.y+100});
+        SLL.newNode->setPosition({SLL.head->getPosition().x+ArrowLength + index * (SLLNodeSize.x+ArrowLength), SLLposition.y+100});
         SLL.newNode->setNull();
         SLL.newNode->setValue(value);
         SLL.newNode->setDestination({SLL.newNode->getEndPos().x+ArrowLength,SLL.newNode->getEndPos().y});
-        SLL.myNode=new SLLArrow({SLL.head->getPosition().x + index * (SLLNodeSize.x+50), SLLposition.y+100});
+        SLL.myNode=new SLLArrow({SLL.head->getPosition().x + index * (SLLNodeSize.x+ArrowLength), SLLposition.y+100});
         SLL.myNode->setLabel("myNode");
         SLL.myNode->setPosition({SLL.newNode->getStartPos().x-ArrowLength,SLL.newNode->getStartPos().y});
         SLL.myNode->setDestination(SLL.newNode->getStartPos());
@@ -295,13 +292,9 @@ void SLLState::saveInsertFrontState(int index, int value){
         saveState();
         if(!SLL.list.empty()){
             for (int i=index;i<SLL.list.size();i++){
-                SLL.list[i]->setPosition({SLL.head->getPosition().x+ArrowLength + (i+1) * (SLLNodeSize.x+50), SLLposition.y});
+                SLL.list[i]->setPosition({SLL.head->getPosition().x+ArrowLength + (i+1) * (SLLNodeSize.x+ArrowLength), SLLposition.y});
             }
-            for(int i=index;i<SLL.list.size()-1;i++){
-                SLL.list[i]->setDestination(SLL.list[i+1]->getStartPos());
-            }
-            SLL.list[SLL.list.size()-1]->setDestination({SLL.list[SLL.list.size()-1]->getEndPos().x+ArrowLength,SLLposition.y});
-            SLL.head->setDestination(SLL.list[0]->getStartPos());
+            SLL.setArrowDestination();
             SLL.animationStep++;
             saveState();
         }
@@ -312,9 +305,9 @@ void SLLState::saveInsertFrontState(int index, int value){
     }
     if(SLL.animationStep==1){
         SLL.newNode->setDestination(SLL.list[index]->getStartPos());
+        saveState();
         SLL.animationStep++;
         SLL.list.insert(SLL.list.begin(),SLL.newNode);
-        saveState();
     }
     if(SLL.animationStep==2){
         SLL.head->setDestination(SLL.newNode->getStartPos());
@@ -323,13 +316,14 @@ void SLLState::saveInsertFrontState(int index, int value){
         saveState();
     }
     if(SLL.animationStep==3){
-        SLL.newNode->setPosition({SLL.head->getPosition().x+ArrowLength + (index) * (SLLNodeSize.x+50), SLLposition.y});
+        SLL.newNode->setPosition({SLL.head->getPosition().x+ArrowLength + (index) * (SLLNodeSize.x+ArrowLength), SLLposition.y});
         SLL.indexStep=-1;
         SLL.animationStep=0;
         SLL.newNode=nullptr;
         delete SLL.myNode;
         SLL.myNode=nullptr;
         animationState=SLLAnimationMode::IDLE;
+        SLL.setArrowDestination();
         saveState();
     }
     currentStep=0;
@@ -346,18 +340,18 @@ void SLLState::saveInsertMidState(int index, int value){
     saveState();
     while(SLL.indexStep<index-1){
         SLL.cur->setDestination(SLL.list[SLL.indexStep+1]->getStartPos());
-        SLL.cur->setPosition({SLL.list[SLL.indexStep+1]->getStartPos().x-50,SLL.list[SLL.indexStep+1]->getStartPos().y+50});
+        SLL.cur->setPosition({SLL.list[SLL.indexStep+1]->getStartPos().x-ArrowLength,SLL.list[SLL.indexStep+1]->getStartPos().y+ArrowLength});
         SLL.indexStep++;
         saveState();
     }
     if(SLL.indexStep+1==index&&SLL.animationStep==0){
         SLL.isNewNode=true;
         SLL.newNode=new SLLNode();
-        SLL.newNode->setPosition({SLL.head->getPosition().x+ArrowLength + index * (SLLNodeSize.x+50), SLLposition.y+100});
+        SLL.newNode->setPosition({SLL.head->getPosition().x+ArrowLength + index * (SLLNodeSize.x+ArrowLength), SLLposition.y+100});
         SLL.newNode->setNull();
         SLL.newNode->setValue(value);
         SLL.newNode->setDestination({SLL.newNode->getEndPos().x+ArrowLength,SLL.newNode->getEndPos().y});
-        SLL.myNode=new SLLArrow({SLL.head->getPosition().x + index * (SLLNodeSize.x+50), SLLposition.y+100});
+        SLL.myNode=new SLLArrow({SLL.head->getPosition().x + index * (SLLNodeSize.x+ArrowLength), SLLposition.y+100});
         SLL.myNode->setLabel("myNode");
         SLL.myNode->setPosition({SLL.newNode->getStartPos().x-ArrowLength,SLL.newNode->getStartPos().y});
         SLL.myNode->setDestination(SLL.newNode->getStartPos());
@@ -365,12 +359,9 @@ void SLLState::saveInsertMidState(int index, int value){
         saveState();
         if(SLL.indexStep+1!=SLL.list.size()){
             for (int i=index;i<SLL.list.size();i++){
-                SLL.list[i]->setPosition({SLL.head->getPosition().x+ArrowLength + (i+1) * (SLLNodeSize.x+50), SLLposition.y});
+                SLL.list[i]->setPosition({SLL.head->getPosition().x+ArrowLength + (i+1) * (SLLNodeSize.x+ArrowLength), SLLposition.y});
             }
-            for (int i=index-1;i<SLL.list.size()-1;i++){
-                SLL.list[i]->setDestination(SLL.list[i+1]->getStartPos());
-            }
-            SLL.list[SLL.list.size()-1]->setDestination({SLL.list[SLL.list.size()-1]->getEndPos().x+ArrowLength,SLLposition.y});
+            SLL.setArrowDestination();
             SLL.animationStep++;
             saveState();
         }
@@ -381,9 +372,9 @@ void SLLState::saveInsertMidState(int index, int value){
     }
     if(SLL.animationStep==1){
         SLL.newNode->setDestination(SLL.list[index]->getStartPos());
+        saveState();
         SLL.animationStep++;
         SLL.list.insert(SLL.list.begin()+index,SLL.newNode);
-        saveState();
     }
     if(SLL.animationStep==2){
         SLL.list[index-1]->setDestination(SLL.newNode->getStartPos());
@@ -392,7 +383,8 @@ void SLLState::saveInsertMidState(int index, int value){
         saveState();
     }
     if(SLL.animationStep==3){
-        SLL.newNode->setPosition({SLL.head->getPosition().x+ArrowLength + (index) * (SLLNodeSize.x+50), SLLposition.y});
+        SLL.newNode->setPosition({SLL.head->getPosition().x+ArrowLength + (index) * (SLLNodeSize.x+ArrowLength), SLLposition.y});
+        SLL.setArrowDestination();
         SLL.indexStep=-1;
         SLL.animationStep=0;
         SLL.newNode=nullptr;
@@ -409,11 +401,11 @@ void SLLState::saveInsertMidState(int index, int value){
 }
 
 void SLLState::saveRemoveFrontState(int index){
-    
     if(SLL.indexStep>index) return;
     saveState();
     if(SLL.animationStep==0){
-        SLL.list[index]->setPosition({SLL.head->getPosition().x+ArrowLength + index * (SLLNodeSize.x+50), SLLposition.y+100});
+        SLL.list[index]->setPosition({SLL.head->getPosition().x+ArrowLength + index * (SLLNodeSize.x+ArrowLength), SLLposition.y+100});
+        SLL.setArrowDestination();
         saveState();
         SLL.animationStep++;
         SLL.newNode=SLL.list[index];
@@ -421,27 +413,28 @@ void SLLState::saveRemoveFrontState(int index){
         resetCursorPosition();
         delete SLL.newNode;
         SLL.newNode=nullptr;
-        saveState();
     }
     if(SLL.list.empty()){
         SLL.head->setDestination({SLLposition.x+ArrowLength,SLLposition.y});
         SLL.animationStep=0;
         SLL.indexStep=-1;
         animationState=SLLAnimationMode::IDLE;
+        SLL.setArrowDestination();
         saveState();
         currentStep=0;
         applyState();
         return;
     }
     if(SLL.animationStep==1){
-        SLL.head->setDestination(SLL.list[index]->getStartPos());
+        SLL.setArrowDestination();
         SLL.animationStep++;
         saveState();
     }
     if(SLL.animationStep==2){
         for (int i=index;i<SLL.list.size();i++){
-            SLL.list[i]->setPosition({SLL.head->getPosition().x+ArrowLength + i * (SLLNodeSize.x+50), SLLposition.y});
+            SLL.list[i]->setPosition({SLL.head->getPosition().x+ArrowLength + i * (SLLNodeSize.x+ArrowLength), SLLposition.y});
         }
+        SLL.setArrowDestination();
         SLL.animationStep=0;
         SLL.indexStep=-1;
         animationState=SLLAnimationMode::IDLE;
@@ -452,7 +445,6 @@ void SLLState::saveRemoveFrontState(int index){
 }
 
 void SLLState::saveRemoveMidState(int index){
-    
     if(SLL.indexStep>index) return;
     saveState();
     if(!SLL.isCur){
@@ -462,7 +454,7 @@ void SLLState::saveRemoveMidState(int index){
     }
     for (int i=0;i<=index;i++){
         SLL.cur->setDestination(SLL.list[SLL.indexStep+1]->getStartPos());
-        SLL.cur->setPosition({SLL.list[SLL.indexStep+1]->getStartPos().x-50,SLL.list[SLL.indexStep+1]->getStartPos().y+50});
+        SLL.cur->setPosition({SLL.list[SLL.indexStep+1]->getStartPos().x-50,SLL.list[SLL.indexStep+1]->getStartPos().y+ArrowLength});
         SLL.indexStep++;
         if(i==index){
             SLL.animationStep++;
@@ -470,9 +462,10 @@ void SLLState::saveRemoveMidState(int index){
         saveState();
     }
     if(SLL.animationStep==1){
-        SLL.list[index]->setPosition({SLL.head->getPosition().x+ArrowLength + index * (SLLNodeSize.x+50), SLLposition.y+100});
+        SLL.list[index]->setPosition({SLL.head->getPosition().x+ArrowLength + index * (SLLNodeSize.x+ArrowLength), SLLposition.y+100});
         SLL.cur->setDestination(SLL.list[index]->getStartPos());
-        SLL.cur->setPosition({SLL.list[index]->getStartPos().x-50,SLL.list[index]->getStartPos().y+50});
+        SLL.cur->setPosition({SLL.list[index]->getStartPos().x-50,SLL.list[index]->getStartPos().y+ArrowLength});
+        SLL.setArrowDestination();
         saveState();
         SLL.animationStep++;
         SLL.newNode=SLL.list[index];
@@ -481,13 +474,13 @@ void SLLState::saveRemoveMidState(int index){
         resetCursorPosition();
         delete SLL.newNode;
         SLL.newNode=nullptr;
-        saveState();
     }
     if(SLL.animationStep==2&&index==SLL.list.size()){
-        SLL.list[index-1]->setDestination({SLL.list[index-1]->getEndPos().x+ArrowLength,SLLposition.y});
+        SLL.setArrowDestination();
         SLL.animationStep=0;
         SLL.indexStep=-1;
         animationState=SLLAnimationMode::IDLE;
+        SLL.setArrowDestination();
         saveState();
         currentStep=0;
         applyState();
@@ -500,7 +493,7 @@ void SLLState::saveRemoveMidState(int index){
     }
     if(SLL.animationStep==3){
         for (int i=index;i<SLL.list.size();i++){
-            SLL.list[i]->setPosition({SLL.head->getPosition().x+ArrowLength + i * (SLLNodeSize.x+50), SLLposition.y});
+            SLL.list[i]->setPosition({SLL.head->getPosition().x+ArrowLength + i * (SLLNodeSize.x+ArrowLength), SLLposition.y});
         }
         SLL.animationStep=0;
         SLL.indexStep=-1;
@@ -521,13 +514,11 @@ void SLLState::saveSearchState(int value){
     }
     while(true){
         SLL.cur->setDestination(SLL.list[SLL.indexStep+1]->getStartPos());
-        SLL.cur->setPosition({SLL.list[SLL.indexStep+1]->getStartPos().x-50,SLL.list[SLL.indexStep+1]->getStartPos().y+50});
-        if(SLL.list[SLL.indexStep+1]->getValue()!=value){
-            saveState();
-            SLL.indexStep++;
-        }
-        else{
-            SLL.list[SLL.indexStep+1]->setHighlight();
+        SLL.cur->setPosition({SLL.list[SLL.indexStep+1]->getStartPos().x-50,SLL.list[SLL.indexStep+1]->getStartPos().y+ArrowLength});
+        saveState();
+        if(SLL.list[SLL.indexStep+1]->getValue()==value||SLL.list.size()<SLL.indexStep+3){
+            if(SLL.list[SLL.indexStep+1]->getValue()==value)
+                SLL.list[SLL.indexStep+1]->setHighlight();
             SLL.isCur=false;
             resetCursorPosition();
             SLL.indexStep=-1;
@@ -536,6 +527,9 @@ void SLLState::saveSearchState(int value){
             currentStep=0;
             applyState();
             return;
+        }
+        else {
+            SLL.indexStep++;
         }
     }
     currentStep=0;
@@ -552,7 +546,7 @@ void SLLState::saveUpdateState(int index, int value){
     }
     while (SLL.indexStep<index){
         SLL.cur->setDestination(SLL.list[SLL.indexStep+1]->getStartPos());
-        SLL.cur->setPosition({SLL.list[SLL.indexStep+1]->getStartPos().x-50,SLL.list[SLL.indexStep+1]->getStartPos().y+50});
+        SLL.cur->setPosition({SLL.list[SLL.indexStep+1]->getStartPos().x-50,SLL.list[SLL.indexStep+1]->getStartPos().y+ArrowLength});
         SLL.indexStep++;
         if(SLL.indexStep==index-1){
             SLL.animationStep++;
@@ -560,18 +554,18 @@ void SLLState::saveUpdateState(int index, int value){
         saveState();
     }
     if(SLL.animationStep==1){
-        SLL.list[index]->setPosition({SLL.head->getPosition().x+ArrowLength + index * (SLLNodeSize.x+50), SLLposition.y+100});
+        SLL.list[index]->setPosition({SLL.head->getPosition().x+ArrowLength + index * (SLLNodeSize.x+ArrowLength), SLLposition.y+100});
         SLL.cur->setDestination(SLL.list[index]->getStartPos());
-        SLL.cur->setPosition({SLL.list[index]->getStartPos().x-50,SLL.list[index]->getStartPos().y+50});
+        SLL.cur->setPosition({SLL.list[index]->getStartPos().x-50,SLL.list[index]->getStartPos().y+ArrowLength});
         saveState();
         SLL.animationStep++;
         SLL.list[index]->setValue(value);
         saveState();
     }
     if(SLL.animationStep==2){
-        SLL.list[index]->setPosition({SLL.head->getPosition().x+ArrowLength + (index) * (SLLNodeSize.x+50), SLLposition.y});
+        SLL.list[index]->setPosition({SLL.head->getPosition().x+ArrowLength + (index) * (SLLNodeSize.x+ArrowLength), SLLposition.y});
         SLL.cur->setDestination(SLL.list[index]->getStartPos());
-        SLL.cur->setPosition({SLL.list[index]->getStartPos().x-50,SLL.list[index]->getStartPos().y+50});
+        SLL.cur->setPosition({SLL.list[index]->getStartPos().x-50,SLL.list[index]->getStartPos().y+ArrowLength});
         saveState();
         SLL.indexStep=-1;
         SLL.animationStep=0;
@@ -591,13 +585,13 @@ void SLLState::animateInsertFront(int index, int value){
         SLL.isNewNode=true;
         if(!SLL.newNode){
             SLL.newNode=new SLLNode();
-            SLL.newNode->setPosition({SLL.head->getPosition().x+ArrowLength + index * (SLLNodeSize.x+50), SLLposition.y+100});
+            SLL.newNode->setPosition({SLL.head->getPosition().x+ArrowLength + index * (SLLNodeSize.x+ArrowLength), SLLposition.y+100});
             SLL.newNode->setNull();
             SLL.newNode->setValue(value);
             SLL.newNode->setDestination({SLL.newNode->getEndPos().x+ArrowLength,SLL.newNode->getEndPos().y});
         }
         if(!SLL.myNode){
-            SLL.myNode=new SLLArrow({SLL.head->getPosition().x + index * (SLLNodeSize.x+50), SLLposition.y+100});
+            SLL.myNode=new SLLArrow({SLL.head->getPosition().x + index * (SLLNodeSize.x+ArrowLength), SLLposition.y+100});
             SLL.myNode->setLabel("myNode");
             SLL.myNode->setPosition({SLL.newNode->getStartPos().x-ArrowLength,SLL.newNode->getStartPos().y});
             SLL.myNode->setDestination(SLL.newNode->getStartPos());
@@ -606,9 +600,9 @@ void SLLState::animateInsertFront(int index, int value){
         }
         if(!SLL.list.empty()){
             for (int i=index;i<SLL.list.size();i++){
-                SLL.list[i]->setTargetPosition({SLL.head->getPosition().x+ArrowLength + (i+1) * (SLLNodeSize.x+50), SLLposition.y});
+                SLL.list[i]->setTargetPosition({SLL.head->getPosition().x+ArrowLength + (i+1) * (SLLNodeSize.x+ArrowLength), SLLposition.y});
             }
-            if(SLL.list[index]->getPosition().x==SLL.head->getPosition().x+ArrowLength + (index+1) * (SLLNodeSize.x+50)){
+            if(SLL.list[index]->getPosition().x==SLL.head->getPosition().x+ArrowLength + (index+1) * (SLLNodeSize.x+ArrowLength)){
                 SLL.animationStep++;
                 currentStep++;
             }
@@ -634,8 +628,8 @@ void SLLState::animateInsertFront(int index, int value){
         }
     }
     else if(SLL.animationStep==3){
-        SLL.newNode->setTargetPosition({SLL.head->getPosition().x+ArrowLength + (index) * (SLLNodeSize.x+50), SLLposition.y});
-        if(SLL.newNode->getPosition().x==SLL.head->getPosition().x+ArrowLength + (index) * (SLLNodeSize.x+50)&&SLL.newNode->getPosition().y==SLLposition.y){
+        SLL.newNode->setTargetPosition({SLL.head->getPosition().x+ArrowLength + (index) * (SLLNodeSize.x+ArrowLength), SLLposition.y});
+        if(SLL.newNode->getPosition().x==SLL.head->getPosition().x+ArrowLength + (index) * (SLLNodeSize.x+ArrowLength)&&SLL.newNode->getPosition().y==SLLposition.y){
             SLL.indexStep=-1;
             SLL.animationStep=0;
             SLL.newNode=nullptr;
@@ -660,11 +654,11 @@ void SLLState::animateInsertMid(int index, int value){
             currentStep++;
         }
         SLL.cur->setTargetDestination(SLL.list[SLL.indexStep+1]->getStartPos());
-        SLL.cur->setTargetPosition({SLL.list[SLL.indexStep+1]->getStartPos().x-50,SLL.list[SLL.indexStep+1]->getStartPos().y+50});
+        SLL.cur->setTargetPosition({SLL.list[SLL.indexStep+1]->getStartPos().x-50,SLL.list[SLL.indexStep+1]->getStartPos().y+ArrowLength});
     }
     else if(SLL.indexStep+1<index){
         checkTimer+=GetFrameTime();
-        if(checkTimer>=0.5f){
+        if(checkTimer>=delayTime){
             checkTimer=0;
             SLL.indexStep++;
             currentStep++;
@@ -674,13 +668,13 @@ void SLLState::animateInsertMid(int index, int value){
         SLL.isNewNode=true;
         if(!SLL.newNode){
             SLL.newNode=new SLLNode();
-            SLL.newNode->setPosition({SLL.head->getPosition().x+ArrowLength + index * (SLLNodeSize.x+50), SLLposition.y+100});
+            SLL.newNode->setPosition({SLL.head->getPosition().x+ArrowLength + index * (SLLNodeSize.x+ArrowLength), SLLposition.y+100});
             SLL.newNode->setNull();
             SLL.newNode->setValue(value);
             SLL.newNode->setDestination({SLL.newNode->getEndPos().x+ArrowLength,SLL.newNode->getEndPos().y});
         }
         if(!SLL.myNode){
-            SLL.myNode=new SLLArrow({SLL.head->getPosition().x + index * (SLLNodeSize.x+50), SLLposition.y+100});
+            SLL.myNode=new SLLArrow({SLL.head->getPosition().x + index * (SLLNodeSize.x+ArrowLength), SLLposition.y+100});
             SLL.myNode->setLabel("myNode");
             SLL.myNode->setPosition({SLL.newNode->getStartPos().x-ArrowLength,SLL.newNode->getStartPos().y});
             SLL.myNode->setDestination(SLL.newNode->getStartPos());
@@ -689,9 +683,9 @@ void SLLState::animateInsertMid(int index, int value){
         }
         if(SLL.indexStep+1!=SLL.list.size()){
             for (int i=index;i<SLL.list.size();i++){
-                SLL.list[i]->setTargetPosition({SLL.head->getPosition().x+ArrowLength + (i+1) * (SLLNodeSize.x+50), SLLposition.y});
+                SLL.list[i]->setTargetPosition({SLL.head->getPosition().x+ArrowLength + (i+1) * (SLLNodeSize.x+ArrowLength), SLLposition.y});
             }
-            if(SLL.list[index]->getPosition().x==SLL.head->getPosition().x+ArrowLength + (index+1) * (SLLNodeSize.x+50)){
+            if(SLL.list[index]->getPosition().x==SLL.head->getPosition().x+ArrowLength + (index+1) * (SLLNodeSize.x+ArrowLength)){
                 SLL.animationStep++;
                 currentStep++;
             }
@@ -717,8 +711,8 @@ void SLLState::animateInsertMid(int index, int value){
         }
     }
     else if(SLL.animationStep==3){
-        SLL.newNode->setTargetPosition({SLL.head->getPosition().x+ArrowLength + (index) * (SLLNodeSize.x+50), SLLposition.y});
-        if(SLL.newNode->getPosition().x==SLL.head->getPosition().x+ArrowLength + (index) * (SLLNodeSize.x+50)&&SLL.newNode->getPosition().y==SLLposition.y){
+        SLL.newNode->setTargetPosition({SLL.head->getPosition().x+ArrowLength + (index) * (SLLNodeSize.x+ArrowLength), SLLposition.y});
+        if(SLL.newNode->getPosition().x==SLL.head->getPosition().x+ArrowLength + (index) * (SLLNodeSize.x+ArrowLength)&&SLL.newNode->getPosition().y==SLLposition.y){
             SLL.indexStep=-1;
             SLL.animationStep=0;
             SLL.newNode=nullptr;
@@ -738,8 +732,8 @@ void SLLState::animateRemoveFront(int index){
     if(!isPlaying||isPaused) return;
     if(SLL.indexStep>index) return;
     if(SLL.animationStep==0){
-        SLL.list[index]->setTargetPosition({SLL.head->getPosition().x+ArrowLength + index * (SLLNodeSize.x+50), SLLposition.y+100});
-        if(SLL.list[index]->getPosition().x==SLL.head->getPosition().x+ArrowLength + (index) * (SLLNodeSize.x+50)&&SLL.list[index]->getPosition().y==SLLposition.y+100){
+        SLL.list[index]->setTargetPosition({SLL.head->getPosition().x+ArrowLength + index * (SLLNodeSize.x+ArrowLength), SLLposition.y+100});
+        if(SLL.list[index]->getPosition().x==SLL.head->getPosition().x+ArrowLength + (index) * (SLLNodeSize.x+ArrowLength)&&SLL.list[index]->getPosition().y==SLLposition.y+100){
             currentStep++;
             SLL.animationStep++;
             SLL.newNode=SLL.list[index];
@@ -766,9 +760,9 @@ void SLLState::animateRemoveFront(int index){
     }
     else if(SLL.animationStep==2){
         for (int i=index;i<SLL.list.size();i++){
-            SLL.list[i]->setTargetPosition({SLL.head->getPosition().x+ArrowLength + i * (SLLNodeSize.x+50), SLLposition.y});
+            SLL.list[i]->setTargetPosition({SLL.head->getPosition().x+ArrowLength + i * (SLLNodeSize.x+ArrowLength), SLLposition.y});
         }
-        if(SLL.list[index]->getPosition().x==SLL.head->getPosition().x+ArrowLength + index * (SLLNodeSize.x+50)){
+        if(SLL.list[index]->getPosition().x==SLL.head->getPosition().x+ArrowLength + index * (SLLNodeSize.x+ArrowLength)){
             SLL.animationStep=0;
             SLL.indexStep=-1;
             animationState=SLLAnimationMode::IDLE;
@@ -790,11 +784,11 @@ void SLLState::animateRemoveMid(int index){
             currentStep++;
         }
         SLL.cur->setTargetDestination(SLL.list[SLL.indexStep+1]->getStartPos());
-        SLL.cur->setTargetPosition({SLL.list[SLL.indexStep+1]->getStartPos().x-50,SLL.list[SLL.indexStep+1]->getStartPos().y+50});
+        SLL.cur->setTargetPosition({SLL.list[SLL.indexStep+1]->getStartPos().x-50,SLL.list[SLL.indexStep+1]->getStartPos().y+ArrowLength});
     }
     else if(SLL.animationStep==0&&SLL.indexStep<index){
         checkTimer+=GetFrameTime();
-        if(checkTimer>=0.5f){
+        if(checkTimer>=delayTime){
             checkTimer=0;
             SLL.indexStep++;
             if(SLL.indexStep==index){
@@ -804,10 +798,10 @@ void SLLState::animateRemoveMid(int index){
         }
     }
     else if(SLL.animationStep==1){
-        SLL.list[index]->setTargetPosition({SLL.head->getPosition().x+ArrowLength + index * (SLLNodeSize.x+50), SLLposition.y+100});
+        SLL.list[index]->setTargetPosition({SLL.head->getPosition().x+ArrowLength + index * (SLLNodeSize.x+ArrowLength), SLLposition.y+100});
         SLL.cur->setDestination(SLL.list[index]->getStartPos());
-        SLL.cur->setPosition({SLL.list[index]->getStartPos().x-50,SLL.list[index]->getStartPos().y+50});
-        if(SLL.list[index]->getPosition().x==SLL.head->getPosition().x+ArrowLength + (index) * (SLLNodeSize.x+50)&&SLL.list[index]->getPosition().y==SLLposition.y+100){
+        SLL.cur->setPosition({SLL.list[index]->getStartPos().x-50,SLL.list[index]->getStartPos().y+ArrowLength});
+        if(SLL.list[index]->getPosition().x==SLL.head->getPosition().x+ArrowLength + (index) * (SLLNodeSize.x+ArrowLength)&&SLL.list[index]->getPosition().y==SLLposition.y+100){
             currentStep++;
             SLL.animationStep++;
             SLL.newNode=SLL.list[index];
@@ -835,9 +829,9 @@ void SLLState::animateRemoveMid(int index){
     }
     else if(SLL.animationStep==3){
         for (int i=index;i<SLL.list.size();i++){
-            SLL.list[i]->setTargetPosition({SLL.head->getPosition().x+ArrowLength + i * (SLLNodeSize.x+50), SLLposition.y});
+            SLL.list[i]->setTargetPosition({SLL.head->getPosition().x+ArrowLength + i * (SLLNodeSize.x+ArrowLength), SLLposition.y});
         }
-        if(SLL.list[index]->getPosition().x==SLL.head->getPosition().x+ArrowLength + index * (SLLNodeSize.x+50)){
+        if(SLL.list[index]->getPosition().x==SLL.head->getPosition().x+ArrowLength + index * (SLLNodeSize.x+ArrowLength)){
             SLL.animationStep=0;
             SLL.indexStep=-1;
             animationState=SLLAnimationMode::IDLE;
@@ -859,16 +853,17 @@ void SLLState::animateSearch(int value){
             currentStep++;
         }
         SLL.cur->setTargetDestination(SLL.list[SLL.indexStep+1]->getStartPos());
-        SLL.cur->setTargetPosition({SLL.list[SLL.indexStep+1]->getStartPos().x-50,SLL.list[SLL.indexStep+1]->getStartPos().y+50});
+        SLL.cur->setTargetPosition({SLL.list[SLL.indexStep+1]->getStartPos().x-50,SLL.list[SLL.indexStep+1]->getStartPos().y+ArrowLength});
     }
     else {
         checkTimer+=GetFrameTime();
-        if(checkTimer>=0.5f){
-            if(SLL.list[SLL.indexStep+1]->getValue()==value){
-                SLL.list[SLL.indexStep+1]->setHighlight();
+        if(checkTimer>=delayTime){
+            if(SLL.list[SLL.indexStep+1]->getValue()==value||SLL.list.size()<SLL.indexStep+3){
+                if(SLL.list[SLL.indexStep+1]->getValue()==value)
+                    SLL.list[SLL.indexStep+1]->setHighlight();
                 SLL.isCur=false;
-                SLL.cur->setPosition({SLLposition.x,SLLposition.y+SLLNodeSize.y/2.0f+50});
-                SLL.cur->setDestination({SLLposition.x+ArrowLength,SLLposition.y+SLLNodeSize.y/2.0f+50});
+                SLL.cur->setPosition({SLLposition.x,SLLposition.y+SLLNodeSize.y/2.0f+ArrowLength});
+                SLL.cur->setDestination({SLLposition.x+ArrowLength,SLLposition.y+SLLNodeSize.y/2.0f+ArrowLength});
                 SLL.indexStep=-1;
                 animationState=SLLAnimationMode::IDLE;
                 currentStep++;
@@ -894,11 +889,11 @@ void SLLState::animateUpdate(int index, int value){
             currentStep++;
         }
         SLL.cur->setTargetDestination(SLL.list[SLL.indexStep+1]->getStartPos());
-        SLL.cur->setTargetPosition({SLL.list[SLL.indexStep+1]->getStartPos().x-50,SLL.list[SLL.indexStep+1]->getStartPos().y+50});
+        SLL.cur->setTargetPosition({SLL.list[SLL.indexStep+1]->getStartPos().x-50,SLL.list[SLL.indexStep+1]->getStartPos().y+ArrowLength});
     }
     else if(SLL.animationStep==0&&SLL.indexStep<index){
         checkTimer+=GetFrameTime();
-        if(checkTimer>=0.5f){
+        if(checkTimer>=delayTime){
             checkTimer=0;
             SLL.indexStep++;
             if(SLL.indexStep==index) {
@@ -908,10 +903,10 @@ void SLLState::animateUpdate(int index, int value){
         }
     }
     else if(SLL.animationStep==1){
-        SLL.list[index]->setTargetPosition({SLL.head->getPosition().x+ArrowLength + index * (SLLNodeSize.x+50), SLLposition.y+100});
+        SLL.list[index]->setTargetPosition({SLL.head->getPosition().x+ArrowLength + index * (SLLNodeSize.x+ArrowLength), SLLposition.y+100});
         SLL.cur->setDestination(SLL.list[index]->getStartPos());
-        SLL.cur->setPosition({SLL.list[index]->getStartPos().x-50,SLL.list[index]->getStartPos().y+50});
-        if(SLL.list[index]->getPosition().x==SLL.head->getPosition().x+ArrowLength + (index) * (SLLNodeSize.x+50)&&SLL.list[index]->getPosition().y==SLLposition.y+100){
+        SLL.cur->setPosition({SLL.list[index]->getStartPos().x-50,SLL.list[index]->getStartPos().y+ArrowLength});
+        if(SLL.list[index]->getPosition().x==SLL.head->getPosition().x+ArrowLength + (index) * (SLLNodeSize.x+ArrowLength)&&SLL.list[index]->getPosition().y==SLLposition.y+100){
             currentStep++;
             SLL.animationStep++;
             SLL.list[index]->setValue(value);
@@ -919,10 +914,10 @@ void SLLState::animateUpdate(int index, int value){
         }
     }
     else if(SLL.animationStep==2){
-        SLL.list[index]->setTargetPosition({SLL.head->getPosition().x+ArrowLength + (index) * (SLLNodeSize.x+50), SLLposition.y});
+        SLL.list[index]->setTargetPosition({SLL.head->getPosition().x+ArrowLength + (index) * (SLLNodeSize.x+ArrowLength), SLLposition.y});
         SLL.cur->setDestination(SLL.list[index]->getStartPos());
-        SLL.cur->setPosition({SLL.list[index]->getStartPos().x-50,SLL.list[index]->getStartPos().y+50});
-        if(SLL.list[index]->getPosition().x==SLL.head->getPosition().x+ArrowLength + (index) * (SLLNodeSize.x+50)&&SLL.list[index]->getPosition().y==SLLposition.y){
+        SLL.cur->setPosition({SLL.list[index]->getStartPos().x-50,SLL.list[index]->getStartPos().y+ArrowLength});
+        if(SLL.list[index]->getPosition().x==SLL.head->getPosition().x+ArrowLength + (index) * (SLLNodeSize.x+ArrowLength)&&SLL.list[index]->getPosition().y==SLLposition.y){
             currentStep++;
             SLL.indexStep=-1;
             SLL.animationStep=0;
@@ -937,8 +932,8 @@ void SLLState::animateUpdate(int index, int value){
 }
 
 void SLLState::resetCursorPosition(){
-    SLL.cur->setPosition({SLLposition.x,SLLposition.y+SLLNodeSize.y/2.0f+50});
-    SLL.cur->setDestination({SLLposition.x+ArrowLength,SLLposition.y+SLLNodeSize.y/2.0f+50});
+    SLL.cur->setPosition({SLLposition.x,SLLposition.y+SLLNodeSize.y/2.0f+ArrowLength});
+    SLL.cur->setDestination({SLLposition.x+ArrowLength,SLLposition.y+SLLNodeSize.y/2.0f+ArrowLength});
 }
 
 void SLLState::resetBox(){

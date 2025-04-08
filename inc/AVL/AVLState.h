@@ -25,6 +25,8 @@ class AVLState {
         void animateRemove(int value);
         void animateSearch(int value);
 
+        int getBalanceFactor(AVLNode* root);
+
         void resetBox();
         std::string getRandomInput();
         bool isBackPressed();

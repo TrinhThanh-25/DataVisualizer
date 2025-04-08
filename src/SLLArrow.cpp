@@ -27,9 +27,9 @@ void SLLArrow::moveNode(Vector2 targetPos, Vector2 targetDes){
 void SLLArrow::draw(){
     drawArrow(position, destination);
     if(isNull){
-        DrawText("null", destination.x + 10, destination.y-8, 16, color);
+        DrawText("null", destination.x + 10, destination.y-SLLLabelFontSize/2.0f, SLLLabelFontSize, color);
     }
     if (!label.empty()){
-        DrawText(label.c_str(),position.x-MeasureText(label.c_str(),16)-5,position.y-8,16,color);
+        DrawText(label.c_str(),position.x-MeasureText(label.c_str(),16)-5,position.y-SLLLabelFontSize/2.0f,SLLLabelFontSize,color);
     }
 }

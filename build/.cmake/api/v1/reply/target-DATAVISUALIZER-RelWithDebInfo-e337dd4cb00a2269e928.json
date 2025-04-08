@@ -167,13 +167,20 @@
 		{
 			"backtrace" : 2,
 			"id" : "raylib::@7d429ebd5d102775094d"
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/target-DATAVISUALIZER-RelWithDebInfo-e337dd4cb00a2269e928.json
 		},
 		{
 			"backtrace" : 2,
 			"id" : "glfw::@a896dd99b4a5c6eab3d9"
+========
+>>>>>>>> ace3f3df9f3bf8c8cedba9645fce850ac6c924ba:build/.cmake/api/v1/reply/target-DATAVISUALIZER-RelWithDebInfo-60326085646df52d2c64.json
 		},
 		{
 			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "glfw::@a896dd99b4a5c6eab3d9"
 		}
 	],
 	"id" : "DATAVISUALIZER::@6890427a1f51a3e7e1df",

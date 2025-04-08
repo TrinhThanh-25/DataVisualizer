@@ -36,6 +36,9 @@ class AVLNode{
         void setTargetDestinationLeft(Vector2 targetDes);
         void setTargetDestinationRight(Vector2 targetDes);
 
+        Vector2 getDestinationLeft();
+        Vector2 getDestinationRight();
+
         AVLNode* clone() const;
     public:
         AVLNode* left;
@@ -44,10 +47,10 @@ class AVLNode{
     private:
         Rectangle node;
 
-        Color nodeColor=LIGHTGRAY;
-        Color textColor=BLACK;
-        Color highlight = GREEN;
-        Color textHighlight = WHITE;
+        Color nodeColor;
+        Color textColor;
+        Color highlight;
+        Color textHighlight;
 
         AVLArrow* leftPointer;
         AVLArrow* rightPointer;
@@ -55,10 +58,10 @@ class AVLNode{
         Vector2 position;
         Vector2 targetPosition; 
         int value;
-        int height=0;
-        int depth=0;
+        int height;
+        int depth;
 
-        bool isHighlight=false;
+        bool isHighlight;
 };
 
 #endif

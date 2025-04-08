@@ -11,12 +11,9 @@ class SinglyLinkedList {
         ~SinglyLinkedList();
 
         void createList(std::string text);
-        // void insertNode(const int& index, int value);
-        // void removeNode(const int& index);
-        // void updateNode(const int& index, int value);
-        // void searchNode(int value);
         void clearList();
         void resetHighlight();
+        void setArrowDestination();
         void clear();
 
         int getListSize();

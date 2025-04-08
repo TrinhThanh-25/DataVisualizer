@@ -15,9 +15,9 @@ class ShortestPathNode{
         int getID();
         void setCost(int cost);
         int getCost();
-        void setVisited();
-        void deVisited();
-        bool getVisited();
+        void setHighlight();
+        void deHighlight();
+        bool getHighlight();
         void setKnown();
         void deKnown();
         bool getKnown();
@@ -29,7 +29,16 @@ class ShortestPathNode{
         void removeEdge(ShortestPathNode* node);
         void clearEdges();
 
+        void setChosen();
+        bool isCollision(ShortestPathNode* other);
+        void applyRepellingForce(ShortestPathNode* other);
+        void boundaryCollision();
+        bool getBoundaryCollision();
+
+        ShortestPathNode* clone() const;
+
         void update();
+        void updateNode();
         void draw(bool isWeighted, bool isDirected);
         void drawNode();
     public:
@@ -42,13 +51,19 @@ class ShortestPathNode{
 
         Vector2 force;
 
-        Color nodeColor;
-        Color textColor;
+        Color nodeColor=LIGHTGRAY;
+        Color textColor=BLACK;
+        Color highlight = RED;
+        Color textHighlight = WHITE;
+        Color isKnownColor = GREEN;
+
+        bool isChosen=false;
+        bool isBoundaryCollision=false;
 
         int id;
         int cost;
         bool isKnown;
-        bool visited;
+        bool isHighlight;
 };
 
 #endif

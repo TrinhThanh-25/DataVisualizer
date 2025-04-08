@@ -55,6 +55,8 @@ const Color SLLBoxColor({LIGHTGRAY});
 const Color SLLBoxTextColor({BLACK});
 const int SLLButtonFontSize(15);
 
+const int SLLLabelFontSize(16);
+
 //AVL
 const Vector2 AVLPosition({800,150});
 const Vector2 AVLNodeSize({40,40});
@@ -70,12 +72,12 @@ const Color AVLBoxTextColor({BLACK});
 const int AVLButtonFontSize(15);
 
 //Shortest Path
-const float centerX=800, centerY=325;
-const float rangeX=1200,rangeY=430;
+const float centerX=800, centerY=350;
+const float rangeX=1400,rangeY=500;
 
 const Vector2 STNodeSize({40,40});
-const int STNodeCostFontSize(24);
-const int STNodeIDFontSize(12);
+const int STNodeCostFontSize(12);
+const int STNodeIDFontSize(24);
 const Color STNodeCostColor({BLACK});
 const Color STNodeIDColor({BLACK});
 
@@ -92,5 +94,6 @@ const int ArrowLength = 50;
 const Vector2 controllerButtonSize({50,50});
 const Vector2 controllerPosition({800,860});
 const Vector2 controllerSize({400,2*(900-controllerPosition.y)});
+const float delayTime = 0.5f;
 
 #endif

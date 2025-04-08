@@ -11,7 +11,7 @@ class Arrow{
           Arrow(Vector2 pos);
           
           virtual void setTargetDestination(Vector2 targetDes);
-          void setDestination(Vector2 destination);
+          virtual void setDestination(Vector2 destination);
           void setPosition(Vector2 position);
           void setTargetPosition(Vector2 targetPos);
           Vector2 getPosition();

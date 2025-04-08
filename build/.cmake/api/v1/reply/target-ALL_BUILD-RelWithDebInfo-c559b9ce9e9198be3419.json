@@ -18,12 +18,18 @@
 	[
 		{
 			"id" : "raylib::@7d429ebd5d102775094d"
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/target-ALL_BUILD-RelWithDebInfo-c559b9ce9e9198be3419.json
 		},
 		{
 			"id" : "glfw::@a896dd99b4a5c6eab3d9"
+========
+>>>>>>>> ace3f3df9f3bf8c8cedba9645fce850ac6c924ba:build/.cmake/api/v1/reply/target-ALL_BUILD-RelWithDebInfo-dff1faff83b6bde52049.json
 		},
 		{
 			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"
+		},
+		{
+			"id" : "glfw::@a896dd99b4a5c6eab3d9"
 		}
 	],
 	"folder" : 
