@@ -170,16 +170,16 @@
 			[
 				{
 					"backtrace" : 14,
-					"path" : "C:/Users/TrinhThanh/Desktop/DataVisualization/inc"
+					"path" : "D:/test/Programming/project/DataVisualizer/inc"
 				},
 				{
 					"backtrace" : 15,
-					"path" : "C:/Users/TrinhThanh/Desktop/DataVisualization/raylib/src"
+					"path" : "D:/test/Programming/project/DataVisualizer/raylib/src"
 				},
 				{
 					"backtrace" : 18,
 					"isSystem" : true,
-					"path" : "C:/Users/TrinhThanh/Desktop/DataVisualization/raylib/src/external/glfw/include"
+					"path" : "D:/test/Programming/project/DataVisualizer/raylib/src/external/glfw/include"
 				}
 			],
 			"language" : "C",

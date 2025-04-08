@@ -11,10 +11,6 @@ const Font fontNumber = LoadFontEx("../resources/Ubuntu-Bold.ttf");
 //
 float tempSpeed = 0.1f;
 
-//Font
-const Font fontNumber = LoadFontEx("../resources/Ubuntu-Bold.ttf");
-//
-float tempSpeed = 0.1f;
 
 //Menu
 const int appTitleFontSize(40);
