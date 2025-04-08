@@ -25,9 +25,9 @@ void Application::run(){
 
         case MenuSelection::LINEAR_HT:
             
-            if(AVL.isBackPressed()){
-                menuState.currentSelection=MenuSelection::NONE;
-            }
+            this->hashTable.Draw();
+            this->hashTable.HandleInput();
+            this->hashTable.HandleMouseInput();
             break;
 
         case MenuSelection::TREE_234:

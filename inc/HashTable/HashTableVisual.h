@@ -17,7 +17,7 @@
 
 class HashTableVisualization {
 public:
-    HashTableVisualization(const Texture2D& hollowCircle, const Texture2D& solidCircle, const Texture2D& arrowEdge, const Font& fontNumber, const Font& fontText, const bool& isLightMode, const float& speed);
+    HashTableVisualization(const Font& fontNumber, const Font& fontText, const bool& isLightMode, const float& speed);
     ~HashTableVisualization();
 
     void Init(int size);
@@ -37,9 +37,9 @@ private:
     InputBox inputBox;
     Presentation presentations;
 
-    const Texture2D hollowCircle;
-    const Texture2D solidCircle;
-    const Texture2D arrowEdge;
+    // const Texture2D hollowCircle;
+    // const Texture2D solidCircle;
+    // const Texture2D arrowEdge;
     const Font fontNumber;
     const Font fontText;
     const bool isLightMode;

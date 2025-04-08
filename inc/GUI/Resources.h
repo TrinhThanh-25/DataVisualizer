@@ -5,6 +5,11 @@
 
 const int speed = 200;
 
+//Font
+const Font fontNumber = LoadFontEx("../resources/Ubuntu-Bold.ttf");
+//
+float tempSpeed = 0.1f;
+
 //Menu
 const int appTitleFontSize(40);
 const Color appTitleColor({BLACK});

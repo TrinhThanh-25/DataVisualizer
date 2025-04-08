@@ -5,6 +5,7 @@
 #include <SLL/SLLState.h>
 #include <AVL/AVLState.h>
 #include <ShortestPath/ShortestPathState.h>
+#include "HashTableVisual.h"
 
 class Application{
     public:
@@ -15,6 +16,7 @@ class Application{
         SLLState SLL;
         AVLState AVL;
         ShortestPathState ST;
+        HashTableVisualization hashTable(fontNumber, fontNumber, true, speed);
 };
 
 #endif

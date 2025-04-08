@@ -1,6 +1,6 @@
 #include "GUI/InputBox.h"
 
-InputBox::InputBox(float x, float y, float width, float height, int maxLen, Color boxCol, Color txtCol)
+InputBox::InputBox(int x, int y, int width, int height, int maxLen, Color boxCol, Color txtCol)
     : box{x, y, width, height}, maxLength(maxLen), isActive(false), boxColor(boxCol), textColor(txtCol), blinkTimer(0), showCursor(true) {}
 
 void InputBox::Update() {
