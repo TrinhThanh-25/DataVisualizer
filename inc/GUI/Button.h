@@ -10,7 +10,6 @@ class Button{
         void setPosition(Vector2 position);
         void setSize(Vector2 size);
         void setText(const char* text, int fontSize);
-        void setRectangle();
         void setColor(Color normal, Color hovered, Color pressed);
         void update();
         
@@ -27,6 +26,7 @@ class Button{
 
         bool isPressed();
         bool isHovered();
+        bool isSelected();
         void Selected();
         void deSelected();
         void setActive();
@@ -41,7 +41,7 @@ class Button{
         Texture2D texture;
         Vector2 position;
         Vector2 size;
-        bool isSelected = false;
+        bool selected = false;
         const char* text;
         int fontSize=0;
 

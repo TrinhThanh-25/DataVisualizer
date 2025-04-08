@@ -1,31 +1,28 @@
-//FIX KHI PRESS BACK GIỮA CHỪNG BỊ LỖI
-
+//FIX LOAD FILE
 #include "AVL/AVLState.h"
 
-AVLState::AVLState(): createBox(120,700,AVLBoxSize.x, AVLBoxSize.y,AVLBoxFontSize,AVLBoxColor, AVLBoxTextColor), valueBox(120,700,AVLBoxSize.x, AVLBoxSize.y,AVLBoxFontSize,AVLBoxColor, AVLBoxTextColor){
+AVLState::AVLState(): createBox(120,680,AVLBoxSize.x, AVLBoxSize.y,AVLBoxFontSize,AVLBoxColor, AVLBoxTextColor), valueBox(120,680,AVLBoxSize.x, AVLBoxSize.y,AVLBoxFontSize,AVLBoxColor, AVLBoxTextColor){
     this->Random.setText("Random",AVLButtonFontSize);
     this->Random.setSize({120, 30});
-    this->Random.setPosition({180,760});
+    this->Random.setPosition({180,740});
     this->Random.setColor(panelNormal,panelHovered,panelPressed);
-    this->Random.setRectangle();
 
     this->LoadFile.setText("Load File",AVLButtonFontSize);
     this->LoadFile.setSize({120, 30});
-    this->LoadFile.setPosition({320,760});
+    this->LoadFile.setPosition({320,740});
     this->LoadFile.setColor(panelNormal,panelHovered,panelPressed);
-    this->LoadFile.setRectangle();
 
     this->Apply.setText("Apply",AVLButtonFontSize);
     this->Apply.setSize({260, 30});
-    this->Apply.setPosition({250,800});
+    this->Apply.setPosition({250,780});
     this->Apply.setColor(panelNormal,panelHovered,panelPressed);
-    this->Apply.setRectangle();
 
     createBox.setNameBox("Input Elements");
     valueBox.setNameBox("Value");
 }
 
 void AVLState::update(){
+    panel.setBackActive();
     if (panel.isPlayPressed()) {
         if(currentStep==stateList.size()-1){
             restart();
@@ -88,17 +85,23 @@ void AVLState::update(){
         Random.setActive();
         LoadFile.setActive();
         Apply.setActive();
+        Apply.setPosition({250,780});
+        
     }
-    else if(panel.isAddUsed()||panel.isRemoveUsed()){
+    else if(panel.isAddUsed()||panel.isRemoveUsed()||panel.isSearchUsed()){
         Random.deActive();
         LoadFile.deActive();
-        Apply.deActive();
+        Apply.setActive();
+        Apply.setPosition({250,740});
     }
     if(Random.isPressed()){
-        createBox.setText(getRandomInput());
+        AVLTree.createTree(getRandomInput());
     }
     else if(LoadFile.isPressed()){
-        createBox.setText(panel.loadFileContent());
+        std::string input=panel.loadFileContent();
+        if(input!=""){
+            AVLTree.createTree(input);
+        }
     }
     else if(IsKeyPressed(KEY_ENTER)||Apply.isPressed()){
         AVLTree.resetHighlight();
@@ -113,30 +116,33 @@ void AVLState::update(){
             clearState();
             isPlaying=true;
             isPaused=false;
+            code.setCode(Insert);
             animationState=AVLAnimationMode::INSERT;
         }
-        else if(panel.isRemoveUsed()&&valueText!=""){
+        else if(panel.isRemoveUsed()&&valueText!=""&&AVLTree.root){
             isStateSaved=false;
             clearState();
             isPlaying=true;
             isPaused=false;
+            code.setCode(Remove);
             animationState=AVLAnimationMode::REMOVE;
         }
-        else if(panel.isSearchUsed()&&valueText!=""){
+        else if(panel.isSearchUsed()&&valueText!=""&&AVLTree.root){
             isStateSaved=false;
             clearState();
             isPlaying=true;
             isPaused=false;
+            code.setCode(Search);
             animationState=AVLAnimationMode::SEARCH;
         } 
     }
-    else if(panel.isBackPressed()){
-        AVLTree.clearTree();
-        resetBox();
-    }
     else if(panel.isAnyButtonPressed()){
+        moveEnd();
+        clearState();
         AVLTree.resetHighlight();
         resetBox();
+        code.clearCode();
+        code.clearHighlight();
     }
     if(panel.isCreateUsed()){
         createBox.Update();
@@ -146,6 +152,7 @@ void AVLState::update(){
     }
     else if(panel.isAddUsed()||panel.isRemoveUsed()||panel.isSearchUsed()){
         valueBox.Update();
+        this->Apply.update();
     }
 }
 
@@ -154,7 +161,6 @@ void AVLState::draw(){
     AVLTree.draw();
     panel.draw();
     DrawText("AVL Tree",GetScreenWidth()/2.0f-MeasureText("AVL Tree",dataTitleFontSize)/2.0f,dataTitlePosition.y-dataTitleFontSize/2.0f,dataTitleFontSize, dataTitleTextColor);
-    AVLCode.draw();
     if(panel.isCreateUsed()){
         createBox.Draw();
         this->Random.drawRectangleRounded(100);
@@ -166,6 +172,8 @@ void AVLState::draw(){
     }
     else if(panel.isAddUsed()||panel.isRemoveUsed()||panel.isSearchUsed()){
         valueBox.Draw();
+        this->Apply.drawRectangleRounded(100);
+        this->Apply.drawText(panelSubButtonTextColor);
     }
 }
 
@@ -173,6 +181,7 @@ void AVLState::saveInsertState(int value){
     saveState();
     while(true){
         if(!AVLTree.root){
+            code.setHighlight({0});
             AVLTree.root = new AVLNode(); 
             AVLTree.root->setValue(value);
             AVLTree.calculateHeight();
@@ -181,10 +190,12 @@ void AVLState::saveInsertState(int value){
             AVLTree.curNode=AVLTree.root;
             animationState=AVLAnimationMode::IDLE;
             saveState();
+            currentStep=0;
             applyState();
             return;
         }
         if(AVLTree.curNode==AVLTree.root&&AVLTree.animationStep==0){
+            code.setHighlight({0});
             AVLTree.curNode->setHighlight();
             AVLTree.animationStep++;
         }
@@ -240,23 +251,35 @@ void AVLState::saveInsertState(int value){
                 AVLTree.curNode->right->setHighlight();
                 AVLTree.curNode->setDestinationRight(AVLTree.curNode->right->getOrigin());
                 AVLTree.curNode=AVLTree.curNode->right;
-                
             }
             AVLTree.animationStep++;
         }
         else if(AVLTree.animationStep==4){
             if (AVLTree.curNode) {
+                code.setHighlight({1});
                 AVLTree.curNode->setHighlight();
                 saveState();
                 int balanceFactor=getBalanceFactor(AVLTree.curNode);
                 if(abs(balanceFactor)>1){
                     if(balanceFactor>1){
-                        if(getBalanceFactor(AVLTree.curNode->left)<0) AVLTree.rotateLeftRight(AVLTree.curNode);
-                        else AVLTree.rotateRight(AVLTree.curNode);
+                        if(getBalanceFactor(AVLTree.curNode->left)<0) {
+                            code.setHighlight({3});
+                            AVLTree.rotateLeftRight(AVLTree.curNode);
+                        }
+                        else {
+                            code.setHighlight({2});
+                            AVLTree.rotateRight(AVLTree.curNode);
+                        }
                     }
                     else if(balanceFactor<-1){
-                        if(getBalanceFactor(AVLTree.curNode->right)>0) AVLTree.rotateRightLeft(AVLTree.curNode);
-                        else AVLTree.rotateLeft(AVLTree.curNode);
+                        if(getBalanceFactor(AVLTree.curNode->right)>0) {
+                            code.setHighlight({5});
+                            AVLTree.rotateRightLeft(AVLTree.curNode);
+                        }
+                        else {
+                            code.setHighlight({4});
+                            AVLTree.rotateLeft(AVLTree.curNode);
+                        }
                     }
                     AVLTree.setArrowDestination();
                     AVLTree.animationStep++;
@@ -270,6 +293,7 @@ void AVLState::saveInsertState(int value){
                         AVLTree.resetHighlight();
                         animationState = AVLAnimationMode::IDLE;
                         AVLTree.animationStep=0;
+                        code.clearHighlight();
                         saveState();
                         currentStep=0;
                         applyState();
@@ -296,6 +320,7 @@ void AVLState::saveRemoveState(int value){
     saveState();
     while(true){
         if(AVLTree.curNode==AVLTree.root&&AVLTree.animationStep==0){
+            code.setHighlight({0});
             AVLTree.curNode->setHighlight();
             AVLTree.animationStep++;
             saveState();
@@ -305,7 +330,10 @@ void AVLState::saveRemoveState(int value){
                 AVLTree.animationStep=0;
                 animationState=AVLAnimationMode::IDLE;
                 AVLTree.curNode=AVLTree.root;
+                code.clearHighlight();
                 saveState();
+                currentStep=0;
+                applyState();
                 return;
             }
             if(AVLTree.curNode) AVLTree.curNode->deHighlight();
@@ -321,7 +349,8 @@ void AVLState::saveRemoveState(int value){
             if(AVLTree.curNode){
                 AVLTree.curNode->setHighlight();
             }
-            saveState();
+            if(AVLTree.curNode)
+                saveState();
         }
         else if(AVLTree.animationStep==2){
             if(AVLTree.curNode->isLeaf()){
@@ -339,7 +368,6 @@ void AVLState::saveRemoveState(int value){
                 }
                 AVLTree.animationStep++;
                 AVLTree.calculateHeight();
-                AVLTree.calculateDepth();
                 saveState();
             }
             else if(AVLTree.curNode->left&&AVLTree.curNode->right){
@@ -374,8 +402,7 @@ void AVLState::saveRemoveState(int value){
                 AVLTree.curNode=AVLTree.curNode->left;
                 delete del;
                 AVLTree.calculateHeight();
-                AVLTree.calculateDepth();
-                saveState();
+                AVLTree.setArrowDestination();
             }
             else if(AVLTree.curNode->right){
                 AVLNode* del = AVLTree.curNode;
@@ -391,23 +418,35 @@ void AVLState::saveRemoveState(int value){
                 AVLTree.curNode=AVLTree.curNode->right;
                 delete del;
                 AVLTree.calculateHeight();
-                AVLTree.calculateDepth();
-                saveState();
+                AVLTree.setArrowDestination();
             }
         }   
         else if(AVLTree.animationStep==3){
             if (AVLTree.curNode) {
+                code.setHighlight({1});
                 AVLTree.curNode->setHighlight();
                 saveState();
                 int balanceFactor=getBalanceFactor(AVLTree.curNode);
                 if(abs(balanceFactor)>1){
                     if(balanceFactor>1){
-                        if(getBalanceFactor(AVLTree.curNode->left)<0) AVLTree.rotateLeftRight(AVLTree.curNode);
-                        else AVLTree.rotateRight(AVLTree.curNode);
+                        if(getBalanceFactor(AVLTree.curNode->left)<0) {
+                            code.setHighlight({3});
+                            AVLTree.rotateLeftRight(AVLTree.curNode);
+                        }
+                        else {
+                            code.setHighlight({2});
+                            AVLTree.rotateRight(AVLTree.curNode);
+                        }
                     }
                     else if(balanceFactor<-1){
-                        if(getBalanceFactor(AVLTree.curNode->right)>0) AVLTree.rotateRightLeft(AVLTree.curNode);
-                        else AVLTree.rotateLeft(AVLTree.curNode);
+                        if(getBalanceFactor(AVLTree.curNode->right)>0) {
+                            code.setHighlight({5});
+                            AVLTree.rotateRightLeft(AVLTree.curNode);
+                        }
+                        else {
+                            code.setHighlight({4});
+                            AVLTree.rotateLeft(AVLTree.curNode);
+                        }
                     }
                     AVLTree.setArrowDestination();
                     AVLTree.animationStep++;
@@ -421,12 +460,23 @@ void AVLState::saveRemoveState(int value){
                         AVLTree.resetHighlight();
                         animationState = AVLAnimationMode::IDLE;
                         AVLTree.animationStep=0;
+                        code.clearHighlight();
                         saveState();
                         currentStep=0;
                         applyState();
                         return;
                     }
                 }
+            }
+            else{
+                AVLTree.resetHighlight();
+                animationState = AVLAnimationMode::IDLE;
+                AVLTree.animationStep=0;
+                code.clearHighlight();
+                saveState();
+                currentStep=0;
+                applyState();
+                return;
             }
         }
         else if(AVLTree.animationStep==4){
@@ -448,23 +498,26 @@ void AVLState::saveSearchState(int value){
     if(AVLTree.curNode==AVLTree.root&&AVLTree.animationStep==0){
         AVLTree.curNode->setHighlight();
         AVLTree.animationStep++;
+        if(value<AVLTree.curNode->getValue()){
+            code.setHighlight({4,5});
+        }
+        else if(value>AVLTree.curNode->getValue()){
+            code.setHighlight({6,7});
+        }
         saveState();
     }
     while (AVLTree.animationStep==1){
         if(!AVLTree.curNode||value==AVLTree.curNode->getValue()){
-            AVLTree.animationStep=0;
-            animationState=AVLAnimationMode::IDLE;
-            AVLTree.curNode=AVLTree.root;
-            saveState();
-            currentStep=0;
-            applyState();
-            return;
+            AVLTree.animationStep++;
+            break;
         }
         if(AVLTree.curNode) AVLTree.curNode->deHighlight();
         if(value<AVLTree.curNode->getValue()){
+            code.setHighlight({4,5});
             AVLTree.curNode=AVLTree.curNode->left;    
         }
         else{
+            code.setHighlight({6,7});
             AVLTree.curNode=AVLTree.curNode->right;
         }
         if(AVLTree.curNode){
@@ -474,11 +527,28 @@ void AVLState::saveSearchState(int value){
             }
         }
     }
+    while(AVLTree.animationStep==2){
+        if(!AVLTree.curNode){
+            code.setHighlight({0,1});
+        }
+        else{
+            AVLTree.curNode->setHighlight();
+            code.setHighlight({2,3});
+        }
+        AVLTree.animationStep=0;
+        animationState=AVLAnimationMode::IDLE;
+        AVLTree.curNode=AVLTree.root;
+        saveState();
+        currentStep=0;
+        applyState();
+        return;
+    }
 }
 
 void AVLState::animateInsert(int value){
     if(!isPlaying||isPaused) return;
     if(!AVLTree.root){
+        code.setHighlight({0});
         AVLTree.root = new AVLNode(); 
         AVLTree.root->setValue(value);
         AVLTree.calculateHeight();
@@ -491,6 +561,7 @@ void AVLState::animateInsert(int value){
     }
     static float checkTimer = 0.0f;
     if(AVLTree.curNode==AVLTree.root&&AVLTree.animationStep==0){
+        code.setHighlight({0});
         checkTimer+=GetFrameTime();
         AVLTree.curNode->setHighlight();
         AVLTree.animationStep++;
@@ -560,17 +631,30 @@ void AVLState::animateInsert(int value){
     }
     else if(AVLTree.animationStep==4){
         if (AVLTree.curNode) {
+            code.setHighlight({1});
             AVLTree.curNode->setHighlight();
             int balanceFactor=getBalanceFactor(AVLTree.curNode);
             if(abs(balanceFactor)>1){
                 currentStep++;
                 if(balanceFactor>1){
-                    if(getBalanceFactor(AVLTree.curNode->left)<0) AVLTree.rotateLeftRight(AVLTree.curNode);
-                    else AVLTree.rotateRight(AVLTree.curNode);
+                    if(getBalanceFactor(AVLTree.curNode->left)<0) {
+                        code.setHighlight({3});
+                        AVLTree.rotateLeftRight(AVLTree.curNode);
+                    }
+                    else {
+                        code.setHighlight({2});
+                        AVLTree.rotateRight(AVLTree.curNode);
+                    }
                 }
                 else if(balanceFactor<-1){
-                    if(getBalanceFactor(AVLTree.curNode->right)>0) AVLTree.rotateRightLeft(AVLTree.curNode);
-                    else AVLTree.rotateLeft(AVLTree.curNode);
+                    if(getBalanceFactor(AVLTree.curNode->right)>0) {
+                        code.setHighlight({5});
+                        AVLTree.rotateRightLeft(AVLTree.curNode);
+                    }
+                    else {
+                        code.setHighlight({4});
+                        AVLTree.rotateLeft(AVLTree.curNode);
+                    }
                 }
                 AVLTree.animationStep++;
                 currentStep++;
@@ -590,6 +674,7 @@ void AVLState::animateInsert(int value){
                         isPaused=true;
                         AVLTree.animationStep=0;
                         currentStep++;
+                        code.clearHighlight();
                         return;
                     }
                     checkTimer = 0;
@@ -617,6 +702,7 @@ void AVLState::animateRemove(int value){
     if(!isPlaying||isPaused) return;
     static float checkTimer = 0.0f;
     if(AVLTree.curNode==AVLTree.root&&AVLTree.animationStep==0){
+        code.setHighlight({0});
         checkTimer+=GetFrameTime();
         AVLTree.curNode->setHighlight();
         AVLTree.animationStep++;
@@ -633,6 +719,7 @@ void AVLState::animateRemove(int value){
                 currentStep++;
                 isPlaying=false;
                 isPaused=true;
+                code.clearHighlight();
                 return;
             }
             if(AVLTree.curNode) AVLTree.curNode->deHighlight();
@@ -668,7 +755,6 @@ void AVLState::animateRemove(int value){
             }
             AVLTree.animationStep++;
             AVLTree.calculateHeight();
-            AVLTree.calculateDepth();
             currentStep++;
         }
         else if(AVLTree.curNode->left&&AVLTree.curNode->right){
@@ -701,13 +787,13 @@ void AVLState::animateRemove(int value){
             }
             else{
                 AVLTree.root=AVLTree.curNode->left;
+                AVLTree.setTargetPosition();
             }
             AVLTree.curNode->left->parent = AVLTree.curNode->parent;
             AVLTree.animationStep++;
             AVLTree.curNode=AVLTree.curNode->left;
             delete del;
             AVLTree.calculateHeight();
-            AVLTree.calculateDepth();
             currentStep++;
         }
         else if(AVLTree.curNode->right){
@@ -718,29 +804,42 @@ void AVLState::animateRemove(int value){
             }
             else{
                 AVLTree.root=AVLTree.curNode->right;
+                AVLTree.setTargetPosition();
             }
             AVLTree.curNode->right->parent = AVLTree.curNode->parent;
             AVLTree.animationStep++;
             AVLTree.curNode=AVLTree.curNode->right;
             delete del;
             AVLTree.calculateHeight();
-            AVLTree.calculateDepth();
             currentStep++;
         }
     }
     else if(AVLTree.animationStep==3){ 
         if (AVLTree.curNode) {
+            code.setHighlight({1});
             AVLTree.curNode->setHighlight();
             int balanceFactor=getBalanceFactor(AVLTree.curNode);
             if(abs(balanceFactor)>1){
                 currentStep++;
                 if(balanceFactor>1){
-                    if(getBalanceFactor(AVLTree.curNode->left)<0) AVLTree.rotateLeftRight(AVLTree.curNode);
-                    else AVLTree.rotateRight(AVLTree.curNode);
+                    if(getBalanceFactor(AVLTree.curNode->left)<0) {
+                        code.setHighlight({3});
+                        AVLTree.rotateLeftRight(AVLTree.curNode);
+                    }
+                    else {
+                        code.setHighlight({2});
+                        AVLTree.rotateRight(AVLTree.curNode);
+                    }
                 }
                 else if(balanceFactor<-1){
-                    if(getBalanceFactor(AVLTree.curNode->right)>0) AVLTree.rotateRightLeft(AVLTree.curNode);
-                    else AVLTree.rotateLeft(AVLTree.curNode);
+                    if(getBalanceFactor(AVLTree.curNode->right)>0) {
+                        code.setHighlight({5});
+                        AVLTree.rotateRightLeft(AVLTree.curNode);
+                    }
+                    else {
+                        code.setHighlight({4});
+                        AVLTree.rotateLeft(AVLTree.curNode);
+                    }
                 }
                 AVLTree.animationStep++;
                 currentStep++;
@@ -759,13 +858,26 @@ void AVLState::animateRemove(int value){
                         isPaused=true;
                         AVLTree.animationStep=0;
                         currentStep++;
+                        code.clearHighlight();
                         return;
                     }
                     checkTimer = 0;
                     AVLTree.animationStep++;
                 }
             }
-        } 
+        }
+        else{
+            AVLTree.resetHighlight();
+            animationState = AVLAnimationMode::IDLE;
+            checkTimer=0;
+            currentStep++;
+            isPlaying=false;
+            isPaused=true;
+            AVLTree.animationStep=0;
+            currentStep++;
+            code.clearHighlight();
+            return;
+        }
     }
     else if(AVLTree.animationStep==4){
         if(AVLTree.checkArrowDestination()){
@@ -789,6 +901,12 @@ void AVLState::animateSearch(int value){
     if(AVLTree.curNode==AVLTree.root&&AVLTree.animationStep==0){
         checkTimer+=GetFrameTime();
         AVLTree.curNode->setHighlight();
+        if(value<AVLTree.curNode->getValue()){
+            code.setHighlight({4,5});
+        }
+        else if(value>AVLTree.curNode->getValue()){
+            code.setHighlight({6,7});
+        }
         AVLTree.animationStep++;
         currentStep++;
     }
@@ -796,20 +914,17 @@ void AVLState::animateSearch(int value){
         checkTimer+=GetFrameTime();
         if(checkTimer>=delayTime){
             if(!AVLTree.curNode||value==AVLTree.curNode->getValue()){
-                AVLTree.animationStep=0;
-                animationState=AVLAnimationMode::IDLE;
-                AVLTree.curNode=AVLTree.root;
+                AVLTree.animationStep++;
                 checkTimer=0;
-                currentStep++;
-                isPlaying=false;
-                isPaused=true;
                 return;
             }
             if(AVLTree.curNode) AVLTree.curNode->deHighlight();
             if(value<AVLTree.curNode->getValue()){
+                code.setHighlight({4,5});
                 AVLTree.curNode=AVLTree.curNode->left;    
             }
             else{
+                code.setHighlight({6,7});
                 AVLTree.curNode=AVLTree.curNode->right;
             }
             if(AVLTree.curNode){
@@ -819,6 +934,27 @@ void AVLState::animateSearch(int value){
                 }
             }
             checkTimer=0;
+        }
+    }
+    else if(AVLTree.animationStep==2){
+        if(!AVLTree.curNode){
+            code.setHighlight({0,1});
+        }
+        else{
+            AVLTree.curNode->setHighlight();
+            code.setHighlight({2,3});
+        }
+        checkTimer+=GetFrameTime();
+        if(checkTimer>=delayTime){
+            checkTimer=0;
+            AVLTree.animationStep=0;
+            animationState=AVLAnimationMode::IDLE;
+            AVLTree.curNode=AVLTree.root;
+            currentStep++;
+            isPlaying=false;
+            isPaused=true;
+            code.clearHighlight();
+            return;
         }
     }
 }
@@ -849,7 +985,24 @@ std::string AVLState::getRandomInput(){
 }
 
 bool AVLState::isBackPressed(){
-    return panel.isBackPressed();
+    bool res=panel.isBackPressed();
+    if(res){
+        Random.deActive();
+        LoadFile.deActive();
+        Apply.deActive();
+        AVLTree.clear();
+        resetBox();
+        isPlaying = false;
+        isPaused = false;
+        currentStep = 0;
+        isStateSaved=false;
+        clearState();
+        animationState=AVLAnimationMode::IDLE;
+        code.clearCode();
+        code.clearHighlight();
+        panel.reset();
+    }
+    return res;
 }
 
 void AVLState::play(){
@@ -911,7 +1064,8 @@ void AVLState::moveStart(){
 void AVLState::saveState(){
     AVL* currentState = AVLTree.clone();
     AVLAnimationMode currentMode = this->animationState;
-    stateList.push_back(new AnimationStep{currentState, currentMode});
+    CodeBlock currentCodeBlock = this->code;
+    stateList.push_back(new AnimationStep{currentState, currentMode,currentCodeBlock});
 }
 
 void AVLState::applyState(){
@@ -925,6 +1079,7 @@ void AVLState::applyState(){
     AVLTree.clearTree();
     AVLTree = *stateList[currentStep]->AVLTree->clone();
     animationState=stateList[currentStep]->animationState;
+    code = stateList[currentStep]->code;
 }
 
 void AVLState::clearState(){

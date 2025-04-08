@@ -5,19 +5,16 @@ STPanel::STPanel(){
     this->Create.setSize(panelButtonSize);
     this->Create.setPosition({Create.getSize().x/2.0f+(Create.getSize().y/2.0f-Create.getfontSize()/2.0f), 650+(Create.getSize().y/2.0f-Create.getfontSize()/2.0f)});
     this->Create.setColor(panelNormal,panelHovered,panelPressed);
-    this->Create.setRectangle();
 
     this->Dijkstra.setText("Dijkstra",panelButtonFontSize);
     this->Dijkstra.setSize(panelButtonSize);
     this->Dijkstra.setPosition({Dijkstra.getSize().x/2.0f+(Dijkstra.getSize().y/2.0f-Dijkstra.getfontSize()/2.0f), 700+(Dijkstra.getSize().y/2.0f-Dijkstra.getfontSize()/2.0f)});
     this->Dijkstra.setColor(panelNormal,panelHovered,panelPressed);
-    this->Dijkstra.setRectangle();
 
     this->Setting.setText("Setting",panelButtonFontSize);
     this->Setting.setSize(panelButtonSize);
     this->Setting.setPosition({Setting.getSize().x/2.0f+(Setting.getSize().y/2.0f-Setting.getfontSize()/2.0f), 750+(Setting.getSize().y/2.0f-Setting.getfontSize()/2.0f)});
     this->Setting.setColor(panelNormal,panelHovered,panelPressed);
-    this->Setting.setRectangle();
 }
 
 bool STPanel::isAnyButtonPressed(){
@@ -51,10 +48,6 @@ void STPanel::update(){
         this->Setting.Selected();
         if(isUsing&&isUsing!=&Setting) this->isUsing->deSelected();
         this->isUsing = &this->Setting;
-    }
-    if(isBackPressed()){
-        if(isUsing) this->isUsing->deSelected();
-        isUsing=nullptr;
     }
     this->Back.update();
     this->Create.update();

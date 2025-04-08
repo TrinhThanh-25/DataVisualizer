@@ -6,27 +6,22 @@ Console::Console(){
     this->Play.setSize(controllerButtonSize);
     this->Play.setPosition(controllerPosition);
     this->Play.setColor(panelNormal,panelHovered,panelPressed);
-    this->Play.setRectangle();
 
     this->Next.setSize(controllerButtonSize);
     this->Next.setPosition({controllerPosition.x+(controllerButtonSize.x+15),controllerPosition.y});
     this->Next.setColor(panelNormal,panelHovered,panelPressed);
-    this->Next.setRectangle();
 
     this->Prev.setSize(controllerButtonSize);
     this->Prev.setPosition({controllerPosition.x-(controllerButtonSize.x+15),controllerPosition.y});
     this->Prev.setColor(panelNormal,panelHovered,panelPressed);
-    this->Prev.setRectangle();
 
     this->End.setSize(controllerButtonSize);
     this->End.setPosition({controllerPosition.x+2*(controllerButtonSize.x+15),controllerPosition.y});
     this->End.setColor(panelNormal,panelHovered,panelPressed);
-    this->End.setRectangle();
 
     this->Start.setSize(controllerButtonSize);
     this->Start.setPosition({controllerPosition.x-2*(controllerButtonSize.x+15),controllerPosition.y});
     this->Start.setColor(panelNormal,panelHovered,panelPressed);
-    this->Start.setRectangle();
 }
 
 bool Console::isPlayPressed(){

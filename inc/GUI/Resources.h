@@ -4,6 +4,12 @@
 #include <raylib.h>
 
 const int speed = 200;
+const float delayTime = 0.5f;
+
+//Font
+const Font fontNumber = LoadFontEx("../resources/Ubuntu-Bold.ttf");
+//
+float tempSpeed = 0.1f;
 
 //Menu
 const int appTitleFontSize(40);
@@ -40,7 +46,7 @@ const int inputBoxFontSize(20);
 const int inputBoxNameFontSize(20);
 
 //SLL
-const Vector2 SLLNodeSize({80,60});
+const Vector2 SLLNodeSize({50,50});
 const Vector2 SLLposition({150,250});
 const int SLLNodeFontSize(24);
 
@@ -83,12 +89,11 @@ const Color STBoxTextColor({BLACK});
 const int STButtonFontSize(15);
 
 //Arrow
-const int ArrowLength = 50;
+const int ArrowLength = 40;
 
 //Controller
 const Vector2 controllerButtonSize({50,50});
 const Vector2 controllerPosition({800,860});
 const Vector2 controllerSize({400,2*(900-controllerPosition.y)});
-const float delayTime = 0.5f;
 
 #endif

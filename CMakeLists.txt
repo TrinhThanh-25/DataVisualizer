@@ -3,9 +3,6 @@ cmake_minimum_required(VERSION 3.16)
 # Đặt tên cho project
 project(DATAVISUALIZER)
 
-
-
-
 # Thêm tất cả file .cpp trong thư mục src/
 file(GLOB_RECURSE SOURCES src/*.cpp src/tinyfiledialogs.c)
 

@@ -19,9 +19,11 @@ class Panel : public Console{
         virtual void draw()=0;
         virtual void update()=0;
         bool isBackPressed();
+        void setBackActive();
         virtual bool isAnyButtonPressed()=0;
         void updatePanel();
         void drawPanel();
+        void reset();
 
         std::string loadFileContent(){
             std::string text="";
@@ -41,6 +43,7 @@ class Panel : public Console{
         Button Back;
 
         Rectangle panelHolder;
+        Button* isUsing=nullptr;
 };
 
 #endif

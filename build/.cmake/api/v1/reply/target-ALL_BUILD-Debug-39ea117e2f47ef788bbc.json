@@ -1,0 +1,77 @@
+{
+	"backtrace" : 0,
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : 
+		[
+			"CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			}
+		]
+	},
+	"dependencies" : 
+	[
+		{
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/target-ALL_BUILD-Debug-39ea117e2f47ef788bbc.json
+			"id" : "DATAVISUALIZER::@6890427a1f51a3e7e1df"
+<<<<<<< HEAD
+		},
+		{
+			"id" : "raylib::@7d429ebd5d102775094d"
+========
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/target-ALL_BUILD-Debug-39ea117e2f47ef788bbc.json
+			"id" : "DATAVISUALIZER::@6890427a1f51a3e7e1df"
+=======
+>>>>>>> fda38782a35f4de04ac5a663b69461d9339b5221
+========
+			"id" : "raylib::@7d429ebd5d102775094d"
+>>>>>>>> ace3f3df9f3bf8c8cedba9645fce850ac6c924ba:build/.cmake/api/v1/reply/target-ALL_BUILD-Debug-f1b6a6eb91543afd00ec.json
+		},
+		{
+			"id" : "DATAVISUALIZER::@6890427a1f51a3e7e1df"
+		},
+		{
+			"id" : "glfw::@a896dd99b4a5c6eab3d9"
+<<<<<<< HEAD
+>>>>>>>> fda38782a35f4de04ac5a663b69461d9339b5221:build/.cmake/api/v1/reply/target-ALL_BUILD-Debug-f1b6a6eb91543afd00ec.json
+=======
+>>>>>>> fda38782a35f4de04ac5a663b69461d9339b5221
+		},
+		{
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/target-ALL_BUILD-Debug-39ea117e2f47ef788bbc.json
+			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"
+========
+			"id" : "glfw::@a896dd99b4a5c6eab3d9"
+<<<<<<< HEAD
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/target-ALL_BUILD-Debug-39ea117e2f47ef788bbc.json
+		},
+		{
+			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"
+========
+>>>>>>>> ace3f3df9f3bf8c8cedba9645fce850ac6c924ba:build/.cmake/api/v1/reply/target-ALL_BUILD-Debug-f1b6a6eb91543afd00ec.json
+>>>>>>>> fda38782a35f4de04ac5a663b69461d9339b5221:build/.cmake/api/v1/reply/target-ALL_BUILD-Debug-f1b6a6eb91543afd00ec.json
+=======
+>>>>>>>> ace3f3df9f3bf8c8cedba9645fce850ac6c924ba:build/.cmake/api/v1/reply/target-ALL_BUILD-Debug-f1b6a6eb91543afd00ec.json
+>>>>>>> fda38782a35f4de04ac5a663b69461d9339b5221
+		}
+	],
+	"folder" : 
+	{
+		"name" : "CMakePredefinedTargets"
+	},
+	"id" : "ALL_BUILD::@6890427a1f51a3e7e1df",
+	"isGeneratorProvided" : true,
+	"name" : "ALL_BUILD",
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	},
+	"sources" : [],
+	"type" : "UTILITY"
+}

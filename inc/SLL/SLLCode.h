@@ -19,9 +19,9 @@ const std::string insertMiddleCode = {
 };
 
 const std::string removeFrontCode = {
-    "Node myNode = head\n"
+    "Node cur = head\n"
     "head = head.next\n"
-    "delete myNode"
+    "delete cur"
 };
 
 const std::string removeMiddleCode = {

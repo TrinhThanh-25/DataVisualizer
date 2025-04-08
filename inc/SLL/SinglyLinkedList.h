@@ -34,10 +34,10 @@ class SinglyLinkedList {
 
         bool isNewNode=false;
         bool isCur=false;
+        bool checkNewNodeinList=false;
 
         int indexStep=-1;
         int animationStep = 0;
-    private:
         bool isCreated = false;        
 };
 

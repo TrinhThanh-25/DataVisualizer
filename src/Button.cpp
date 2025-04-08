@@ -8,19 +8,17 @@ void Button::setTexture(const char* path){
 
 void Button::setPosition(Vector2 position){
     this->position=position;
+    this->rectangle = {position.x - size.x/2,position.y-(size.y/2-fontSize/2),size.x,size.y};
 }
 
 void Button::setSize(Vector2 size){
     this->size=size;
+    this->rectangle = {position.x - size.x/2,position.y-(size.y/2-fontSize/2),size.x,size.y};
 }
 
 void Button::setText(const char* text, int fontSize){
     this->text = text;
     this->fontSize=fontSize;
-}
-
-void Button::setRectangle(){
-    rectangle = {position.x - size.x/2,position.y-(size.y/2-fontSize/2),size.x,size.y};
 }
 
 void Button::setColor(Color normal, Color hovered, Color pressed){
@@ -30,7 +28,7 @@ void Button::setColor(Color normal, Color hovered, Color pressed){
 }
 
 void Button::update(){
-    if(this->isSelected){
+    if(this->selected){
         color=pressed;
     }
     else if(this->isHovered()){
@@ -85,12 +83,16 @@ bool Button::isHovered(){
     return isActive&&CheckCollisionPointRec(GetMousePosition(), {this->position.x-this->size.x/2, this->position.y-(this->size.y/2-this->fontSize/2), this->size.x, this->size.y});
 }
 
+bool Button::isSelected(){
+    return this->selected;
+}
+
 void Button::Selected(){
-    this->isSelected = true;
+    this->selected = true;
 }
 
 void Button::deSelected(){
-    this->isSelected = false;
+    this->selected = false;
 }
 
 void Button::setActive(){

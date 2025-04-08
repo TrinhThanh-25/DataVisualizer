@@ -94,7 +94,7 @@ void SLLNode::updateCur(){
 }
 
 void SLLNode::drawCur(){
-    DrawRectangleRounded(node, 50, 100, (isHighlight)? highlight : nodeColor);
+    DrawRectangleRounded(node, 100, 100, (isHighlight)? highlight : nodeColor);
     DrawText(std::to_string(this->value).c_str(),position.x+SLLNodeSize.x/2.0f-MeasureText(std::to_string(this->value).c_str(),SLLNodeFontSize)/2.0f,position.y+SLLNodeSize.y/2.0f-SLLNodeFontSize/2.0f,SLLNodeFontSize,(isHighlight)? textHighlight : textColor);
     if (Pointer) {
         Pointer->draw();

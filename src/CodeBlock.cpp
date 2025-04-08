@@ -1,6 +1,6 @@
 #include "GUI/CodeBlock.h"
 
-CodeBlock::CodeBlock() : highlightColor(highlightColor){}
+CodeBlock::CodeBlock() : highlight(highlightColor){}
 
 void CodeBlock::update(){
 
@@ -35,11 +35,19 @@ void CodeBlock::setHighlight(std::vector<int> ID){
 }
 
 void CodeBlock::drawHighlight(int fontSize){
+    DrawRectangle(1200,700,400,200,background);
     for (int x : highlightID){
-        DrawRectangle(1200,700+x*(fontSize+5),400,fontSize+2.5f,YELLOW);
+        DrawRectangle(1200,700+x*(fontSize+5),400,fontSize+2.5f,highlight);
     }
 }
 
 void CodeBlock::clearHighlight(){
     highlightID.clear();
+}
+
+CodeBlock CodeBlock::clone() const {
+    CodeBlock newCodeBlock;
+    newCodeBlock.code = this->code;
+    newCodeBlock.highlightID=this->highlightID;
+    return newCodeBlock;
 }

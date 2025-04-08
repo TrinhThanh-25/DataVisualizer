@@ -12,7 +12,7 @@ const std::string Insert(
     "  RL: right.rt_Right, rt_Left"
 );
 
-const std::string Delete(
+const std::string Remove(
     "Delete v\n"
     "Check balance factor (bf):\n"
     "  LL: rt_Right\n"

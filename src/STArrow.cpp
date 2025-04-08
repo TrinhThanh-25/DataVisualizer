@@ -19,16 +19,16 @@ void STArrow::draw(bool isWeighted, bool isDirected){
         float length = sqrt(dir.x * dir.x + dir.y * dir.y);
         float labelX = midX - 5 + dir.x/length * 10;
         float labelY = midY - 5 + dir.y/length * 10;
-        DrawText(std::to_string(this->weight).c_str(), labelX, labelY, 10,(isHighlight)? highlight : normal);
+        DrawText(std::to_string(this->weight).c_str(), labelX, labelY, 10,(isHighlight)? highlight : color);
     }
     if(isDirected){
-        color=(isHighlight)? highlight:normal;
+        color=(isHighlight)? highlight:color;
         drawArrow(this->position,this->destination);
     }
     else{
         float disX=destination.x-position.x, disY=destination.y-position.y;
         float dis=sqrt(disX*disX+disY*disY);
-        DrawLineEx(this->position,{this->destination.x+STNodeSize.x/(2.0f*dis)*disX,this->destination.y+STNodeSize.y/(2.0f*dis)*disY},2,(isHighlight)? highlight : normal);
+        DrawLineEx(this->position,{this->destination.x+STNodeSize.x/(2.0f*dis)*disX,this->destination.y+STNodeSize.y/(2.0f*dis)*disY},2,(isHighlight)? highlight : color);
     }
 }
 

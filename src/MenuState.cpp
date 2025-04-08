@@ -8,43 +8,36 @@ MenuState::MenuState(){
     this->exit.setSize({70,50});
     this->exit.setPosition({1500,800});
     this->exit.setColor(menuNormal,menuHovered,menuPressed);
-    this->exit.setRectangle();
 
     this->SLL.setText("Singly Linked List",menuButtonFontSize);
     this->SLL.setSize(menuButtonSize);
     this->SLL.setPosition({400,550});
     this->SLL.setColor(menuNormal,menuHovered,menuPressed);
-    this->SLL.setRectangle();
     
     this->LinearHT.setText("Linear Hashing Table",menuButtonFontSize);
     this->LinearHT.setSize(menuButtonSize);
     this->LinearHT.setPosition({800 ,550});
     this->LinearHT.setColor(menuNormal,menuHovered,menuPressed);
-    this->LinearHT.setRectangle();
 
     this->Tree234.setText("2-3-4 Tree",menuButtonFontSize);
     this->Tree234.setSize(menuButtonSize);
     this->Tree234.setPosition({1200 ,550});
     this->Tree234.setColor(menuNormal,menuHovered,menuPressed);
-    this->Tree234.setRectangle();
 
     this->AVLTree.setText("AVL Tree",menuButtonFontSize);
     this->AVLTree.setSize(menuButtonSize);
     this->AVLTree.setPosition({400 ,700});
     this->AVLTree.setColor(menuNormal,menuHovered,menuPressed);
-    this->AVLTree.setRectangle();
 
     this->MinSpanningTree.setText("Minimum Spanning Tree",menuButtonFontSize);
     this->MinSpanningTree.setSize(menuButtonSize);
     this->MinSpanningTree.setPosition({800, 700});
     this->MinSpanningTree.setColor(menuNormal,menuHovered,menuPressed);
-    this->MinSpanningTree.setRectangle();
 
     this->ShortestPath.setText("Shortest Path",menuButtonFontSize);
     this->ShortestPath.setSize(menuButtonSize);
     this->ShortestPath.setPosition({1200 ,700});
     this->ShortestPath.setColor(menuNormal,menuHovered,menuPressed);
-    this->ShortestPath.setRectangle();
 }
 
 void MenuState::draw(){

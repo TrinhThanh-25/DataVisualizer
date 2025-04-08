@@ -5,31 +5,26 @@ SLLPanel::SLLPanel(){
     this->Create.setSize(panelButtonSize);
     this->Create.setPosition({Create.getSize().x/2.0f+(Create.getSize().y/2.0f-Create.getfontSize()/2.0f), 650+(Create.getSize().y/2.0f-Create.getfontSize()/2.0f)});
     this->Create.setColor(panelNormal,panelHovered,panelPressed);
-    this->Create.setRectangle();
 
     this->Add.setText("Add",panelButtonFontSize);
     this->Add.setSize(panelButtonSize);
     this->Add.setPosition({Add.getSize().x/2.0f+(Add.getSize().y/2.0f-Add.getfontSize()/2.0f), 700+(Add.getSize().y/2.0f-Add.getfontSize()/2.0f)});
     this->Add.setColor(panelNormal,panelHovered,panelPressed);
-    this->Add.setRectangle();
 
     this->Remove.setText("Remove",panelButtonFontSize);
     this->Remove.setSize(panelButtonSize);
     this->Remove.setPosition({Remove.getSize().x/2.0f+(Remove.getSize().y/2.0f-Remove.getfontSize()/2.0f), 750+(Remove.getSize().y/2.0f-Remove.getfontSize()/2.0f)});
     this->Remove.setColor(panelNormal,panelHovered,panelPressed);
-    this->Remove.setRectangle();
 
     this->Search.setText("Search",panelButtonFontSize);
     this->Search.setSize(panelButtonSize);
     this->Search.setPosition({Search.getSize().x/2.0f+(Search.getSize().y/2.0f-Search.getfontSize()/2.0f), 800+(Search.getSize().y/2.0f-Search.getfontSize()/2.0f)});
     this->Search.setColor(panelNormal,panelHovered,panelPressed);
-    this->Search.setRectangle();
 
     this->Update.setText("Update",panelButtonFontSize);
     this->Update.setSize(panelButtonSize);
     this->Update.setPosition({Update.getSize().x/2.0f+(Update.getSize().y/2.0f-Update.getfontSize()/2.0f), 850+(Update.getSize().y/2.0f-Update.getfontSize()/2.0f)});
     this->Update.setColor(panelNormal,panelHovered,panelPressed);
-    this->Update.setRectangle();
 }
 
 bool SLLPanel::isAnyButtonPressed(){
@@ -77,10 +72,6 @@ void SLLPanel::update(){
         this->Search.Selected();
         if(isUsing&&isUsing!=&Search) this->isUsing->deSelected();
         this->isUsing = &this->Search;
-    }
-    if(isBackPressed()){
-        if(isUsing) this->isUsing->deSelected();
-        isUsing=nullptr;
     }
     this->Back.update();
     this->Create.update();

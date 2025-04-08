@@ -40,6 +40,12 @@ class AVLNode{
         Vector2 getDestinationRight();
 
         AVLNode* clone() const;
+
+        int getLeftNumNodes();
+        int getRightNumNodes();
+        void setLeftNumNodes(int value);
+        void setRightNumNodes(int value);
+        int getTotalNumNodes();
     public:
         AVLNode* left;
         AVLNode* right;
@@ -60,6 +66,8 @@ class AVLNode{
         int value;
         int height;
         int depth;
+        int leftNumNodes;
+        int rightNumNodes;
 
         bool isHighlight;
 };

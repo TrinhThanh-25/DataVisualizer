@@ -2,6 +2,7 @@
 #define SHORTESTPATH_H
 
 #include <ShortestPath/ShortestPathNode.h>
+#include <sstream>
 
 class ShortestPath{
     public:
@@ -9,8 +10,10 @@ class ShortestPath{
         ~ShortestPath();
 
         void createGraph(int numNodes, int edges);
+        void createGraph(std::string input);
         void addEdge(int node1, int node2);
         void removeEdge(int node1, int node2);
+        void clear();
         void clearGraph();
         void resetGraph();
         void setWeighted();

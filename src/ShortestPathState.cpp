@@ -1,53 +1,42 @@
-//CẦN FIX LOGIC KHI LƯU STATE(1 SỐ STATE KHÔNG CHẠY TIẾP ĐƯỢC)
-//FIX KHI PRESS BACK GIỮA CHỪNG BỊ LỖI
-//KIỂM TRA LẠI CÁC HÀM CLONE
-
 #include "ShortestPath/ShortestPathState.h"
 
 const float COOLDOWN=0.93f;
 
-ShortestPathState::ShortestPathState() : NodesBox(120,700,STBoxSize.x,STBoxSize.y,STBoxFontSize,STBoxColor,STBoxTextColor), EdgesBox(120,850,STBoxSize.x,STBoxSize.y,STBoxFontSize,STBoxColor,STBoxTextColor), StartNodesBox(120,700,STBoxSize.x,STBoxSize.y,STBoxFontSize,STBoxColor,STBoxTextColor){
+ShortestPathState::ShortestPathState() : NodesBox(120,680,STBoxSize.x,STBoxSize.y,STBoxFontSize,STBoxColor,STBoxTextColor), EdgesBox(120,750,STBoxSize.x,STBoxSize.y,STBoxFontSize,STBoxColor,STBoxTextColor), StartNodesBox(120,680,STBoxSize.x,STBoxSize.y,STBoxFontSize,STBoxColor,STBoxTextColor){
     this->Random.setText("Random",STButtonFontSize);
     this->Random.setSize({120, 30});
-    this->Random.setPosition({180,760});
+    this->Random.setPosition({180,810});
     this->Random.setColor(panelNormal,panelHovered,panelPressed);
-    this->Random.setRectangle();
 
     this->LoadFile.setText("Load File",STButtonFontSize);
     this->LoadFile.setSize({120, 30});
-    this->LoadFile.setPosition({320,760});
+    this->LoadFile.setPosition({320,810});
     this->LoadFile.setColor(panelNormal,panelHovered,panelPressed);
-    this->LoadFile.setRectangle();
 
     this->Apply.setText("Apply",STButtonFontSize);
     this->Apply.setSize({260, 30});
-    this->Apply.setPosition({250,800});
+    this->Apply.setPosition({250,850});
     this->Apply.setColor(panelNormal,panelHovered,panelPressed);
-    this->Apply.setRectangle();
 
     this->Weighted.setText("Weighted",STButtonFontSize);
     this->Weighted.setSize({120, 30});
-    this->Weighted.setPosition({180,700});
+    this->Weighted.setPosition({180,680});
     this->Weighted.setColor(panelNormal,panelHovered,panelPressed);
-    this->Weighted.setRectangle();
 
     this->Unweighted.setText("Unweighted",STButtonFontSize);
     this->Unweighted.setSize({120, 30});
-    this->Unweighted.setPosition({320,700});
+    this->Unweighted.setPosition({320,680});
     this->Unweighted.setColor(panelNormal,panelHovered,panelPressed);
-    this->Unweighted.setRectangle();
 
     this->Directed.setText("Directed",STButtonFontSize);
     this->Directed.setSize({120, 30});
-    this->Directed.setPosition({180,740});
+    this->Directed.setPosition({180,720});
     this->Directed.setColor(panelNormal,panelHovered,panelPressed);
-    this->Directed.setRectangle();
 
     this->Undirected.setText("UnDirected",STButtonFontSize);
     this->Undirected.setSize({120, 30});
-    this->Undirected.setPosition({320,740});
+    this->Undirected.setPosition({320,720});
     this->Undirected.setColor(panelNormal,panelHovered,panelPressed);
-    this->Undirected.setRectangle();
     
     this->Undirected.Selected();
     this->Unweighted.Selected();
@@ -60,6 +49,7 @@ ShortestPathState::ShortestPathState() : NodesBox(120,700,STBoxSize.x,STBoxSize.
 }
 
 void ShortestPathState::update(){
+    panel.setBackActive();
     if (panel.isPlayPressed()) {
         if(currentStep==stateList.size()-1){
             restart();
@@ -109,6 +99,7 @@ void ShortestPathState::update(){
     }
 
     if(panel.isCreateUsed()){
+        Apply.setPosition({250,850});
         Random.setActive();
         LoadFile.setActive();
         Apply.setActive();
@@ -118,9 +109,10 @@ void ShortestPathState::update(){
         Undirected.deActive();
     }
     else if(panel.isDijkstraUsed()){
+        Apply.setPosition({250,740});
         Random.deActive();
         LoadFile.deActive();
-        Apply.deActive();
+        Apply.setActive();
         Weighted.deActive();
         Unweighted.deActive();
         Directed.deActive();
@@ -137,11 +129,19 @@ void ShortestPathState::update(){
     }
     if(Random.isPressed()){
         int numNodes=rand()%9+2;
-        NodesBox.setText(std::to_string(numNodes));
-        EdgesBox.setText(std::to_string(rand()%(numNodes*(numNodes-1))/2+1));
+        ST.createGraph(numNodes,int(rand()%(numNodes*(numNodes-1))/2+1));
+        if(Weighted.isSelected())
+            ST.setWeighted();
+        else if(Unweighted.isSelected())
+            ST.deWeighted();
+        if(Directed.isSelected())
+            ST.setDirected();
+        else if(Undirected.isSelected())
+            ST.deDirected();
+        animationState=STAnimationMode::CREATE;
     }
     else if(LoadFile.isPressed()){
-        //createBox.setText(loadFileContent());
+        isLoadFile=true;
     }
     else if(Weighted.isPressed()){
         Weighted.Selected();
@@ -163,6 +163,19 @@ void ShortestPathState::update(){
         Directed.deSelected();
         ST.deDirected();
     }
+    else if(isLoadFile&&panel.isCreateUsed()){
+        ST.createGraph(panel.loadFileContent());
+        if(Weighted.isSelected())
+            ST.setWeighted();
+        else if(Unweighted.isSelected())
+            ST.deWeighted();
+        if(Directed.isSelected())
+            ST.setDirected();
+        else if(Undirected.isSelected())
+            ST.deDirected();
+        isLoadFile=false;
+        animationState=STAnimationMode::CREATE;
+    }
     else if(IsKeyPressed(KEY_ENTER)||Apply.isPressed()){
         startNodeText=StartNodesBox.GetText();
         ST.deltaTime=0;
@@ -170,27 +183,22 @@ void ShortestPathState::update(){
             ST.createGraph(std::stoi(NodesBox.GetText()),std::stoi(EdgesBox.GetText()));
             animationState=STAnimationMode::CREATE;
         }
-        else if(panel.isDijkstraUsed()&&StartNodesBox.GetText()!=""){
+        else if(!ST.graph.empty()&&panel.isDijkstraUsed()&&startNodeText!=""&&std::stoi(startNodeText)<ST.graph.size()&&std::stoi(startNodeText)>=0){
             isStateSaved=false;
             clearState();
             isPlaying=true;
             isPaused=false;
             animationState=STAnimationMode::DIJKSTRA;
+            code.setCode(DijkstraCode);
         }
         resetBox();
     }
-    else if(panel.isBackPressed()){
-        ST.clearGraph();
-        resetBox();
-        Unweighted.Selected();
-        Undirected.Selected();
-        Weighted.deSelected();
-        Directed.deSelected();
-        ST.deDirected();
-        ST.deWeighted();
-    }
     else if(panel.isAnyButtonPressed()){
+        moveEnd();
+        clearState();
         resetBox();
+        code.clearCode();
+        code.clearHighlight();
     }
     if(panel.isCreateUsed()){
         NodesBox.Update();
@@ -201,6 +209,7 @@ void ShortestPathState::update(){
     }
     else if(panel.isDijkstraUsed()){
         StartNodesBox.Update();
+        this->Apply.update();
     }
     else if(panel.isSettingUsed()){
         this->Weighted.update();
@@ -215,7 +224,6 @@ void ShortestPathState::draw(){
     ST.draw();
     panel.draw();
     DrawText("Shortest Path",GetScreenWidth()/2.0f-MeasureText("Shortest Path",dataTitleFontSize)/2.0f,dataTitlePosition.y-dataTitleFontSize/2.0f,dataTitleFontSize, dataTitleTextColor);
-    STCode.draw();
     if(panel.isCreateUsed()){
         NodesBox.Draw();
         EdgesBox.Draw();
@@ -228,6 +236,8 @@ void ShortestPathState::draw(){
     }
     else if(panel.isDijkstraUsed()){
         StartNodesBox.Draw();
+        this->Apply.drawRectangleRounded(100);
+        this->Apply.drawText(panelSubButtonTextColor);
     }
     else if(panel.isSettingUsed()){
         Weighted.drawRectangleRounded(100);
@@ -246,6 +256,7 @@ void ShortestPathState::saveDijkstraState(int startNode){
         if(ST.animationStep==0){
             ST.resetGraph();
             saveState();
+            code.setHighlight({0,1});
             ST.current=ST.graph[startNode];
             ST.animationStep++;
             ST.graph[startNode]->setCost(0);
@@ -259,32 +270,47 @@ void ShortestPathState::saveDijkstraState(int startNode){
         else if(ST.animationStep==2){
             if(ST.isDirected){
                 if(ST.current->arrow.empty()){
+                    code.setHighlight({6});
                     ST.current->setKnown();
                     ST.animationStep++;
                     saveState();
                     continue;
                 }
-                ST.current->arrow[ST.index]->setHighlight();
-                saveState();
-                int to = ST.current->arrow[ST.index]->getTo();
-                int weight = (ST.isWeighted) ? ST.current->arrow[ST.index]->getWeight() : 1;
-                int newCost = ST.current->getCost() + weight;
-    
-                if (ST.current->getCost()!=-1&&(ST.graph[to]->getCost() == -1 || newCost < ST.graph[to]->getCost())) {
-                    ST.graph[to]->setCost(newCost);
-                    saveState();
-                }
-                ST.current->arrow[ST.index]->deHighlight();
-                ST.index++;
-    
                 if(ST.index>=ST.current->arrow.size()){
+                    code.setHighlight({6});
                     ST.index=0;
                     ST.animationStep++;
                     ST.current->setKnown();
                     saveState();
+                    continue;
+                }
+                ST.current->arrow[ST.index]->setHighlight();
+                code.setHighlight({3,4});
+                saveState();
+                int to = ST.current->arrow[ST.index]->getTo();
+                int weight = (ST.isWeighted) ? ST.current->arrow[ST.index]->getWeight() : 1;
+                int newCost = ST.current->getCost() + weight;
+                if (ST.current->getCost()!=-1&&(ST.graph[to]->getCost() == -1 || newCost < ST.graph[to]->getCost())) {
+                    code.setHighlight({5});
+                    ST.graph[to]->setCost(newCost);
+                    ST.animationStep=4;
+                    saveState();
+                }
+                else{
+                    ST.current->arrow[ST.index]->deHighlight();
+                    ST.index++;
                 }
             }
             else{
+                if(ST.index>=ST.allArrows.size()){
+                    code.setHighlight({6});
+                    ST.index=0;
+                    ST.animationStep++;
+                    ST.current->setKnown();
+                    saveState();
+                    continue;
+                }
+                code.setHighlight({3,4});
                 int from = ST.allArrows[ST.index]->getFrom();
                 int to = ST.allArrows[ST.index]->getTo();
                 int weight = (ST.isWeighted)? ST.allArrows[ST.index]->getWeight() : 1;
@@ -293,39 +319,47 @@ void ShortestPathState::saveDijkstraState(int startNode){
                     saveState();
                     int newCost = ST.current->getCost() + weight;
                     if (from == ST.current->getID()) {
-                        if (ST.current->getCost()!=-1&&(ST.graph[to]->getCost() == -1 || newCost < ST.graph[to]->getCost())) {
+                        if(ST.current->getCost()!=-1&&(ST.graph[to]->getCost() == -1 || newCost < ST.graph[to]->getCost())) {
+                            code.setHighlight({5});
                             ST.graph[to]->setCost(newCost);
+                            ST.animationStep=4;
                             saveState();
                         }
-                    } else if (to == ST.current->getID()) {
-                        if (ST.current->getCost()!=-1&&(ST.graph[from]->getCost() == -1 || newCost < ST.graph[from]->getCost())) {
+                        else{
+                            ST.allArrows[ST.index]->deHighlight();
+                            ST.index++;
+                        }
+                    } 
+                    else if (to == ST.current->getID()) {
+                        if(ST.current->getCost()!=-1&&(ST.graph[from]->getCost() == -1 || newCost < ST.graph[from]->getCost())) {
+                            code.setHighlight({5});
                             ST.graph[from]->setCost(newCost);
+                            ST.animationStep=4;
                             saveState();
+                        }
+                        else{
+                            ST.allArrows[ST.index]->deHighlight();
+                            ST.index++;
                         }
                     }
-                    ST.allArrows[ST.index]->deHighlight();
-                    ST.index++;
                 }
                 else{
                     ST.index++;
                 }
-                if(ST.index>=ST.allArrows.size()){
-                    ST.index=0;
-                    ST.animationStep++;
-                    ST.current->setKnown();
-                    saveState();
-                }
             }
         }
         else if(ST.animationStep==3){
+            code.setHighlight({7});
             for (auto n : ST.graph) {
-                n->setHighlight();
-                if (!n->getKnown() && ((n->getCost() == -1 && minCost==INT_MAX)||(n->getCost()!=-1 && n->getCost() <= minCost))) {
+                if(n->getCost()!=-1)
+                    n->setHighlight();
+                if (!n->getKnown() && n->getCost()!=-1 && n->getCost() <= minCost) {
                     if(n->getCost()!=-1)
                         minCost = n->getCost();
                     findSmall = n->getID();
                 }
             }
+            saveState();
             if (findSmall == -1) {
                 for (auto n : ST.graph){
                     n->deKnown();
@@ -334,22 +368,34 @@ void ShortestPathState::saveDijkstraState(int startNode){
                 ST.animationStep=0;
                 ST.index=0;
                 animationState=STAnimationMode::IDLE;
+                code.clearHighlight();
                 saveState();
                 currentStep=0;
                 applyState();
                 return;
             }
             else{
+                code.setHighlight({2});
                 ST.current = ST.graph[findSmall];
                 ST.animationStep-=2;
+                for (auto n : ST.graph){
+                    if(n!=ST.current)
+                        n->deHighlight();
+                }
                 saveState();
             }
             findSmall = -1;
             minCost = INT_MAX;
-            for (auto n : ST.graph){
-                if(n!=ST.current)
-                    n->deHighlight();
+        }
+        else if(ST.animationStep==4){
+            if(ST.isDirected){
+                ST.current->arrow[ST.index]->deHighlight();
             }
+            else{
+                ST.allArrows[ST.index]->deHighlight();
+            }
+            ST.index++;
+            ST.animationStep=2;
         }
     }
 }
@@ -424,8 +470,8 @@ void ShortestPathState::animateDijkstra(int startNode){
     if(!isPlaying||isPaused) return;
     static float checkTimer = 0.0f;
     if(ST.animationStep==0){
+        code.setHighlight({0,1});
         ST.resetGraph();
-        currentStep++;
         ST.current=ST.graph[startNode];
         ST.animationStep++;
         ST.graph[startNode]->setCost(0);
@@ -443,81 +489,110 @@ void ShortestPathState::animateDijkstra(int startNode){
     else if(ST.animationStep==2){
         if(ST.isDirected){
             if(ST.current->arrow.empty()){
+                code.setHighlight({6});
                 ST.current->setKnown();
                 ST.animationStep++;
                 currentStep++;
                 return;
             }
-            checkTimer+=GetFrameTime();
-            ST.current->arrow[ST.index]->setHighlight();
-            int to = ST.current->arrow[ST.index]->getTo();
-            int weight = (ST.isWeighted) ? ST.current->arrow[ST.index]->getWeight() : 1;
-            int newCost = ST.current->getCost() + weight;
-            if(checkTimer>=delayTime){
-                currentStep++;
-                checkTimer=0;
-                if (ST.current->getCost()!=-1&&(ST.graph[to]->getCost() == -1 || newCost < ST.graph[to]->getCost())) {
-                    ST.graph[to]->setCost(newCost);
-                    currentStep++;
-                }
-                ST.current->arrow[ST.index]->deHighlight();
-                ST.index++;
-            }
             if(ST.index>=ST.current->arrow.size()){
+                code.setHighlight({6});
                 ST.index=0;
                 ST.animationStep++;
                 ST.current->setKnown();
                 currentStep++;
+                return;
+            }
+            ST.current->arrow[ST.index]->setHighlight();
+            code.setHighlight({3,4});
+            int to = ST.current->arrow[ST.index]->getTo();
+            int weight = (ST.isWeighted) ? ST.current->arrow[ST.index]->getWeight() : 1;
+            int newCost = ST.current->getCost() + weight;
+            checkTimer+=GetFrameTime();
+            if(checkTimer>=delayTime){
+                currentStep++;
+                checkTimer=0;
+                if (ST.current->getCost()!=-1&&(ST.graph[to]->getCost() == -1 || newCost < ST.graph[to]->getCost())) {
+                    code.setHighlight({5});
+                    ST.graph[to]->setCost(newCost);
+                    currentStep++;
+                    ST.animationStep=4;
+                }
+                else{
+                    ST.current->arrow[ST.index]->deHighlight();
+                    ST.index++;
+                }
             }
         }
         else{
+            if(ST.index>=ST.allArrows.size()){
+                code.setHighlight({6});
+                ST.index=0;
+                ST.animationStep++;
+                ST.current->setKnown();
+                currentStep++;
+                return;
+            }
+            code.setHighlight({3,4});
             int from = ST.allArrows[ST.index]->getFrom();
             int to = ST.allArrows[ST.index]->getTo();
             int weight = (ST.isWeighted)? ST.allArrows[ST.index]->getWeight() : 1;
             if(from == ST.current->getID()||to == ST.current->getID()){
                 checkTimer+=GetFrameTime();
                 ST.allArrows[ST.index]->setHighlight();
-                if(checkTimer>=delayTime){
-                    currentStep++;
-                    checkTimer=0;
-                    int newCost = ST.current->getCost() + weight;
-                    if (from == ST.current->getID()) {
+                int newCost = ST.current->getCost() + weight;
+                if (from == ST.current->getID()) {
+                    if(checkTimer>=delayTime){
+                        currentStep++;
+                        checkTimer=0;
                         if (ST.current->getCost()!=-1&&(ST.graph[to]->getCost() == -1 || newCost < ST.graph[to]->getCost())) {
+                            code.setHighlight({5});
                             ST.graph[to]->setCost(newCost);
+                            ST.animationStep=4;
                             currentStep++;
                         }
-                    } else if (to == ST.current->getID()) {
-                        if (ST.current->getCost()!=-1&&(ST.graph[from]->getCost() == -1 || newCost < ST.graph[from]->getCost())) {
-                            ST.graph[from]->setCost(newCost);
-                            currentStep++;
+                        else{
+                            ST.allArrows[ST.index]->deHighlight();
+                            ST.index++;
                         }
                     }
-                    ST.allArrows[ST.index]->deHighlight();
-                    ST.index++;
+                } 
+                else if (to == ST.current->getID()) {
+                    if(checkTimer>=delayTime){
+                        currentStep++;
+                        checkTimer=0;
+                        if (ST.current->getCost()!=-1&&(ST.graph[from]->getCost() == -1 || newCost < ST.graph[from]->getCost())) {
+                            code.setHighlight({5});
+                            ST.graph[from]->setCost(newCost);
+                            ST.animationStep=4;
+                            currentStep++;
+                        }
+                        else{
+                            ST.allArrows[ST.index]->deHighlight();
+                            ST.index++;
+                        }
+                    }
                 }
             }
             else{
                 ST.index++;
             }
-            if(ST.index>=ST.allArrows.size()){
-                ST.index=0;
-                ST.animationStep++;
-                ST.current->setKnown();
-                currentStep++;
-            }
         }
     }
     else if(ST.animationStep==3){
+        code.setHighlight({7});
         checkTimer+=GetFrameTime();
         for (auto n : ST.graph) {
-            n->setHighlight();
-            if (checkTimer>=delayTime&&!n->getKnown() && ((n->getCost() == -1 && minCost==INT_MAX)||(n->getCost()!=-1 && n->getCost() <= minCost))) {
+            if(n->getCost()!=-1)
+                n->setHighlight();
+            if (checkTimer>=delayTime&&!n->getKnown() && n->getCost()!=-1 && n->getCost() <= minCost) {
                 if(n->getCost()!=-1)
                     minCost = n->getCost();
                 findSmall = n->getID();
             }
         }
         if(checkTimer>=delayTime){
+            currentStep++;
             checkTimer=0;
             if (findSmall == -1) {
                 for (auto n : ST.graph){
@@ -530,19 +605,35 @@ void ShortestPathState::animateDijkstra(int startNode){
                 isPlaying=false;
                 isPaused=true;
                 currentStep++;
+                code.clearHighlight();
                 return;
             }
             else{
+                code.setHighlight({2});
                 ST.current = ST.graph[findSmall];
                 ST.animationStep-=2;
+                for (auto n : ST.graph){
+                    if(n!=ST.current)
+                        n->deHighlight();
+                }
                 currentStep++;
             }
             findSmall = -1;
             minCost = INT_MAX;
-            for (auto n : ST.graph){
-                if(n!=ST.current)
-                    n->deHighlight();
+        }
+    }
+    else if(ST.animationStep==4){
+        checkTimer+=GetFrameTime();
+        if(checkTimer>=delayTime){
+            if(ST.isDirected){
+                ST.current->arrow[ST.index]->deHighlight();
             }
+            else{
+                ST.allArrows[ST.index]->deHighlight();
+            }
+            checkTimer=0;
+            ST.index++;
+            ST.animationStep=2;
         }
     }
 }
@@ -554,7 +645,30 @@ void ShortestPathState::resetBox(){
 }
 
 bool ShortestPathState::isBackPressed(){
-    return panel.isBackPressed();
+    bool res=panel.isBackPressed();
+    if(res){
+        ST.clear();
+        resetBox();
+        Unweighted.Selected();
+        Undirected.Selected();
+        Weighted.deSelected();
+        Directed.deSelected();
+        ST.deDirected();
+        ST.deWeighted();
+        isPlaying = false;
+        isPaused = false;
+        currentStep = 0;
+        isStateSaved=false;
+        findSmall=-1;
+        minCost =  INT_MAX;
+        isLoadFile=false;
+        clearState();
+        animationState=STAnimationMode::IDLE;
+        code.clearCode();
+        code.clearHighlight();
+        panel.reset();
+    }
+    return res;
 }
 
 void ShortestPathState::play(){
@@ -616,7 +730,8 @@ void ShortestPathState::moveStart(){
 void ShortestPathState::saveState(){
     ShortestPath* currentState = ST.clone();
     STAnimationMode currentMode = this->animationState;
-    stateList.push_back(new AnimationStep{currentState, currentMode});
+    CodeBlock currentCodeBlock = this->code;
+    stateList.push_back(new AnimationStep{currentState, currentMode,currentCodeBlock});
 }
 
 void ShortestPathState::applyState(){
@@ -630,6 +745,7 @@ void ShortestPathState::applyState(){
     ST.clearGraph();
     ST = *stateList[currentStep]->ST->clone();
     animationState=stateList[currentStep]->animationState;
+    code=stateList[currentStep]->code.clone();
 }
 
 void ShortestPathState::clearState() {

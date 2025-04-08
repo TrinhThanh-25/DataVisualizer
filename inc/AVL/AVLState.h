@@ -45,7 +45,6 @@ class AVLState {
         
     private:
         AVL AVLTree;
-        CodeBlock AVLCode;
         AVLPanel panel;
         
         InputBox createBox;
@@ -67,6 +66,7 @@ class AVLState {
         struct AnimationStep{
             AVL* AVLTree;
             AVLAnimationMode animationState;
+            CodeBlock code;
         };
 
         std::vector<AnimationStep*> stateList;

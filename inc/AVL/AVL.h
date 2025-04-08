@@ -18,13 +18,12 @@ class AVL{
         void rotateLeft(AVLNode*& root);
         void rotateRightLeft(AVLNode*& root);
         void rotateLeftRight(AVLNode*& root);
+        void clear();
         void clearTree();
         void clearTree(AVLNode*& root);
 
         void calculateHeight();
         void calculateHeight(AVLNode* root);
-        void calculateDepth();
-        void calculateDepth(AVLNode* root);
         void setCreatePosition();
         void setCreatePosition(AVLNode* root);
         void setPosition();

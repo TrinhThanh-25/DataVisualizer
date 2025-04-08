@@ -27,6 +27,7 @@ class Arrow{
           Vector2 targetDestination; 
           Vector2 targetPosition;
           Color color=BLACK;
+          Color highlight = RED;
 };
 
 #endif 

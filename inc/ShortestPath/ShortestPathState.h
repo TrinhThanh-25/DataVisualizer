@@ -4,6 +4,7 @@
 #include <random>
 #include <ShortestPath/ShortestPath.h>
 #include <ShortestPath/STPanel.h>
+#include <ShortestPath/ShortestPathCode.h>
 #include <GUI/CodeBlock.h>
 
 enum class STAnimationMode {
@@ -38,7 +39,6 @@ class ShortestPathState{
 
     private:
         ShortestPath ST;
-        CodeBlock STCode;
         STPanel panel;
 
         InputBox NodesBox;
@@ -69,11 +69,13 @@ class ShortestPathState{
         struct AnimationStep{
             ShortestPath* ST;
             STAnimationMode animationState;
+            CodeBlock code;
         };
 
         std::vector<AnimationStep*> stateList;
 
         std::string startNodeText;
+        bool isLoadFile=false;
 };
 
 #endif

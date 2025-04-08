@@ -23,8 +23,6 @@ class STArrow : public Arrow{
         int to;
         int weight;
 
-        Color normal = BLACK;
-        Color highlight = RED;
         bool isHighlight=false;
 };
 

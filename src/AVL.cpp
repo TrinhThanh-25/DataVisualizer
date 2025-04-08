@@ -10,6 +10,11 @@ AVL::~AVL(){
 
 void AVL::createTree(std::string text){
     clearTree();
+    for (char& c : text) {
+        if (c == ';' || c == ' ') {
+            c = ',';
+        }
+    }
     std::string value;
     std::stringstream ss(text);
     while(std::getline(ss,value,',')){
@@ -25,8 +30,6 @@ void AVL::insertNode(int value){
         root = new AVLNode(); 
         root->setValue(value);
         calculateHeight();
-        root->setPosition({(float)GetScreenWidth()/2,AVLPosition.y});
-        root->setTargetPosition({(float)GetScreenWidth()/2,AVLPosition.y});
         return;
     }
     AVLNode* cur = root;
@@ -36,9 +39,6 @@ void AVL::insertNode(int value){
                 cur->left = new AVLNode();
                 cur->left->setValue(value);
                 cur->left->parent = cur;
-                calculateHeight();
-                cur->left->setPosition({cur->getOrigin().x-(cur->left->getHeight()*(AVLLeafSpace+AVLNodeSize.x)/2.0f),cur->getOrigin().y+AVLLevelSpace});
-                cur->left->setTargetPosition({cur->getOrigin().x-(cur->left->getHeight()*(AVLLeafSpace+AVLNodeSize.x)/2.0f),cur->getOrigin().y+AVLLevelSpace});
                 break;
             }
             cur = cur->left;
@@ -48,15 +48,12 @@ void AVL::insertNode(int value){
                 cur->right = new AVLNode();
                 cur->right->setValue(value);
                 cur->right->parent = cur;
-                calculateHeight();
-                cur->right->setPosition({cur->getOrigin().x+(cur->right->getHeight()*(AVLLeafSpace+AVLNodeSize.x)/2.0f),cur->getOrigin().y+AVLLevelSpace});
-                cur->right->setTargetPosition({cur->getOrigin().x+(cur->right->getHeight()*(AVLLeafSpace+AVLNodeSize.x)/2.0f),cur->getOrigin().y+AVLLevelSpace});
                 break;
             }
             cur = cur->right;
         }
     }
-    calculateDepth();
+    calculateHeight();
     balanceTree();
 }
 
@@ -79,7 +76,6 @@ void AVL::balanceTree(AVLNode*& root){
             else rotateLeft(root);
         }
     }
-    calculateDepth();
 }
 
 int AVL::getBalanceFactor(AVLNode* root){
@@ -132,6 +128,13 @@ void AVL::rotateLeftRight(AVLNode*& root){
     rotateRight(root);
 }
 
+void AVL::clear(){
+    clearTree();
+    curNode=nullptr;
+    temp=nullptr;
+    animationStep = 0;
+}
+
 void AVL::clearTree(){
     clearTree(root);
     root=nullptr;
@@ -155,26 +158,26 @@ void AVL::calculateHeight(AVLNode* root){
     if(!root) return;
     calculateHeight(root->left);
     calculateHeight(root->right);
-    if(!root->left && !root->right) root->setHeight(1);
-    else if(!root->left) root->setHeight(1+root->right->getHeight());
-    else if(!root->right) root->setHeight(1+root->left->getHeight());
-    else root->setHeight(1+std::max(root->left->getHeight(), root->right->getHeight()));
-}
-
-void AVL::calculateDepth(){
-    calculateDepth(root);
-}
-
-void AVL::calculateDepth(AVLNode* root){
-    if(!root) return;
-    if(!root->parent) {
-        root->setDepth(0);
+    if(!root->left && !root->right) {
+        root->setHeight(1);
+        root->setLeftNumNodes(0);
+        root->setRightNumNodes(0);
     }
-    else{
-        root->setDepth(1+root->parent->getDepth());
+    else if(!root->left) {
+        root->setHeight(1+root->right->getHeight());
+        root->setLeftNumNodes(0);
+        root->setRightNumNodes(root->right->getLeftNumNodes()+root->right->getRightNumNodes()+1);
     }
-    calculateDepth(root->left);
-    calculateDepth(root->right);
+    else if(!root->right) {
+        root->setHeight(1+root->left->getHeight());
+        root->setLeftNumNodes(root->left->getLeftNumNodes()+root->left->getRightNumNodes()+1);
+        root->setRightNumNodes(0);
+    }
+    else {
+        root->setHeight(1+std::max(root->left->getHeight(), root->right->getHeight()));
+        root->setLeftNumNodes(root->left->getLeftNumNodes()+root->left->getRightNumNodes()+1);
+        root->setRightNumNodes(root->right->getLeftNumNodes()+root->right->getRightNumNodes()+1);
+    }
 }
 
 void AVL::setCreatePosition(){
@@ -202,10 +205,10 @@ void AVL::setPosition(){
 void AVL::setPosition(AVLNode* root){
     if(!root) return;
     if(root->left){
-        root->left->setPosition({(float)(root->getTargetPosition().x-(pow(2,root->left->getHeight()-1)*(AVLLeafSpace+AVLNodeSize.x)/2.0f)),root->getTargetPosition().y+AVLLevelSpace});
+        root->left->setPosition({(float)(root->getTargetPosition().x-((1+((root->left->right)? root->left->right->getTotalNumNodes() : 0))*(AVLLeafSpace+AVLNodeSize.x)/2.0f)),root->getTargetPosition().y+AVLLevelSpace});
     }
     if(root->right){
-        root->right->setPosition({(float)(root->getTargetPosition().x+(pow(2,root->right->getHeight()-1)*(AVLLeafSpace+AVLNodeSize.x)/2.0f)),root->getTargetPosition().y+AVLLevelSpace});
+        root->right->setPosition({(float)(root->getTargetPosition().x+((1+((root->right->left)? root->right->left->getTotalNumNodes() : 0))*(AVLLeafSpace+AVLNodeSize.x)/2.0f)),root->getTargetPosition().y+AVLLevelSpace});
     }
     setPosition(root->left);
     setPosition(root->right);
@@ -219,10 +222,10 @@ void AVL::setTargetPosition(){
 void AVL::setTargetPosition(AVLNode* root){
     if(!root) return;
     if(root->left){
-        root->left->setTargetPosition({(float)(root->getTargetPosition().x-(pow(2,root->left->getHeight()-1)*(AVLLeafSpace+AVLNodeSize.x)/2.0f)),root->getTargetPosition().y+AVLLevelSpace});
+        root->left->setTargetPosition({(float)(root->getTargetPosition().x-((1+((root->left->right)? root->left->right->getTotalNumNodes() : 0))*(AVLLeafSpace+AVLNodeSize.x)/2.0f)),root->getTargetPosition().y+AVLLevelSpace});
     }
     if(root->right){
-        root->right->setTargetPosition({(float)(root->getTargetPosition().x+(pow(2,root->right->getHeight()-1)*(AVLLeafSpace+AVLNodeSize.x)/2.0f)),root->getTargetPosition().y+AVLLevelSpace});
+        root->right->setTargetPosition({(float)(root->getTargetPosition().x+((1+((root->right->left)? root->right->left->getTotalNumNodes() : 0))*(AVLLeafSpace+AVLNodeSize.x)/2.0f)),root->getTargetPosition().y+AVLLevelSpace});
     }
     setTargetPosition(root->left);
     setTargetPosition(root->right);

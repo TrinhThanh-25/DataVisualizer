@@ -16,7 +16,6 @@ class STPanel : public Panel{
         Button Create;
         Button Dijkstra;
         Button Setting;
-        Button* isUsing=nullptr;
 };
 
 #endif

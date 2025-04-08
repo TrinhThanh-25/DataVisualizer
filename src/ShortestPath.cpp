@@ -10,11 +10,11 @@ ShortestPath::ShortestPath() : current(nullptr) {
 }
 
 ShortestPath::~ShortestPath() {
-   clearGraph();
+   clear();
 }
 
 void ShortestPath::createGraph(int numNodes, int edges){
-    clearGraph();
+    clear();
     k = sqrt((rangeX * rangeY) / numNodes);
     for(int i = 0; i < numNodes; i++){
         float posX = centerX + (rand() % (int)rangeX - rangeX / 2);
@@ -53,6 +53,47 @@ void ShortestPath::createGraph(int numNodes, int edges){
     }
 }
 
+void ShortestPath::createGraph(std::string input) {
+    clear();
+    std::stringstream ss(input);
+    int numNodes, edges;
+    ss >> numNodes >> edges;
+    k = sqrt((rangeX * rangeY) / numNodes);
+    for (int i = 0; i < numNodes; i++) {
+        float posX = centerX + (rand() % (int)rangeX - rangeX / 2);
+        float posY = centerY + (rand() % (int)rangeY - rangeY / 2);
+        ShortestPathNode* n = new ShortestPathNode({posX, posY});
+        n->setID(i);
+        graph.push_back(n);
+    }
+    int from, to, weight;
+    while (ss >> from >> to >> weight) {
+        if (from != to) {
+            bool exists = false;
+            for (const auto& e : graph[from]->arrow) {
+                if (e->getTo() == to) {
+                    exists = true;
+                    break;
+                }
+            }
+            for (const auto& e : graph[to]->arrow) {
+                if (e->getTo() == from) {
+                    exists = true;
+                    break;
+                }
+            }
+            if (!exists) {
+                graph[from]->adj.push_back(graph[to]);
+                STArrow* edge = new STArrow(graph[from]->getPosition(), to);
+                edge->setFrom(from);
+                edge->setWeight(weight); 
+                graph[from]->arrow.push_back(edge);
+                allArrows.push_back(edge);
+            }
+        }
+    }
+}
+
 void ShortestPath::addEdge(int node1, int node2){
     if(node1 < graph.size() && node2 < graph.size()){
         graph[node1]->addEdge(graph[node2]);
@@ -69,6 +110,20 @@ void ShortestPath::removeEdge(int node1, int node2){
             graph[node2]->removeEdge(graph[node1]);
         }
     }
+}
+
+void ShortestPath::clear(){
+    clearGraph();
+    current=nullptr;
+    animationStep = 0;
+    findSmall = -1;  
+    minCost = INT_MAX;
+    index=0;
+    isWeighted = false;
+    isDirected = false;
+    k = 0.0f;
+    cool=1.5f;
+    deltaTime=0.0f;
 }
 
 void ShortestPath::clearGraph(){
@@ -118,14 +173,17 @@ ShortestPath* ShortestPath::clone() const {
             cloneST->current = newNode;
         }
     }
-    for (auto node : cloneST->graph){
-        for (auto arr : node->arrow){
-            cloneST->allArrows.push_back(arr);
-            for (auto adj : cloneST->graph){
-                if(adj->getID()==arr->getTo()){
-                    node->adj.push_back(adj);
-                }
+    for (auto from : this->allArrows){
+        for (auto arr : cloneST->graph[from->getFrom()]->arrow){
+            if(arr->getTo()==from->getTo()){
+                cloneST->allArrows.push_back(arr);
+                break;
             }
+        }
+    }
+    for (int i=0;i<cloneST->graph.size();i++){
+        for (auto adj : this->graph[i]->adj){
+            cloneST->graph[i]->adj.push_back(cloneST->graph[adj->getID()]);
         }
     }
     cloneST->k = this->k;

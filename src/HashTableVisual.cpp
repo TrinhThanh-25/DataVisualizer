@@ -1,9 +1,9 @@
 #include "HashTable/HashTableVisual.h"
 #include <algorithm>
 
-HashTableVisualization::HashTableVisualization(const Texture2D& hollowCircle, const Texture2D& solidCircle, const Texture2D& arrowEdge, const Font& fontNumber, const Font& fontText, const bool& isLightMode, const float& speed)
-    : hashTable(MAX_TABLE_SIZE), hollowCircle(hollowCircle), solidCircle(solidCircle), arrowEdge(arrowEdge), fontNumber(fontNumber), fontText(fontText), isLightMode(isLightMode), speed(speed), presentations(fontNumber, fontText, speed, hashTable),
-      isInserting(false), isDeleting(false), isFinding(false), isInitializing(false), inputBox(10, HASH_TABLE_HEIGHT - 50, INPUT_BOX_WIDTH, INPUT_BOX_HEIGHT) {
+HashTableVisualization::HashTableVisualization(const Font& fontNumber, const Font& fontText, const bool& isLightMode, const float& speed)
+    : hashTable(MAX_TABLE_SIZE), fontNumber(fontNumber), fontText(fontText), isLightMode(isLightMode), speed(speed), presentations(fontNumber, fontText, speed, hashTable),
+      isInserting(false), isDeleting(false), isFinding(false), isInitializing(false), inputBox(10, HASH_TABLE_HEIGHT - 50, INPUT_BOX_WIDTH, INPUT_BOX_HEIGHT, 10, LIGHTGRAY, BLACK) {
     
     inputBox.isAppear = false;
 

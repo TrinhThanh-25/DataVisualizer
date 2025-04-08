@@ -20,8 +20,10 @@ class CodeBlock{
         void drawHighlight(int fontSize);
         void clearHighlight();
 
+        CodeBlock clone() const;
     private:
-        const Color highlightColor;
+        Color background=LIGHTGRAY;
+        Color highlight=YELLOW;
         std::string code;
         std::vector<int> highlightID;
 };

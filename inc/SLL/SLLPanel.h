@@ -20,7 +20,6 @@ class SLLPanel : public Panel{
         Button Remove;
         Button Update;
         Button Search;
-        Button* isUsing=nullptr;
 };
 
 #endif

@@ -1,13 +1,13 @@
 #include "AVL/AVLNode.h"
 
 AVLNode::AVLNode() : parent(nullptr), left(nullptr), right(nullptr), leftPointer(nullptr), rightPointer(nullptr) {
-    Color nodeColor=LIGHTGRAY;
-    Color textColor=BLACK;
-    Color highlight = GREEN;
-    Color textHighlight = WHITE;
-    int height=0;
-    int depth=0;
-    bool isHighlight=false;
+    nodeColor=LIGHTGRAY;
+    textColor=BLACK;
+    highlight = GREEN;
+    textHighlight = WHITE;
+    height=0;
+    depth=0;
+    isHighlight=false;
 }
 
 AVLNode::~AVLNode(){
@@ -176,5 +176,27 @@ AVLNode* AVLNode::clone() const{
     newNode->value = this->value;
     newNode->height=this->height;
     newNode->depth=this->depth;
+    newNode->leftNumNodes=this->leftNumNodes;
+    newNode->rightNumNodes=this->rightNumNodes;
     return newNode;
+}
+
+int AVLNode::getLeftNumNodes(){
+    return leftNumNodes;
+}
+
+int AVLNode::getRightNumNodes(){
+    return rightNumNodes;
+}
+
+void AVLNode::setLeftNumNodes(int value){
+    leftNumNodes=value;
+}
+
+void AVLNode::setRightNumNodes(int value){
+    rightNumNodes=value;
+}
+
+int AVLNode::getTotalNumNodes(){
+    return leftNumNodes+rightNumNodes+1;
 }
