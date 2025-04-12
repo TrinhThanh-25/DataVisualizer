@@ -23,6 +23,9 @@ Font fontText = LoadFont("../resources/Ubuntu-Bold.ttf");
 float tempSpeed = 0.1f;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
+=======
 >>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
 =======
 >>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55

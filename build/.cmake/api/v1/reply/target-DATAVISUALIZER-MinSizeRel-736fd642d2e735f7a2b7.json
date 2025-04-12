@@ -97,6 +97,7 @@
 				{
 <<<<<<<< HEAD:build/.cmake/api/v1/reply/target-DATAVISUALIZER-MinSizeRel-736fd642d2e735f7a2b7.json
 <<<<<<<< HEAD:build/.cmake/api/v1/reply/target-DATAVISUALIZER-MinSizeRel-736fd642d2e735f7a2b7.json
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/target-DATAVISUALIZER-MinSizeRel-736fd642d2e735f7a2b7.json
 					"backtrace" : 6,
 					"path" : "C:/Users/TrinhThanh/Desktop/DataVisualization/raylib/src"
 ========
@@ -107,6 +108,10 @@
 				{
 					"backtrace" : 7,
 					"path" : "C:/Users/TrinhThanh/Desktop/DataVisualization/raygui-master/src"
+========
+					"backtrace" : 2,
+					"path" : "D:/test/Programming/project/DataVisualizer/raylib/src"
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/target-DATAVISUALIZER-MinSizeRel-f24784a282513dc9d828.json
 ========
 					"backtrace" : 2,
 					"path" : "D:/test/Programming/project/DataVisualizer/raylib/src"
@@ -186,6 +191,7 @@
 				{
 <<<<<<<< HEAD:build/.cmake/api/v1/reply/target-DATAVISUALIZER-MinSizeRel-736fd642d2e735f7a2b7.json
 <<<<<<<< HEAD:build/.cmake/api/v1/reply/target-DATAVISUALIZER-MinSizeRel-736fd642d2e735f7a2b7.json
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/target-DATAVISUALIZER-MinSizeRel-736fd642d2e735f7a2b7.json
 					"backtrace" : 6,
 					"path" : "C:/Users/TrinhThanh/Desktop/DataVisualization/raylib/src"
 ========
@@ -196,6 +202,10 @@
 				{
 					"backtrace" : 7,
 					"path" : "C:/Users/TrinhThanh/Desktop/DataVisualization/raygui-master/src"
+========
+					"backtrace" : 2,
+					"path" : "D:/test/Programming/project/DataVisualizer/raylib/src"
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/target-DATAVISUALIZER-MinSizeRel-f24784a282513dc9d828.json
 ========
 					"backtrace" : 2,
 					"path" : "D:/test/Programming/project/DataVisualizer/raylib/src"
@@ -221,11 +231,14 @@
 ========
 			"backtrace" : 2,
 			"id" : "raylib::@7d429ebd5d102775094d"
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/target-DATAVISUALIZER-MinSizeRel-736fd642d2e735f7a2b7.json
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/target-DATAVISUALIZER-MinSizeRel-f24784a282513dc9d828.json
+========
 >>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/target-DATAVISUALIZER-MinSizeRel-f24784a282513dc9d828.json
 		},
 		{
 			"backtrace" : 2,
-			"id" : "raylib::@7d429ebd5d102775094d"
+			"id" : "glfw::@a896dd99b4a5c6eab3d9"
 		},
 		{
 			"backtrace" : 2,

@@ -97,7 +97,12 @@
 				{
 <<<<<<<< HEAD:build/.cmake/api/v1/reply/target-DATAVISUALIZER-RelWithDebInfo-4f2c82fac9effeda3234.json
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/target-DATAVISUALIZER-RelWithDebInfo-4f2c82fac9effeda3234.json
+>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
+=======
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/target-DATAVISUALIZER-RelWithDebInfo-4f2c82fac9effeda3234.json
 <<<<<<<< HEAD:build/.cmake/api/v1/reply/target-DATAVISUALIZER-RelWithDebInfo-4f2c82fac9effeda3234.json
 >>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
 					"backtrace" : 6,
@@ -111,6 +116,16 @@
 					"backtrace" : 7,
 					"path" : "C:/Users/TrinhThanh/Desktop/DataVisualization/raygui-master/src"
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
+========
+					"backtrace" : 2,
+					"path" : "D:/test/Programming/project/DataVisualizer/raylib/src"
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/target-DATAVISUALIZER-RelWithDebInfo-74f276156d91c8324579.json
+<<<<<<< HEAD
+>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
 =======
 ========
 					"backtrace" : 2,
@@ -192,7 +207,12 @@
 				{
 <<<<<<<< HEAD:build/.cmake/api/v1/reply/target-DATAVISUALIZER-RelWithDebInfo-4f2c82fac9effeda3234.json
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/target-DATAVISUALIZER-RelWithDebInfo-4f2c82fac9effeda3234.json
+>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
+=======
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/target-DATAVISUALIZER-RelWithDebInfo-4f2c82fac9effeda3234.json
 <<<<<<<< HEAD:build/.cmake/api/v1/reply/target-DATAVISUALIZER-RelWithDebInfo-4f2c82fac9effeda3234.json
 >>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
 					"backtrace" : 6,
@@ -206,6 +226,16 @@
 					"backtrace" : 7,
 					"path" : "C:/Users/TrinhThanh/Desktop/DataVisualization/raygui-master/src"
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
+========
+					"backtrace" : 2,
+					"path" : "D:/test/Programming/project/DataVisualizer/raylib/src"
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/target-DATAVISUALIZER-RelWithDebInfo-74f276156d91c8324579.json
+<<<<<<< HEAD
+>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
 =======
 ========
 					"backtrace" : 2,
@@ -233,27 +263,43 @@
 ========
 			"backtrace" : 2,
 			"id" : "raylib::@7d429ebd5d102775094d"
+<<<<<<< HEAD
+=======
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/target-DATAVISUALIZER-RelWithDebInfo-4f2c82fac9effeda3234.json
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/target-DATAVISUALIZER-RelWithDebInfo-74f276156d91c8324579.json
+========
+>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
 >>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/target-DATAVISUALIZER-RelWithDebInfo-74f276156d91c8324579.json
 		},
 		{
 			"backtrace" : 2,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"id" : "glfw::@a896dd99b4a5c6eab3d9"
 =======
 			"id" : "raylib::@7d429ebd5d102775094d"
+>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
+=======
+			"id" : "glfw::@a896dd99b4a5c6eab3d9"
 >>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
 		},
 		{
 			"backtrace" : 2,
 			"id" : "glfw::@a896dd99b4a5c6eab3d9"
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
 <<<<<<<< HEAD:build/.cmake/api/v1/reply/target-DATAVISUALIZER-RelWithDebInfo-4f2c82fac9effeda3234.json
 ========
 		},
 		{
 			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"
 >>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/target-DATAVISUALIZER-RelWithDebInfo-74f276156d91c8324579.json
+<<<<<<< HEAD
+>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
+=======
 >>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
 		}
 	],

@@ -80,8 +80,13 @@
     <ClCompile>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       <AdditionalIncludeDirectories>C:\Users\TrinhThanh\Desktop\DataVisualization\inc;C:\Users\TrinhThanh\Desktop\DataVisualization\raylib\src;C:\Users\TrinhThanh\Desktop\DataVisualization\raygui-master\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Users/TrinhThanh/Desktop/DataVisualization/raylib/src/external/glfw/include"</AdditionalOptions>
+=======
+      <AdditionalIncludeDirectories>D:\test\Programming\project\DataVisualizer\inc;D:\test\Programming\project\DataVisualizer\raylib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "D:/test/Programming/project/DataVisualizer/raylib/src/external/glfw/include"</AdditionalOptions>
+>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
 =======
       <AdditionalIncludeDirectories>D:\test\Programming\project\DataVisualizer\inc;D:\test\Programming\project\DataVisualizer\raylib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /external:I "D:/test/Programming/project/DataVisualizer/raylib/src/external/glfw/include"</AdditionalOptions>
@@ -111,10 +116,17 @@
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;PLATFORM_DESKTOP;GRAPHICS_API_OPENGL_33;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       <AdditionalIncludeDirectories>C:\Users\TrinhThanh\Desktop\DataVisualization\inc;C:\Users\TrinhThanh\Desktop\DataVisualization\raylib\src;C:\Users\TrinhThanh\Desktop\DataVisualization\raygui-master\src;C:\Users\TrinhThanh\Desktop\DataVisualization\raylib\src\external\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
       <AdditionalIncludeDirectories>C:\Users\TrinhThanh\Desktop\DataVisualization\inc;C:\Users\TrinhThanh\Desktop\DataVisualization\raylib\src;C:\Users\TrinhThanh\Desktop\DataVisualization\raygui-master\src;C:\Users\TrinhThanh\Desktop\DataVisualization\raylib\src\external\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+=======
+      <AdditionalIncludeDirectories>D:\test\Programming\project\DataVisualizer\inc;D:\test\Programming\project\DataVisualizer\raylib\src;D:\test\Programming\project\DataVisualizer\raylib\src\external\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\test\Programming\project\DataVisualizer\inc;D:\test\Programming\project\DataVisualizer\raylib\src;D:\test\Programming\project\DataVisualizer\raylib\src\external\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
 =======
       <AdditionalIncludeDirectories>D:\test\Programming\project\DataVisualizer\inc;D:\test\Programming\project\DataVisualizer\raylib\src;D:\test\Programming\project\DataVisualizer\raylib\src\external\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
@@ -141,8 +153,13 @@
     <ClCompile>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       <AdditionalIncludeDirectories>C:\Users\TrinhThanh\Desktop\DataVisualization\inc;C:\Users\TrinhThanh\Desktop\DataVisualization\raylib\src;C:\Users\TrinhThanh\Desktop\DataVisualization\raygui-master\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Users/TrinhThanh/Desktop/DataVisualization/raylib/src/external/glfw/include"</AdditionalOptions>
+=======
+      <AdditionalIncludeDirectories>D:\test\Programming\project\DataVisualizer\inc;D:\test\Programming\project\DataVisualizer\raylib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "D:/test/Programming/project/DataVisualizer/raylib/src/external/glfw/include"</AdditionalOptions>
+>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
 =======
       <AdditionalIncludeDirectories>D:\test\Programming\project\DataVisualizer\inc;D:\test\Programming\project\DataVisualizer\raylib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /external:I "D:/test/Programming/project/DataVisualizer/raylib/src/external/glfw/include"</AdditionalOptions>
@@ -173,10 +190,17 @@
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;PLATFORM_DESKTOP;GRAPHICS_API_OPENGL_33;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       <AdditionalIncludeDirectories>C:\Users\TrinhThanh\Desktop\DataVisualization\inc;C:\Users\TrinhThanh\Desktop\DataVisualization\raylib\src;C:\Users\TrinhThanh\Desktop\DataVisualization\raygui-master\src;C:\Users\TrinhThanh\Desktop\DataVisualization\raylib\src\external\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
       <AdditionalIncludeDirectories>C:\Users\TrinhThanh\Desktop\DataVisualization\inc;C:\Users\TrinhThanh\Desktop\DataVisualization\raylib\src;C:\Users\TrinhThanh\Desktop\DataVisualization\raygui-master\src;C:\Users\TrinhThanh\Desktop\DataVisualization\raylib\src\external\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+=======
+      <AdditionalIncludeDirectories>D:\test\Programming\project\DataVisualizer\inc;D:\test\Programming\project\DataVisualizer\raylib\src;D:\test\Programming\project\DataVisualizer\raylib\src\external\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\test\Programming\project\DataVisualizer\inc;D:\test\Programming\project\DataVisualizer\raylib\src;D:\test\Programming\project\DataVisualizer\raylib\src\external\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
 =======
       <AdditionalIncludeDirectories>D:\test\Programming\project\DataVisualizer\inc;D:\test\Programming\project\DataVisualizer\raylib\src;D:\test\Programming\project\DataVisualizer\raylib\src\external\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
@@ -203,8 +227,13 @@
     <ClCompile>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       <AdditionalIncludeDirectories>C:\Users\TrinhThanh\Desktop\DataVisualization\inc;C:\Users\TrinhThanh\Desktop\DataVisualization\raylib\src;C:\Users\TrinhThanh\Desktop\DataVisualization\raygui-master\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Users/TrinhThanh/Desktop/DataVisualization/raylib/src/external/glfw/include"</AdditionalOptions>
+=======
+      <AdditionalIncludeDirectories>D:\test\Programming\project\DataVisualizer\inc;D:\test\Programming\project\DataVisualizer\raylib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "D:/test/Programming/project/DataVisualizer/raylib/src/external/glfw/include"</AdditionalOptions>
+>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
 =======
       <AdditionalIncludeDirectories>D:\test\Programming\project\DataVisualizer\inc;D:\test\Programming\project\DataVisualizer\raylib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /external:I "D:/test/Programming/project/DataVisualizer/raylib/src/external/glfw/include"</AdditionalOptions>
@@ -235,10 +264,17 @@
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;PLATFORM_DESKTOP;GRAPHICS_API_OPENGL_33;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       <AdditionalIncludeDirectories>C:\Users\TrinhThanh\Desktop\DataVisualization\inc;C:\Users\TrinhThanh\Desktop\DataVisualization\raylib\src;C:\Users\TrinhThanh\Desktop\DataVisualization\raygui-master\src;C:\Users\TrinhThanh\Desktop\DataVisualization\raylib\src\external\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
       <AdditionalIncludeDirectories>C:\Users\TrinhThanh\Desktop\DataVisualization\inc;C:\Users\TrinhThanh\Desktop\DataVisualization\raylib\src;C:\Users\TrinhThanh\Desktop\DataVisualization\raygui-master\src;C:\Users\TrinhThanh\Desktop\DataVisualization\raylib\src\external\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+=======
+      <AdditionalIncludeDirectories>D:\test\Programming\project\DataVisualizer\inc;D:\test\Programming\project\DataVisualizer\raylib\src;D:\test\Programming\project\DataVisualizer\raylib\src\external\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\test\Programming\project\DataVisualizer\inc;D:\test\Programming\project\DataVisualizer\raylib\src;D:\test\Programming\project\DataVisualizer\raylib\src\external\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
 =======
       <AdditionalIncludeDirectories>D:\test\Programming\project\DataVisualizer\inc;D:\test\Programming\project\DataVisualizer\raylib\src;D:\test\Programming\project\DataVisualizer\raylib\src\external\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
@@ -265,8 +301,13 @@
     <ClCompile>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       <AdditionalIncludeDirectories>C:\Users\TrinhThanh\Desktop\DataVisualization\inc;C:\Users\TrinhThanh\Desktop\DataVisualization\raylib\src;C:\Users\TrinhThanh\Desktop\DataVisualization\raygui-master\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Users/TrinhThanh/Desktop/DataVisualization/raylib/src/external/glfw/include"</AdditionalOptions>
+=======
+      <AdditionalIncludeDirectories>D:\test\Programming\project\DataVisualizer\inc;D:\test\Programming\project\DataVisualizer\raylib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "D:/test/Programming/project/DataVisualizer/raylib/src/external/glfw/include"</AdditionalOptions>
+>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
 =======
       <AdditionalIncludeDirectories>D:\test\Programming\project\DataVisualizer\inc;D:\test\Programming\project\DataVisualizer\raylib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /external:I "D:/test/Programming/project/DataVisualizer/raylib/src/external/glfw/include"</AdditionalOptions>
@@ -296,10 +337,17 @@
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;PLATFORM_DESKTOP;GRAPHICS_API_OPENGL_33;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       <AdditionalIncludeDirectories>C:\Users\TrinhThanh\Desktop\DataVisualization\inc;C:\Users\TrinhThanh\Desktop\DataVisualization\raylib\src;C:\Users\TrinhThanh\Desktop\DataVisualization\raygui-master\src;C:\Users\TrinhThanh\Desktop\DataVisualization\raylib\src\external\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
       <AdditionalIncludeDirectories>C:\Users\TrinhThanh\Desktop\DataVisualization\inc;C:\Users\TrinhThanh\Desktop\DataVisualization\raylib\src;C:\Users\TrinhThanh\Desktop\DataVisualization\raygui-master\src;C:\Users\TrinhThanh\Desktop\DataVisualization\raylib\src\external\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+=======
+      <AdditionalIncludeDirectories>D:\test\Programming\project\DataVisualizer\inc;D:\test\Programming\project\DataVisualizer\raylib\src;D:\test\Programming\project\DataVisualizer\raylib\src\external\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\test\Programming\project\DataVisualizer\inc;D:\test\Programming\project\DataVisualizer\raylib\src;D:\test\Programming\project\DataVisualizer\raylib\src\external\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
 =======
       <AdditionalIncludeDirectories>D:\test\Programming\project\DataVisualizer\inc;D:\test\Programming\project\DataVisualizer\raylib\src;D:\test\Programming\project\DataVisualizer\raylib\src\external\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>

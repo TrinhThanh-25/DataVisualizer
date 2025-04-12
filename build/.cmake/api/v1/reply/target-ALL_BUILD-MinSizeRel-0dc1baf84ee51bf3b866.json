@@ -18,6 +18,7 @@
 	[
 		{
 <<<<<<<< HEAD:build/.cmake/api/v1/reply/target-ALL_BUILD-MinSizeRel-0dc1baf84ee51bf3b866.json
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/target-ALL_BUILD-MinSizeRel-0dc1baf84ee51bf3b866.json
 			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"
 ========
 			"id" : "raylib::@7d429ebd5d102775094d"
@@ -28,6 +29,15 @@
 		},
 		{
 			"id" : "glfw::@a896dd99b4a5c6eab3d9"
+========
+			"id" : "raylib::@7d429ebd5d102775094d"
+		},
+		{
+			"id" : "glfw::@a896dd99b4a5c6eab3d9"
+		},
+		{
+			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/target-ALL_BUILD-RelWithDebInfo-c559b9ce9e9198be3419.json
 		}
 	],
 	"folder" : 

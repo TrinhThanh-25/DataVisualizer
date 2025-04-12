@@ -68,7 +68,11 @@
     <Midl>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       <AdditionalIncludeDirectories>C:\Users\TrinhThanh\Desktop\DataVisualization\inc;C:\Users\TrinhThanh\Desktop\DataVisualization\raylib\src;C:\Users\TrinhThanh\Desktop\DataVisualization\raygui-master\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+=======
+      <AdditionalIncludeDirectories>D:\test\Programming\project\DataVisualizer\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
 =======
       <AdditionalIncludeDirectories>D:\test\Programming\project\DataVisualizer\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
 >>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
@@ -86,7 +90,11 @@
     <Midl>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       <AdditionalIncludeDirectories>C:\Users\TrinhThanh\Desktop\DataVisualization\inc;C:\Users\TrinhThanh\Desktop\DataVisualization\raylib\src;C:\Users\TrinhThanh\Desktop\DataVisualization\raygui-master\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+=======
+      <AdditionalIncludeDirectories>D:\test\Programming\project\DataVisualizer\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
 =======
       <AdditionalIncludeDirectories>D:\test\Programming\project\DataVisualizer\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
 >>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
@@ -104,7 +112,11 @@
     <Midl>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       <AdditionalIncludeDirectories>C:\Users\TrinhThanh\Desktop\DataVisualization\inc;C:\Users\TrinhThanh\Desktop\DataVisualization\raylib\src;C:\Users\TrinhThanh\Desktop\DataVisualization\raygui-master\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+=======
+      <AdditionalIncludeDirectories>D:\test\Programming\project\DataVisualizer\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
 =======
       <AdditionalIncludeDirectories>D:\test\Programming\project\DataVisualizer\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
 >>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
@@ -122,7 +134,11 @@
     <Midl>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       <AdditionalIncludeDirectories>C:\Users\TrinhThanh\Desktop\DataVisualization\inc;C:\Users\TrinhThanh\Desktop\DataVisualization\raylib\src;C:\Users\TrinhThanh\Desktop\DataVisualization\raygui-master\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+=======
+      <AdditionalIncludeDirectories>D:\test\Programming\project\DataVisualizer\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
 =======
       <AdditionalIncludeDirectories>D:\test\Programming\project\DataVisualizer\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
 >>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55

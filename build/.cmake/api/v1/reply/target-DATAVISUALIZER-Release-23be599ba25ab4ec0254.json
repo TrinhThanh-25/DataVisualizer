@@ -96,6 +96,10 @@
 				},
 				{
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/target-DATAVISUALIZER-Release-f2856610846cee80d23a.json
+>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
 <<<<<<<< HEAD:build/.cmake/api/v1/reply/target-DATAVISUALIZER-Release-f2856610846cee80d23a.json
 					"backtrace" : 6,
 					"path" : "C:/Users/TrinhThanh/Desktop/DataVisualization/raylib/src"
@@ -107,9 +111,16 @@
 				{
 					"backtrace" : 7,
 					"path" : "C:/Users/TrinhThanh/Desktop/DataVisualization/raygui-master/src"
+<<<<<<< HEAD
 =======
 					"backtrace" : 2,
 					"path" : "D:/test/Programming/project/DataVisualizer/raylib/src"
+>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
+=======
+========
+					"backtrace" : 2,
+					"path" : "D:/test/Programming/project/DataVisualizer/raylib/src"
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/target-DATAVISUALIZER-Release-23be599ba25ab4ec0254.json
 >>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
 				},
 				{
@@ -185,6 +196,10 @@
 				},
 				{
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/target-DATAVISUALIZER-Release-f2856610846cee80d23a.json
+>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
 <<<<<<<< HEAD:build/.cmake/api/v1/reply/target-DATAVISUALIZER-Release-f2856610846cee80d23a.json
 					"backtrace" : 6,
 					"path" : "C:/Users/TrinhThanh/Desktop/DataVisualization/raylib/src"
@@ -196,9 +211,16 @@
 				{
 					"backtrace" : 7,
 					"path" : "C:/Users/TrinhThanh/Desktop/DataVisualization/raygui-master/src"
+<<<<<<< HEAD
 =======
 					"backtrace" : 2,
 					"path" : "D:/test/Programming/project/DataVisualizer/raylib/src"
+>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
+=======
+========
+					"backtrace" : 2,
+					"path" : "D:/test/Programming/project/DataVisualizer/raylib/src"
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/target-DATAVISUALIZER-Release-23be599ba25ab4ec0254.json
 >>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
 				},
 				{
@@ -231,10 +253,19 @@
 			"backtrace" : 2,
 			"id" : "glfw::@a896dd99b4a5c6eab3d9"
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		},
 		{
 			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"
+>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
+=======
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/target-DATAVISUALIZER-Release-f2856610846cee80d23a.json
+========
+		},
+		{
+			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/target-DATAVISUALIZER-Release-23be599ba25ab4ec0254.json
 >>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
 		}
 	],

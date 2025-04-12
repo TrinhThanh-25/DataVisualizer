@@ -25,6 +25,7 @@
 		{
 			"id" : "raylib::@7d429ebd5d102775094d"
 <<<<<<<< HEAD:build/.cmake/api/v1/reply/target-ALL_BUILD-Debug-d911d8e9f79f88f3238c.json
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/target-ALL_BUILD-Debug-d911d8e9f79f88f3238c.json
 >>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/target-ALL_BUILD-Debug-39ea117e2f47ef788bbc.json
 		},
 		{
@@ -37,6 +38,14 @@
 		},
 		{
 			"id" : "DATAVISUALIZER::@6890427a1f51a3e7e1df"
+========
+		},
+		{
+			"id" : "glfw::@a896dd99b4a5c6eab3d9"
+		},
+		{
+			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/target-ALL_BUILD-Release-39ea117e2f47ef788bbc.json
 		}
 	],
 	"folder" : 

@@ -8,8 +8,12 @@
 #include <ShortestPath/ShortestPathState.h>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <HashTable/HashTableVisual.h>
 #include <GUI/ColorThemeManager.h>
+=======
+#include "HashTable/HashTableVisual.h"
+>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
 =======
 #include "HashTable/HashTableVisual.h"
 >>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
@@ -30,7 +34,11 @@ class Application{
         ShortestPathState ST;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         // HashTableVisualization hashTable(fontNumber, fontText, true, speed);
+=======
+        HashTableVisualization hashTable(fontNumber, fontText, true, speed);
+>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
 =======
         HashTableVisualization hashTable(fontNumber, fontText, true, speed);
 >>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
