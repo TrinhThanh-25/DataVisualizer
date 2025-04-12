@@ -1,0 +1,1192 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						4,
+						5
+					]
+				},
+				{
+					"build" : "raylib",
+					"childIndexes" : 
+					[
+						2
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-raylib-Debug-dac977eb2014d01c94e9.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "raylib",
+					"targetIndexes" : 
+					[
+						1,
+						8
+					]
+				},
+				{
+					"build" : "raylib/raylib",
+					"childIndexes" : 
+					[
+						3
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-raylib.raylib-Debug-88c47a678e16cf0073dd.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 2,
+					"source" : "raylib/src",
+					"targetIndexes" : 
+					[
+						2,
+						7
+					]
+				},
+				{
+					"build" : "raylib/raylib/external/glfw",
+					"childIndexes" : 
+					[
+						4
+					],
+					"jsonFile" : "directory-raylib.raylib.external.glfw-Debug-38845233cd217b380713.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.4"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 3,
+					"source" : "raylib/src/external/glfw",
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"build" : "raylib/raylib/external/glfw/src",
+					"jsonFile" : "directory-raylib.raylib.external.glfw.src-Debug-4d55a53c058fdfa6d7b4.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.4"
+					},
+					"parentIndex" : 3,
+					"projectIndex" : 3,
+					"source" : "raylib/src/external/glfw/src",
+					"targetIndexes" : 
+					[
+						6,
+						9
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "DATAVISUALIZER",
+					"targetIndexes" : 
+					[
+						0,
+						4,
+						5
+					]
+				},
+				{
+					"childIndexes" : 
+					[
+						2
+					],
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "Datavisualizer",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						1,
+						8
+					]
+				},
+				{
+					"childIndexes" : 
+					[
+						3
+					],
+					"directoryIndexes" : 
+					[
+						2
+					],
+					"name" : "raylib",
+					"parentIndex" : 1,
+					"targetIndexes" : 
+					[
+						2,
+						7
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						3,
+						4
+					],
+					"name" : "GLFW",
+					"parentIndex" : 2,
+					"targetIndexes" : 
+					[
+						3,
+						6,
+						9
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "ALL_BUILD::@6890427a1f51a3e7e1df",
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-693548b41da39ba03cde.json
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-693548b41da39ba03cde.json
+					"jsonFile" : "target-ALL_BUILD-Debug-d911d8e9f79f88f3238c.json",
+========
+					"jsonFile" : "target-ALL_BUILD-Debug-39ea117e2f47ef788bbc.json",
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/codemodel-v2-90e82b03ae0d31f19d71.json
+========
+					"jsonFile" : "target-ALL_BUILD-Debug-39ea117e2f47ef788bbc.json",
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/codemodel-v2-90e82b03ae0d31f19d71.json
+					"name" : "ALL_BUILD",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "ALL_BUILD::@5003b8f497eeabc0006e",
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-693548b41da39ba03cde.json
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-693548b41da39ba03cde.json
+					"jsonFile" : "target-ALL_BUILD-Debug-0dc1baf84ee51bf3b866.json",
+========
+					"jsonFile" : "target-ALL_BUILD-Debug-c559b9ce9e9198be3419.json",
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/codemodel-v2-90e82b03ae0d31f19d71.json
+========
+					"jsonFile" : "target-ALL_BUILD-Debug-c559b9ce9e9198be3419.json",
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/codemodel-v2-90e82b03ae0d31f19d71.json
+					"name" : "ALL_BUILD",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ALL_BUILD::@7d429ebd5d102775094d",
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-693548b41da39ba03cde.json
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-693548b41da39ba03cde.json
+					"jsonFile" : "target-ALL_BUILD-Debug-e8efd201a62c89abcbb2.json",
+========
+					"jsonFile" : "target-ALL_BUILD-Debug-1c1476347fb274a432a8.json",
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/codemodel-v2-90e82b03ae0d31f19d71.json
+========
+					"jsonFile" : "target-ALL_BUILD-Debug-1c1476347fb274a432a8.json",
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/codemodel-v2-90e82b03ae0d31f19d71.json
+					"name" : "ALL_BUILD",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "ALL_BUILD::@9b50ec0f4b893e94b571",
+					"jsonFile" : "target-ALL_BUILD-Debug-f97ec0903b4a80fb7042.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "DATAVISUALIZER::@6890427a1f51a3e7e1df",
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-693548b41da39ba03cde.json
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-693548b41da39ba03cde.json
+					"jsonFile" : "target-DATAVISUALIZER-Debug-63d24b26fa325034262f.json",
+========
+					"jsonFile" : "target-DATAVISUALIZER-Debug-835e469317634621722d.json",
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/codemodel-v2-90e82b03ae0d31f19d71.json
+========
+					"jsonFile" : "target-DATAVISUALIZER-Debug-835e469317634621722d.json",
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/codemodel-v2-90e82b03ae0d31f19d71.json
+					"name" : "DATAVISUALIZER",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ZERO_CHECK-Debug-796de2150695bb28762a.json",
+					"name" : "ZERO_CHECK",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "glfw::@a896dd99b4a5c6eab3d9",
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-693548b41da39ba03cde.json
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-693548b41da39ba03cde.json
+					"jsonFile" : "target-glfw-Debug-addba23acd581a350e65.json",
+========
+					"jsonFile" : "target-glfw-Debug-a3a969e090d212dcdfeb.json",
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/codemodel-v2-90e82b03ae0d31f19d71.json
+========
+					"jsonFile" : "target-glfw-Debug-a3a969e090d212dcdfeb.json",
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/codemodel-v2-90e82b03ae0d31f19d71.json
+					"name" : "glfw",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "raylib::@7d429ebd5d102775094d",
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-693548b41da39ba03cde.json
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-693548b41da39ba03cde.json
+					"jsonFile" : "target-raylib-Debug-b18e9f5f5b9a7e907f54.json",
+========
+					"jsonFile" : "target-raylib-Debug-429ac9ac9f39ce50579a.json",
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/codemodel-v2-90e82b03ae0d31f19d71.json
+========
+					"jsonFile" : "target-raylib-Debug-429ac9ac9f39ce50579a.json",
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/codemodel-v2-90e82b03ae0d31f19d71.json
+					"name" : "raylib",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "uninstall::@5003b8f497eeabc0006e",
+					"jsonFile" : "target-uninstall-Debug-d81769dd8b55032e6609.json",
+					"name" : "uninstall",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "update_mappings::@a896dd99b4a5c6eab3d9",
+					"jsonFile" : "target-update_mappings-Debug-531ad3ae7311b1a03cc0.json",
+					"name" : "update_mappings",
+					"projectIndex" : 3
+				}
+			]
+		},
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Release-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						4,
+						5
+					]
+				},
+				{
+					"build" : "raylib",
+					"childIndexes" : 
+					[
+						2
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-raylib-Release-dac977eb2014d01c94e9.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "raylib",
+					"targetIndexes" : 
+					[
+						1,
+						8
+					]
+				},
+				{
+					"build" : "raylib/raylib",
+					"childIndexes" : 
+					[
+						3
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-raylib.raylib-Release-58f9c8e3322f16b9813c.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 2,
+					"source" : "raylib/src",
+					"targetIndexes" : 
+					[
+						2,
+						7
+					]
+				},
+				{
+					"build" : "raylib/raylib/external/glfw",
+					"childIndexes" : 
+					[
+						4
+					],
+					"jsonFile" : "directory-raylib.raylib.external.glfw-Release-38845233cd217b380713.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.4"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 3,
+					"source" : "raylib/src/external/glfw",
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"build" : "raylib/raylib/external/glfw/src",
+					"jsonFile" : "directory-raylib.raylib.external.glfw.src-Release-4d55a53c058fdfa6d7b4.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.4"
+					},
+					"parentIndex" : 3,
+					"projectIndex" : 3,
+					"source" : "raylib/src/external/glfw/src",
+					"targetIndexes" : 
+					[
+						6,
+						9
+					]
+				}
+			],
+			"name" : "Release",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "DATAVISUALIZER",
+					"targetIndexes" : 
+					[
+						0,
+						4,
+						5
+					]
+				},
+				{
+					"childIndexes" : 
+					[
+						2
+					],
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "Datavisualizer",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						1,
+						8
+					]
+				},
+				{
+					"childIndexes" : 
+					[
+						3
+					],
+					"directoryIndexes" : 
+					[
+						2
+					],
+					"name" : "raylib",
+					"parentIndex" : 1,
+					"targetIndexes" : 
+					[
+						2,
+						7
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						3,
+						4
+					],
+					"name" : "GLFW",
+					"parentIndex" : 2,
+					"targetIndexes" : 
+					[
+						3,
+						6,
+						9
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "ALL_BUILD::@6890427a1f51a3e7e1df",
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-693548b41da39ba03cde.json
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-693548b41da39ba03cde.json
+					"jsonFile" : "target-ALL_BUILD-Release-d911d8e9f79f88f3238c.json",
+========
+					"jsonFile" : "target-ALL_BUILD-Release-39ea117e2f47ef788bbc.json",
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/codemodel-v2-90e82b03ae0d31f19d71.json
+========
+					"jsonFile" : "target-ALL_BUILD-Release-39ea117e2f47ef788bbc.json",
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/codemodel-v2-90e82b03ae0d31f19d71.json
+					"name" : "ALL_BUILD",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "ALL_BUILD::@5003b8f497eeabc0006e",
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-693548b41da39ba03cde.json
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-693548b41da39ba03cde.json
+					"jsonFile" : "target-ALL_BUILD-Release-0dc1baf84ee51bf3b866.json",
+========
+					"jsonFile" : "target-ALL_BUILD-Release-c559b9ce9e9198be3419.json",
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/codemodel-v2-90e82b03ae0d31f19d71.json
+========
+					"jsonFile" : "target-ALL_BUILD-Release-c559b9ce9e9198be3419.json",
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/codemodel-v2-90e82b03ae0d31f19d71.json
+					"name" : "ALL_BUILD",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ALL_BUILD::@7d429ebd5d102775094d",
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-693548b41da39ba03cde.json
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-693548b41da39ba03cde.json
+					"jsonFile" : "target-ALL_BUILD-Release-e8efd201a62c89abcbb2.json",
+========
+					"jsonFile" : "target-ALL_BUILD-Release-1c1476347fb274a432a8.json",
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/codemodel-v2-90e82b03ae0d31f19d71.json
+========
+					"jsonFile" : "target-ALL_BUILD-Release-1c1476347fb274a432a8.json",
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/codemodel-v2-90e82b03ae0d31f19d71.json
+					"name" : "ALL_BUILD",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "ALL_BUILD::@9b50ec0f4b893e94b571",
+					"jsonFile" : "target-ALL_BUILD-Release-f97ec0903b4a80fb7042.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "DATAVISUALIZER::@6890427a1f51a3e7e1df",
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-693548b41da39ba03cde.json
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-693548b41da39ba03cde.json
+					"jsonFile" : "target-DATAVISUALIZER-Release-f2856610846cee80d23a.json",
+========
+					"jsonFile" : "target-DATAVISUALIZER-Release-23be599ba25ab4ec0254.json",
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/codemodel-v2-90e82b03ae0d31f19d71.json
+========
+					"jsonFile" : "target-DATAVISUALIZER-Release-23be599ba25ab4ec0254.json",
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/codemodel-v2-90e82b03ae0d31f19d71.json
+					"name" : "DATAVISUALIZER",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ZERO_CHECK-Release-796de2150695bb28762a.json",
+					"name" : "ZERO_CHECK",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "glfw::@a896dd99b4a5c6eab3d9",
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-693548b41da39ba03cde.json
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-693548b41da39ba03cde.json
+					"jsonFile" : "target-glfw-Release-cc94ce2024d523b04615.json",
+========
+					"jsonFile" : "target-glfw-Release-fa8688da4471d7e218ac.json",
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/codemodel-v2-90e82b03ae0d31f19d71.json
+========
+					"jsonFile" : "target-glfw-Release-fa8688da4471d7e218ac.json",
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/codemodel-v2-90e82b03ae0d31f19d71.json
+					"name" : "glfw",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "raylib::@7d429ebd5d102775094d",
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-693548b41da39ba03cde.json
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-693548b41da39ba03cde.json
+					"jsonFile" : "target-raylib-Release-4b3b78197c948018aff2.json",
+========
+					"jsonFile" : "target-raylib-Release-d76918bb9673aec2b633.json",
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/codemodel-v2-90e82b03ae0d31f19d71.json
+========
+					"jsonFile" : "target-raylib-Release-d76918bb9673aec2b633.json",
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/codemodel-v2-90e82b03ae0d31f19d71.json
+					"name" : "raylib",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "uninstall::@5003b8f497eeabc0006e",
+					"jsonFile" : "target-uninstall-Release-d81769dd8b55032e6609.json",
+					"name" : "uninstall",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "update_mappings::@a896dd99b4a5c6eab3d9",
+					"jsonFile" : "target-update_mappings-Release-531ad3ae7311b1a03cc0.json",
+					"name" : "update_mappings",
+					"projectIndex" : 3
+				}
+			]
+		},
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-MinSizeRel-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						4,
+						5
+					]
+				},
+				{
+					"build" : "raylib",
+					"childIndexes" : 
+					[
+						2
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-raylib-MinSizeRel-dac977eb2014d01c94e9.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "raylib",
+					"targetIndexes" : 
+					[
+						1,
+						8
+					]
+				},
+				{
+					"build" : "raylib/raylib",
+					"childIndexes" : 
+					[
+						3
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-raylib.raylib-MinSizeRel-a809fa16ba534e0cecd6.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 2,
+					"source" : "raylib/src",
+					"targetIndexes" : 
+					[
+						2,
+						7
+					]
+				},
+				{
+					"build" : "raylib/raylib/external/glfw",
+					"childIndexes" : 
+					[
+						4
+					],
+					"jsonFile" : "directory-raylib.raylib.external.glfw-MinSizeRel-38845233cd217b380713.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.4"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 3,
+					"source" : "raylib/src/external/glfw",
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"build" : "raylib/raylib/external/glfw/src",
+					"jsonFile" : "directory-raylib.raylib.external.glfw.src-MinSizeRel-4d55a53c058fdfa6d7b4.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.4"
+					},
+					"parentIndex" : 3,
+					"projectIndex" : 3,
+					"source" : "raylib/src/external/glfw/src",
+					"targetIndexes" : 
+					[
+						6,
+						9
+					]
+				}
+			],
+			"name" : "MinSizeRel",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "DATAVISUALIZER",
+					"targetIndexes" : 
+					[
+						0,
+						4,
+						5
+					]
+				},
+				{
+					"childIndexes" : 
+					[
+						2
+					],
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "Datavisualizer",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						1,
+						8
+					]
+				},
+				{
+					"childIndexes" : 
+					[
+						3
+					],
+					"directoryIndexes" : 
+					[
+						2
+					],
+					"name" : "raylib",
+					"parentIndex" : 1,
+					"targetIndexes" : 
+					[
+						2,
+						7
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						3,
+						4
+					],
+					"name" : "GLFW",
+					"parentIndex" : 2,
+					"targetIndexes" : 
+					[
+						3,
+						6,
+						9
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "ALL_BUILD::@6890427a1f51a3e7e1df",
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-693548b41da39ba03cde.json
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-693548b41da39ba03cde.json
+					"jsonFile" : "target-ALL_BUILD-MinSizeRel-d911d8e9f79f88f3238c.json",
+========
+					"jsonFile" : "target-ALL_BUILD-MinSizeRel-39ea117e2f47ef788bbc.json",
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/codemodel-v2-90e82b03ae0d31f19d71.json
+========
+					"jsonFile" : "target-ALL_BUILD-MinSizeRel-39ea117e2f47ef788bbc.json",
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/codemodel-v2-90e82b03ae0d31f19d71.json
+					"name" : "ALL_BUILD",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "ALL_BUILD::@5003b8f497eeabc0006e",
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-693548b41da39ba03cde.json
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-693548b41da39ba03cde.json
+					"jsonFile" : "target-ALL_BUILD-MinSizeRel-0dc1baf84ee51bf3b866.json",
+========
+					"jsonFile" : "target-ALL_BUILD-MinSizeRel-c559b9ce9e9198be3419.json",
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/codemodel-v2-90e82b03ae0d31f19d71.json
+========
+					"jsonFile" : "target-ALL_BUILD-MinSizeRel-c559b9ce9e9198be3419.json",
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/codemodel-v2-90e82b03ae0d31f19d71.json
+					"name" : "ALL_BUILD",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ALL_BUILD::@7d429ebd5d102775094d",
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-693548b41da39ba03cde.json
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-693548b41da39ba03cde.json
+					"jsonFile" : "target-ALL_BUILD-MinSizeRel-e8efd201a62c89abcbb2.json",
+========
+					"jsonFile" : "target-ALL_BUILD-MinSizeRel-1c1476347fb274a432a8.json",
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/codemodel-v2-90e82b03ae0d31f19d71.json
+========
+					"jsonFile" : "target-ALL_BUILD-MinSizeRel-1c1476347fb274a432a8.json",
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/codemodel-v2-90e82b03ae0d31f19d71.json
+					"name" : "ALL_BUILD",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "ALL_BUILD::@9b50ec0f4b893e94b571",
+					"jsonFile" : "target-ALL_BUILD-MinSizeRel-f97ec0903b4a80fb7042.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "DATAVISUALIZER::@6890427a1f51a3e7e1df",
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-693548b41da39ba03cde.json
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-693548b41da39ba03cde.json
+					"jsonFile" : "target-DATAVISUALIZER-MinSizeRel-736fd642d2e735f7a2b7.json",
+========
+					"jsonFile" : "target-DATAVISUALIZER-MinSizeRel-f24784a282513dc9d828.json",
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/codemodel-v2-90e82b03ae0d31f19d71.json
+========
+					"jsonFile" : "target-DATAVISUALIZER-MinSizeRel-f24784a282513dc9d828.json",
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/codemodel-v2-90e82b03ae0d31f19d71.json
+					"name" : "DATAVISUALIZER",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ZERO_CHECK-MinSizeRel-796de2150695bb28762a.json",
+					"name" : "ZERO_CHECK",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "glfw::@a896dd99b4a5c6eab3d9",
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-693548b41da39ba03cde.json
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-693548b41da39ba03cde.json
+					"jsonFile" : "target-glfw-MinSizeRel-15d16222875ec565e319.json",
+========
+					"jsonFile" : "target-glfw-MinSizeRel-4280f9e5815e8f3c6cf9.json",
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/codemodel-v2-90e82b03ae0d31f19d71.json
+========
+					"jsonFile" : "target-glfw-MinSizeRel-4280f9e5815e8f3c6cf9.json",
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/codemodel-v2-90e82b03ae0d31f19d71.json
+					"name" : "glfw",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "raylib::@7d429ebd5d102775094d",
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-693548b41da39ba03cde.json
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-693548b41da39ba03cde.json
+					"jsonFile" : "target-raylib-MinSizeRel-7a048238fae6bac05f60.json",
+========
+					"jsonFile" : "target-raylib-MinSizeRel-928b77b4e4d0c2b2964b.json",
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/codemodel-v2-90e82b03ae0d31f19d71.json
+========
+					"jsonFile" : "target-raylib-MinSizeRel-928b77b4e4d0c2b2964b.json",
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/codemodel-v2-90e82b03ae0d31f19d71.json
+					"name" : "raylib",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "uninstall::@5003b8f497eeabc0006e",
+					"jsonFile" : "target-uninstall-MinSizeRel-d81769dd8b55032e6609.json",
+					"name" : "uninstall",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "update_mappings::@a896dd99b4a5c6eab3d9",
+					"jsonFile" : "target-update_mappings-MinSizeRel-531ad3ae7311b1a03cc0.json",
+					"name" : "update_mappings",
+					"projectIndex" : 3
+				}
+			]
+		},
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-RelWithDebInfo-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						4,
+						5
+					]
+				},
+				{
+					"build" : "raylib",
+					"childIndexes" : 
+					[
+						2
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-raylib-RelWithDebInfo-dac977eb2014d01c94e9.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "raylib",
+					"targetIndexes" : 
+					[
+						1,
+						8
+					]
+				},
+				{
+					"build" : "raylib/raylib",
+					"childIndexes" : 
+					[
+						3
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-raylib.raylib-RelWithDebInfo-5e38977fae1578c5698d.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 2,
+					"source" : "raylib/src",
+					"targetIndexes" : 
+					[
+						2,
+						7
+					]
+				},
+				{
+					"build" : "raylib/raylib/external/glfw",
+					"childIndexes" : 
+					[
+						4
+					],
+					"jsonFile" : "directory-raylib.raylib.external.glfw-RelWithDebInfo-38845233cd217b380713.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.4"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 3,
+					"source" : "raylib/src/external/glfw",
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"build" : "raylib/raylib/external/glfw/src",
+					"jsonFile" : "directory-raylib.raylib.external.glfw.src-RelWithDebInfo-4d55a53c058fdfa6d7b4.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.4"
+					},
+					"parentIndex" : 3,
+					"projectIndex" : 3,
+					"source" : "raylib/src/external/glfw/src",
+					"targetIndexes" : 
+					[
+						6,
+						9
+					]
+				}
+			],
+			"name" : "RelWithDebInfo",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "DATAVISUALIZER",
+					"targetIndexes" : 
+					[
+						0,
+						4,
+						5
+					]
+				},
+				{
+					"childIndexes" : 
+					[
+						2
+					],
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "Datavisualizer",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						1,
+						8
+					]
+				},
+				{
+					"childIndexes" : 
+					[
+						3
+					],
+					"directoryIndexes" : 
+					[
+						2
+					],
+					"name" : "raylib",
+					"parentIndex" : 1,
+					"targetIndexes" : 
+					[
+						2,
+						7
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						3,
+						4
+					],
+					"name" : "GLFW",
+					"parentIndex" : 2,
+					"targetIndexes" : 
+					[
+						3,
+						6,
+						9
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "ALL_BUILD::@6890427a1f51a3e7e1df",
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-693548b41da39ba03cde.json
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-693548b41da39ba03cde.json
+					"jsonFile" : "target-ALL_BUILD-RelWithDebInfo-d911d8e9f79f88f3238c.json",
+========
+					"jsonFile" : "target-ALL_BUILD-RelWithDebInfo-39ea117e2f47ef788bbc.json",
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/codemodel-v2-90e82b03ae0d31f19d71.json
+========
+					"jsonFile" : "target-ALL_BUILD-RelWithDebInfo-39ea117e2f47ef788bbc.json",
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/codemodel-v2-90e82b03ae0d31f19d71.json
+					"name" : "ALL_BUILD",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "ALL_BUILD::@5003b8f497eeabc0006e",
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-693548b41da39ba03cde.json
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-693548b41da39ba03cde.json
+					"jsonFile" : "target-ALL_BUILD-RelWithDebInfo-0dc1baf84ee51bf3b866.json",
+========
+					"jsonFile" : "target-ALL_BUILD-RelWithDebInfo-c559b9ce9e9198be3419.json",
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/codemodel-v2-90e82b03ae0d31f19d71.json
+========
+					"jsonFile" : "target-ALL_BUILD-RelWithDebInfo-c559b9ce9e9198be3419.json",
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/codemodel-v2-90e82b03ae0d31f19d71.json
+					"name" : "ALL_BUILD",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ALL_BUILD::@7d429ebd5d102775094d",
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-693548b41da39ba03cde.json
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-693548b41da39ba03cde.json
+					"jsonFile" : "target-ALL_BUILD-RelWithDebInfo-e8efd201a62c89abcbb2.json",
+========
+					"jsonFile" : "target-ALL_BUILD-RelWithDebInfo-1c1476347fb274a432a8.json",
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/codemodel-v2-90e82b03ae0d31f19d71.json
+========
+					"jsonFile" : "target-ALL_BUILD-RelWithDebInfo-1c1476347fb274a432a8.json",
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/codemodel-v2-90e82b03ae0d31f19d71.json
+					"name" : "ALL_BUILD",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "ALL_BUILD::@9b50ec0f4b893e94b571",
+					"jsonFile" : "target-ALL_BUILD-RelWithDebInfo-f97ec0903b4a80fb7042.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "DATAVISUALIZER::@6890427a1f51a3e7e1df",
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-693548b41da39ba03cde.json
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-693548b41da39ba03cde.json
+					"jsonFile" : "target-DATAVISUALIZER-RelWithDebInfo-4f2c82fac9effeda3234.json",
+========
+					"jsonFile" : "target-DATAVISUALIZER-RelWithDebInfo-74f276156d91c8324579.json",
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/codemodel-v2-90e82b03ae0d31f19d71.json
+========
+					"jsonFile" : "target-DATAVISUALIZER-RelWithDebInfo-74f276156d91c8324579.json",
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/codemodel-v2-90e82b03ae0d31f19d71.json
+					"name" : "DATAVISUALIZER",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ZERO_CHECK-RelWithDebInfo-796de2150695bb28762a.json",
+					"name" : "ZERO_CHECK",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "glfw::@a896dd99b4a5c6eab3d9",
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-693548b41da39ba03cde.json
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-693548b41da39ba03cde.json
+					"jsonFile" : "target-glfw-RelWithDebInfo-4e2fffc59885beef9882.json",
+========
+					"jsonFile" : "target-glfw-RelWithDebInfo-44b6a66d344a9c9c16f0.json",
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/codemodel-v2-90e82b03ae0d31f19d71.json
+========
+					"jsonFile" : "target-glfw-RelWithDebInfo-44b6a66d344a9c9c16f0.json",
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/codemodel-v2-90e82b03ae0d31f19d71.json
+					"name" : "glfw",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "raylib::@7d429ebd5d102775094d",
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-693548b41da39ba03cde.json
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-693548b41da39ba03cde.json
+					"jsonFile" : "target-raylib-RelWithDebInfo-b26c2db6fa0446b69b8f.json",
+========
+					"jsonFile" : "target-raylib-RelWithDebInfo-4e657dea32a0d81b7f71.json",
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/codemodel-v2-90e82b03ae0d31f19d71.json
+========
+					"jsonFile" : "target-raylib-RelWithDebInfo-4e657dea32a0d81b7f71.json",
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/codemodel-v2-90e82b03ae0d31f19d71.json
+					"name" : "raylib",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "uninstall::@5003b8f497eeabc0006e",
+					"jsonFile" : "target-uninstall-RelWithDebInfo-d81769dd8b55032e6609.json",
+					"name" : "uninstall",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "update_mappings::@a896dd99b4a5c6eab3d9",
+					"jsonFile" : "target-update_mappings-RelWithDebInfo-531ad3ae7311b1a03cc0.json",
+					"name" : "update_mappings",
+					"projectIndex" : 3
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "D:/test/Programming/project/DataVisualizer/build",
+		"source" : "D:/test/Programming/project/DataVisualizer"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}

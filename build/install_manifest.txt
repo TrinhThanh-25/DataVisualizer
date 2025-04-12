@@ -1,8 +1,0 @@
-/usr/lib/raylib.lib
-/usr/include/raylib.h
-/usr/include/rcamera.h
-/usr/include/rlgl.h
-/usr/include/raymath.h
-/usr/lib/pkgconfig/raylib.pc
-/usr/lib/cmake/raylib/raylib-config-version.cmake
-/usr/lib/cmake/raylib/raylib-config.cmake

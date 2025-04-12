@@ -3,29 +3,25 @@
 
 HashTableVisualization::HashTableVisualization(const Font& fontNumber, const Font& fontText, const bool& isLightMode, const float& speed)
     : hashTable(MAX_TABLE_SIZE), fontNumber(fontNumber), fontText(fontText), isLightMode(isLightMode), speed(speed), presentations(fontNumber, fontText, speed, hashTable),
-      isInserting(false), isDeleting(false), isFinding(false), isInitializing(false), inputBox(10, HASH_TABLE_HEIGHT - 50, INPUT_BOX_WIDTH, INPUT_BOX_HEIGHT, 10, LIGHTGRAY, BLACK) {
+      isInserting(false), isDeleting(false), isFinding(false), isInitializing(false), inputBox(10.0, 600.0 - 50.0, 200.0, 30.0, 10, LIGHTGRAY, BLACK) {
     
     inputBox.isAppear = false;
 
     insertButton.setPosition({50, 700});
     insertButton.setSize({150, 50});
     insertButton.setText("Insert", 20);
-    insertButton.setColor({80, 80, 80, 255}, GRAY, BLACK);
 
     deleteButton.setPosition({220, 700});
     deleteButton.setSize({150, 50});
     deleteButton.setText("Delete", 20);
-    deleteButton.setColor({80, 80, 80, 255}, GRAY, BLACK);
 
     findButton.setPosition({390, 700});
     findButton.setSize({150, 50});
     findButton.setText("Find", 20);
-    findButton.setColor({80, 80, 80, 255}, GRAY, BLACK);
 
     initButton.setPosition({560, 700});
     initButton.setSize({150, 50});
     initButton.setText("Init", 20);
-    initButton.setColor({80, 80, 80, 255}, GRAY, BLACK);
 }
 
 HashTableVisualization::~HashTableVisualization() {

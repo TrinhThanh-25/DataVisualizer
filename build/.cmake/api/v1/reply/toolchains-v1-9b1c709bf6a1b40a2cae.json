@@ -1,0 +1,98 @@
+{
+	"kind" : "toolchains",
+	"toolchains" : 
+	[
+		{
+			"compiler" : 
+			{
+				"id" : "MSVC",
+				"implicit" : 
+				{
+					"includeDirectories" : [],
+					"linkDirectories" : [],
+					"linkFrameworkDirectories" : [],
+					"linkLibraries" : []
+				},
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/toolchains-v1-9b1c709bf6a1b40a2cae.json
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/toolchains-v1-9b1c709bf6a1b40a2cae.json
+				"path" : "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.43.34808/bin/Hostx64/x64/cl.exe",
+				"version" : "19.43.34810.0"
+========
+				"path" : "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.42.34433/bin/Hostx64/x64/cl.exe",
+				"version" : "19.42.34435.0"
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/toolchains-v1-bb61951c920f581f0c4f.json
+========
+				"path" : "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.42.34433/bin/Hostx64/x64/cl.exe",
+				"version" : "19.42.34435.0"
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/toolchains-v1-bb61951c920f581f0c4f.json
+			},
+			"language" : "C",
+			"sourceFileExtensions" : 
+			[
+				"c",
+				"m"
+			]
+		},
+		{
+			"compiler" : 
+			{
+				"id" : "MSVC",
+				"implicit" : 
+				{
+					"includeDirectories" : [],
+					"linkDirectories" : [],
+					"linkFrameworkDirectories" : [],
+					"linkLibraries" : []
+				},
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/toolchains-v1-9b1c709bf6a1b40a2cae.json
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/toolchains-v1-9b1c709bf6a1b40a2cae.json
+				"path" : "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.43.34808/bin/Hostx64/x64/cl.exe",
+				"version" : "19.43.34810.0"
+========
+				"path" : "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.42.34433/bin/Hostx64/x64/cl.exe",
+				"version" : "19.42.34435.0"
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/toolchains-v1-bb61951c920f581f0c4f.json
+========
+				"path" : "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.42.34433/bin/Hostx64/x64/cl.exe",
+				"version" : "19.42.34435.0"
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/toolchains-v1-bb61951c920f581f0c4f.json
+			},
+			"language" : "CXX",
+			"sourceFileExtensions" : 
+			[
+				"C",
+				"M",
+				"c++",
+				"cc",
+				"cpp",
+				"cxx",
+				"mm",
+				"mpp",
+				"CPP",
+				"ixx",
+				"cppm",
+				"ccm",
+				"cxxm",
+				"c++m"
+			]
+		},
+		{
+			"compiler" : 
+			{
+				"implicit" : {},
+				"path" : "C:/Program Files (x86)/Embarcadero/Studio/23.0/bin/rc.exe"
+			},
+			"language" : "RC",
+			"sourceFileExtensions" : 
+			[
+				"rc",
+				"RC"
+			]
+		}
+	],
+	"version" : 
+	{
+		"major" : 1,
+		"minor" : 0
+	}
+}

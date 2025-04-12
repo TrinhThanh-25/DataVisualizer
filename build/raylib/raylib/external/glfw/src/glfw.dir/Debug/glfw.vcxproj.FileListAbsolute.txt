@@ -1,2 +1,8 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
 C:\Users\TrinhThanh\Desktop\DataVisualization\build\raylib\raylib\external\glfw\src\glfw.dir\Debug\glfw.lib
+=======
+=======
+>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
 D:\test\Programming\project\DataVisualizer\build\raylib\raylib\external\glfw\src\glfw.dir\Debug\glfw.lib
+>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55

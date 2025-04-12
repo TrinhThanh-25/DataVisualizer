@@ -1,4 +1,4 @@
-#include "Application.h"
+#include <Application.h>
 
 Application::Application(){}
 
@@ -9,26 +9,39 @@ void Application::run(){
     srand(time(NULL));
     while (!WindowShouldClose()){
         BeginDrawing();
-        ClearBackground(RAYWHITE);
+        ClearBackground(backgroundColor);
+        colorThemeManager.update();
         if(SLL.isBackPressed()||AVL.isBackPressed()||ST.isBackPressed()){
             menuState.currentSelection=MenuSelection::NONE;
         }
-        switch (menuState.currentSelection){
+        switch (menuState.currentSelection) {
         case MenuSelection::NONE:
-            this->menuState.update();
+            if(!colorThemeManager.isTheme){
+                this->menuState.update();
+            }
+            if(!colorThemeManager.isUpdate){
+                this->menuState.update();
+                colorThemeManager.isUpdate=true;
+            }
             this->menuState.draw();
             break;
 
         case MenuSelection::SLL:
-            this->SLL.update();
+            if(!colorThemeManager.isTheme){
+                this->SLL.update();
+            }
+            if(!colorThemeManager.isUpdate){
+                this->SLL.updateTheme();
+                colorThemeManager.isUpdate=true;
+            }
             this->SLL.draw();
             break;
 
         case MenuSelection::LINEAR_HT:
             
-            this->hashTable.Draw();
-            this->hashTable.HandleInput();
-            this->hashTable.HandleMouseInput();
+            // this->hashTable.Draw();
+            // this->hashTable.HandleInput();
+            // this->hashTable.HandleMouseInput();
             break;
 
         case MenuSelection::TREE_234:
@@ -37,7 +50,13 @@ void Application::run(){
             break;
 
         case MenuSelection::AVL_TREE:
-            this->AVL.update();
+            if(!colorThemeManager.isTheme){
+                this->AVL.update();
+            }
+            if(!colorThemeManager.isUpdate){
+                this->AVL.updateTheme();
+                colorThemeManager.isUpdate=true;
+            }
             this->AVL.draw();
             break;
 
@@ -47,12 +66,19 @@ void Application::run(){
             break;
 
         case MenuSelection::SHORTEST_PATH:
-            this->ST.update();
+            if(!colorThemeManager.isTheme){
+                this->ST.update();
+            }
+            if(!colorThemeManager.isUpdate){
+                this->ST.updateTheme();
+                colorThemeManager.isUpdate=true;
+            }
             this->ST.draw();
             break;
         default:
             break;
         }
+        colorThemeManager.draw();
         EndDrawing();
     }
     CloseWindow();

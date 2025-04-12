@@ -1,0 +1,11 @@
+{
+	"InstallScripts" : 
+	[
+		"C:/Users/TrinhThanh/Desktop/DataVisualization/cmake_install.cmake",
+		"C:/Users/TrinhThanh/Desktop/DataVisualization/raylib/cmake_install.cmake",
+		"C:/Users/TrinhThanh/Desktop/DataVisualization/raylib/raylib/cmake_install.cmake",
+		"C:/Users/TrinhThanh/Desktop/DataVisualization/raylib/raylib/external/glfw/cmake_install.cmake",
+		"C:/Users/TrinhThanh/Desktop/DataVisualization/raylib/raylib/external/glfw/src/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

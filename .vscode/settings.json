@@ -124,5 +124,8 @@
     "xstring": "cpp",
     "fstream": "cpp"
   },
-  "C_Cpp.errorSquiggles": "disabled"
+  "C_Cpp.errorSquiggles": "disabled",
+  "cmake.generator": "Visual Studio 17 2022",
+  "cmake.preferredGenerator": "Visual Studio 17 2022",
+  "cmake.configureOnOpen": true
 }

@@ -14,25 +14,21 @@ PlaybackControl::PlaybackControl(Vector2 position, float width, float height)
     skipBackButton.setPosition({position.x, position.y + height + spacing});
     skipBackButton.setSize({buttonWidth, buttonHeight});
     skipBackButton.setText("<<", 20);
-    skipBackButton.setColor({80, 80, 80, 255}, GRAY, BLACK);
 
     // Step Back Button
     stepBackButton.setPosition({position.x + buttonWidth + spacing, position.y + height + spacing});
     stepBackButton.setSize({buttonWidth, buttonHeight});
     stepBackButton.setText("<", 20);
-    stepBackButton.setColor({80, 80, 80, 255}, GRAY, BLACK);
 
     // Step Next Button
     stepNextButton.setPosition({position.x + 2 * (buttonWidth + spacing), position.y + height + spacing});
     stepNextButton.setSize({buttonWidth, buttonHeight});
     stepNextButton.setText(">", 20);
-    stepNextButton.setColor({80, 80, 80, 255}, GRAY, BLACK);
 
     // Skip Next Button
     skipNextButton.setPosition({position.x + 3 * (buttonWidth + spacing), position.y + height + spacing});
     skipNextButton.setSize({buttonWidth, buttonHeight});
     skipNextButton.setText(">>", 20);
-    skipNextButton.setColor({80, 80, 80, 255}, GRAY, BLACK);
 }
 
 void PlaybackControl::Update(int& currentPresentationIndex, int& currentStateIndex, 

@@ -1,4 +1,4 @@
-#include "MenuState.h"
+#include <MenuState.h>
 
 MenuState::MenuState(){
     this->background = LoadTexture("button.png");
@@ -7,37 +7,30 @@ MenuState::MenuState(){
     this->exit.setText("Exit",menuButtonFontSize);
     this->exit.setSize({70,50});
     this->exit.setPosition({1500,800});
-    this->exit.setColor(menuNormal,menuHovered,menuPressed);
 
     this->SLL.setText("Singly Linked List",menuButtonFontSize);
     this->SLL.setSize(menuButtonSize);
     this->SLL.setPosition({400,550});
-    this->SLL.setColor(menuNormal,menuHovered,menuPressed);
     
     this->LinearHT.setText("Linear Hashing Table",menuButtonFontSize);
     this->LinearHT.setSize(menuButtonSize);
     this->LinearHT.setPosition({800 ,550});
-    this->LinearHT.setColor(menuNormal,menuHovered,menuPressed);
 
     this->Tree234.setText("2-3-4 Tree",menuButtonFontSize);
     this->Tree234.setSize(menuButtonSize);
     this->Tree234.setPosition({1200 ,550});
-    this->Tree234.setColor(menuNormal,menuHovered,menuPressed);
 
     this->AVLTree.setText("AVL Tree",menuButtonFontSize);
     this->AVLTree.setSize(menuButtonSize);
     this->AVLTree.setPosition({400 ,700});
-    this->AVLTree.setColor(menuNormal,menuHovered,menuPressed);
 
     this->MinSpanningTree.setText("Minimum Spanning Tree",menuButtonFontSize);
     this->MinSpanningTree.setSize(menuButtonSize);
     this->MinSpanningTree.setPosition({800, 700});
-    this->MinSpanningTree.setColor(menuNormal,menuHovered,menuPressed);
 
     this->ShortestPath.setText("Shortest Path",menuButtonFontSize);
     this->ShortestPath.setSize(menuButtonSize);
     this->ShortestPath.setPosition({1200 ,700});
-    this->ShortestPath.setColor(menuNormal,menuHovered,menuPressed);
 }
 
 void MenuState::draw(){
@@ -52,13 +45,21 @@ void MenuState::draw(){
     this->MinSpanningTree.drawRectangleRounded(70);
     this->ShortestPath.drawRectangleRounded(70);
 
-    this->exit.drawText(menuButtonTextColor);
-    this->SLL.drawText(menuButtonTextColor);
-    this->LinearHT.drawText(menuButtonTextColor);
-    this->Tree234.drawText(menuButtonTextColor);
-    this->AVLTree.drawText(menuButtonTextColor);
-    this->MinSpanningTree.drawText(menuButtonTextColor);
-    this->ShortestPath.drawText(menuButtonTextColor);
+    this->exit.drawText();
+    this->SLL.drawText();
+    this->LinearHT.drawText();
+    this->Tree234.drawText();
+    this->AVLTree.drawText();
+    this->MinSpanningTree.drawText();
+    this->ShortestPath.drawText();
+
+    this->exit.drawOutlineRounded(70, 100, 5);
+    this->SLL.drawOutlineRounded(70, 100, 5);
+    this->LinearHT.drawOutlineRounded(70, 100, 5);
+    this->Tree234.drawOutlineRounded(70, 100, 5);
+    this->AVLTree.drawOutlineRounded(70, 100, 5);
+    this->MinSpanningTree.drawOutlineRounded(70, 100, 5);
+    this->ShortestPath.drawOutlineRounded(70, 100, 5);
 }
 
 void MenuState::update(){

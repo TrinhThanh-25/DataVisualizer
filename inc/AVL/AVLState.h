@@ -6,6 +6,7 @@
 #include <AVL/AVL.h>
 #include <AVL/AVLPanel.h>
 #include <GUI/CodeBlock.h>
+#include <GUI/inputBox.h>
 
 enum class AVLAnimationMode{
     IDLE, INSERT, REMOVE, SEARCH
@@ -14,6 +15,9 @@ enum class AVLAnimationMode{
 class AVLState {   
     public: 
         AVLState();
+
+        void updateTheme();
+
         void update();
         void draw();
 

@@ -1,0 +1,65 @@
+{
+	"backtrace" : 0,
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : 
+		[
+			"raylib/src/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			}
+		]
+	},
+	"dependencies" : 
+	[
+		{
+<<<<<<< HEAD
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/target-ALL_BUILD-Release-1c1476347fb274a432a8.json
+=======
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/target-ALL_BUILD-Release-e8efd201a62c89abcbb2.json
+>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/target-ALL_BUILD-Release-e8efd201a62c89abcbb2.json
+			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"
+========
+			"id" : "raylib::@7d429ebd5d102775094d"
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/target-ALL_BUILD-Release-1c1476347fb274a432a8.json
+		},
+		{
+			"id" : "glfw::@a896dd99b4a5c6eab3d9"
+		},
+		{
+			"id" : "glfw::@a896dd99b4a5c6eab3d9"
+========
+			"id" : "raylib::@7d429ebd5d102775094d"
+		},
+		{
+			"id" : "glfw::@a896dd99b4a5c6eab3d9"
+		},
+		{
+			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"
+<<<<<<< HEAD
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/target-ALL_BUILD-RelWithDebInfo-1c1476347fb274a432a8.json
+=======
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/target-ALL_BUILD-Release-1c1476347fb274a432a8.json
+>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
+		}
+	],
+	"folder" : 
+	{
+		"name" : "CMakePredefinedTargets"
+	},
+	"id" : "ALL_BUILD::@7d429ebd5d102775094d",
+	"isGeneratorProvided" : true,
+	"name" : "ALL_BUILD",
+	"paths" : 
+	{
+		"build" : "raylib/raylib",
+		"source" : "raylib/src"
+	},
+	"sources" : [],
+	"type" : "UTILITY"
+}

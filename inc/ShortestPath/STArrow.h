@@ -17,6 +17,8 @@ class STArrow : public Arrow{
 
         void setHighlight();
         void deHighlight();
+        void setLine();
+        void deLine();
 
     private:
         int from;
@@ -24,6 +26,7 @@ class STArrow : public Arrow{
         int weight;
 
         bool isHighlight=false;
+        bool isLine=false;
 };
 
 #endif

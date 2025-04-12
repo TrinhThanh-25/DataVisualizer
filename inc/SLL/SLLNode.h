@@ -2,7 +2,6 @@
 #define SLLNODE_H
 
 #include <SLL/SLLArrow.h>
-#include <GUI/Resources.h>
 
 class SLLNode{
     public:
@@ -35,10 +34,6 @@ class SLLNode{
         int value;
         SLLArrow* Pointer;
 
-        Color nodeColor=LIGHTGRAY;
-        Color textColor=BLACK;
-        Color highlight = GREEN;
-        Color textHighlight = WHITE;
         bool isHighlight=false;
 
         Vector2 position;

@@ -6,6 +6,7 @@
 #include <ShortestPath/STPanel.h>
 #include <ShortestPath/ShortestPathCode.h>
 #include <GUI/CodeBlock.h>
+#include <GUI/inputBox.h>
 
 enum class STAnimationMode {
     IDLE, CREATE, DIJKSTRA
@@ -14,6 +15,9 @@ enum class STAnimationMode {
 class ShortestPathState{
     public:
         ShortestPathState();
+
+        void updateTheme();
+        
         void update();
         void draw();
 
@@ -75,6 +79,8 @@ class ShortestPathState{
         std::vector<AnimationStep*> stateList;
 
         std::string startNodeText;
+        std::string nodesText;
+        std::string edgesText;
         bool isLoadFile=false;
 };
 

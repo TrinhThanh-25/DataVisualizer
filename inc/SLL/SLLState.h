@@ -1,16 +1,19 @@
 #ifndef SLLSTATE_H
 #define SLLSTATE_H
 
-#include <sstream>
-#include <vector>
 #include <random>
 #include <SLL/SLLCode.h>
 #include <SLL/SinglyLinkedList.h>
 #include <SLL/SLLPanel.h>
 #include <GUI/CodeBlock.h>
 #include <GUI/inputBox.h>
+<<<<<<< HEAD
+=======
 #include <GUI/Button.h>
-#include <raygui.h>
+<<<<<<< HEAD
+>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
+=======
+>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
 
 enum class SLLAnimationMode {
     IDLE, INSERT_FRONT, INSERT_MID, REMOVE_FRONT, REMOVE_MID, SEARCH, UPDATE
@@ -19,6 +22,9 @@ enum class SLLAnimationMode {
 class SLLState{
     public:
         SLLState();
+
+        void updateTheme();
+
         void update();
         void draw();
 

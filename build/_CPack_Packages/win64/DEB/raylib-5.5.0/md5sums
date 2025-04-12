@@ -1,8 +1,0 @@
-be3c3df90a6543e0b78247b715b0ab9a  usr/include/raylib.h
-46dd6f6064d7e3f0aede51048d9dd89e  usr/include/raymath.h
-2344a1300b3a64ffc8efe1bfdbcd3de5  usr/include/rcamera.h
-1b561f30877317384ba6456efebe49e4  usr/include/rlgl.h
-a4bde7d74b5002279e581b94f54ccb99  usr/lib/cmake/raylib/raylib-config-version.cmake
-126a550a918cb81654fe0d17de442903  usr/lib/cmake/raylib/raylib-config.cmake
-535ae09705f67766c0103a960543da52  usr/lib/pkgconfig/raylib.pc
-e490cef7a13a7a2e01abb260b1482f27  usr/lib/raylib.lib

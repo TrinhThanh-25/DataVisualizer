@@ -2,12 +2,8 @@
 #define PANEL_H
 
 #include <fstream>
-#include <GUI/Button.h>
-#include <GUI/inputBox.h>
-#include <GUI/Console.h>
-
-#include <string>
 #include <sstream>
+#include <GUI/Console.h>
 
 extern "C" {
     #include <tinyfiledialogs.h>
@@ -43,6 +39,7 @@ class Panel : public Console{
         Button Back;
 
         Rectangle panelHolder;
+        Rectangle subPanelHolder;
         Button* isUsing=nullptr;
 };
 
