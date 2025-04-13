@@ -1,8 +1,8 @@
 #ifndef SHORTESTPATH_H
 #define SHORTESTPATH_H
 
-#include <ShortestPath/ShortestPathNode.h>
 #include <sstream>
+#include <ShortestPath/ShortestPathNode.h>
 
 class ShortestPath{
     public:
@@ -26,10 +26,10 @@ class ShortestPath{
         void update();
         void draw();
         
-        void Dijkstra(int startNode);
         Vector2 ComputeRepulsiveForce(ShortestPathNode* &v, ShortestPathNode* &u);    
         Vector2 ComputeAttractiveForce(ShortestPathNode* &v, ShortestPathNode* &u);
         
+        void updateLine();
     public:
         std::vector<ShortestPathNode*> graph;
         std::vector<STArrow*> allArrows;

@@ -2,23 +2,24 @@
 #define BUTTON_H
 
 #include <GUI/Resources.h>
+#include <GUI/ColorTheme.h>
 
 class Button{
     public:
         Button();
-        void setTexture(const char* path);
+        void setTexture(Texture2D texture);
         void setPosition(Vector2 position);
         void setSize(Vector2 size);
         void setText(const char* text, int fontSize);
-        void setColor(Color normal, Color hovered, Color pressed);
         void update();
+        void update(ColorTheme theme);
         
         void drawRectangle(Vector2 recSize);
         void drawRectangleRounded(int roundness);
-        void drawRectangleRoundedLinesEx(int roundness, int segments, int lineThick, Color color);
+        void drawOutlineRounded(int roundness, int segments, int lineThick);
         
-        void drawTexture(Vector2 position);
-        void drawText(Color color);
+        void drawTexture();
+        void drawText();
 
         Vector2 getSize();
         int getfontSize();
@@ -35,10 +36,10 @@ class Button{
     private:
         Rectangle rectangle;
         Color color;
-        Color normal;
-        Color hovered;
-        Color pressed;
+        Color outlineColor;
+        Color textColor;
         Texture2D texture;
+
         Vector2 position;
         Vector2 size;
         bool selected = false;

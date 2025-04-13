@@ -3,7 +3,6 @@
 
 #include <string>
 #include <cmath>
-#include <raylib.h>
 #include <GUI/Resources.h>
 
 class Arrow{
@@ -22,12 +21,11 @@ class Arrow{
           virtual void update();
           virtual void draw();
      protected:
+          Color color = appTitleColor;
           Vector2 position;          
           Vector2 destination;       
           Vector2 targetDestination; 
           Vector2 targetPosition;
-          Color color=BLACK;
-          Color highlight = RED;
 };
 
 #endif 

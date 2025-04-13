@@ -2,7 +2,6 @@
 #define AVLNODE_H
 
 #include <algorithm>
-#include <GUI/Resources.h>
 #include <AVL/AVLArrow.h>
 
 class AVLNode{
@@ -52,11 +51,6 @@ class AVLNode{
         AVLNode* parent;
     private:
         Rectangle node;
-
-        Color nodeColor;
-        Color textColor;
-        Color highlight;
-        Color textHighlight;
 
         AVLArrow* leftPointer;
         AVLArrow* rightPointer;

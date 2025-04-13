@@ -23,7 +23,6 @@ class MenuState {
     private:
         Texture2D background;
         const char* title;
-        Button exit;
         Button SLL;
         Button LinearHT;
         Button Tree234;

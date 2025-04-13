@@ -3,7 +3,6 @@
 
 #include <vector>
 #include <algorithm>
-#include <GUI/Resources.h>
 #include <ShortestPath/STArrow.h>
 
 class ShortestPathNode{
@@ -34,6 +33,9 @@ class ShortestPathNode{
         void applyRepellingForce(ShortestPathNode* other);
         void boundaryCollision();
         bool getBoundaryCollision();
+        bool checkMouseHovered();
+        void setLine();
+        void deLine();
 
         ShortestPathNode* clone() const;
 
@@ -44,6 +46,7 @@ class ShortestPathNode{
     public:
         std::vector<ShortestPathNode*> adj;
         std::vector<STArrow*> arrow;
+        ShortestPathNode* prev=nullptr;
 
     private:
         Rectangle node;
@@ -51,14 +54,9 @@ class ShortestPathNode{
 
         Vector2 force;
 
-        Color nodeColor=LIGHTGRAY;
-        Color textColor=BLACK;
-        Color highlight = RED;
-        Color textHighlight = WHITE;
-        Color isKnownColor = GREEN;
-
         bool isChosen=false;
         bool isBoundaryCollision=false;
+        bool isLine=false;
 
         int id;
         int cost;

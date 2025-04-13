@@ -6,6 +6,8 @@
 #include <AVL/AVL.h>
 #include <AVL/AVLPanel.h>
 #include <GUI/CodeBlock.h>
+#include <GUI/inputBox.h>
+#include <GUI/Slider.h>
 
 enum class AVLAnimationMode{
     IDLE, INSERT, REMOVE, SEARCH
@@ -14,6 +16,9 @@ enum class AVLAnimationMode{
 class AVLState {   
     public: 
         AVLState();
+
+        void updateTheme();
+
         void update();
         void draw();
 
@@ -46,6 +51,7 @@ class AVLState {
     private:
         AVL AVLTree;
         AVLPanel panel;
+        Slider speedSlider;
         
         InputBox createBox;
         InputBox valueBox;

@@ -3,12 +3,11 @@
 #define INPUTBOX_H
 
 #include <string> 
-#include <raylib.h>
 #include <GUI/Resources.h>
 
 class InputBox {
     public:
-        InputBox(int x, int y, int width, int height, int maxLen, Color boxCol, Color txtCol);
+        InputBox(float x, float y, float width, float height, int maxLen, Color boxCol, Color txtCol);
         void Update();
         void Draw();
         std::string GetText() const;

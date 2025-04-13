@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\TrinhThanh\Desktop\DataVisualization\CMakeFiles\ec3589e46a2e341b5989bd7980216d79\update_mappings.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\TrinhThanh\Desktop\DataVisualization\raylib\src\external\glfw\src\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\TrinhThanh\Desktop\DataVisualization\raylib\src\external\glfw\src\mappings.h.in">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="C:\Users\TrinhThanh\Desktop\DataVisualization\raylib\src\external\glfw\CMake\GenerateMappings.cmake" />
+    <None Include="C:\Users\TrinhThanh\Desktop\DataVisualization\raylib\raylib\external\glfw\src\CMakeFiles\update_mappings" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{5DCA8E10-B928-300A-AB61-C50FCF759DD1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{B8B189E5-4D72-3D56-8730-95CB076F49CD}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
