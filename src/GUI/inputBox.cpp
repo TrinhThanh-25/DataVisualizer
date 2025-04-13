@@ -46,7 +46,7 @@ void InputBox::Update() {
 }
 
 void InputBox::Draw() {
-    DrawRectangleRec(box, isActive ? WHITE : boxColor);
+    DrawRectangleRec(box, (isActive||text!="") ? WHITE : boxColor);
     DrawRectangleLinesEx(box, 3, outlineButtonColor);
     DrawText(text.c_str(), box.x + 5, box.y + box.height / 4.0f, inputBoxFontSize, textColor);
     DrawText(nameBox.c_str(), box.x, box.y -inputBoxNameFontSize, inputBoxNameFontSize, outlineButtonColor);

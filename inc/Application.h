@@ -17,8 +17,6 @@ class Application{
     private:
         ColorThemeManager colorThemeManager;
 
-        ColorThemeManager colorThemeManager;
-
         MenuState menuState;
         SLLState SLL;
         AVLState AVL;

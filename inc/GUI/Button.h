@@ -3,24 +3,21 @@
 
 #include <GUI/Resources.h>
 #include <GUI/ColorTheme.h>
-#include <GUI/ColorTheme.h>
 
 class Button{
     public:
         Button();
-        void setTexture(Texture2D texture);
         void setPosition(Vector2 position);
         void setSize(Vector2 size);
         void setText(const char* text, int fontSize);
         void update();
         void update(ColorTheme theme);
-        void update(ColorTheme theme);
         
         void drawRectangle(Vector2 recSize);
         void drawRectangleRounded(int roundness);
         void drawOutlineRounded(int roundness, int segments, int lineThick);
-        void drawOutlineRounded(int roundness, int segments, int lineThick);
         
+        void setTexture(ButtonTheme theme);
         void drawTexture();
         void drawText();
 
@@ -41,9 +38,12 @@ class Button{
         Color color;
         Color outlineColor;
         Color textColor;
-        Color outlineColor;
-        Color textColor;
-        Texture2D texture;
+
+        ButtonTheme buttonTheme;
+        Texture2D normal;
+        Texture2D hovered;
+        Texture2D pressed;
+        bool isTexture=false;
 
         Vector2 position;
         Vector2 size;

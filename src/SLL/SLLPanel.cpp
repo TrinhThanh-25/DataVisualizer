@@ -28,7 +28,6 @@ bool SLLPanel::isAnyButtonPressed(){
 
 void SLLPanel::draw(){
     drawPanel();
-    this->Back.drawRectangleRounded(100);
     this->Create.drawRectangleRounded(100);
     this->Create.drawText();
     this->Add.drawRectangleRounded(100);

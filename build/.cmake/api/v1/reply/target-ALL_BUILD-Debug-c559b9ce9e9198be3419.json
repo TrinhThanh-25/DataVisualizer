@@ -5,15 +5,7 @@
 		"commands" : [],
 		"files" : 
 		[
-<<<<<<< HEAD
-<<<<<<< HEAD
 			"raylib/CMakeLists.txt"
-=======
-			"raylib/src/external/glfw/CMakeLists.txt"
->>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
-=======
-			"raylib/CMakeLists.txt"
->>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
 		],
 		"nodes" : 
 		[
@@ -25,81 +17,26 @@
 	"dependencies" : 
 	[
 		{
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<<< HEAD:build/.cmake/api/v1/reply/target-ALL_BUILD-Debug-0dc1baf84ee51bf3b866.json
->>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
-<<<<<<<< HEAD:build/.cmake/api/v1/reply/target-ALL_BUILD-Debug-0dc1baf84ee51bf3b866.json
-			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"
-========
 			"id" : "raylib::@7d429ebd5d102775094d"
->>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/target-ALL_BUILD-Debug-c559b9ce9e9198be3419.json
-<<<<<<< HEAD
-=======
-<<<<<<<< HEAD:build/.cmake/api/v1/reply/target-ALL_BUILD-Debug-f97ec0903b4a80fb7042.json
-========
-			"id" : "raylib::@7d429ebd5d102775094d"
->>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
-=======
 		},
 		{
 			"id" : "glfw::@a896dd99b4a5c6eab3d9"
 		},
 		{
-			"id" : "glfw::@a896dd99b4a5c6eab3d9"
-========
-			"id" : "raylib::@7d429ebd5d102775094d"
->>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
-		},
-		{
-			"id" : "glfw::@a896dd99b4a5c6eab3d9"
-		},
-		{
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/target-ALL_BUILD-Debug-c559b9ce9e9198be3419.json
 			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"
-		},
-		{
->>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
-			"id" : "glfw::@a896dd99b4a5c6eab3d9"
-=======
-			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"
->>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/target-ALL_BUILD-Debug-c559b9ce9e9198be3419.json
->>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
 		}
 	],
 	"folder" : 
 	{
 		"name" : "CMakePredefinedTargets"
 	},
-<<<<<<< HEAD
-<<<<<<< HEAD
 	"id" : "ALL_BUILD::@5003b8f497eeabc0006e",
-=======
-	"id" : "ALL_BUILD::@9b50ec0f4b893e94b571",
->>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
-=======
-	"id" : "ALL_BUILD::@5003b8f497eeabc0006e",
->>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
 	"isGeneratorProvided" : true,
 	"name" : "ALL_BUILD",
 	"paths" : 
 	{
-<<<<<<< HEAD
-<<<<<<< HEAD
 		"build" : "raylib",
 		"source" : "raylib"
-=======
-		"build" : "raylib/raylib/external/glfw",
-		"source" : "raylib/src/external/glfw"
->>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
-=======
-		"build" : "raylib",
-		"source" : "raylib"
->>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
 	},
 	"sources" : [],
 	"type" : "UTILITY"

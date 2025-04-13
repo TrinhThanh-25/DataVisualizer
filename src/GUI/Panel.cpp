@@ -5,6 +5,7 @@ Panel::Panel(){
 
     this->Back.setSize(backSize);
     this->Back.setPosition({dataTitle.y+dataTitle.height/2.0f,dataTitle.y+dataTitle.height/2.0f});
+    this->Back.setTexture(exitButtonTheme);
 
     this->panelHolder = {0,650-(panelButtonSize.y/2.0f-panelButtonFontSize/2.0f),panelButtonSize.x+(panelButtonSize.y-panelButtonFontSize),250+(panelButtonSize.y/2.0f-panelButtonFontSize/2.0f)};
     this->subPanelHolder = {panelHolder.width,650-(panelButtonSize.y/2.0f-panelButtonFontSize/2.0f),400-panelHolder.width,250+(panelButtonSize.y/2.0f-panelButtonFontSize/2.0f)};
@@ -20,6 +21,7 @@ bool Panel::isBackPressed(){
 }
 
 void Panel::setBackActive(){
+    this->Back.setTexture(exitButtonTheme);
     Back.setActive();
 }
 
@@ -37,6 +39,8 @@ void Panel::drawPanel(){
     DrawRectangleRoundedLinesEx(dataTitle,100,0,3,dataTitleTextColor);
     DrawRectangleRounded(panelHolder,0,0,buttonNormal);
     DrawRectangleLinesEx(panelHolder,3,outlineButtonColor);
+    this->Back.drawRectangleRounded(100);
+    this->Back.drawTexture();
 }
 
 void Panel::reset(){

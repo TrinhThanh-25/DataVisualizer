@@ -28,7 +28,7 @@ const Vector2 dataTitlePosition({800,15+dataTitleSize.y/2.0f});
 const Vector2 panelButtonSize({80, 40});//Create, Add, Remove ...
 const int panelButtonFontSize(15);
 
-const Vector2 backSize({50,50});
+const Vector2 backSize({60,60});
 
 //InputBox
 const int inputBoxFontSize(20);
@@ -81,8 +81,8 @@ const int STButtonFontSize(15);
 const int ArrowLength = 40;
 
 //Controller
-const Vector2 controllerButtonSize({50,50});
+const Vector2 controllerButtonSize({60,60});
 const Vector2 controllerPosition({800,860});
-const Vector2 controllerSize({350,2*(900-controllerPosition.y)});
+const Vector2 controllerSize({400,2*(900-controllerPosition.y)});
 
 #endif

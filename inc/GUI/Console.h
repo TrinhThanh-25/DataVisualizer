@@ -13,6 +13,10 @@ class Console{
         bool isStartPressed();
         void updateController();
         void drawController();
+        void setEnd();
+        void deEnd();
+        void setPause();
+        void dePause();
     private:
         Rectangle Controller;
         Button Play;
@@ -20,6 +24,8 @@ class Console{
         Button Prev;
         Button End;
         Button Start;
+        bool isEnd=false;
+        bool isPause=false;
 };
 
 #endif

@@ -19,9 +19,6 @@ class ShortestPathState{
 
         void updateTheme();
         
-
-        void updateTheme();
-        
         void update();
         void draw();
 
@@ -84,8 +81,6 @@ class ShortestPathState{
         std::vector<AnimationStep*> stateList;
 
         std::string startNodeText;
-        std::string nodesText;
-        std::string edgesText;
         std::string nodesText;
         std::string edgesText;
         bool isLoadFile=false;

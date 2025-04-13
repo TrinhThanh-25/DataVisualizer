@@ -29,6 +29,18 @@ void AVLState::updateTheme(){
 
 void AVLState::update(){
     panel.setBackActive();
+    if(!stateList.empty()&&currentStep==stateList.size()-1){
+        panel.setEnd();
+    }
+    else{
+        panel.deEnd();
+    }
+    if((isPlaying&&isPaused)||!isPlaying){
+        panel.setPause();
+    }
+    else{
+        panel.dePause();
+    }
     if (panel.isPlayPressed()) {
         if(currentStep==stateList.size()-1){
             restart();

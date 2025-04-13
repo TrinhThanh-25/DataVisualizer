@@ -20,7 +20,6 @@ bool STPanel::isAnyButtonPressed(){
 
 void STPanel::draw(){
     drawPanel();
-    this->Back.drawRectangleRounded(100);
     this->Create.drawRectangleRounded(100);
     this->Create.drawText();
     this->Dijkstra.drawRectangleRounded(100);

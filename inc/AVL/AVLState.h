@@ -19,9 +19,6 @@ class AVLState {
 
         void updateTheme();
 
-
-        void updateTheme();
-
         void update();
         void draw();
 
