@@ -20,6 +20,9 @@ class SLLState{
 
         void updateTheme();
 
+
+        void updateTheme();
+
         void update();
         void draw();
 

@@ -1,4 +1,5 @@
 #include <MenuState.h>
+#include <MenuState.h>
 
 MenuState::MenuState(){
     this->background = LoadTexture("button.png");

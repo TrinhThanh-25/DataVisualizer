@@ -3,6 +3,7 @@
 
 #include <GUI/Resources.h>
 #include <GUI/ColorTheme.h>
+#include <GUI/ColorTheme.h>
 
 class Button{
     public:
@@ -13,9 +14,11 @@ class Button{
         void setText(const char* text, int fontSize);
         void update();
         void update(ColorTheme theme);
+        void update(ColorTheme theme);
         
         void drawRectangle(Vector2 recSize);
         void drawRectangleRounded(int roundness);
+        void drawOutlineRounded(int roundness, int segments, int lineThick);
         void drawOutlineRounded(int roundness, int segments, int lineThick);
         
         void drawTexture();
@@ -36,6 +39,8 @@ class Button{
     private:
         Rectangle rectangle;
         Color color;
+        Color outlineColor;
+        Color textColor;
         Color outlineColor;
         Color textColor;
         Texture2D texture;

@@ -5,6 +5,7 @@
 #include <SLL/SLLState.h>
 #include <AVL/AVLState.h>
 #include <GUI/Resources.h>
+#include <GUI/Resources.h>
 #include <ShortestPath/ShortestPathState.h>
 #include <HashTable/HashTableVisual.h>
 #include <GUI/ColorThemeManager.h>
@@ -14,6 +15,8 @@ class Application{
         Application();
         void run();
     private:
+        ColorThemeManager colorThemeManager;
+
         ColorThemeManager colorThemeManager;
 
         MenuState menuState;

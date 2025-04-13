@@ -11,7 +11,10 @@ C:\Users\TrinhThanh\Desktop\DataVisualization\src\GUI\CodeBlock.cpp;C:\Users\Tri
 C:\Users\TrinhThanh\Desktop\DataVisualization\src\GUI\ColorThemeManager.cpp;C:\Users\TrinhThanh\Desktop\DataVisualization\build\DATAVISUALIZER.dir\Debug\ColorThemeManager.obj
 C:\Users\TrinhThanh\Desktop\DataVisualization\src\GUI\Console.cpp;C:\Users\TrinhThanh\Desktop\DataVisualization\build\DATAVISUALIZER.dir\Debug\Console.obj
 C:\Users\TrinhThanh\Desktop\DataVisualization\src\GUI\Panel.cpp;C:\Users\TrinhThanh\Desktop\DataVisualization\build\DATAVISUALIZER.dir\Debug\Panel.obj
+<<<<<<< HEAD
 C:\Users\TrinhThanh\Desktop\DataVisualization\src\GUI\Slider.cpp;C:\Users\TrinhThanh\Desktop\DataVisualization\build\DATAVISUALIZER.dir\Debug\Slider.obj
+=======
+>>>>>>> 6c5faff14054c2c40ec4eb0cb2d2fbbe76b878fa
 C:\Users\TrinhThanh\Desktop\DataVisualization\src\GUI\inputBox.cpp;C:\Users\TrinhThanh\Desktop\DataVisualization\build\DATAVISUALIZER.dir\Debug\inputBox.obj
 C:\Users\TrinhThanh\Desktop\DataVisualization\src\HashTable.cpp;C:\Users\TrinhThanh\Desktop\DataVisualization\build\DATAVISUALIZER.dir\Debug\HashTable.obj
 C:\Users\TrinhThanh\Desktop\DataVisualization\src\HashTableVisual.cpp;C:\Users\TrinhThanh\Desktop\DataVisualization\build\DATAVISUALIZER.dir\Debug\HashTableVisual.obj
@@ -29,6 +32,10 @@ C:\Users\TrinhThanh\Desktop\DataVisualization\src\ShortestPath\STPanel.cpp;C:\Us
 C:\Users\TrinhThanh\Desktop\DataVisualization\src\ShortestPath\ShortestPath.cpp;C:\Users\TrinhThanh\Desktop\DataVisualization\build\DATAVISUALIZER.dir\Debug\ShortestPath.obj
 C:\Users\TrinhThanh\Desktop\DataVisualization\src\ShortestPath\ShortestPathNode.cpp;C:\Users\TrinhThanh\Desktop\DataVisualization\build\DATAVISUALIZER.dir\Debug\ShortestPathNode.obj
 C:\Users\TrinhThanh\Desktop\DataVisualization\src\ShortestPath\ShortestPathState.cpp;C:\Users\TrinhThanh\Desktop\DataVisualization\build\DATAVISUALIZER.dir\Debug\ShortestPathState.obj
+<<<<<<< HEAD
+=======
+C:\Users\TrinhThanh\Desktop\DataVisualization\src\Slider.cpp;C:\Users\TrinhThanh\Desktop\DataVisualization\build\DATAVISUALIZER.dir\Debug\Slider.obj
+>>>>>>> 6c5faff14054c2c40ec4eb0cb2d2fbbe76b878fa
 C:\Users\TrinhThanh\Desktop\DataVisualization\src\main.cpp;C:\Users\TrinhThanh\Desktop\DataVisualization\build\DATAVISUALIZER.dir\Debug\main.obj
 C:\Users\TrinhThanh\Desktop\DataVisualization\src\tinyfiledialogs.c;C:\Users\TrinhThanh\Desktop\DataVisualization\build\DATAVISUALIZER.dir\Debug\tinyfiledialogs.obj
 C:\Users\TrinhThanh\Desktop\DataVisualization\src\tree234\Animation\Operation.cpp;C:\Users\TrinhThanh\Desktop\DataVisualization\build\DATAVISUALIZER.dir\Debug\Operation.obj

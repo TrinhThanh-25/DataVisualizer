@@ -39,7 +39,18 @@
 				}
 			],
 			"type" : "FILEPATH",
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/cache-v2-5b3fbd5695d649ca62af.json
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/cache-v2-5b3fbd5695d649ca62af.json
 			"value" : "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.43.34808/bin/Hostx64/x64/lib.exe"
+<<<<<<< HEAD
+=======
+========
+			"value" : "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.42.34433/bin/Hostx64/x64/lib.exe"
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/cache-v2-521f9aae77ffea2062e6.json
+========
+			"value" : "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.42.34433/bin/Hostx64/x64/lib.exe"
+>>>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55:build/.cmake/api/v1/reply/cache-v2-521f9aae77ffea2062e6.json
+>>>>>>> 6c5faff14054c2c40ec4eb0cb2d2fbbe76b878fa
 		},
 		{
 			"name" : "CMAKE_CACHEFILE_DIR",
@@ -51,7 +62,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "c:/Users/TrinhThanh/Desktop/DataVisualization/build"
+			"value" : "d:/test/Programming/project/DataVisualizer/build"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -63,7 +74,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "4"
+			"value" : "3"
 		},
 		{
 			"name" : "CMAKE_CACHE_MINOR_VERSION",
@@ -75,7 +86,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "0"
+			"value" : "31"
 		},
 		{
 			"name" : "CMAKE_CACHE_PATCH_VERSION",
@@ -87,7 +98,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "0"
+			"value" : "4"
 		},
 		{
 			"name" : "CMAKE_COMMAND",
@@ -455,7 +466,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/TrinhThanh/Desktop/DataVisualization/build/CMakeFiles/pkgRedirects"
+			"value" : "D:/test/Programming/project/DataVisualizer/build/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -551,7 +562,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/Users/TrinhThanh/Desktop/DataVisualization"
+			"value" : "D:/test/Programming/project/DataVisualizer"
 		},
 		{
 			"name" : "CMAKE_INSTALL_BINDIR",
@@ -835,19 +846,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.43.34808/bin/Hostx64/x64/link.exe"
-		},
-		{
-			"name" : "CMAKE_LIST_FILE_NAME",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Name of CMakeLists files to read"
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : "CMakeLists.txt"
+			"value" : "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.42.34433/bin/Hostx64/x64/link.exe"
 		},
 		{
 			"name" : "CMAKE_MODULE_LINKER_FLAGS",
@@ -1091,7 +1090,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "rc"
+			"value" : "C:/Program Files (x86)/Embarcadero/Studio/23.0/bin/rc.exe"
 		},
 		{
 			"name" : "CMAKE_RC_COMPILER_WORKS",
@@ -1195,7 +1194,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/Program Files/CMake/share/cmake-4.0"
+			"value" : "C:/Program Files/CMake/share/cmake-3.31"
 		},
 		{
 			"name" : "CMAKE_SHARED_LINKER_FLAGS",
@@ -1471,7 +1470,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/TrinhThanh/Desktop/DataVisualization/build"
+			"value" : "D:/test/Programming/project/DataVisualizer/build"
 		},
 		{
 			"name" : "DATAVISUALIZER_IS_TOP_LEVEL",
@@ -1495,7 +1494,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/TrinhThanh/Desktop/DataVisualization"
+			"value" : "D:/test/Programming/project/DataVisualizer"
 		},
 		{
 			"name" : "Datavisualizer_BINARY_DIR",
@@ -1507,7 +1506,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/TrinhThanh/Desktop/DataVisualization/build/raylib"
+			"value" : "D:/test/Programming/project/DataVisualizer/build/raylib"
 		},
 		{
 			"name" : "Datavisualizer_IS_TOP_LEVEL",
@@ -1531,7 +1530,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/TrinhThanh/Desktop/DataVisualization/raylib"
+			"value" : "D:/test/Programming/project/DataVisualizer/raylib"
 		},
 		{
 			"name" : "ENABLE_ASAN",
@@ -1591,7 +1590,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/TrinhThanh/Desktop/DataVisualization/build/raylib/raylib/external/glfw"
+			"value" : "D:/test/Programming/project/DataVisualizer/build/raylib/raylib/external/glfw"
 		},
 		{
 			"name" : "GLFW_BUILD_DOCS",
@@ -1735,7 +1734,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/TrinhThanh/Desktop/DataVisualization/raylib/src/external/glfw"
+			"value" : "D:/test/Programming/project/DataVisualizer/raylib/src/external/glfw"
 		},
 		{
 			"name" : "GLFW_USE_HYBRID_HPG",
@@ -1947,7 +1946,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/TrinhThanh/Desktop/DataVisualization/build/raylib/raylib"
+			"value" : "D:/test/Programming/project/DataVisualizer/build/raylib/raylib"
 		},
 		{
 			"name" : "raylib_IS_TOP_LEVEL",
@@ -1971,7 +1970,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/TrinhThanh/Desktop/DataVisualization/raylib/src"
+			"value" : "D:/test/Programming/project/DataVisualizer/raylib/src"
 		}
 	],
 	"kind" : "cache",
