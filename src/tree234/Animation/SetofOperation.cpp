@@ -1,6 +1,6 @@
-#include "SetofOperation.h"
+#include <234tree/animation/SetofOperation.h>
 
-SetofOperation::SetofOperation(Font fontNumber, Font fontText, float & speed) : fontNumber(fontNumber), fontText(fontText), speed(speed) {}
+SetofOperation::SetofOperation(float & speed) : speed(speed) {}
 
 
 

@@ -1,9 +1,9 @@
-#include "Operation.h"
+#include <234tree/animation/Operation.h>
 #include <iostream> // Thêm để debug
 #include <memory> // Thêm để sử dụng std::unique_ptr
 
-Operation::Operation(Font fontNumber, Font fontText, float& speed, TreeNode*& node, TreeNode *& root, bool& isSplit) 
-    : fontNumber(fontNumber), fontText(fontText), speed(speed), node(node), root(root), isSplit(isSplit) {
+Operation::Operation(float& speed, TreeNode*& node, TreeNode *& root, bool& isSplit) 
+    : speed(speed), node(node), root(root), isSplit(isSplit) {
     curAnimation = 0.0f;
     type = NORMAL;
     this->key = 0;

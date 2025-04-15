@@ -8,6 +8,7 @@
 #include <GUI/Resources.h>
 #include <ShortestPath/ShortestPathState.h>
 #include <HashTable/HashTableVisual.h>
+#include <234tree/Tree234Visual.h>
 #include <GUI/ColorThemeManager.h>
 
 class Application{
@@ -22,6 +23,7 @@ class Application{
         AVLState AVL;
         ShortestPathState ST;
         //HashTableVisualization hashTable(fontNumber, fontNumber, true, speed);
+        Tree234Visual TREE234;
 };
 
 #endif

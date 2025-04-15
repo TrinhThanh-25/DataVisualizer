@@ -18,6 +18,9 @@ class Slider{
         int numSteps;
 
         Slider(float minVal, float maxVal, float initialVal, int steps);
+        Slider(Vector2 pos, float w, float h, float minVal, float maxVal, float initialVal, int steps = 10) 
+        : position(pos), width(w), height(h), minVal(minVal), maxVal(maxVal), val(initialVal), 
+          knobSize({10, h + 10}), isDragging(false), numSteps(steps) {}
         void Update();
         void Draw();
 

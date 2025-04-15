@@ -1,6 +1,6 @@
 #include <Application.h>
 
-Application::Application(){}
+Application::Application(): TREE234(tempSpeed){}
 
 void Application::run(){
     SetConfigFlags(FLAG_MSAA_4X_HINT);
@@ -46,7 +46,8 @@ void Application::run(){
             break;
 
         case MenuSelection::TREE_234:
-            
+            this->TREE234.Draw();
+            this->TREE234.Update();
             
             break;
 

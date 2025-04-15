@@ -4,15 +4,21 @@
 #include "GUI/Button.h"
 #include <vector>
 #include "HashTable.h"
+#include "234tree/TreeNode.h"
 
 class PlaybackControl {
 public:
     PlaybackControl(Vector2 position, float width, float height);
 
-    void Update(int& currentPresentationIndex, int& currentStateIndex, 
+    void UpdateHash(int& currentPresentationIndex, int& currentStateIndex, 
                 std::vector<std::vector<HashTable>> historyState);
+    void UpdateTree234(int& currentPresentationIndex, int& currentStateIndex,
+                std::vector<std::vector<TreeNode*>> historyState);
     void Draw();
     bool IsPlaying() const;
+
+    int typePlayBack;
+    bool isPlaying = false;
 
 private:
     Vector2 position;
@@ -25,5 +31,11 @@ private:
     Button stepNextButton;
     Button skipNextButton;
 
-    bool isPlaying;
+    enum TypePlayBack{
+        hash = 0,
+        tree = 1, 
+        spanTree = 2
+    };
+
+    //bool isPlaying;
 };

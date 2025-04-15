@@ -7,6 +7,7 @@
 
 extern int speed;
 extern float delayTime;
+extern float tempSpeed = 0.05f;
 const int defaultSpeed = 200;
 const float defaultDelayTime = 0.5f;
 

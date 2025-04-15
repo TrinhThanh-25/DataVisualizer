@@ -1,9 +1,9 @@
-#include "TreePresentation.h"
+#include <234tree/animation/TreePresentation.h>
 
-TreePresentation::TreePresentation(Font fontNumber, Font fontText, float& speed, TreeNode*& tree,
+TreePresentation::TreePresentation(float& speed, TreeNode*& tree,
                                   std::vector<std::vector<TreeNode*>>& historyState, 
                                   int& currentPresentationIndex, int& currentStateIndex) 
-    : fontNumber(fontNumber), fontText(fontText), speed(speed), tree(tree),
+    : speed(speed), tree(tree),
       historyState(historyState), currentPresentationIndex(currentPresentationIndex), 
       currentStateIndex(currentStateIndex), currentStep(0) {
         this->current = this->tree;
@@ -97,56 +97,56 @@ void TreePresentation::InsertKeyOperation(int key){
         
             std::cout<<"co do day choi ne nghen "<<std::endl;
             //highlight
-            SetofOperation highlight(fontNumber, fontText, speed);
-            Operation opHighlight(fontNumber, fontText, speed, this->current, this->tree, this->isSplit);
+            SetofOperation highlight(speed);
+            Operation opHighlight(speed, this->current, this->tree, this->isSplit);
             opHighlight.type = Operation::HIGHLIGHT;
             opHighlight.SetKey(key);
             highlight.AddOperation(opHighlight);
             this->SetOperations.push_back(highlight);
             
             //normal
-            SetofOperation normal(fontNumber, fontText, speed);
-            Operation opNormal(fontNumber, fontText, speed, this->current, this->tree, this->isSplit);
+            SetofOperation normal(speed);
+            Operation opNormal(speed, this->current, this->tree, this->isSplit);
             opNormal.type = Operation::NORMAL;
             opNormal.SetKey(key);
             normal.AddOperation(opNormal);
             this->SetOperations.push_back(normal);
 
             //split
-            SetofOperation split(fontNumber, fontText, speed);
-            Operation opSplit(fontNumber, fontText, speed, this->current, this->tree, this->isSplit);
+            SetofOperation split(speed);
+            Operation opSplit(speed, this->current, this->tree, this->isSplit);
             opSplit.type = Operation::SPLIT_NODE;
             opSplit.SetKey(key);
             split.AddOperation(opSplit);
             this->SetOperations.push_back(split);
 
             //move to finpos
-            SetofOperation moveToFinPos(fontNumber, fontText, speed);
-            Operation opMoveToFinPos(fontNumber, fontText, speed, this->current, this->tree, this->isSplit);
+            SetofOperation moveToFinPos(speed);
+            Operation opMoveToFinPos(speed, this->current, this->tree, this->isSplit);
             opMoveToFinPos.type = Operation::MOVE_TO_FINPOS;
             opMoveToFinPos.SetKey(key);
             moveToFinPos.AddOperation(opMoveToFinPos);
             this->SetOperations.push_back(moveToFinPos);
 
             //merge
-            SetofOperation merge(fontNumber, fontText, speed);
-            Operation opMerge(fontNumber, fontText, speed, this->current, this->tree, this->isSplit);
+            SetofOperation merge(speed);
+            Operation opMerge(speed, this->current, this->tree, this->isSplit);
             opMerge.type = Operation::MERGE_KEY_TO_PARENT;
             opMerge.SetKey(key);
             merge.AddOperation(opMerge);
             this->SetOperations.push_back(merge);
 
             //move to finpos
-            SetofOperation moveToFinPos2(fontNumber, fontText, speed);
-            Operation opMoveToFinPos2(fontNumber, fontText, speed, this->current, this->tree, this->isSplit);
+            SetofOperation moveToFinPos2(speed);
+            Operation opMoveToFinPos2(speed, this->current, this->tree, this->isSplit);
             opMoveToFinPos2.type = Operation::MOVE_TO_FINPOS;
             opMoveToFinPos2.SetKey(key);
             moveToFinPos2.AddOperation(opMoveToFinPos2);
             this->SetOperations.push_back(moveToFinPos2);
 
             //move to children node
-            SetofOperation moveToChildrenNode(fontNumber, fontText, speed);
-            Operation opMoveToChildrenNode(fontNumber, fontText, speed, this->current, this->tree, this->isSplit);
+            SetofOperation moveToChildrenNode(speed);
+            Operation opMoveToChildrenNode(speed, this->current, this->tree, this->isSplit);
             opMoveToChildrenNode.type = Operation::MOVE_TO_CHILDREN_NODE;
             opMoveToChildrenNode.SetKey(key);
             moveToChildrenNode.AddOperation(opMoveToChildrenNode);
@@ -155,32 +155,32 @@ void TreePresentation::InsertKeyOperation(int key){
     }
 
     //highlight
-    SetofOperation highlight(fontNumber, fontText, speed);
-    Operation opHighlight(fontNumber, fontText, speed, this->current, this->tree, this->isSplit);
+    SetofOperation highlight(speed);
+    Operation opHighlight(speed, this->current, this->tree, this->isSplit);
     opHighlight.type = Operation::HIGHLIGHT;
     opHighlight.SetKey(key);
     highlight.AddOperation(opHighlight);
     this->SetOperations.push_back(highlight);
 
     //normal
-    SetofOperation normal(fontNumber, fontText, speed);
-    Operation opNormal(fontNumber, fontText, speed, this->current, this->tree, this->isSplit);
+    SetofOperation normal(speed);
+    Operation opNormal(speed, this->current, this->tree, this->isSplit);
     opNormal.type = Operation::NORMAL;
     opNormal.SetKey(key);
     normal.AddOperation(opNormal);
     this->SetOperations.push_back(normal);
 
     //insert to leaf
-    SetofOperation insertToLeaf(fontNumber, fontText, speed);
-    Operation opInsertToLeaf(fontNumber, fontText, speed, this->current, this->tree, this->isSplit);
+    SetofOperation insertToLeaf(speed);
+    Operation opInsertToLeaf(speed, this->current, this->tree, this->isSplit);
     opInsertToLeaf.type = Operation::INSERT_TO_LEAF;
     opInsertToLeaf.SetKey(key);
     insertToLeaf.AddOperation(opInsertToLeaf);
     this->SetOperations.push_back(insertToLeaf);
 
     //move to finpos
-    SetofOperation moveToFinPos(fontNumber, fontText, speed);
-    Operation opMoveToFinPos(fontNumber, fontText, speed, this->current, this->tree, this->isSplit);
+    SetofOperation moveToFinPos(speed);
+    Operation opMoveToFinPos(speed, this->current, this->tree, this->isSplit);
     opMoveToFinPos.type = Operation::MOVE_TO_FINPOS;
     opMoveToFinPos.SetKey(key);
     moveToFinPos.AddOperation(opMoveToFinPos);
@@ -219,24 +219,24 @@ void TreePresentation::FindKeyOperation(int key){
     if(isFound){
         for(int i = 0; i < count; i++){
             //highlight
-            SetofOperation highlight(fontNumber, fontText, speed);
-            Operation opHL(fontNumber, fontText, speed, this->current, this->tree, this->isSplit);
+            SetofOperation highlight(speed);
+            Operation opHL(speed, this->current, this->tree, this->isSplit);
             opHL.type = Operation::HIGHLIGHT;
             opHL.SetKey(key);
             highlight.AddOperation(opHL);
             this->SetOperations.push_back(highlight);
 
             //normal
-            SetofOperation normal(fontNumber, fontText, speed);
-            Operation opN(fontNumber, fontText, speed, this->current, this->tree, this->isSplit);
+            SetofOperation normal(speed);
+            Operation opN(speed, this->current, this->tree, this->isSplit);
             opN.type = Operation::NORMAL;
             opN.SetKey(key);
             normal.AddOperation(opN);
             this->SetOperations.push_back(normal);
 
             //move to children node
-            SetofOperation moveTOchildNode(fontNumber, fontText, speed);
-            Operation opMoveToChild(fontNumber, fontText, speed, this->current, this->tree, this->isSplit);
+            SetofOperation moveTOchildNode(speed);
+            Operation opMoveToChild(speed, this->current, this->tree, this->isSplit);
             opMoveToChild.type = Operation::MOVE_TO_CHILDREN_NODE;
             opMoveToChild.SetKey(key);
             moveTOchildNode.AddOperation(opMoveToChild);
@@ -257,40 +257,40 @@ void TreePresentation::FindKeyOperation(int key){
         }
             for(int i = 0; i < count; i++){
                 //highlight
-                SetofOperation highlight(fontNumber, fontText, speed);
-                Operation opHL(fontNumber, fontText, speed, this->current, this->tree, this->isSplit);
+                SetofOperation highlight(speed);
+                Operation opHL(speed, this->current, this->tree, this->isSplit);
                 opHL.type = Operation::HIGHLIGHT;
                 opHL.SetKey(key);
                 highlight.AddOperation(opHL);
                 this->SetOperations.push_back(highlight);
 
                 //normal
-                SetofOperation normal(fontNumber, fontText, speed);
-                Operation opN(fontNumber, fontText, speed, this->current, this->tree, this->isSplit);
+                SetofOperation normal(speed);
+                Operation opN(speed, this->current, this->tree, this->isSplit);
                 opN.type = Operation::NORMAL;
                 opN.SetKey(key);
                 normal.AddOperation(opN);
                 this->SetOperations.push_back(normal);
 
                 //move to children node
-                SetofOperation moveTOchildNode(fontNumber, fontText, speed);
-                Operation opMoveToChild(fontNumber, fontText, speed, this->current, this->tree, this->isSplit);
+                SetofOperation moveTOchildNode(speed);
+                Operation opMoveToChild(speed, this->current, this->tree, this->isSplit);
                 opMoveToChild.type = Operation::MOVE_TO_CHILDREN_NODE;
                 opMoveToChild.SetKey(key);
                 moveTOchildNode.AddOperation(opMoveToChild);
                 this->SetOperations.push_back(moveTOchildNode);
             }
             //highlight
-            SetofOperation highlight(fontNumber, fontText, speed);
-            Operation opHL(fontNumber, fontText, speed, this->current, this->tree, this->isSplit);
+            SetofOperation highlight(speed);
+            Operation opHL(speed, this->current, this->tree, this->isSplit);
             opHL.type = Operation::HIGHLIGHT;
             opHL.SetKey(key);
             highlight.AddOperation(opHL);
             this->SetOperations.push_back(highlight);
 
             //normal
-            SetofOperation normal(fontNumber, fontText, speed);
-            Operation opN(fontNumber, fontText, speed, this->current, this->tree, this->isSplit);
+            SetofOperation normal(speed);
+            Operation opN(speed, this->current, this->tree, this->isSplit);
             opN.type = Operation::NORMAL;
             opN.SetKey(key);
             normal.AddOperation(opN);
@@ -341,16 +341,16 @@ void TreePresentation::DeleteKeyOperation(int key){
         
         for(int i = 0; i < count - countMerge; i++){
             //highlight
-            SetofOperation highlight(fontNumber, fontText, speed);
-            Operation opHL(fontNumber, fontText, speed, this->current, this->tree, this->isSplit);
+            SetofOperation highlight(speed);
+            Operation opHL(speed, this->current, this->tree, this->isSplit);
             opHL.type = Operation::HIGHLIGHT;
             opHL.SetKey(key);
             highlight.AddOperation(opHL);
             this->SetOperations.push_back(highlight);
 
             //normal
-            SetofOperation normal(fontNumber, fontText, speed);
-            Operation opN(fontNumber, fontText, speed, this->current, this->tree, this->isSplit);
+            SetofOperation normal(speed);
+            Operation opN(speed, this->current, this->tree, this->isSplit);
             opN.type = Operation::NORMAL;
             opN.SetKey(key);
             normal.AddOperation(opN);
@@ -359,8 +359,8 @@ void TreePresentation::DeleteKeyOperation(int key){
             
 
             //merge to child
-            SetofOperation mergeToChild(fontNumber, fontText, speed);
-            Operation opMergeToChild(fontNumber, fontText, speed, this->current, this->tree, this->isSplit);
+            SetofOperation mergeToChild(speed);
+            Operation opMergeToChild(speed, this->current, this->tree, this->isSplit);
             opMergeToChild.type = Operation::MERGE_TO_CHILDREN;
             opMergeToChild.SetKey(key);
             mergeToChild.AddOperation(opMergeToChild);
@@ -369,16 +369,16 @@ void TreePresentation::DeleteKeyOperation(int key){
             
 
             //move to finpos
-            SetofOperation moveToFinPos(fontNumber, fontText, speed);
-            Operation opMoveToFinPos(fontNumber, fontText, speed, this->current, this->tree, this->isSplit);
+            SetofOperation moveToFinPos(speed);
+            Operation opMoveToFinPos(speed, this->current, this->tree, this->isSplit);
             opMoveToFinPos.type = Operation::MOVE_TO_FINPOS;
             opMoveToFinPos.SetKey(key);
             moveToFinPos.AddOperation(opMoveToFinPos);
             this->SetOperations.push_back(moveToFinPos);
 
             //change key
-            SetofOperation changeKey(fontNumber, fontText, speed);
-            Operation opChangeKey(fontNumber, fontText, speed, this->current, this->tree, this->isSplit);
+            SetofOperation changeKey(speed);
+            Operation opChangeKey(speed, this->current, this->tree, this->isSplit);
             opChangeKey.type = Operation::CHANGE_KEY;
             opChangeKey.SetKey(key);
             opChangeKey.SetNewKey(newKey);
@@ -386,32 +386,32 @@ void TreePresentation::DeleteKeyOperation(int key){
             this->SetOperations.push_back(changeKey);
 
             //move to children node
-            SetofOperation moveToChildrenNode(fontNumber, fontText, speed);
-            Operation opMoveToChildrenNode(fontNumber, fontText, speed, this->current, this->tree, this->isSplit);
+            SetofOperation moveToChildrenNode(speed);
+            Operation opMoveToChildrenNode(speed, this->current, this->tree, this->isSplit);
             opMoveToChildrenNode.type = Operation::MOVE_TO_CHILDREN_NODE;
             opMoveToChildrenNode.SetKey(newKey);
             moveToChildrenNode.AddOperation(opMoveToChildrenNode);
             this->SetOperations.push_back(moveToChildrenNode);
         }
         //highlight
-        SetofOperation highlight(fontNumber, fontText, speed);
-        Operation opHL(fontNumber, fontText, speed, this->current, this->tree, this->isSplit);
+        SetofOperation highlight(speed);
+        Operation opHL(speed, this->current, this->tree, this->isSplit);
         opHL.type = Operation::HIGHLIGHT;
         opHL.SetKey(key);
         highlight.AddOperation(opHL);
         this->SetOperations.push_back(highlight);
 
         //normal
-        SetofOperation normal(fontNumber, fontText, speed);
-        Operation opN(fontNumber, fontText, speed, this->current, this->tree, this->isSplit);
+        SetofOperation normal(speed);
+        Operation opN(speed, this->current, this->tree, this->isSplit);
         opN.type = Operation::NORMAL;
         opN.SetKey(key);
         normal.AddOperation(opN);
         this->SetOperations.push_back(normal);
 
         //remove leaf
-        SetofOperation removeLeaf(fontNumber, fontText, speed);
-        Operation opRemoveLeaf(fontNumber, fontText, speed, this->current, this->tree, this->isSplit);
+        SetofOperation removeLeaf(speed);
+        Operation opRemoveLeaf(speed, this->current, this->tree, this->isSplit);
         opRemoveLeaf.type = Operation::REMOVE_LEAF;
         opRemoveLeaf.SetKey(key);
         opRemoveLeaf.SetNewKey(newKey);
@@ -423,64 +423,64 @@ void TreePresentation::DeleteKeyOperation(int key){
         std::cout<<"Count: "<<count<<std::endl;
         for(int i = 0; i < count - countMerge; i++){
             //highlight
-            SetofOperation highlight(fontNumber, fontText, speed);
-            Operation opHL(fontNumber, fontText, speed, this->current, this->tree, this->isSplit);
+            SetofOperation highlight(speed);
+            Operation opHL(speed, this->current, this->tree, this->isSplit);
             opHL.type = Operation::HIGHLIGHT;
             opHL.SetKey(key);
             highlight.AddOperation(opHL);
             this->SetOperations.push_back(highlight);
 
             //normal
-            SetofOperation normal(fontNumber, fontText, speed);
-            Operation opN(fontNumber, fontText, speed, this->current, this->tree, this->isSplit);
+            SetofOperation normal(speed);
+            Operation opN(speed, this->current, this->tree, this->isSplit);
             opN.type = Operation::NORMAL;
             opN.SetKey(key);
             normal.AddOperation(opN);
             this->SetOperations.push_back(normal);
 
             //merge to child
-            SetofOperation mergeToChild(fontNumber, fontText, speed);
-            Operation opMergeToChild(fontNumber, fontText, speed, this->current, this->tree, this->isSplit);
+            SetofOperation mergeToChild(speed);
+            Operation opMergeToChild(speed, this->current, this->tree, this->isSplit);
             opMergeToChild.type = Operation::MERGE_TO_CHILDREN;
             opMergeToChild.SetKey(key);
             mergeToChild.AddOperation(opMergeToChild);
             this->SetOperations.push_back(mergeToChild);
 
             //move to finpos
-            SetofOperation moveToFinPos(fontNumber, fontText, speed);
-            Operation opMoveToFinPos(fontNumber, fontText, speed, this->current, this->tree, this->isSplit);
+            SetofOperation moveToFinPos(speed);
+            Operation opMoveToFinPos(speed, this->current, this->tree, this->isSplit);
             opMoveToFinPos.type = Operation::MOVE_TO_FINPOS;
             opMoveToFinPos.SetKey(key);
             moveToFinPos.AddOperation(opMoveToFinPos);
             this->SetOperations.push_back(moveToFinPos);
 
             //move to children node
-            SetofOperation moveTOchildNode(fontNumber, fontText, speed);
-            Operation opMoveToChild(fontNumber, fontText, speed, this->current, this->tree, this->isSplit);
+            SetofOperation moveTOchildNode(speed);
+            Operation opMoveToChild(speed, this->current, this->tree, this->isSplit);
             opMoveToChild.type = Operation::MOVE_TO_CHILDREN_NODE;
             opMoveToChild.SetKey(key);
             moveTOchildNode.AddOperation(opMoveToChild);
             this->SetOperations.push_back(moveTOchildNode);
         }
         //highlight
-        SetofOperation highlight(fontNumber, fontText, speed);
-        Operation opHL(fontNumber, fontText, speed, this->current, this->tree, this->isSplit);
+        SetofOperation highlight(speed);
+        Operation opHL(speed, this->current, this->tree, this->isSplit);
         opHL.type = Operation::HIGHLIGHT;
         opHL.SetKey(key);
         highlight.AddOperation(opHL);
         this->SetOperations.push_back(highlight);
 
         //normal
-        SetofOperation normal(fontNumber, fontText, speed);
-        Operation opN(fontNumber, fontText, speed, this->current, this->tree, this->isSplit);
+        SetofOperation normal(speed);
+        Operation opN(speed, this->current, this->tree, this->isSplit);
         opN.type = Operation::NORMAL;
         opN.SetKey(key);
         normal.AddOperation(opN);
         this->SetOperations.push_back(normal);
 
         //remvoe leaf
-        SetofOperation removeLeaf(fontNumber, fontText, speed);
-        Operation opRemoveLeaf(fontNumber, fontText, speed, this->current, this->tree, this->isSplit);
+        SetofOperation removeLeaf(speed);
+        Operation opRemoveLeaf(speed, this->current, this->tree, this->isSplit);
         opRemoveLeaf.type = Operation::REMOVE_LEAF;
         opRemoveLeaf.SetKey(key);
         removeLeaf.AddOperation(opRemoveLeaf);
@@ -494,8 +494,8 @@ void TreePresentation::CreateTree(int numofKey){
     std::cout<<"da tao tree roi"<<std::endl;
 
     //move to finpos
-    SetofOperation moveToFinPos(fontNumber, fontText, speed);
-    Operation opMoveToFinPos(fontNumber, fontText, speed, this->current, this->tree, this->isSplit);
+    SetofOperation moveToFinPos(speed);
+    Operation opMoveToFinPos(speed, this->current, this->tree, this->isSplit);
     opMoveToFinPos.type = Operation::MOVE_TO_FINPOS;
     opMoveToFinPos.SetKey(0); // Không cần key cho thao tác này
     moveToFinPos.AddOperation(opMoveToFinPos);
