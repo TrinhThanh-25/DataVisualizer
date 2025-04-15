@@ -9,15 +9,14 @@
 class CodeBlock{
     public:
         CodeBlock();
-        void update();
         void draw();
 
         void setCode(std::string code);
         void clearCode();
-        void drawCode(int x, int y, int fontSize);
+        void drawCode(float x, float y);
 
         void setHighlight(std::vector<int> ID);
-        void drawHighlight(int fontSize);
+        void drawHighlight();
         void clearHighlight();
 
         CodeBlock clone() const;

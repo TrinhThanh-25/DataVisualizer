@@ -12,6 +12,8 @@ STPanel::STPanel(){
     this->Setting.setText("Setting",panelButtonFontSize);
     this->Setting.setSize(panelButtonSize);
     this->Setting.setPosition({Setting.getSize().x/2.0f+(Setting.getSize().y/2.0f-Setting.getfontSize()/2.0f), 750+(Setting.getSize().y/2.0f-Setting.getfontSize()/2.0f)});
+
+    setDataName("Shortest Path");
 }
 
 bool STPanel::isAnyButtonPressed(){

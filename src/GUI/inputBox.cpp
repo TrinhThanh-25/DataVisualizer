@@ -20,7 +20,7 @@ void InputBox::Update() {
     if (isActive) {
         int key = GetCharPressed();
         while (key > 0) {
-            if ((key >= 32 && key <= 126) && text.length() < maxLength) {
+            if ((key >= 32 && key <= 126) && (MeasureTextEx(inputBoxFont, text.c_str(), inputBoxFontSize, 0).x + MeasureTextEx(inputBoxFont, std::string(1, key).c_str(), inputBoxFontSize, 0).x) < box.width - 10) {
                 text += static_cast<char>(key);
             }
             key = GetCharPressed();
@@ -48,10 +48,10 @@ void InputBox::Update() {
 void InputBox::Draw() {
     DrawRectangleRec(box, (isActive||text!="") ? WHITE : boxColor);
     DrawRectangleLinesEx(box, 3, outlineButtonColor);
-    DrawText(text.c_str(), box.x + 5, box.y + box.height / 4.0f, inputBoxFontSize, textColor);
-    DrawText(nameBox.c_str(), box.x, box.y -inputBoxNameFontSize, inputBoxNameFontSize, outlineButtonColor);
+    DrawTextEx(inputBoxFont, text.c_str(), {box.x + 5, box.y + box.height / 4.0f}, inputBoxFontSize, 0, textColor);
+    DrawTextEx(inputBoxNameFont, nameBox.c_str(), {box.x, box.y - inputBoxNameFontSize}, inputBoxNameFontSize, 0, outlineButtonColor);
     if (isActive && showCursor) {
-        DrawText("|", box.x + 5 + MeasureText(text.c_str(), inputBoxFontSize), box.y + box.height / 4.0f, inputBoxFontSize, BLACK);
+        DrawTextEx(inputBoxFont, "|", {box.x + 5 + MeasureTextEx(inputBoxFont, text.c_str(), inputBoxFontSize, 0).x, box.y + box.height / 4.0f}, inputBoxFontSize, 0, BLACK);
     }
 }
 

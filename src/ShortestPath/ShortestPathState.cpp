@@ -101,7 +101,6 @@ void ShortestPathState::update(){
         ST.updateLine();
     }
     panel.update();
-    code.update();
     speedSlider.Update();
 
     switch (animationState) {
@@ -258,7 +257,6 @@ void ShortestPathState::draw(){
     ST.draw();
     panel.draw();
     speedSlider.Draw();
-    DrawText("Shortest Path",GetScreenWidth()/2.0f-MeasureText("Shortest Path",dataTitleFontSize)/2.0f,dataTitlePosition.y-dataTitleFontSize/2.0f,dataTitleFontSize, dataTitleTextColor);
     if(panel.isCreateUsed()){
         NodesBox.Draw();
         EdgesBox.Draw();

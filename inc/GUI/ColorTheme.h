@@ -478,4 +478,9 @@ extern ButtonTheme endButtonTheme;
 extern ButtonTheme reloadButtonTheme;
 extern ButtonTheme exitButtonTheme;
 
+extern Font codeBlockFont;
+extern Font inputBoxFont;
+extern Font inputBoxNameFont;
+extern Font buttonFont;
+
 #endif

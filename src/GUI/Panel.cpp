@@ -41,10 +41,15 @@ void Panel::drawPanel(){
     DrawRectangleLinesEx(panelHolder,3,outlineButtonColor);
     this->Back.drawRectangleRounded(100);
     this->Back.drawTexture();
+    DrawTextEx(buttonFont, dataName, {GetScreenWidth()/2.0f-MeasureTextEx(buttonFont, dataName, dataTitleFontSize,0).x/2.0f,dataTitlePosition.y-dataTitleFontSize/2.0f}, dataTitleFontSize, 0, dataTitleTextColor);
 }
 
 void Panel::reset(){
     if(!isUsing) return;
     isUsing->deSelected();
     isUsing=nullptr;
+}
+
+void Panel::setDataName(const char* name){
+    this->dataName=name;
 }

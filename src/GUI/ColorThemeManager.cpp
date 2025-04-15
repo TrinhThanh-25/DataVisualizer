@@ -268,7 +268,17 @@ ButtonTheme endButtonTheme;
 ButtonTheme reloadButtonTheme;
 ButtonTheme exitButtonTheme;
 
-void LoadTextures(){
+Font codeBlockFont;
+Font inputBoxFont;
+Font inputBoxNameFont;
+Font buttonFont;
+
+void LoadFontsAndTextures(){
+    codeBlockFont = LoadFont("../resources/RobotoMono-Regular.ttf");
+    inputBoxFont = LoadFont("../resources/Inter_28pt-Regular.ttf");
+    inputBoxNameFont = LoadFont("../resources/UbuntuMono-Regular.ttf");
+    buttonFont = LoadFont("../resources/Ubuntu-Bold.ttf");
+
     settingButtonTheme.DefaultNormal = LoadTexture("../resources/settingDefaultNormal.png");
     settingButtonTheme.DefaultHovered = LoadTexture("../resources/settingDefaultHovered.png");
     settingButtonTheme.DefaultPressed = LoadTexture("../resources/settingDefaultPressed.png");
@@ -541,7 +551,11 @@ void LoadTextures(){
     exitButtonTheme.BluishPressed = LoadTexture("../resources/exitBluishPressed.png");
 }
 
-void UnloadTextures(){
+void UnloadFontsAndTextures(){
+    UnloadFont(codeBlockFont);
+    UnloadFont(inputBoxFont);
+    UnloadFont(buttonFont);
+
     UnloadTexture(settingButtonTheme.DefaultNormal); 
     UnloadTexture(settingButtonTheme.DefaultHovered); 
     UnloadTexture(settingButtonTheme.DefaultPressed); 

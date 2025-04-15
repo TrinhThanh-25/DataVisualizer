@@ -21,6 +21,8 @@ class Panel : public Console{
         void drawPanel();
         void reset();
 
+        void setDataName(const char* name);
+
         std::string loadFileContent(){
             std::string text="";
             const char *filterPatterns[] = {"*.txt"};
@@ -37,6 +39,8 @@ class Panel : public Console{
     protected:
         Rectangle dataTitle;
         Button Back;
+
+        const char* dataName;
 
         Rectangle panelHolder;
         Rectangle subPanelHolder;

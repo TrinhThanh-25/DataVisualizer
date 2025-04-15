@@ -2,17 +2,13 @@
 
 CodeBlock::CodeBlock(){}
 
-void CodeBlock::update(){
-
-}
-
 void CodeBlock::draw(){
     if(code!=""){   
         DrawRectangleRec(codeBlockRec,buttonNormal);
         DrawRectangleLinesEx(codeBlockRec,3,outlineButtonColor);
     }
-    drawHighlight(codeBlockFontSize);
-    drawCode(codePosition.x,codePosition.y,codeBlockFontSize);
+    drawHighlight();
+    drawCode(codePosition.x,codePosition.y);
 }
 
 void CodeBlock::setCode(std::string code){
@@ -23,13 +19,13 @@ void CodeBlock::clearCode(){
     this->code="";
 }
 
-void CodeBlock::drawCode( int x, int y, int fontSize){
+void CodeBlock::drawCode( float x, float y){
     std::stringstream stream(code);
     std::string line;
-    int lineDis=fontSize+5;
+    int lineDis=codeBlockFontSize+5;
     int pos=0;
     while(std::getline(stream,line)){
-        DrawText(line.c_str(),x,y+pos+5.0f,fontSize,codeBlockTextColor);
+        DrawTextEx(codeBlockFont, line.c_str(), {x,y+pos+5.0f}, codeBlockFontSize, 0, codeBlockTextColor);
         pos+=lineDis;
     }
 }
@@ -38,9 +34,9 @@ void CodeBlock::setHighlight(std::vector<int> ID){
     highlightID=ID;
 }
 
-void CodeBlock::drawHighlight(int fontSize){
+void CodeBlock::drawHighlight(){
     for (int x : highlightID){
-        DrawRectangle(codeBlockRec.x,codeBlockRec.y+x*(fontSize+5)+2.5f,codeBlockRec.width,fontSize+5.0f,codeBlockHighlightColor);
+        DrawRectangle(codeBlockRec.x,codeBlockRec.y+x*(codeBlockFontSize+5)+2.5f,codeBlockRec.width,codeBlockFontSize+5.0f,codeBlockHighlightColor);
     }
 }
 

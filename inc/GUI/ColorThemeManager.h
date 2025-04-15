@@ -31,7 +31,7 @@ private:
     Button bluish;
 };
 
-void LoadTextures();
-void UnloadTextures();
+void LoadFontsAndTextures();
+void UnloadFontsAndTextures();
 
 #endif

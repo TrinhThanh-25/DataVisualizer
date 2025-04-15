@@ -16,6 +16,8 @@ AVLPanel::AVLPanel(){
     this->Search.setText("Search",panelButtonFontSize);
     this->Search.setSize(panelButtonSize);
     this->Search.setPosition({Search.getSize().x/2.0f+(Search.getSize().y/2.0f-Search.getfontSize()/2.0f), 800+(Search.getSize().y/2.0f-Search.getfontSize()/2.0f)});
+
+    setDataName("AVL Tree");
 }
 
 bool AVLPanel::isAnyButtonPressed(){

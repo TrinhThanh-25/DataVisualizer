@@ -201,13 +201,16 @@ void Button::drawTexture(){
         }else{
             DrawTexture(this->hovered, this->position.x - this->hovered.width/2.0f, this->position.y - this->hovered.height/2.0f, WHITE);
         }
-    }else{
+    }
+    else{
         DrawTexture(this->normal, this->position.x - this->normal.width/2.0f, this->position.y - this->normal.height/2.0f, WHITE);
     }
 }
 
 void Button::drawText(){
-    DrawText(this->text, position.x - MeasureText(text, fontSize)/2 ,position.y, this->fontSize, textColor);
+    Vector2 textSize = MeasureTextEx(buttonFont, this->text, this->fontSize, 0);
+    Vector2 textPosition = { this->position.x - textSize.x / 2.0f, this->position.y };
+    DrawTextEx(buttonFont, this->text, textPosition, this->fontSize, 0, this->textColor);
 }
 
 Vector2 Button::getSize(){

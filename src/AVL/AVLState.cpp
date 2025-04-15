@@ -70,7 +70,6 @@ void AVLState::update(){
 
     AVLTree.update();
     panel.update();
-    code.update();
     speedSlider.Update();
 
     switch (animationState) {
@@ -185,7 +184,6 @@ void AVLState::draw(){
     AVLTree.draw();
     panel.draw();
     speedSlider.Draw();
-    DrawText("AVL Tree",GetScreenWidth()/2.0f-MeasureText("AVL Tree",dataTitleFontSize)/2.0f,dataTitlePosition.y-dataTitleFontSize/2.0f,dataTitleFontSize, dataTitleTextColor);
     if(panel.isCreateUsed()){
         createBox.Draw();
         this->Random.drawRectangleRounded(100);

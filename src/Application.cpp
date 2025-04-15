@@ -6,7 +6,7 @@ void Application::run(){
     SetConfigFlags(FLAG_MSAA_4X_HINT);
     InitWindow(1600, 900, "Data Structure Visualization");
     SetTargetFPS(60);
-    LoadTextures();
+    LoadFontsAndTextures();
     srand(time(NULL));
     while (!WindowShouldClose()){
         BeginDrawing();
@@ -82,6 +82,6 @@ void Application::run(){
         colorThemeManager.draw();
         EndDrawing();
     }
-    UnloadTextures();
+    UnloadFontsAndTextures();
     CloseWindow();
 }
