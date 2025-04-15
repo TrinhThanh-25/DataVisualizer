@@ -1,127 +1,127 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="D:\Project CS163\DataVisualizer\src\AVL\AVL.cpp">
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\AVL\AVL.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Project CS163\DataVisualizer\src\AVL\AVLArrow.cpp">
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\AVL\AVLArrow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Project CS163\DataVisualizer\src\AVL\AVLNode.cpp">
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\AVL\AVLNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Project CS163\DataVisualizer\src\AVL\AVLPanel.cpp">
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\AVL\AVLPanel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Project CS163\DataVisualizer\src\AVL\AVLState.cpp">
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\AVL\AVLState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Project CS163\DataVisualizer\src\Animation.cpp">
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\Animation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Project CS163\DataVisualizer\src\Application.cpp">
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\Application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Project CS163\DataVisualizer\src\GUI\Arrow.cpp">
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\GUI\Arrow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Project CS163\DataVisualizer\src\GUI\Button.cpp">
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\GUI\Button.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Project CS163\DataVisualizer\src\GUI\CodeBlock.cpp">
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\GUI\CodeBlock.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Project CS163\DataVisualizer\src\GUI\ColorThemeManager.cpp">
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\GUI\ColorThemeManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Project CS163\DataVisualizer\src\GUI\Console.cpp">
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\GUI\Console.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Project CS163\DataVisualizer\src\GUI\Panel.cpp">
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\GUI\Panel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Project CS163\DataVisualizer\src\GUI\Slider.cpp">
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\GUI\Slider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Project CS163\DataVisualizer\src\GUI\inputBox.cpp">
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\GUI\inputBox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Project CS163\DataVisualizer\src\HashTable.cpp">
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\HashTable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Project CS163\DataVisualizer\src\HashTableVisual.cpp">
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\HashTableVisual.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Project CS163\DataVisualizer\src\MenuState.cpp">
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\MenuState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Project CS163\DataVisualizer\src\PlayBackControl.cpp">
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\PlayBackControl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Project CS163\DataVisualizer\src\Presentation.cpp">
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\Presentation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Project CS163\DataVisualizer\src\SLL\SLLArrow.cpp">
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\SLL\SLLArrow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Project CS163\DataVisualizer\src\SLL\SLLNode.cpp">
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\SLL\SLLNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Project CS163\DataVisualizer\src\SLL\SLLPanel.cpp">
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\SLL\SLLPanel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Project CS163\DataVisualizer\src\SLL\SLLState.cpp">
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\SLL\SLLState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Project CS163\DataVisualizer\src\SLL\SinglyLinkedList.cpp">
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\SLL\SinglyLinkedList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Project CS163\DataVisualizer\src\SetofAnimation.cpp">
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\SetofAnimation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Project CS163\DataVisualizer\src\ShortestPath\STArrow.cpp">
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\ShortestPath\STArrow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Project CS163\DataVisualizer\src\ShortestPath\STPanel.cpp">
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\ShortestPath\STPanel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Project CS163\DataVisualizer\src\ShortestPath\ShortestPath.cpp">
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\ShortestPath\ShortestPath.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Project CS163\DataVisualizer\src\ShortestPath\ShortestPathNode.cpp">
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\ShortestPath\ShortestPathNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Project CS163\DataVisualizer\src\ShortestPath\ShortestPathState.cpp">
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\ShortestPath\ShortestPathState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Project CS163\DataVisualizer\src\main.cpp">
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Project CS163\DataVisualizer\src\tinyfiledialogs.c">
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\tinyfiledialogs.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Project CS163\DataVisualizer\src\tree234\Animation\Operation.cpp">
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\tree234\Animation\Operation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Project CS163\DataVisualizer\src\tree234\Animation\SetofOperation.cpp">
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\tree234\Animation\SetofOperation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Project CS163\DataVisualizer\src\tree234\Animation\TreePresentation.cpp">
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\tree234\Animation\TreePresentation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Project CS163\DataVisualizer\src\tree234\Tree234Visual.cpp">
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\tree234\Tree234Visual.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Project CS163\DataVisualizer\src\tree234\TreeNode.cpp">
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\tree234\TreeNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="D:\Project CS163\DataVisualizer\CMakeLists.txt" />
+    <CustomBuild Include="D:\test\Programming\project\DataVisualizer\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{24149142-980A-358F-B8CF-04262FE7C86A}</UniqueIdentifier>
+      <UniqueIdentifier>{87006AD0-E8DC-31B7-9F76-316E6B5CFB09}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
