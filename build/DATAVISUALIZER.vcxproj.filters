@@ -16,9 +16,6 @@
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\AVL\AVLState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\Animation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\Application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -40,25 +37,16 @@
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\GUI\Panel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\GUI\PlayBackControl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\GUI\Slider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\GUI\inputBox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\HashTable.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\HashTableVisual.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\MenuState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\PlayBackControl.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\Presentation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\SLL\SLLArrow.cpp">
@@ -76,9 +64,6 @@
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\SLL\SinglyLinkedList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\SetofAnimation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\ShortestPath\STArrow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -94,10 +79,28 @@
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\ShortestPath\ShortestPathState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\hashtable\HashTable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\hashtable\HashTableVisual.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\hashtable\animation\Animation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\hashtable\animation\Presentation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\hashtable\animation\SetofAnimation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\tinyfiledialogs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\tree234\Animation\InputPanel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\tree234\Animation\Operation.cpp">

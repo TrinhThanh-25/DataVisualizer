@@ -4,19 +4,18 @@
 
 class Animation {
 public:
-    Font fontNumber;
-    Font fontText;
-    float speed;
+    float& speed;
     Vector2 target;
     int type;
     float curAnimation;
     Node* node;
 
-    Animation(Font fontNumber, Font fontText, float speed, Node* node);
-    Animation(Font fontNumber, Font fontText, float speed, Node* node, Vector2 target);
+    Animation(float &speed, Node* node);
+    Animation(float &speed, Node* node, Vector2 target);
 
     bool DrawChosenNode();
-    bool DrawFadeInNode();
+    bool DrawNormalNode();
+    bool DrawFadeInNode(); // Không cần Presentation vì không dùng pendingFadeInNode
     bool DrawFadeOutNode();
     bool DrawMoveNodeAnimation();
     bool DrawInsertEdgeAnimation();

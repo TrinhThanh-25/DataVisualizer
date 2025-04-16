@@ -6,7 +6,7 @@
 #include "TreeNode.h"
 #include "animation/InputPanel.h"
 #include "../GUI/Slider.h"
-#include "../HashTable/PlayBackControl.h"
+#include "../GUI/PlayBackControl.h"
 
 class Tree234Visual {
 public:

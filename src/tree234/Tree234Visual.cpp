@@ -110,8 +110,9 @@ void Tree234Visual::DrawTree(TreeNode* root) {
     //root->LayoutTree(0, 800, 0, 100); // Căn chỉnh vị trí của cây
     //std::cout<<"Drawing tree with keys: "<<std::endl;
     if (root) {
-        root->DrawNode();
+        
         root->DrawLinktoChild();
+        root->DrawNode();
         for (TreeNode* child : root->children) {
             DrawTree(child);
         }

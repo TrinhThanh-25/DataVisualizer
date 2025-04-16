@@ -1,6 +1,6 @@
 #include <Application.h>
 
-Application::Application(): TREE234(tempSpeed){}
+Application::Application(): TREE234(this->speed), hashTable(true, speed){}
 
 void Application::run(){
     SetConfigFlags(FLAG_MSAA_4X_HINT);
@@ -40,9 +40,8 @@ void Application::run(){
 
         case MenuSelection::LINEAR_HT:
             
-            // this->hashTable.Draw();
-            // this->hashTable.HandleInput();
-            // this->hashTable.HandleMouseInput();
+            this->hashTable.Draw();
+            this->hashTable.Update();
             break;
 
         case MenuSelection::TREE_234:

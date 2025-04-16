@@ -22,8 +22,9 @@ class Application{
         SLLState SLL;
         AVLState AVL;
         ShortestPathState ST;
-        //HashTableVisualization hashTable(fontNumber, fontNumber, true, speed);
+        HashTableVisualization hashTable;
         Tree234Visual TREE234;
+        float speed = 0.05f;
 };
 
 #endif

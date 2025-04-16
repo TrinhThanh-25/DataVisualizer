@@ -12,8 +12,8 @@ InputPanel::InputPanel(Vector2 pos, Vector2 panelSize, Color panelCol)
     toggleButton.setPosition({pos.x - 20, pos.y + panelSize.y / 2});
     toggleButton.setSize({30, panelSize.y});
     toggleButton.setText("", 0); // Không có text, sẽ vẽ hình tam giác
-    toggleButton.setColor(GRAY, DARKGRAY, DARKGRAY);
-    toggleButton.setRectangle();
+    // toggleButton.setColor(GRAY, DARKGRAY, DARKGRAY);
+    // toggleButton.setRectangle();
 
     // Thiết lập các nút chức năng (Create, Search, Insert, Remove)
     const char* buttonLabels[] = {"Create(M,N)", "Search(v)", "Insert(v)", "Remove(v)"};
@@ -22,15 +22,15 @@ InputPanel::InputPanel(Vector2 pos, Vector2 panelSize, Color panelCol)
         btn.setPosition({pos.x + size.x / 2, pos.y + 20 + i * 40}); // Căn giữa theo chiều ngang
         btn.setSize({size.x - 20, 30});
         btn.setText(buttonLabels[i], 20);
-        btn.setColor(LIGHTGRAY, GRAY, DARKGRAY);
-        btn.setRectangle();
+        // btn.setColor(LIGHTGRAY, GRAY, DARKGRAY);
+        // btn.setRectangle();
         buttons.push_back(btn);
     }
 
     // Thiết lập nút "Go" (ban đầu không hiển thị, sẽ cập nhật vị trí sau)
     goButton.setSize({30, 30});
     goButton.setText("Go", 20);
-    goButton.setColor(LIGHTGRAY, GRAY, DARKGRAY);
+    //goButton.setColor(LIGHTGRAY, GRAY, DARKGRAY);
 }
 
 void InputPanel::SetPosition(Vector2 pos) {
@@ -38,12 +38,12 @@ void InputPanel::SetPosition(Vector2 pos) {
 
     // Cập nhật vị trí của nút toggle
     toggleButton.setPosition({pos.x - 20, pos.y + size.y / 2});
-    toggleButton.setRectangle();
+    //toggleButton.setRectangle();
 
     // Cập nhật vị trí của các nút chức năng
     for (int i = 0; i < buttons.size(); i++) {
         buttons[i].setPosition({pos.x + size.x / 2, pos.y + 20 + i * 40}); // Căn giữa theo chiều ngang
-        buttons[i].setRectangle();
+        //buttons[i].setRectangle();
     }
 
     // Cập nhật vị trí của ô nhập liệu và nút "Go" nếu đang hiển thị
@@ -51,7 +51,7 @@ void InputPanel::SetPosition(Vector2 pos) {
         Vector2 btnPos = buttons[activeButtonIndex].getPosition();
         inputBox = InputBox(btnPos.x + (size.x - 20) / 2 + 10, btnPos.y, 80, 30, 10, WHITE, BLACK);
         goButton.setPosition({btnPos.x + (size.x - 20) / 2 + 100, btnPos.y});
-        goButton.setRectangle();
+        //goButton.setRectangle();
     }
 }
 
@@ -78,7 +78,7 @@ void InputPanel::Update() {
                 Vector2 btnPos = buttons[i].getPosition();
                 inputBox = InputBox(btnPos.x + (size.x - 20) / 2 + 10, btnPos.y, 80, 30, 10, WHITE, BLACK);
                 goButton.setPosition({btnPos.x + (size.x - 20) / 2 + 100, btnPos.y});
-                goButton.setRectangle();
+                //goButton.setRectangle();
             }
         }
 
@@ -119,14 +119,14 @@ void InputPanel::Draw() {
         // Vẽ các nút chức năng
         for (auto& btn : buttons) {
             btn.drawRectangleRounded(0.2f);
-            btn.drawText(BLACK);
+            btn.drawText();
         }
 
         // Vẽ ô nhập liệu và nút "Go" nếu đang hiển thị
         if (showInputBox) {
             inputBox.Draw();
             goButton.drawRectangleRounded(0.2f);
-            goButton.drawText(BLACK);
+            goButton.drawText();
         }
     }
 }
