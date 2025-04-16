@@ -12,6 +12,7 @@ bool Animation::DrawChosenNode() {
     if (curAnimation < 1.0f) {
         curAnimation += speed;
         node->colorCurrent = node->colorChosen;
+        node->textCurColor = node->textChosenColor;
         node->isChosen = true;
         return false;
     }
@@ -27,6 +28,7 @@ bool Animation::DrawNormalNode(){
     if(curAnimation < 1.0f){
         curAnimation += 1.0f;
         node->colorCurrent = node->colorNormal;
+        node->textCurColor = node->textNorColor;
         node->isChosen = false;
         return true;
     }

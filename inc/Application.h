@@ -9,6 +9,7 @@
 #include <ShortestPath/ShortestPathState.h>
 #include <HashTable/HashTableVisual.h>
 #include <234tree/Tree234Visual.h>
+#include <MST/GraphVisual.h>
 #include <GUI/ColorThemeManager.h>
 
 class Application{
@@ -24,6 +25,7 @@ class Application{
         ShortestPathState ST;
         HashTableVisualization hashTable;
         Tree234Visual TREE234;
+        GraphVisual graph;
         float speed = 0.05f;
 };
 

@@ -21,7 +21,7 @@
 class HashTableVisualization {
 public:
     HashTableVisualization(const bool& isLightMode, float &speed);
-    ~HashTableVisualization();
+    //~HashTableVisualization();
 
     void Init(int size, int numofKey);
     void Insert(int key);

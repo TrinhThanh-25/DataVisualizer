@@ -46,6 +46,27 @@
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\GUI\inputBox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\MST\Animation\GraphOperation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\MST\Animation\GraphPresentation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\MST\Animation\GraphSetofOperation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\MST\Graph.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\MST\GraphEdge.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\MST\GraphNode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\MST\GraphVisual.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\MenuState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -83,6 +104,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\hashtable\HashTableVisual.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\hashtable\Node.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\hashtable\animation\Animation.cpp">

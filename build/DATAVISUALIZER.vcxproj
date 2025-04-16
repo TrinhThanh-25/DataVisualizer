@@ -343,6 +343,13 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\GUI\PlayBackControl.cpp" />
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\GUI\Slider.cpp" />
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\GUI\inputBox.cpp" />
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\MST\Animation\GraphOperation.cpp" />
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\MST\Animation\GraphPresentation.cpp" />
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\MST\Animation\GraphSetofOperation.cpp" />
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\MST\Graph.cpp" />
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\MST\GraphEdge.cpp" />
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\MST\GraphNode.cpp" />
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\MST\GraphVisual.cpp" />
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\MenuState.cpp" />
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\SLL\SLLArrow.cpp" />
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\SLL\SLLNode.cpp" />
@@ -356,6 +363,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\ShortestPath\ShortestPathState.cpp" />
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\hashtable\HashTable.cpp" />
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\hashtable\HashTableVisual.cpp" />
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\hashtable\Node.cpp" />
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\hashtable\animation\Animation.cpp" />
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\hashtable\animation\Presentation.cpp" />
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\hashtable\animation\SetofAnimation.cpp" />

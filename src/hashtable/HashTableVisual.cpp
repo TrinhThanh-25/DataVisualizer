@@ -37,18 +37,18 @@ HashTableVisualization::HashTableVisualization(const bool& isLightMode, float &s
     // rewindStepButton.setText("Rewind Step", 20);
 }
 
-HashTableVisualization::~HashTableVisualization() {
-    for (int i = 0; i < hashTable.GetSize(); i++) {
-        Node* current = hashTable.getTable(i);
-        while (current != nullptr) {
-            Node* temp = current;
-            current = current->next;
-            delete temp;
-        }
-    }
+// HashTableVisualization::~HashTableVisualization() {
+//     for (int i = 0; i < hashTable.GetSize(); i++) {
+//         Node* current = hashTable.getTable(i);
+//         while (current != nullptr) {
+//             Node* temp = current;
+//             current = current->next;
+//             delete temp;
+//         }
+//     }
 
-    hashTable.table.clear();
-}
+//     hashTable.table.clear();
+// }
 
 void HashTableVisualization::Init(int size, int numofKey) {
     // Xóa dữ liệu hiện tại của hashTable
@@ -157,7 +157,7 @@ void HashTableVisualization::DrawHashTable() {
         for (int i = 0; i < hashTable.GetSize(); i++) {
             Vector2 bucketPos = {(float)(startX + i * bucketSpacing), (float)startY};
             DrawCircle(bucketPos.x, bucketPos.y, 10, nodeHighlightColor);
-            DrawText(std::to_string(i).c_str(), bucketPos.x - 5, bucketPos.y + 15, 15, RED);
+            DrawText(std::to_string(i).c_str(), bucketPos.x - 5, bucketPos.y + 15, 15, nodeTextColor);
     
             Node* current = hashTable.getTable(i);
             Vector2 prevPos = bucketPos;
@@ -181,7 +181,7 @@ void HashTableVisualization::DrawHashTable() {
 
             Vector2 bucketPos = {(float)(startX + i * bucketSpacing), (float)startY};
             DrawCircle(bucketPos.x, bucketPos.y, 10, nodeHighlightColor);
-            DrawText(std::to_string(i).c_str(), bucketPos.x - 5, bucketPos.y + 15, 15, RED);
+            DrawText(std::to_string(i).c_str(), bucketPos.x - 5, bucketPos.y + 15, 15, nodeTextColor);
     
             Node* current = historyState[currentPresentationIndex][currentStateIndex].getTable(i);
             Vector2 prevPos = bucketPos;

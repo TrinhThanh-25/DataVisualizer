@@ -1,6 +1,6 @@
 #include <Application.h>
 
-Application::Application(): TREE234(this->speed), hashTable(true, speed){}
+Application::Application(): TREE234(this->speed), hashTable(true, speed), graph(this->speed){}
 
 void Application::run(){
     SetConfigFlags(FLAG_MSAA_4X_HINT);
@@ -62,7 +62,8 @@ void Application::run(){
             break;
 
         case MenuSelection::MIN_SPANNING_TREE:
-
+            graph.Draw();
+            graph.Update();
             
             break;
 
