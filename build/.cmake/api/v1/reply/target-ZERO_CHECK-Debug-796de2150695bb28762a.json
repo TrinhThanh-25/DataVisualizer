@@ -14,24 +14,6 @@
 			}
 		]
 	},
-<<<<<<<< HEAD:build/.cmake/api/v1/reply/target-ALL_BUILD-Release-79a17f2da28dc5c81b9b.json
-	"dependencies" : 
-	[
-		{
-			"id" : "DATAVISUALIZER::@6890427a1f51a3e7e1df"
-		},
-		{
-			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"
-		},
-		{
-			"id" : "raylib::@7d429ebd5d102775094d"
-		},
-		{
-			"id" : "glfw::@a896dd99b4a5c6eab3d9"
-		}
-	],
-========
->>>>>>>> 6c5faff14054c2c40ec4eb0cb2d2fbbe76b878fa:build/.cmake/api/v1/reply/target-ZERO_CHECK-Debug-796de2150695bb28762a.json
 	"folder" : 
 	{
 		"name" : "CMakePredefinedTargets"

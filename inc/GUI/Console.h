@@ -13,13 +13,19 @@ class Console{
         bool isStartPressed();
         void updateController();
         void drawController();
-    private:
+        void setEnd();
+        void deEnd();
+        void setPause();
+        void dePause();
+    protected:
         Rectangle Controller;
         Button Play;
         Button Next;
         Button Prev;
         Button End;
         Button Start;
+        bool isEnd=false;
+        bool isPause=false;
 };
 
 #endif

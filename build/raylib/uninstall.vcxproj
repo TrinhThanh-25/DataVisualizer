@@ -66,23 +66,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Midl>
-<<<<<<< HEAD
-      <AdditionalIncludeDirectories>C:\Users\TrinhThanh\Desktop\DataVisualization\inc;C:\Users\TrinhThanh\Desktop\DataVisualization\raylib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-      <AdditionalIncludeDirectories>C:\Users\TrinhThanh\Desktop\DataVisualization\inc;C:\Users\TrinhThanh\Desktop\DataVisualization\raylib\src;C:\Users\TrinhThanh\Desktop\DataVisualization\raygui-master\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-=======
-      <AdditionalIncludeDirectories>D:\test\Programming\project\DataVisualizer\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
->>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
-=======
-      <AdditionalIncludeDirectories>D:\test\Programming\project\DataVisualizer\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
->>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
-=======
-      <AdditionalIncludeDirectories>D:\test\Programming\project\DataVisualizer\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
->>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
->>>>>>> 6c5faff14054c2c40ec4eb0cb2d2fbbe76b878fa
+      <AdditionalIncludeDirectories>D:\test\Programming\project\DataVisualizer\inc;D:\test\Programming\project\DataVisualizer\raylib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -92,23 +76,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Midl>
-<<<<<<< HEAD
-      <AdditionalIncludeDirectories>C:\Users\TrinhThanh\Desktop\DataVisualization\inc;C:\Users\TrinhThanh\Desktop\DataVisualization\raylib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-      <AdditionalIncludeDirectories>C:\Users\TrinhThanh\Desktop\DataVisualization\inc;C:\Users\TrinhThanh\Desktop\DataVisualization\raylib\src;C:\Users\TrinhThanh\Desktop\DataVisualization\raygui-master\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-=======
-      <AdditionalIncludeDirectories>D:\test\Programming\project\DataVisualizer\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
->>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
-=======
-      <AdditionalIncludeDirectories>D:\test\Programming\project\DataVisualizer\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
->>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
-=======
-      <AdditionalIncludeDirectories>D:\test\Programming\project\DataVisualizer\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
->>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
->>>>>>> 6c5faff14054c2c40ec4eb0cb2d2fbbe76b878fa
+      <AdditionalIncludeDirectories>D:\test\Programming\project\DataVisualizer\inc;D:\test\Programming\project\DataVisualizer\raylib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -118,23 +86,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <Midl>
-<<<<<<< HEAD
-      <AdditionalIncludeDirectories>C:\Users\TrinhThanh\Desktop\DataVisualization\inc;C:\Users\TrinhThanh\Desktop\DataVisualization\raylib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-      <AdditionalIncludeDirectories>C:\Users\TrinhThanh\Desktop\DataVisualization\inc;C:\Users\TrinhThanh\Desktop\DataVisualization\raylib\src;C:\Users\TrinhThanh\Desktop\DataVisualization\raygui-master\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-=======
-      <AdditionalIncludeDirectories>D:\test\Programming\project\DataVisualizer\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
->>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
-=======
-      <AdditionalIncludeDirectories>D:\test\Programming\project\DataVisualizer\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
->>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
-=======
-      <AdditionalIncludeDirectories>D:\test\Programming\project\DataVisualizer\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
->>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
->>>>>>> 6c5faff14054c2c40ec4eb0cb2d2fbbe76b878fa
+      <AdditionalIncludeDirectories>D:\test\Programming\project\DataVisualizer\inc;D:\test\Programming\project\DataVisualizer\raylib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -144,23 +96,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
     <Midl>
-<<<<<<< HEAD
-      <AdditionalIncludeDirectories>C:\Users\TrinhThanh\Desktop\DataVisualization\inc;C:\Users\TrinhThanh\Desktop\DataVisualization\raylib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-      <AdditionalIncludeDirectories>C:\Users\TrinhThanh\Desktop\DataVisualization\inc;C:\Users\TrinhThanh\Desktop\DataVisualization\raylib\src;C:\Users\TrinhThanh\Desktop\DataVisualization\raygui-master\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-=======
-      <AdditionalIncludeDirectories>D:\test\Programming\project\DataVisualizer\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
->>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
-=======
-      <AdditionalIncludeDirectories>D:\test\Programming\project\DataVisualizer\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
->>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
-=======
-      <AdditionalIncludeDirectories>D:\test\Programming\project\DataVisualizer\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
->>>>>>> 57ca819e1282dcd2198f5aff20a8ea3daa1dcb55
->>>>>>> 6c5faff14054c2c40ec4eb0cb2d2fbbe76b878fa
+      <AdditionalIncludeDirectories>D:\test\Programming\project\DataVisualizer\inc;D:\test\Programming\project\DataVisualizer\raylib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>

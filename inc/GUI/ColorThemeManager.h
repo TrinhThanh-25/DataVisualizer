@@ -5,10 +5,6 @@
 #include <GUI/Button.h>
 #include <GUI/ColorTheme.h>
 
-enum class StyleTheme {
-    DEF, SUNNY, RLTECH, LAVANDA, ENEFETE, DARK, CYBER, CANDY, TERMINAL, BLUISH
-};
-
 class ColorThemeManager {
 public:
     ColorThemeManager();
@@ -22,7 +18,6 @@ public:
     bool isUpdate = true;
 private:
     Button settingTheme;
-    StyleTheme currentTheme;
     Rectangle panel;
     Button def;
     Button sunny;
@@ -35,5 +30,8 @@ private:
     Button terminal;
     Button bluish;
 };
+
+void LoadFontsAndTextures();
+void UnloadFontsAndTextures();
 
 #endif

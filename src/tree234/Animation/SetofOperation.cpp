@@ -1,18 +1,26 @@
-// #include "SetofOperation.h"
+<<<<<<< HEAD
+#include <234tree/animation/SetofOperation.h>
 
-// SetofOperation::SetofOperation(Font fontNumber, Font fontText, float & speed) : fontNumber(fontNumber), fontText(fontText), speed(speed) {}
+SetofOperation::SetofOperation(float & speed) : speed(speed) {}
+=======
+#include "SetofOperation.h"
 
-// void SetofOperation::AddOperation(Operation operation){
-//     operations.push_back(operation);
-// }
+SetofOperation::SetofOperation(Font fontNumber, Font fontText, float & speed) : fontNumber(fontNumber), fontText(fontText), speed(speed) {}
+>>>>>>> 14909f1 (234tree animation)
 
-// bool SetofOperation::Draw(){
-//     if(operations.empty()) return true;
-//     bool isComplete = true;
-//     for(int i = 0; i < operations.size(); i++){
-//         if(!operations[i].DrawOperation()){
-//             isComplete = false;
-//         }
-//     }
-//     return isComplete;
-// }
+
+
+void SetofOperation::AddOperation(Operation operation){
+    operations.push_back(operation);
+}
+
+bool SetofOperation::Draw(){
+    if(operations.empty()) return true;
+    bool isComplete = true;
+    for(int i = 0; i < operations.size(); i++){
+        if(!operations[i].DrawOperation()){
+            isComplete = false;
+        }
+    }
+    return isComplete;
+}

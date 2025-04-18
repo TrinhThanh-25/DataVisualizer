@@ -3,6 +3,12 @@
 
 #include <raylib.h>
 
+enum class StyleTheme {
+    DEF, SUNNY, RLTECH, LAVANDA, ENEFETE, DARK, CYBER, CANDY, TERMINAL, BLUISH
+};
+
+extern StyleTheme currentTheme;
+
 struct ColorTheme {
     Color appTitleColor;
     Color backgroundColor;
@@ -41,7 +47,7 @@ struct ColorTheme {
 };
 
 const ColorTheme Default{
-    BLACK,                                // appTitleColo
+    BLACK,                                // appTitleColor
     WHITE,                               //BackgroudColor
 
     {201,201,201,255},                   // dataTitleColor
@@ -428,5 +434,53 @@ extern Color lineTextColor;
 
 extern Color boxColor;
 extern Color boxTextColor;
+
+struct ButtonTheme{
+    Texture2D DefaultNormal;
+    Texture2D DefaultHovered;
+    Texture2D DefaultPressed;
+    Texture2D SunnyNormal;
+    Texture2D SunnyHovered;
+    Texture2D SunnyPressed;
+    Texture2D RltechNormal;
+    Texture2D RltechHovered;
+    Texture2D RltechPressed;
+    Texture2D LavandaNormal;
+    Texture2D LavandaHovered;
+    Texture2D LavandaPressed;
+    Texture2D EnefeteNormal;
+    Texture2D EnefeteHovered;
+    Texture2D EnefetePressed;
+    Texture2D DarkNormal;
+    Texture2D DarkHovered;
+    Texture2D DarkPressed;
+    Texture2D CyberNormal;
+    Texture2D CyberHovered;
+    Texture2D CyberPressed;
+    Texture2D CandyNormal;
+    Texture2D CandyHovered;
+    Texture2D CandyPressed;
+    Texture2D TerminalNormal;
+    Texture2D TerminalHovered;
+    Texture2D TerminalPressed;
+    Texture2D BluishNormal;
+    Texture2D BluishHovered;
+    Texture2D BluishPressed;
+};
+
+extern ButtonTheme settingButtonTheme;
+extern ButtonTheme playButtonTheme;
+extern ButtonTheme nextButtonTheme;
+extern ButtonTheme prevButtonTheme;
+extern ButtonTheme pauseButtonTheme;
+extern ButtonTheme startButtonTheme;
+extern ButtonTheme endButtonTheme;
+extern ButtonTheme reloadButtonTheme;
+extern ButtonTheme exitButtonTheme;
+
+extern Font codeBlockFont;
+extern Font inputBoxFont;
+extern Font inputBoxNameFont;
+extern Font buttonFont;
 
 #endif

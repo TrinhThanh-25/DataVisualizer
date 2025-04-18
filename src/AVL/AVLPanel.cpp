@@ -3,19 +3,25 @@
 AVLPanel::AVLPanel(){
     this->Create.setText("Create",panelButtonFontSize);
     this->Create.setSize(panelButtonSize);
-    this->Create.setPosition({Create.getSize().x/2.0f+(Create.getSize().y/2.0f-Create.getfontSize()/2.0f), 650+(Create.getSize().y/2.0f-Create.getfontSize()/2.0f)});
+    this->Create.setPosition({panelButtonSize.x/2.0f+(panelButtonSize.y/2.0f-panelButtonFontSize/2.0f), 650+(panelButtonSize.y/2.0f)});
 
     this->Add.setText("Add",panelButtonFontSize);
     this->Add.setSize(panelButtonSize);
-    this->Add.setPosition({Add.getSize().x/2.0f+(Add.getSize().y/2.0f-Add.getfontSize()/2.0f), 700+(Add.getSize().y/2.0f-Add.getfontSize()/2.0f)});
+    this->Add.setPosition({panelButtonSize.x/2.0f+(panelButtonSize.y/2.0f-panelButtonFontSize/2.0f), 700+(panelButtonSize.y/2.0f)});
 
     this->Remove.setText("Remove",panelButtonFontSize);
     this->Remove.setSize(panelButtonSize);
-    this->Remove.setPosition({Remove.getSize().x/2.0f+(Remove.getSize().y/2.0f-Remove.getfontSize()/2.0f), 750+(Remove.getSize().y/2.0f-Remove.getfontSize()/2.0f)});
+    this->Remove.setPosition({panelButtonSize.x/2.0f+(panelButtonSize.y/2.0f-panelButtonFontSize/2.0f), 750+(panelButtonSize.y/2.0f)});
 
     this->Search.setText("Search",panelButtonFontSize);
     this->Search.setSize(panelButtonSize);
+<<<<<<< HEAD
+    this->Search.setPosition({panelButtonSize.x/2.0f+(panelButtonSize.y/2.0f-panelButtonFontSize/2.0f), 800+(panelButtonSize.y/2.0f)});
+=======
     this->Search.setPosition({Search.getSize().x/2.0f+(Search.getSize().y/2.0f-Search.getfontSize()/2.0f), 800+(Search.getSize().y/2.0f-Search.getfontSize()/2.0f)});
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
+
+    setDataName("AVL Tree");
 }
 
 bool AVLPanel::isAnyButtonPressed(){
@@ -24,7 +30,6 @@ bool AVLPanel::isAnyButtonPressed(){
 
 void AVLPanel::draw(){
     drawPanel();
-    this->Back.drawRectangleRounded(100);
     this->Create.drawRectangleRounded(100);
     this->Create.drawText();
     this->Add.drawRectangleRounded(100);

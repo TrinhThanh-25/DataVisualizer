@@ -29,6 +29,18 @@ void AVLState::updateTheme(){
 
 void AVLState::update(){
     panel.setBackActive();
+    if(!stateList.empty()&&currentStep==stateList.size()-1){
+        panel.setEnd();
+    }
+    else{
+        panel.deEnd();
+    }
+    if((isPlaying&&isPaused)||!isPlaying){
+        panel.setPause();
+    }
+    else{
+        panel.dePause();
+    }
     if (panel.isPlayPressed()) {
         if(currentStep==stateList.size()-1){
             restart();
@@ -58,7 +70,6 @@ void AVLState::update(){
 
     AVLTree.update();
     panel.update();
-    code.update();
     speedSlider.Update();
 
     switch (animationState) {
@@ -173,7 +184,6 @@ void AVLState::draw(){
     AVLTree.draw();
     panel.draw();
     speedSlider.Draw();
-    DrawText("AVL Tree",GetScreenWidth()/2.0f-MeasureText("AVL Tree",dataTitleFontSize)/2.0f,dataTitlePosition.y-dataTitleFontSize/2.0f,dataTitleFontSize, dataTitleTextColor);
     if(panel.isCreateUsed()){
         createBox.Draw();
         this->Random.drawRectangleRounded(100);

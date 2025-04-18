@@ -40,6 +40,18 @@ void SLLState::updateTheme(){
 
 void SLLState::update(){
     panel.setBackActive();
+    if(!stateList.empty()&&currentStep==stateList.size()-1){
+        panel.setEnd();
+    }
+    else{
+        panel.deEnd();
+    }
+    if((isPlaying&&isPaused)||!isPlaying){
+        panel.setPause();
+    }
+    else{
+        panel.dePause();
+    }
     if (panel.isPlayPressed()) {
         if(currentStep==stateList.size()-1){
             restart();
@@ -69,7 +81,6 @@ void SLLState::update(){
     
     SLL.update();
     panel.update();
-    code.update();
     speedSlider.Update();
 
     switch (animationState) {
@@ -274,7 +285,6 @@ void SLLState::draw(){
     SLL.draw();
     panel.draw();
     speedSlider.Draw();
-    DrawText("Singly Linked List",GetScreenWidth()/2.0f-MeasureText("Singly Linked List",dataTitleFontSize)/2.0f,dataTitlePosition.y-dataTitleFontSize/2.0f,dataTitleFontSize, dataTitleTextColor);
     if(panel.isCreateUsed()){
         createBox.Draw();
         this->Random.drawRectangleRounded(100);

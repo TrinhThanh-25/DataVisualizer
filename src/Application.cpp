@@ -1,17 +1,18 @@
 #include <Application.h>
 
-Application::Application(){}
+Application::Application(): TREE234(this->speed), hashTable(true, speed), graph(this->speed){}
 
 void Application::run(){
     SetConfigFlags(FLAG_MSAA_4X_HINT);
     InitWindow(1600, 900, "Data Structure Visualization");
     SetTargetFPS(60);
+    LoadFontsAndTextures();
     srand(time(NULL));
     while (!WindowShouldClose()){
         BeginDrawing();
         ClearBackground(backgroundColor);
         colorThemeManager.update();
-        if(SLL.isBackPressed()||AVL.isBackPressed()||ST.isBackPressed()){
+        if(SLL.isBackPressed()||AVL.isBackPressed()||ST.isBackPressed()||hashTable.isBackPressed()||TREE234.isBackPressed()){
             menuState.currentSelection=MenuSelection::NONE;
         }
         switch (menuState.currentSelection) {
@@ -39,13 +40,13 @@ void Application::run(){
 
         case MenuSelection::LINEAR_HT:
             
-            // this->hashTable.Draw();
-            // this->hashTable.HandleInput();
-            // this->hashTable.HandleMouseInput();
+            this->hashTable.Draw();
+            this->hashTable.Update();
             break;
 
         case MenuSelection::TREE_234:
-            
+            this->TREE234.Draw();
+            this->TREE234.Update();
             
             break;
 
@@ -61,7 +62,8 @@ void Application::run(){
             break;
 
         case MenuSelection::MIN_SPANNING_TREE:
-
+            graph.Draw();
+            graph.Update();
             
             break;
 
@@ -81,5 +83,6 @@ void Application::run(){
         colorThemeManager.draw();
         EndDrawing();
     }
+    UnloadFontsAndTextures();
     CloseWindow();
 }

@@ -6,12 +6,10 @@
 
 class SetofAnimation {
 public:
-    Font fontNumber;
-    Font fontText;
-    float speed;
+    float &speed;
     std::vector<Animation> animations;
 
-    SetofAnimation(Font fontNumber, Font fontText, float speed);
+    SetofAnimation(float &speed);
     void AddAnimation(Animation animation);
     bool Draw();
 };

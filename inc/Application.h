@@ -8,6 +8,8 @@
 #include <GUI/Resources.h>
 #include <ShortestPath/ShortestPathState.h>
 #include <HashTable/HashTableVisual.h>
+#include <234tree/Tree234Visual.h>
+#include <MST/GraphVisual.h>
 #include <GUI/ColorThemeManager.h>
 
 class Application{
@@ -17,13 +19,14 @@ class Application{
     private:
         ColorThemeManager colorThemeManager;
 
-        ColorThemeManager colorThemeManager;
-
         MenuState menuState;
         SLLState SLL;
         AVLState AVL;
         ShortestPathState ST;
-        //HashTableVisualization hashTable(fontNumber, fontNumber, true, speed);
+        HashTableVisualization hashTable;
+        Tree234Visual TREE234;
+        GraphVisual graph;
+        float speed = 0.05f;
 };
 
 #endif

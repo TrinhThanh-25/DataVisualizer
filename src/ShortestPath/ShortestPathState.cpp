@@ -57,6 +57,18 @@ void ShortestPathState::updateTheme(){
 
 void ShortestPathState::update(){
     panel.setBackActive();
+    if(!stateList.empty()&&currentStep==stateList.size()-1){
+        panel.setEnd();
+    }
+    else{
+        panel.deEnd();
+    }
+    if((isPlaying&&isPaused)||!isPlaying){
+        panel.setPause();
+    }
+    else{
+        panel.dePause();
+    }
     if (panel.isPlayPressed()) {
         if(currentStep==stateList.size()-1){
             restart();
@@ -89,7 +101,6 @@ void ShortestPathState::update(){
         ST.updateLine();
     }
     panel.update();
-    code.update();
     speedSlider.Update();
 
     switch (animationState) {
@@ -246,7 +257,6 @@ void ShortestPathState::draw(){
     ST.draw();
     panel.draw();
     speedSlider.Draw();
-    DrawText("Shortest Path",GetScreenWidth()/2.0f-MeasureText("Shortest Path",dataTitleFontSize)/2.0f,dataTitlePosition.y-dataTitleFontSize/2.0f,dataTitleFontSize, dataTitleTextColor);
     if(panel.isCreateUsed()){
         NodesBox.Draw();
         EdgesBox.Draw();

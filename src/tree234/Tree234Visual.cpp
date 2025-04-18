@@ -1,86 +1,300 @@
-// #include "Tree234Visual.h"
-// #include <string>
+#include <234tree/Tree234Visual.h>
+#include <string>
 
-// Tree234Visual::Tree234Visual(Font font) : font(font) {
-//     root = nullptr;
-//     speed = 0.05f;
-//     std::vector<std::vector<TreeNode*>> history;
-//     int presIndex = 0, stateIndex = 0;
-//     treePresentation = new TreePresentation(font, font, speed, root, history, presIndex, stateIndex);
-//     showInputBox = false;
-//     inputText = "";
-//     inputNumber = 0;
-//     insertButton = {20, 20, 100, 40};
-// }
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+Tree234Visual::Tree234Visual(float & speed) :speed(speed), root(nullptr), currentPresentationIndex(-1), currentStateIndex(0), historyState({}), inputPanel(), speedSlider(0.01f, 0.1f, 0.05f, 10), 
+                                  playbackControl({900, 600}, 200, 10,speed) ,treePresentation(speed, root, historyState, currentPresentationIndex, currentStateIndex) {    
+=======
+Tree234Visual::Tree234Visual(float & speed) :speed(speed), root(nullptr), currentPresentationIndex(-1), currentStateIndex(0), historyState({}), inputPanel({30, 700}, {150, 200}), speedSlider(0.01f, 0.1f, 0.05f, 10), 
+                                  playbackControl({900, 600}, 200, 10, speed) ,treePresentation(speed, root, historyState, currentPresentationIndex, currentStateIndex) {    
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
+=======
+Tree234Visual::Tree234Visual(float & speed) :speed(speed), root(nullptr), currentPresentationIndex(-1), currentStateIndex(0), historyState({}), inputPanel(), speedSlider(0.01f, 0.1f, 0.05f, 10), 
+                                  playbackControl({900, 600}, 200, 10,speed) ,treePresentation(speed, root, historyState, currentPresentationIndex, currentStateIndex) {    
+>>>>>>> 50f6135 (Merge file)
+=======
+Tree234Visual::Tree234Visual(float & speed) :speed(speed), root(nullptr), currentPresentationIndex(-1), currentStateIndex(0), historyState({}), inputPanel({30, 700}, {150, 200}), speedSlider(0.01f, 0.1f, 0.05f, 10), 
+                                  playbackControl({900, 600}, 200, 10, speed) ,treePresentation(speed, root, historyState, currentPresentationIndex, currentStateIndex) {    
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
+    //root = nullptr;
+    //speed = 0.05f;
+    //std::vector<std::vector<TreeNode*>> history;
+    //int presIndex = 0, stateIndex = 0;
+    
+    showInputBox = false;
+    inputText = "";
+    inputNumber = 0;
+    insertButton = {20, 20, 100, 40};
+    isRewinding = false;
+    
+    currentPresentationIndex = -1;
+    currentStateIndex = 0;
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+    inputPanel.setDataName("234 Tree");
+=======
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
+=======
+    inputPanel.setDataName("234 Tree");
+>>>>>>> 50f6135 (Merge file)
+=======
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
+    //inputPanel = InputPanel({150, 500}, {150, 200}, LIGHTGRAY);
+}
 
-// Tree234Visual::~Tree234Visual() {
-//     delete treePresentation;
-//     // TODO: Thêm logic để delete toàn bộ cây (root)
-// }
+Tree234Visual::~Tree234Visual() {
+    //delete treePresentation;
+    // TODO: Thêm logic để delete toàn bộ cây (root)
+}
 
-// void Tree234Visual::Update() {
-//     Vector2 mousePos = GetMousePosition();
-//     bool mousePressed = IsMouseButtonPressed(MOUSE_LEFT_BUTTON);
+void Tree234Visual::Update() {
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+    inputPanel.setBackActive();
+    inputPanel.update();
+=======
+    inputPanel.Update();
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
+=======
+    inputPanel.setBackActive();
+    inputPanel.update();
+>>>>>>> 50f6135 (Merge file)
+=======
+    inputPanel.Update();
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 
-//     treePresentation->DrawPresentation();
+    if(inputPanel.IsLoadFilePressed()){
+        auto fileValues = inputPanel.GetFileValues2D();
+        int activeButton = inputPanel.GetActiveButtonIndex();
 
-//     if (CheckCollisionPointRec(mousePos, insertButton) && mousePressed) {
-//         showInputBox = true;
-//         inputText = "";
-//     }
+        if(!fileValues.empty()){
+            switch (activeButton)
+            {
+            case 0:{
+                if(fileValues.size() >= 2 && !fileValues[0].empty()){
+                    int size = fileValues[0][0];
+                    std::vector<int> keys = fileValues[1];
+                    root->CreateTreewithKey(keys);
+                    root->calculateCoordinate({800, 100});
+                    treePresentation.clear();
+                    treePresentation.CreateTree(size);
+                }
+                break;
+            }
+            case 1:{
+                if(!fileValues[0].empty()){
+                    int key = fileValues[0][0];
+                    treePresentation.clear();
+                    treePresentation.FindKeyOperation(key);
+                }
+                break;
+            }
+            case 2:{
+                if(!fileValues[0].empty()){
+                    int key = fileValues[0][0];
+                    std::cout<<"INSERT: "<<key<<std::endl;
+                    treePresentation.clear();
+                    treePresentation.InsertKeyOperation(key);
+                    break;
+                }
+            }
+            case 3:{
+                if(!fileValues[0].empty()){
+                    int key = fileValues[0][0];
+                    treePresentation.clear();
+                    treePresentation.DeleteKeyOperation(key);
+                }
+                break;
+            }
+            }
+            inputPanel.ResetInputState();
+        }
+    }
+    else{
+        // Lấy giá trị từ InputPanel và hành động đã chọn
+        int inputValue = inputPanel.GetInputText();
+        int activeButton = inputPanel.GetActiveButtonIndex();
 
-//     if (showInputBox) {
-//         int key = GetCharPressed();
-//         while (key > 0) {
-//             if ((key >= 48 && key <= 57) && inputText.length() < 10) {
-//                 inputText += (char)key;
-//             }
-//             key = GetCharPressed();
-//         }
+        // Chỉ thực hiện hành động nếu vừa nhấn "Go" và có giá trị hợp lệ
+        if (inputValue != -1 && activeButton != -1) {
+            switch (activeButton) {
+                case 0: // Create
+                    // Tạo cây mới (đã comment trong code gốc, tôi giữ nguyên)
+                    /*
+                    root = new TreeNode({}, {}, {400, 100});
+                    treePresentation->tree = root;
+                    treePresentation->current = root;
+                    treePresentation->isFinished = false;
+                    treePresentation->clear();
+                    */
+                    this->root = this->root->CreateTree(inputValue);
+                    this->root->calculateCoordinate({800, 100});
+                    std::cout<<"da tao tree roi"<<std::endl;
+            
+                    treePresentation.clear();
+                    treePresentation.CreateTree(inputValue);
+                    std::cout << "Create button pressed\n";
+                    break;
+                case 1: // Search
+                    treePresentation.clear();
+                    inputNumber = inputValue;
+                    treePresentation.FindKeyOperation(inputNumber);
+                    std::cout << "Search key: " << inputNumber << std::endl;
+                    break;
+                case 2: // Insert
+                    treePresentation.clear();
+                    Insert(inputValue);
+                    std::cout << "Insert key: " << inputValue << std::endl;
+                    break;
+                case 3: // Remove
+                    treePresentation.clear();
+                    inputNumber = inputValue;
+                    treePresentation.DeleteKeyOperation(inputNumber);
+                    std::cout << "Remove key: " << inputNumber << std::endl;
+                    break;
+            }
+            // Reset trạng thái của InputPanel sau khi thực hiện hành động
+            inputPanel.ResetInputState();
+        }
+    }
 
-//         if (IsKeyPressed(KEY_BACKSPACE) && !inputText.empty()) {
-//             inputText.pop_back();
-//         }
+    
 
-//         if (IsKeyPressed(KEY_ENTER) && !inputText.empty()) {
-//             inputNumber = std::stoi(inputText);
-//             Insert(inputNumber);
-//             showInputBox = false;
-//             inputText = "";
-//         }
 
-//         if (IsKeyPressed(KEY_ESCAPE)) {
-//             showInputBox = false;
-//             inputText = "";
-//         }
-//     }
-// }
+    speedSlider.Update();
+    if(isPlaying == true){
+        if(playbackControl.isSkip == true){
+            this->isDrawTree = false;
+            speed = 1.0f;
+        }
+        else{
+            speed = speedSlider.val;
+        }
+    }
+    else{
+        speed = speedSlider.val;
+    }
+    
 
-// void Tree234Visual::Draw() {
-//     DrawRectangleRec(insertButton, GRAY);
-//     DrawText("Insert", insertButton.x + 20, insertButton.y + 10, 20, WHITE);
+    playbackControl.UpdateTree234(currentPresentationIndex, currentStateIndex, historyState);
 
-//     if (showInputBox) {
-//         Rectangle inputBox = {200, 200, 200, 40};
-//         DrawRectangleRec(inputBox, LIGHTGRAY);
-//         DrawText(inputText.c_str(), inputBox.x + 10, inputBox.y + 10, 20, BLACK);
-//         DrawText("Press Enter to confirm, Esc to cancel", inputBox.x, inputBox.y + 50, 20, DARKGRAY);
-//     }
+    if(playbackControl.isPlaying){
+        this->isRewinding = true;
+    }
+    else{
+        this->isRewinding = false;
+    }
 
-//     DrawTree(root);
-// }
+}
 
-// void Tree234Visual::DrawTree(TreeNode* root) {
-//     if (root) {
-//         root->DrawNode();
-//         root->DrawLinktoChild();
-//         for (TreeNode* child : root->children) {
-//             DrawTree(child);
-//         }
-//     }
-// }
+void Tree234Visual::Draw() {
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+    inputPanel.draw();
+=======
+    inputPanel.Draw();
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
+=======
+    inputPanel.draw();
+>>>>>>> 50f6135 (Merge file)
+=======
+    inputPanel.Draw();
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
+    //std::cout<<"Drawing tree with keys: "<<std::endl;
+    
+    if(treePresentation.DrawPresentation()){
+        speed = speedSlider.val;
+        this->isPlaying = false;
+        isDrawTree = true;
+        playbackControl.isSkip = false;
+    }
+    else{
+        this->isPlaying = true;
+    }
+    speedSlider.Draw();
+    playbackControl.Draw();
+    //root->calculateCoordinate({800, 100});
 
-// void Tree234Visual::Insert(int key) {
-//     treePresentation->InsertKeyOperation(key);
-//     root = treePresentation->tree;
-// }
+    //std::cout<<"isRewinding: "<<isRewinding<<std::endl;
+    if(this->isRewinding == false){
+        //std::cout<<"draw current"<<std::endl;
+        if(isDrawTree){
+            DrawTree(root);
+        }
+    }
+    else{
+        //std::cout<<"draw history"<<std::endl;
+        DrawTree(historyState[currentPresentationIndex][currentStateIndex]);
+    }
+}
+
+void Tree234Visual::DrawTree(TreeNode* root) {
+    if(!root) return;
+
+    //root->LayoutTree(0, 800, 0, 100); // Căn chỉnh vị trí của cây
+    //std::cout<<"Drawing tree with keys: "<<std::endl;
+    if (root) {
+        
+        root->DrawLinktoChild();
+        root->DrawNode();
+        for (TreeNode* child : root->children) {
+            DrawTree(child);
+        }
+    }
+}
+
+void Tree234Visual::Insert(int key) {
+    treePresentation.clear();
+    treePresentation.InsertKeyOperation(key);
+    //treePresentation->DrawPresentation();
+}
+
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 50f6135 (Merge file)
+bool Tree234Visual::isBackPressed() {
+    bool res = inputPanel.isBackPressed();
+    if (res) {
+        inputPanel.reset();
+        speedSlider.reset();
+        treePresentation.clear();
+        root = nullptr;
+        currentPresentationIndex = -1;
+        currentStateIndex = 0;
+        isRewinding = false;
+    }
+    return res;
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
+void Tree234Visual::UpdateTheme(TreeNode * root){
+    if(root == nullptr) return;
+
+    root->colorNormal = nodeColor;
+    root->colorChosen = nodeHighlightColor;
+    root->currentColor = root->colorNormal;
+
+    root->textChosenColor = nodeHighlightTextColor;
+    root->textNorColor = nodeTextColor;
+    root->textCurColor = root->textNorColor;
+
+    for(int i = 0; i < root->children.size(); i++){
+        TreeNode * child = root->children[i];
+        UpdateTheme(child);
+    }
+
+<<<<<<< HEAD
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
+=======
+>>>>>>> 50f6135 (Merge file)
+=======
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
+}
