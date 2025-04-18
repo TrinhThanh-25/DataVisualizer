@@ -5,6 +5,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 50f6135 (Merge file)
 InputPanel::InputPanel()
@@ -24,6 +25,8 @@ InputPanel::InputPanel()
         inputFileButton.setText("Load File",SLLButtonFontSize);
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 InputPanel::InputPanel(Vector2 pos, Vector2 panelSize)
@@ -49,9 +52,12 @@ InputPanel::InputPanel(Vector2 pos, Vector2 panelSize)
         btn.setSize({size.x - 20, 30});
         btn.setText(buttonLabels[i], 20);
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
 >>>>>>> 50f6135 (Merge file)
+=======
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
         // btn.setColor(LIGHTGRAY, GRAY, DARKGRAY);
@@ -60,6 +66,7 @@ InputPanel::InputPanel(Vector2 pos, Vector2 panelSize)
     }
 
     // Thiết lập nút "Go" (ban đầu không hiển thị, sẽ cập nhật vị trí sau)
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -111,6 +118,8 @@ void InputPanel::update() {
                 lastInputValue = -1;
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
     goButton.setSize({30, 30});
@@ -190,9 +199,12 @@ void InputPanel::Update() {
                     lastInputValue = -1;
                 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
 >>>>>>> 50f6135 (Merge file)
+=======
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
             }
@@ -200,6 +212,7 @@ void InputPanel::Update() {
     }
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -235,6 +248,8 @@ int InputPanel::GetInputText() {
         inputBox.clearText(); // Xóa nội dung ô nhập sau khi nhấn "Go"
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 void InputPanel::Draw() {
@@ -289,9 +304,12 @@ int InputPanel::GetInputText() {
     if (showInputBox && goButton.isPressed()) {
         std::string input = inputBox.GetText();
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
 >>>>>>> 50f6135 (Merge file)
+=======
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
         if (input.empty()) {
@@ -373,11 +391,15 @@ void InputPanel::ResetInputState() {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     showInputBox = false;
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
 >>>>>>> 50f6135 (Merge file)
+=======
+    showInputBox = false;
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
     showInputBox = false;
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
@@ -405,6 +427,7 @@ bool InputPanel::IsRemovePressed() {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 50f6135 (Merge file)
 bool InputPanel::isAnyButtonPressed() {
@@ -421,6 +444,8 @@ bool InputPanel::isAnyButtonPressed() {
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
 >>>>>>> 50f6135 (Merge file)
+=======
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 bool InputPanel::IsLoadFilePressed(){

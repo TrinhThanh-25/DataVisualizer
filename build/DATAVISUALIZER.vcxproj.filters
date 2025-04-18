@@ -2,6 +2,7 @@
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\AVL\AVL.cpp">
+<<<<<<< HEAD
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\AVL\AVLArrow.cpp">
@@ -76,6 +77,19 @@
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\GUI\Slider.cpp">
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
+=======
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\AVL\AVLArrow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\AVL\AVLNode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\AVL\AVLPanel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\AVL\AVLState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -104,12 +118,16 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\GUI\Slider.cpp">
+<<<<<<< HEAD
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
+=======
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\GUI\inputBox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -274,6 +292,8 @@
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\hashtable\HashTable.cpp">
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
+=======
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\MST\Animation\GraphOperation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -302,6 +322,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\SLL\SLLNode.cpp">
+<<<<<<< HEAD
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\SLL\SLLPanel.cpp">
@@ -387,11 +408,14 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\PlayBackControl.cpp">
+=======
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\Presentation.cpp">
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\SLL\SLLPanel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\SLL\SLLArrow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -405,11 +429,30 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\SLL\SinglyLinkedList.cpp">
+=======
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\SLL\SLLState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\SetofAnimation.cpp">
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\SLL\SinglyLinkedList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\ShortestPath\STArrow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\ShortestPath\STPanel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\ShortestPath\ShortestPath.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\ShortestPath\ShortestPathNode.cpp">
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\ShortestPath\ShortestPathState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\ShortestPath\STArrow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -423,12 +466,48 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\ShortestPath\ShortestPathState.cpp">
+=======
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\hashtable\HashTable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\hashtable\HashTableVisual.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\hashtable\Node.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\hashtable\animation\Animation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\hashtable\animation\Presentation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\hashtable\animation\SetofAnimation.cpp">
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\tinyfiledialogs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+<<<<<<< HEAD
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\tree234\Animation\Operation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\tree234\Animation\SetofOperation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\tree234\Animation\TreePresentation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\tree234\Tree234Visual.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+>>>>>>> 14909f1 (234tree animation)
+=======
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\tree234\Animation\InputPanel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\tree234\Animation\Operation.cpp">
@@ -443,7 +522,7 @@
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\tree234\Tree234Visual.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
->>>>>>> 14909f1 (234tree animation)
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\tree234\TreeNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

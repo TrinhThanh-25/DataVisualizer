@@ -10,6 +10,7 @@ HashTableVisualization::HashTableVisualization(const bool& isLightMode, float &s
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 50f6135 (Merge file)
                                     inputPanel(), 
@@ -22,15 +23,20 @@ HashTableVisualization::HashTableVisualization(const bool& isLightMode, float &s
 =======
 =======
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
+=======
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
                                     inputPanel({30, 700}, {150, 200}), 
                                     speedSlider(0.01f, 0.1f, 0.05f, 10), playbackControl({900, 600}, 200, 10, speed) {
 
     //inputBox.isAppear = false;
     isRewindingStep = false;
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
 >>>>>>> 50f6135 (Merge file)
+=======
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
     //this->historyState = {};
@@ -136,6 +142,7 @@ void HashTableVisualization::Update(){
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     inputPanel.setBackActive();
     inputPanel.update();
     playbackControl.UpdateHash(currentPresentationIndex, currentStateIndex, historyState);
@@ -149,6 +156,11 @@ void HashTableVisualization::Update(){
     inputPanel.update();
     playbackControl.UpdateHash(currentPresentationIndex, currentStateIndex, historyState);
 >>>>>>> 50f6135 (Merge file)
+=======
+    inputPanel.Update();
+    //playbackControl.UpdateHash(currentPresentationIndex, currentStateIndex, historyState);
+    
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
     inputPanel.Update();
     //playbackControl.UpdateHash(currentPresentationIndex, currentStateIndex, historyState);
@@ -366,6 +378,7 @@ void HashTableVisualization::Draw() {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 50f6135 (Merge file)
     inputPanel.draw();
@@ -389,14 +402,19 @@ bool HashTableVisualization::isBackPressed() {
 =======
 =======
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
+=======
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
     inputPanel.Draw();
     
     speedSlider.Draw();
     playbackControl.Draw();
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
 >>>>>>> 50f6135 (Merge file)
+=======
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 }

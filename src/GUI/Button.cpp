@@ -210,7 +210,11 @@ void Button::drawTexture(){
 void Button::drawText(){
     Vector2 textSize = MeasureTextEx(buttonFont, this->text, this->fontSize, 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
     Vector2 textPosition = { this->position.x - textSize.x / 2.0f, this->position.y-textSize.y/2.0f };
+=======
+    Vector2 textPosition = { this->position.x - textSize.x / 2.0f, this->position.y };
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
     Vector2 textPosition = { this->position.x - textSize.x / 2.0f, this->position.y };
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43

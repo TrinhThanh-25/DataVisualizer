@@ -34,11 +34,15 @@ HashTable::HashTable(const HashTable& initHash) {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
 >>>>>>> 50f6135 (Merge file)
+=======
+
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
 
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43

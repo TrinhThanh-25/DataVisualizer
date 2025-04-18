@@ -192,11 +192,25 @@
 	[
 		{
 			"backtrace" : 2,
+<<<<<<< HEAD
+=======
+<<<<<<<< HEAD:build/.cmake/api/v1/reply/target-DATAVISUALIZER-Debug-02b4c4298ae5a5c37196.json
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 			"id" : "glfw::@a896dd99b4a5c6eab3d9"
 		},
 		{
 			"backtrace" : 2,
 			"id" : "raylib::@7d429ebd5d102775094d"
+<<<<<<< HEAD
+=======
+========
+			"id" : "raylib::@7d429ebd5d102775094d"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "glfw::@a896dd99b4a5c6eab3d9"
+>>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43:build/.cmake/api/v1/reply/target-DATAVISUALIZER-Debug-6da632e8607c704c5b68.json
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 		},
 		{
 			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"

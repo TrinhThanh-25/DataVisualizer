@@ -273,7 +273,10 @@ Font inputBoxFont;
 Font inputBoxNameFont;
 Font buttonFont;
 <<<<<<< HEAD
+<<<<<<< HEAD
 float tempSpeed = 0.05f;
+=======
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 

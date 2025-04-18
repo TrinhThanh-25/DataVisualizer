@@ -4,6 +4,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 Tree234Visual::Tree234Visual(float & speed) :speed(speed), root(nullptr), currentPresentationIndex(-1), currentStateIndex(0), historyState({}), inputPanel(), speedSlider(0.01f, 0.1f, 0.05f, 10), 
                                   playbackControl({900, 600}, 200, 10,speed) ,treePresentation(speed, root, historyState, currentPresentationIndex, currentStateIndex) {    
 =======
@@ -14,6 +15,10 @@ Tree234Visual::Tree234Visual(float & speed) :speed(speed), root(nullptr), curren
 Tree234Visual::Tree234Visual(float & speed) :speed(speed), root(nullptr), currentPresentationIndex(-1), currentStateIndex(0), historyState({}), inputPanel(), speedSlider(0.01f, 0.1f, 0.05f, 10), 
                                   playbackControl({900, 600}, 200, 10,speed) ,treePresentation(speed, root, historyState, currentPresentationIndex, currentStateIndex) {    
 >>>>>>> 50f6135 (Merge file)
+=======
+Tree234Visual::Tree234Visual(float & speed) :speed(speed), root(nullptr), currentPresentationIndex(-1), currentStateIndex(0), historyState({}), inputPanel({30, 700}, {150, 200}), speedSlider(0.01f, 0.1f, 0.05f, 10), 
+                                  playbackControl({900, 600}, 200, 10, speed) ,treePresentation(speed, root, historyState, currentPresentationIndex, currentStateIndex) {    
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
 Tree234Visual::Tree234Visual(float & speed) :speed(speed), root(nullptr), currentPresentationIndex(-1), currentStateIndex(0), historyState({}), inputPanel({30, 700}, {150, 200}), speedSlider(0.01f, 0.1f, 0.05f, 10), 
                                   playbackControl({900, 600}, 200, 10, speed) ,treePresentation(speed, root, historyState, currentPresentationIndex, currentStateIndex) {    
@@ -34,12 +39,15 @@ Tree234Visual::Tree234Visual(float & speed) :speed(speed), root(nullptr), curren
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     inputPanel.setDataName("234 Tree");
 =======
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
     inputPanel.setDataName("234 Tree");
 >>>>>>> 50f6135 (Merge file)
+=======
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
     //inputPanel = InputPanel({150, 500}, {150, 200}, LIGHTGRAY);
@@ -54,6 +62,7 @@ void Tree234Visual::Update() {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     inputPanel.setBackActive();
     inputPanel.update();
 =======
@@ -63,6 +72,9 @@ void Tree234Visual::Update() {
     inputPanel.setBackActive();
     inputPanel.update();
 >>>>>>> 50f6135 (Merge file)
+=======
+    inputPanel.Update();
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
     inputPanel.Update();
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
@@ -195,6 +207,7 @@ void Tree234Visual::Draw() {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     inputPanel.draw();
 =======
     inputPanel.Draw();
@@ -202,6 +215,9 @@ void Tree234Visual::Draw() {
 =======
     inputPanel.draw();
 >>>>>>> 50f6135 (Merge file)
+=======
+    inputPanel.Draw();
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
     inputPanel.Draw();
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
@@ -257,6 +273,7 @@ void Tree234Visual::Insert(int key) {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 50f6135 (Merge file)
 bool Tree234Visual::isBackPressed() {
@@ -273,6 +290,8 @@ bool Tree234Visual::isBackPressed() {
     return res;
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 void Tree234Visual::UpdateTheme(TreeNode * root){
@@ -292,9 +311,12 @@ void Tree234Visual::UpdateTheme(TreeNode * root){
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
 >>>>>>> 50f6135 (Merge file)
+=======
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 }

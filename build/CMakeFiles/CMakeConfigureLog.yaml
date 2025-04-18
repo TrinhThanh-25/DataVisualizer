@@ -26,6 +26,7 @@ events:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       MSBuild version 17.13.19+0d9f5a35a for .NET Framework
       Build started 4/18/2025 11:46:02 AM.
 <<<<<<< HEAD
@@ -43,6 +44,10 @@ events:
       MSBuild version 17.12.12+1cce77968 for .NET Framework
       Build started 15/04/2025 11:50:20 SA.
 >>>>>>> 14909f1 (234tree animation)
+=======
+      MSBuild version 17.12.12+1cce77968 for .NET Framework
+      Build started 16/04/2025 7:26:06 CH.
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
       
       Project "D:\\test\\Programming\\project\\DataVisualizer\\build\\CMakeFiles\\3.31.4\\CompilerIdC\\CompilerIdC.vcxproj" on node 1 (default targets).
       PrepareForBuild:
@@ -75,6 +80,7 @@ events:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       Time Elapsed 00:00:01.46
 =======
       Time Elapsed 00:00:00.56
@@ -88,6 +94,9 @@ events:
 =======
       Time Elapsed 00:00:00.71
 >>>>>>> 14909f1 (234tree animation)
+=======
+      Time Elapsed 00:00:00.56
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
       
       
       Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.exe"
@@ -115,6 +124,7 @@ events:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       MSBuild version 17.13.19+0d9f5a35a for .NET Framework
       Build started 4/18/2025 11:46:04 AM.
 <<<<<<< HEAD
@@ -132,6 +142,10 @@ events:
       MSBuild version 17.12.12+1cce77968 for .NET Framework
       Build started 15/04/2025 11:50:21 SA.
 >>>>>>> 14909f1 (234tree animation)
+=======
+      MSBuild version 17.12.12+1cce77968 for .NET Framework
+      Build started 16/04/2025 7:26:06 CH.
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
       
       Project "D:\\test\\Programming\\project\\DataVisualizer\\build\\CMakeFiles\\3.31.4\\CompilerIdCXX\\CompilerIdCXX.vcxproj" on node 1 (default targets).
       PrepareForBuild:
@@ -164,6 +178,7 @@ events:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       Time Elapsed 00:00:01.02
 =======
       Time Elapsed 00:00:00.41
@@ -177,6 +192,9 @@ events:
 =======
       Time Elapsed 00:00:00.50
 >>>>>>> 14909f1 (234tree animation)
+=======
+      Time Elapsed 00:00:00.41
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
       
       
       Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
@@ -199,6 +217,7 @@ events:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       source: "D:/Project CS163/DataVisualizer/build/CMakeFiles/CMakeScratch/TryCompile-qkt69v"
       binary: "D:/Project CS163/DataVisualizer/build/CMakeFiles/CMakeScratch/TryCompile-qkt69v"
 =======
@@ -217,6 +236,10 @@ events:
       source: "D:/test/Programming/project/DataVisualizer/build/CMakeFiles/CMakeScratch/TryCompile-qna8e2"
       binary: "D:/test/Programming/project/DataVisualizer/build/CMakeFiles/CMakeScratch/TryCompile-qna8e2"
 >>>>>>> 14909f1 (234tree animation)
+=======
+      source: "D:/test/Programming/project/DataVisualizer/build/CMakeFiles/CMakeScratch/TryCompile-ev4bmd"
+      binary: "D:/test/Programming/project/DataVisualizer/build/CMakeFiles/CMakeScratch/TryCompile-ev4bmd"
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
       CMAKE_C_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
@@ -225,6 +248,7 @@ events:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -270,6 +294,8 @@ events:
         Done Building Project "D:\\Project CS163\\DataVisualizer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-qkt69v\\cmTC_b68aa.vcxproj" (default targets).
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
         Change Dir: 'D:/test/Programming/project/DataVisualizer/build/CMakeFiles/CMakeScratch/TryCompile-ev4bmd'
         
         Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_6c304.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
@@ -298,6 +324,7 @@ events:
           Deleting file "cmTC_6c304.dir\\Debug\\cmTC_6c304.tlog\\unsuccessfulbuild".
           Touching "cmTC_6c304.dir\\Debug\\cmTC_6c304.tlog\\cmTC_6c304.lastbuildstate".
         Done Building Project "D:\\test\\Programming\\project\\DataVisualizer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ev4bmd\\cmTC_6c304.vcxproj" (default targets).
+<<<<<<< HEAD
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
 >>>>>>> 50f6135 (Merge file)
@@ -361,11 +388,14 @@ events:
           Touching "cmTC_2884e.dir\\Debug\\cmTC_2884e.tlog\\cmTC_2884e.lastbuildstate".
         Done Building Project "D:\\test\\Programming\\project\\DataVisualizer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-qna8e2\\cmTC_2884e.vcxproj" (default targets).
 >>>>>>> 14909f1 (234tree animation)
+=======
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
         
         Build succeeded.
             0 Warning(s)
             0 Error(s)
         
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -383,6 +413,9 @@ events:
 =======
         Time Elapsed 00:00:00.58
 >>>>>>> 14909f1 (234tree animation)
+=======
+        Time Elapsed 00:00:00.46
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
         
       exitCode: 0
   -
@@ -426,6 +459,7 @@ events:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       source: "D:/Project CS163/DataVisualizer/build/CMakeFiles/CMakeScratch/TryCompile-obbl75"
       binary: "D:/Project CS163/DataVisualizer/build/CMakeFiles/CMakeScratch/TryCompile-obbl75"
 =======
@@ -444,6 +478,10 @@ events:
       source: "D:/test/Programming/project/DataVisualizer/build/CMakeFiles/CMakeScratch/TryCompile-i3cg9e"
       binary: "D:/test/Programming/project/DataVisualizer/build/CMakeFiles/CMakeScratch/TryCompile-i3cg9e"
 >>>>>>> 14909f1 (234tree animation)
+=======
+      source: "D:/test/Programming/project/DataVisualizer/build/CMakeFiles/CMakeScratch/TryCompile-pf3h7h"
+      binary: "D:/test/Programming/project/DataVisualizer/build/CMakeFiles/CMakeScratch/TryCompile-pf3h7h"
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
     cmakeVariables:
       CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /GR /EHsc"
       CMAKE_CXX_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
@@ -453,6 +491,7 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -498,6 +537,8 @@ events:
         Done Building Project "D:\\Project CS163\\DataVisualizer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-obbl75\\cmTC_60d44.vcxproj" (default targets).
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
         Change Dir: 'D:/test/Programming/project/DataVisualizer/build/CMakeFiles/CMakeScratch/TryCompile-pf3h7h'
         
         Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_cf932.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
@@ -526,6 +567,7 @@ events:
           Deleting file "cmTC_cf932.dir\\Debug\\cmTC_cf932.tlog\\unsuccessfulbuild".
           Touching "cmTC_cf932.dir\\Debug\\cmTC_cf932.tlog\\cmTC_cf932.lastbuildstate".
         Done Building Project "D:\\test\\Programming\\project\\DataVisualizer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-pf3h7h\\cmTC_cf932.vcxproj" (default targets).
+<<<<<<< HEAD
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
 >>>>>>> 50f6135 (Merge file)
@@ -589,11 +631,14 @@ events:
           Touching "cmTC_7bcb2.dir\\Debug\\cmTC_7bcb2.tlog\\cmTC_7bcb2.lastbuildstate".
         Done Building Project "D:\\test\\Programming\\project\\DataVisualizer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-i3cg9e\\cmTC_7bcb2.vcxproj" (default targets).
 >>>>>>> 14909f1 (234tree animation)
+=======
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
         
         Build succeeded.
             0 Warning(s)
             0 Error(s)
         
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -611,6 +656,9 @@ events:
 =======
         Time Elapsed 00:00:00.58
 >>>>>>> 14909f1 (234tree animation)
+=======
+        Time Elapsed 00:00:00.47
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
         
       exitCode: 0
   -
@@ -657,6 +705,7 @@ events:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       source: "D:/Project CS163/DataVisualizer/build/CMakeFiles/CMakeScratch/TryCompile-98sdlm"
       binary: "D:/Project CS163/DataVisualizer/build/CMakeFiles/CMakeScratch/TryCompile-98sdlm"
 =======
@@ -675,6 +724,10 @@ events:
       source: "D:/test/Programming/project/DataVisualizer/build/CMakeFiles/CMakeScratch/TryCompile-ztjozt"
       binary: "D:/test/Programming/project/DataVisualizer/build/CMakeFiles/CMakeScratch/TryCompile-ztjozt"
 >>>>>>> 14909f1 (234tree animation)
+=======
+      source: "D:/test/Programming/project/DataVisualizer/build/CMakeFiles/CMakeScratch/TryCompile-au197w"
+      binary: "D:/test/Programming/project/DataVisualizer/build/CMakeFiles/CMakeScratch/TryCompile-au197w"
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
       CMAKE_C_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
@@ -684,6 +737,7 @@ events:
       variable: "COMPILER_HAS_THOSE_TOGGLES"
       cached: true
       stdout: |
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -723,6 +777,8 @@ events:
           cl : command line  error D8021: invalid numeric argument '/Werror=pointer-arith' [D:\\Project CS163\\DataVisualizer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-98sdlm\\cmTC_442f6.vcxproj]
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
         Change Dir: 'D:/test/Programming/project/DataVisualizer/build/CMakeFiles/CMakeScratch/TryCompile-au197w'
         
         Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_95623.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
@@ -751,6 +807,7 @@ events:
         "D:\\test\\Programming\\project\\DataVisualizer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-au197w\\cmTC_95623.vcxproj" (default target) (1) ->
         (ClCompile target) -> 
           cl : command line  error D8021: invalid numeric argument '/Werror=pointer-arith' [D:\\test\\Programming\\project\\DataVisualizer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-au197w\\cmTC_95623.vcxproj]
+<<<<<<< HEAD
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
 >>>>>>> 50f6135 (Merge file)
@@ -814,10 +871,13 @@ events:
         (ClCompile target) -> 
           cl : command line  error D8021: invalid numeric argument '/Werror=pointer-arith' [D:\\test\\Programming\\project\\DataVisualizer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ztjozt\\cmTC_28db0.vcxproj]
 >>>>>>> 14909f1 (234tree animation)
+=======
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
         
             0 Warning(s)
             1 Error(s)
         
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -835,6 +895,9 @@ events:
 =======
         Time Elapsed 00:00:00.30
 >>>>>>> 14909f1 (234tree animation)
+=======
+        Time Elapsed 00:00:00.26
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
         
       exitCode: 1
   -
@@ -848,6 +911,7 @@ events:
     checks:
       - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
     directories:
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -870,6 +934,10 @@ events:
       source: "D:/test/Programming/project/DataVisualizer/build/CMakeFiles/CMakeScratch/TryCompile-rz0x9f"
       binary: "D:/test/Programming/project/DataVisualizer/build/CMakeFiles/CMakeScratch/TryCompile-rz0x9f"
 >>>>>>> 14909f1 (234tree animation)
+=======
+      source: "D:/test/Programming/project/DataVisualizer/build/CMakeFiles/CMakeScratch/TryCompile-r7wxdf"
+      binary: "D:/test/Programming/project/DataVisualizer/build/CMakeFiles/CMakeScratch/TryCompile-r7wxdf"
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
       CMAKE_C_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
@@ -879,6 +947,7 @@ events:
       variable: "CMAKE_HAVE_LIBC_PTHREAD"
       cached: true
       stdout: |
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -919,6 +988,8 @@ events:
           D:\\Project CS163\\DataVisualizer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-n4gm9n\\src.c(1,10): error C1083: Cannot open include file: 'pthread.h': No such file or directory [D:\\Project CS163\\DataVisualizer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-n4gm9n\\cmTC_17de7.vcxproj]
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
         Change Dir: 'D:/test/Programming/project/DataVisualizer/build/CMakeFiles/CMakeScratch/TryCompile-r7wxdf'
         
         Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_1d90c.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
@@ -948,6 +1019,7 @@ events:
         "D:\\test\\Programming\\project\\DataVisualizer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-r7wxdf\\cmTC_1d90c.vcxproj" (default target) (1) ->
         (ClCompile target) -> 
           D:\\test\\Programming\\project\\DataVisualizer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-r7wxdf\\src.c(1,10): error C1083: Cannot open include file: 'pthread.h': No such file or directory [D:\\test\\Programming\\project\\DataVisualizer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-r7wxdf\\cmTC_1d90c.vcxproj]
+<<<<<<< HEAD
 =======
 >>>>>>> 50f6135 (Merge file)
 =======
@@ -1012,16 +1084,22 @@ events:
         (ClCompile target) -> 
           D:\\test\\Programming\\project\\DataVisualizer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rz0x9f\\src.c(1,10): error C1083: Cannot open include file: 'pthread.h': No such file or directory [D:\\test\\Programming\\project\\DataVisualizer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rz0x9f\\cmTC_85119.vcxproj]
 >>>>>>> 14909f1 (234tree animation)
+=======
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
         
             0 Warning(s)
             1 Error(s)
         
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         Time Elapsed 00:00:00.28
 =======
         Time Elapsed 00:00:00.35
 >>>>>>> 50f6135 (Merge file)
+=======
+        Time Elapsed 00:00:00.28
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
         Time Elapsed 00:00:00.28
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
@@ -1033,6 +1111,7 @@ events:
       - "C:/Program Files/CMake/share/cmake-3.31/Modules/CheckLibraryExists.cmake:78 (try_compile)"
       - "C:/Program Files/CMake/share/cmake-3.31/Modules/FindThreads.cmake:112 (CHECK_LIBRARY_EXISTS)"
       - "C:/Program Files/CMake/share/cmake-3.31/Modules/FindThreads.cmake:175 (_threads_check_lib)"
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
       - "raylib/src/external/glfw/CMakeLists.txt:60 (find_package)"
@@ -1159,10 +1238,13 @@ events:
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
 >>>>>>> 14909f1 (234tree animation)
+=======
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
       - "raylib/src/external/glfw/CMakeLists.txt:60 (find_package)"
     checks:
       - "Looking for pthread_create in pthreads"
     directories:
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
       source: "D:/Project CS163/DataVisualizer/build/CMakeFiles/CMakeScratch/TryCompile-f6fqsu"
@@ -1175,6 +1257,10 @@ events:
       source: "D:/test/Programming/project/DataVisualizer/build/CMakeFiles/CMakeScratch/TryCompile-25g132"
       binary: "D:/test/Programming/project/DataVisualizer/build/CMakeFiles/CMakeScratch/TryCompile-25g132"
 >>>>>>> 14909f1 (234tree animation)
+=======
+      source: "D:/test/Programming/project/DataVisualizer/build/CMakeFiles/CMakeScratch/TryCompile-vvyo9u"
+      binary: "D:/test/Programming/project/DataVisualizer/build/CMakeFiles/CMakeScratch/TryCompile-vvyo9u"
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
       CMAKE_C_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
@@ -1184,6 +1270,7 @@ events:
       variable: "CMAKE_HAVE_PTHREADS_CREATE"
       cached: true
       stdout: |
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         Change Dir: 'D:/Project CS163/DataVisualizer/build/CMakeFiles/CMakeScratch/TryCompile-f6fqsu'
@@ -1223,6 +1310,10 @@ events:
 =======
         Change Dir: 'D:/test/Programming/project/DataVisualizer/build/CMakeFiles/CMakeScratch/TryCompile-vvyo9u'
         
+=======
+        Change Dir: 'D:/test/Programming/project/DataVisualizer/build/CMakeFiles/CMakeScratch/TryCompile-vvyo9u'
+        
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
         Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_1cb6b.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         MSBuild version 17.12.12+1cce77968 for .NET Framework
         Build started 16/04/2025 7:26:09 CH.
@@ -1252,6 +1343,7 @@ events:
         "D:\\test\\Programming\\project\\DataVisualizer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vvyo9u\\cmTC_1cb6b.vcxproj" (default target) (1) ->
         (Link target) -> 
           LINK : fatal error LNK1104: cannot open file 'pthreads.lib' [D:\\test\\Programming\\project\\DataVisualizer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vvyo9u\\cmTC_1cb6b.vcxproj]
+<<<<<<< HEAD
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
         Change Dir: 'D:/test/Programming/project/DataVisualizer/build/CMakeFiles/CMakeScratch/TryCompile-25g132'
@@ -1286,10 +1378,13 @@ events:
         (Link target) -> 
           LINK : fatal error LNK1104: cannot open file 'pthreads.lib' [D:\\test\\Programming\\project\\DataVisualizer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-25g132\\cmTC_8742c.vcxproj]
 >>>>>>> 14909f1 (234tree animation)
+=======
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
         
             0 Warning(s)
             1 Error(s)
         
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         Time Elapsed 00:00:00.43
@@ -1299,6 +1394,9 @@ events:
 =======
         Time Elapsed 00:00:00.40
 >>>>>>> 14909f1 (234tree animation)
+=======
+        Time Elapsed 00:00:00.38
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
         
       exitCode: 1
   -
@@ -1313,6 +1411,7 @@ events:
     directories:
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       source: "D:/Project CS163/DataVisualizer/build/CMakeFiles/CMakeScratch/TryCompile-hkshlp"
       binary: "D:/Project CS163/DataVisualizer/build/CMakeFiles/CMakeScratch/TryCompile-hkshlp"
 =======
@@ -1323,6 +1422,10 @@ events:
       source: "D:/test/Programming/project/DataVisualizer/build/CMakeFiles/CMakeScratch/TryCompile-idhzc6"
       binary: "D:/test/Programming/project/DataVisualizer/build/CMakeFiles/CMakeScratch/TryCompile-idhzc6"
 >>>>>>> 14909f1 (234tree animation)
+=======
+      source: "D:/test/Programming/project/DataVisualizer/build/CMakeFiles/CMakeScratch/TryCompile-pf62mo"
+      binary: "D:/test/Programming/project/DataVisualizer/build/CMakeFiles/CMakeScratch/TryCompile-pf62mo"
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
       CMAKE_C_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
@@ -1332,6 +1435,7 @@ events:
       variable: "CMAKE_HAVE_PTHREAD_CREATE"
       cached: true
       stdout: |
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         Change Dir: 'D:/Project CS163/DataVisualizer/build/CMakeFiles/CMakeScratch/TryCompile-hkshlp'
@@ -1371,6 +1475,10 @@ events:
 =======
         Change Dir: 'D:/test/Programming/project/DataVisualizer/build/CMakeFiles/CMakeScratch/TryCompile-pf62mo'
         
+=======
+        Change Dir: 'D:/test/Programming/project/DataVisualizer/build/CMakeFiles/CMakeScratch/TryCompile-pf62mo'
+        
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
         Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_5bf77.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         MSBuild version 17.12.12+1cce77968 for .NET Framework
         Build started 16/04/2025 7:26:10 CH.
@@ -1400,6 +1508,7 @@ events:
         "D:\\test\\Programming\\project\\DataVisualizer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-pf62mo\\cmTC_5bf77.vcxproj" (default target) (1) ->
         (Link target) -> 
           LINK : fatal error LNK1104: cannot open file 'pthread.lib' [D:\\test\\Programming\\project\\DataVisualizer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-pf62mo\\cmTC_5bf77.vcxproj]
+<<<<<<< HEAD
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
         Change Dir: 'D:/test/Programming/project/DataVisualizer/build/CMakeFiles/CMakeScratch/TryCompile-idhzc6'
@@ -1434,10 +1543,13 @@ events:
         (Link target) -> 
           LINK : fatal error LNK1104: cannot open file 'pthread.lib' [D:\\test\\Programming\\project\\DataVisualizer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-idhzc6\\cmTC_e004c.vcxproj]
 >>>>>>> 14909f1 (234tree animation)
+=======
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
         
             0 Warning(s)
             1 Error(s)
         
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         Time Elapsed 00:00:00.43
@@ -1447,6 +1559,9 @@ events:
 =======
         Time Elapsed 00:00:00.49
 >>>>>>> 14909f1 (234tree animation)
+=======
+        Time Elapsed 00:00:00.36
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
         
       exitCode: 1
 =======

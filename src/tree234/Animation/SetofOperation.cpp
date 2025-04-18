@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <234tree/animation/SetofOperation.h>
 
 SetofOperation::SetofOperation(float & speed) : speed(speed) {}
@@ -10,6 +11,14 @@ SetofOperation::SetofOperation(Font fontNumber, Font fontText, float & speed) : 
 
 
 
+=======
+#include <234tree/animation/SetofOperation.h>
+
+SetofOperation::SetofOperation(float & speed) : speed(speed) {}
+
+
+
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 void SetofOperation::AddOperation(Operation operation){
     operations.push_back(operation);
 }

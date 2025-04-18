@@ -191,12 +191,21 @@
 	"dependencies" : 
 	[
 		{
+<<<<<<< HEAD
 			"backtrace" : 2,
 			"id" : "glfw::@a896dd99b4a5c6eab3d9"
 		},
 		{
 			"backtrace" : 2,
 			"id" : "raylib::@7d429ebd5d102775094d"
+=======
+			"backtrace" : 2,
+			"id" : "raylib::@7d429ebd5d102775094d"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "glfw::@a896dd99b4a5c6eab3d9"
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 		},
 		{
 			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"

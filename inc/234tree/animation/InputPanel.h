@@ -7,6 +7,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <vector>
 #include <GUI/Resources.h>
 #include <GUI/Panel.h>
@@ -19,6 +20,10 @@
 #include <GUI/Resources.h>
 #include <GUI/Panel.h>
 >>>>>>> 50f6135 (Merge file)
+=======
+#include "GUI/ColorTheme.h"
+#include <vector>
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
 #include "GUI/ColorTheme.h"
 #include <vector>
@@ -31,9 +36,12 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 class InputPanel : public Panel {
 private:
 =======
+=======
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 class InputPanel {
@@ -43,11 +51,14 @@ private:
     bool isOpen; // Trạng thái mở/đóng của panel
     Button toggleButton; // Nút bấm hình tam giác để mở/đóng
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
 class InputPanel : public Panel {
 private:
 >>>>>>> 50f6135 (Merge file)
+=======
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
     std::vector<Button> buttons; // Các nút chức năng (Create, Search, Insert, Remove)
@@ -60,12 +71,17 @@ private:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
     Color panelColor; // Màu nền của panel
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
 >>>>>>> 50f6135 (Merge file)
+=======
+
+    Color panelColor; // Màu nền của panel
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
 
     Color panelColor; // Màu nền của panel
@@ -78,10 +94,13 @@ public:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     InputPanel();
     void update() override;
     void draw() override;
 =======
+=======
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
     InputPanel(Vector2 pos, Vector2 panelSize);
@@ -89,12 +108,15 @@ public:
     void Update();
     void Draw();
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
     InputPanel();
     void update() override;
     void draw() override;
 >>>>>>> 50f6135 (Merge file)
+=======
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
     int GetInputText();
@@ -107,12 +129,15 @@ public:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     bool isAnyButtonPressed() override;
 =======
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
     bool isAnyButtonPressed() override;
 >>>>>>> 50f6135 (Merge file)
+=======
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 

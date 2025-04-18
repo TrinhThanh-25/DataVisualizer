@@ -7,6 +7,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "234tree/animation/InputPanel.h"
 =======
 #include "animation/InputPanel.h"
@@ -14,6 +15,9 @@
 =======
 #include "234tree/animation/InputPanel.h"
 >>>>>>> 50f6135 (Merge file)
+=======
+#include "animation/InputPanel.h"
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
 #include "animation/InputPanel.h"
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
@@ -54,9 +58,12 @@ public:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     bool isBackPressed();
 =======
+=======
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
     
@@ -64,11 +71,14 @@ public:
     void UpdateTheme(TreeNode * root);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
 
     bool isBackPressed();
 >>>>>>> 50f6135 (Merge file)
+=======
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 =======
 >>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 };

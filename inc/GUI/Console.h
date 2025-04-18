@@ -17,7 +17,11 @@ class Console{
         void deEnd();
         void setPause();
         void dePause();
+<<<<<<< HEAD
     protected:
+=======
+    private:
+>>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
         Rectangle Controller;
         Button Play;
         Button Next;
