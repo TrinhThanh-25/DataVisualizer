@@ -320,14 +320,11 @@ void TreePresentation::DeleteKeyOperation(int key){
                 break;
             }
         }
-        if(i == curr->keys.size()){
-            if(curr->children[i]->keys.size() == 1 && curr->children[i - 1]->keys.size() == 1 && curr->keys.size() == 1){
-                countMerge++;
-            }
-        }
-        else{
-            if(curr->children[i]->keys.size() == 1 && curr->children[i + 1]->keys.size() == 1 && curr->keys.size() == 1){
-                countMerge++;
+        if(curr == tree){
+            if(curr->keys.size() == 1){
+                if(!curr->isLeaf && curr->children[0]->keys.size() == 1 && curr->children[1]->keys.size() == 1){
+                    countMerge++;
+                }
             }
         }
         curr = curr->children[i];
@@ -489,9 +486,9 @@ void TreePresentation::DeleteKeyOperation(int key){
 }
 
 void TreePresentation::CreateTree(int numofKey){
-    this->tree = this->tree->CreateTree(numofKey);
-    this->tree->calculateCoordinate({800, 100});
-    std::cout<<"da tao tree roi"<<std::endl;
+    // this->tree = this->tree->CreateTree(numofKey);
+    // this->tree->calculateCoordinate({800, 100});
+    // std::cout<<"da tao tree roi"<<std::endl;
 
     //move to finpos
     SetofOperation moveToFinPos(speed);

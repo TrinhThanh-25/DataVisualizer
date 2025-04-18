@@ -2,7 +2,7 @@
 
 GraphEdge::GraphEdge(std::vector<GraphNode*> nodes, int weight)
     : nodes(nodes), weight(weight) {
-    colorNormal = BLACK;
+    colorNormal = lineColor;
     colorChosen = YELLOW;
     colorFlur = GRAY;
     currentColor = colorNormal;

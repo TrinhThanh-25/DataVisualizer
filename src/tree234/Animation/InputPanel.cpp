@@ -1,12 +1,14 @@
 #include <234tree/animation/InputPanel.h>
 #include <cstdlib> // Để dùng std::stoi
+#include <iostream>
 
-InputPanel::InputPanel(Vector2 pos, Vector2 panelSize, Color panelCol)
-    : position(pos), size(panelSize), panelColor(panelCol), inputBox(pos.x + 10, pos.y + 10, 80, 30, 10, WHITE, BLACK) {
+InputPanel::InputPanel(Vector2 pos, Vector2 panelSize)
+    : position(pos), size(panelSize), inputBox(pos.x + 10, pos.y + 10, 80, 30, 10, WHITE, BLACK) {
     isOpen = true; // Mặc định panel mở
     showInputBox = false; // Ban đầu không hiển thị inputBox
     activeButtonIndex = -1; // Không có nút nào được chọn
     lastInputValue = -1; // Giá trị mặc định ban đầu
+    panelColor = buttonNormal;
 
     // Thiết lập nút bấm hình tam giác (toggle button)
     toggleButton.setPosition({pos.x - 20, pos.y + panelSize.y / 2});
@@ -31,6 +33,9 @@ InputPanel::InputPanel(Vector2 pos, Vector2 panelSize, Color panelCol)
     goButton.setSize({30, 30});
     goButton.setText("Go", 20);
     //goButton.setColor(LIGHTGRAY, GRAY, DARKGRAY);
+
+    inputFileButton.setSize({30, 30});
+    inputFileButton.setText("File", 20);
 }
 
 void InputPanel::SetPosition(Vector2 pos) {
@@ -52,10 +57,12 @@ void InputPanel::SetPosition(Vector2 pos) {
         inputBox = InputBox(btnPos.x + (size.x - 20) / 2 + 10, btnPos.y, 80, 30, 10, WHITE, BLACK);
         goButton.setPosition({btnPos.x + (size.x - 20) / 2 + 100, btnPos.y});
         //goButton.setRectangle();
+        inputFileButton.setPosition({btnPos.x + (size.x - 20) / 2 + 140, btnPos.y});
     }
 }
 
 void InputPanel::Update() {
+    this->panelColor = buttonNormal;
     // Cập nhật trạng thái của nút toggle
     toggleButton.update();
     if (toggleButton.isPressed()) {
@@ -64,6 +71,7 @@ void InputPanel::Update() {
             showInputBox = false; // Ẩn inputBox khi đóng panel
             activeButtonIndex = -1;
             lastInputValue = -1; // Reset giá trị đã nhập
+            fileValues2D.clear();
         }
     }
 
@@ -79,12 +87,26 @@ void InputPanel::Update() {
                 inputBox = InputBox(btnPos.x + (size.x - 20) / 2 + 10, btnPos.y, 80, 30, 10, WHITE, BLACK);
                 goButton.setPosition({btnPos.x + (size.x - 20) / 2 + 100, btnPos.y});
                 //goButton.setRectangle();
+                inputFileButton.setPosition({btnPos.x + (size.x - 20)/2 + 140, btnPos.y});
             }
         }
 
         if (showInputBox) {
             inputBox.Update();
             goButton.update();
+            inputFileButton.update();
+            if(inputFileButton.isPressed()){
+                static const char* filters[] = {"*.txt"};
+                const char * filepath = tinyfd_openFileDialog("Choose file", "", 1,filters, "Text file", 0);
+                if(filepath){
+                    fileValues2D = LoadFile(filepath);
+                    lastInputValue = -1;
+                }
+                else{
+                    fileValues2D.clear();
+                    lastInputValue = -1;
+                }
+            }
         }
     }
 }
@@ -118,15 +140,21 @@ void InputPanel::Draw() {
 
         // Vẽ các nút chức năng
         for (auto& btn : buttons) {
-            btn.drawRectangleRounded(0.2f);
+            btn.drawRectangleRounded(3);
+            btn.drawOutlineRounded(1, 1, 3);
             btn.drawText();
         }
 
         // Vẽ ô nhập liệu và nút "Go" nếu đang hiển thị
         if (showInputBox) {
             inputBox.Draw();
-            goButton.drawRectangleRounded(0.2f);
+            goButton.drawRectangleRounded(3);
             goButton.drawText();
+            goButton.drawOutlineRounded(1, 1, 3);
+
+            inputFileButton.drawRectangleRounded(3);
+            inputFileButton.drawText();
+            inputFileButton.drawOutlineRounded(1, 1, 3);
         }
     }
 }
@@ -153,6 +181,58 @@ int InputPanel::GetInputText() {
     return -1; // Trả về -1 nếu không có giá trị mới
 }
 
+std::vector<std::vector<int>> InputPanel::LoadFile(const std::string & filepath) {
+    std::vector<std::vector<int>> values;
+    std::ifstream file(filepath);
+    if (!file.is_open()) {
+        std::cout << "Không thể mở file: " << filepath << std::endl;
+        return values;
+    }
+
+    std::string line;
+    while (std::getline(file, line)) {
+        std::vector<int> lineValues;
+        std::stringstream ss(line);
+        std::string value;
+        while (ss >> value) {
+            try {
+                size_t pos;
+                int intValue = std::stoi(value, &pos);
+                if (pos == value.length()) {
+                    lineValues.push_back(intValue);
+                } else {
+                    std::cout << "Giá trị không hợp lệ (không phải số nguyên đầy đủ): " << value << std::endl;
+                }
+            } catch (const std::exception& e) {
+                std::cout << "Lỗi chuyển đổi giá trị: " << value << " - " << e.what() << std::endl;
+            }
+        }
+        if (!lineValues.empty()) {
+            values.push_back(lineValues);
+        }
+    }
+
+    file.close();
+    if (values.empty()) {
+        std::cout << "File rỗng hoặc không chứa số hợp lệ: " << filepath << std::endl;
+    } else {
+        std::cout << "Đọc thành công từ file: " << filepath << std::endl;
+        for (const auto& row : values) {
+            for (int val : row) {
+                std::cout << val << " ";
+            }
+            std::cout << std::endl;
+        }
+    }
+    return values;
+}
+
+
+std::vector<std::vector<int>> InputPanel::GetFileValues2D() const{
+    return fileValues2D;
+}
+
+
 int InputPanel::GetActiveButtonIndex() const {
     return activeButtonIndex;
 }
@@ -161,6 +241,7 @@ void InputPanel::ResetInputState() {
     showInputBox = false;
     activeButtonIndex = -1;
     lastInputValue = -1;
+    fileValues2D.clear();
 }
 
 bool InputPanel::IsCreatePressed() {
@@ -177,4 +258,8 @@ bool InputPanel::IsInsertPressed() {
 
 bool InputPanel::IsRemovePressed() {
     return activeButtonIndex == 3 && lastInputValue != -1;
+}
+
+bool InputPanel::IsLoadFilePressed(){
+    return (activeButtonIndex >= 0 && activeButtonIndex <= 3) && !fileValues2D.empty();
 }

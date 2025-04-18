@@ -3,6 +3,7 @@
 #include "../HashTable.h"
 #include <vector>
 
+
 class Presentation {
 public:
     float &speed;
@@ -15,6 +16,7 @@ public:
     int &currentPresentationIndex;
     int &currentStateIndex;
     //int currentIndex;
+
 
     Presentation(float &speed, HashTable& table, std::vector<std::vector<HashTable>> &historyState, int &currentPresentationIndex, int &currentStateIndex);
     void InsertNodeAnimation(int key, Node* newNode);

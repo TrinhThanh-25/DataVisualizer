@@ -4,6 +4,7 @@ Presentation::Presentation(float &speed, HashTable& table, std::vector<std::vect
     : speed(speed), table(table), historyState(historyState), currentStep(0), currentPresentationIndex(currentPresentationIndex), currentStateIndex(currentStateIndex){}
 
 void Presentation::InsertNodeAnimation(int key, Node* newNode) {
+    
     int bucket = key % table.GetSize();
     
     // Duyệt qua các node trong bucket để tạo animation tuần tự

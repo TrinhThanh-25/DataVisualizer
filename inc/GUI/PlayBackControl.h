@@ -8,7 +8,7 @@
 
 class PlaybackControl {
 public:
-    PlaybackControl(Vector2 position, float width, float height);
+    PlaybackControl(Vector2 position, float width, float height, float & speed);
 
     void UpdateHash(int& currentPresentationIndex, int& currentStateIndex, 
                 std::vector<std::vector<HashTable>> historyState);
@@ -19,11 +19,13 @@ public:
 
     int typePlayBack;
     bool isPlaying = false;
+    bool isSkip = false;
 
 private:
     Vector2 position;
     float width;
     float height;
+    float & speed;
 
     Slider historySlider;
     Button skipBackButton;

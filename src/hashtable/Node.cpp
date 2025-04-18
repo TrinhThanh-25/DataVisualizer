@@ -1,25 +1,22 @@
 #include "HashTable/Node.h"
 
-Node::Node(int data, Vector2 position, Vector2 size){
+Node::Node(int data, Vector2 position, Vector2 size): colorChosen(nodeHighlightColor), colorNormal(nodeColor), textChosenColor(nodeHighlightTextColor), textNorColor(nodeTextColor){
     this->data = data;
     this->position = position;
     this->finalPosition = position;
     this->size = size;
     this->arrowPos = position;
     //this.ConcurrentModificationException = size;
-    this->colorNormal = nodeColor;
-    this->colorChosen = nodeHighlightColor;
-    this->colorCurrent = this->colorNormal;
+    
+    this->colorCurrent = nodeColor;
     this->colorFinal = colorNormal;
-    this->textChosenColor = nodeHighlightTextColor;
-    this->textNorColor = nodeTextColor;
-    this->textCurColor = this->textNorColor;
+    this->textCurColor = nodeTextColor;
     this->next = nullptr;
     this->isChosen = false;
     this->isVisual = false;
 }
 
-Node::Node(int data) {
+Node::Node(int data):  colorChosen(nodeHighlightColor), colorNormal(nodeColor), textChosenColor(nodeHighlightTextColor), textNorColor(nodeTextColor) {
     this->data = data;
     this->next = nullptr;
     this->position = {0, 0};
@@ -27,12 +24,8 @@ Node::Node(int data) {
     this->arrowPos = {0, 0};
     this->size = {0, 0};
     this->finalSize = {0, 0};
-    this->colorNormal = nodeColor;
-    this->colorChosen = nodeHighlightColor;
     this->colorCurrent = nodeColor;
-    this->textChosenColor = nodeHighlightTextColor;
-    this->textNorColor = nodeTextColor;
-    this->textCurColor = this->textNorColor;
+    this->textCurColor = nodeTextColor;
     this->colorFinal = BLACK;
     this->isChosen = false;
     this->isVisual = false;

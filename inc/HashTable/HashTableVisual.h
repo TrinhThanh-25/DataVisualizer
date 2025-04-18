@@ -8,6 +8,7 @@
 #include "animation/Presentation.h"
 #include "GUI/Slider.h"
 #include "GUI/PlayBackControl.h"
+#include "GUI/CodeBlock.h"
 #include "234tree/animation/InputPanel.h"
 
 #define MAX_TABLE_SIZE 10
@@ -30,6 +31,11 @@ public:
     void Draw();
 
     void Update();
+
+    bool isPlaying = false;
+    bool isDrawTable = true;
+
+    CodeBlock codeBlock;
 
 private:
     HashTable hashTable;

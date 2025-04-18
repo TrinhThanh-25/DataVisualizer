@@ -199,38 +199,40 @@ bool Operation::MoveToChildrenNode(){
 }
 
 bool Operation::Merge2Child() {
-    if (!node || node->isLeaf) return true;
+    if (!node || node->isLeaf || node->keys.empty()) return true;
 
-
+    // Tìm vị trí của key trong node cha
     int i = 0;
     for (; i < node->keys.size(); i++) {
         if (node->keys[i] >= key) break;
     }
-    
-    // Đảm bảo i không vượt quá số con
-    if (i >= node->children.size() - 1) return false;
 
+    // Đảm bảo i hợp lệ (cần ít nhất 2 con để merge)
+    if (i >= node->children.size() - 1 || node->children.size() < 2) {
+        i = node->children.size() - 2; // Chọn cặp con cuối cùng
+        if (i < 0) return true; // Không đủ con để merge
+    }
+
+    // Lấy left và right
     TreeNode* left = node->children[i];
     TreeNode* right = node->children[i + 1];
+
+    // Kiểm tra left và right hợp lệ
+    if (!left || !right || left->keys.empty() || right->keys.empty()) return true;
 
     // Chỉ merge khi cả hai node con có 1 key
     if (left->keys.size() == 1 && right->keys.size() == 1) {
         // Lấy key từ parent
         int parentKey = node->keys[i];
-        
+
         // Merge: đưa key từ parent xuống và kết hợp với keys của left và right
         left->keys.push_back(parentKey);
         left->keys.push_back(right->keys[0]);
-        
-        // Sắp xếp keys
-        //std::sort(left->keys.begin(), left->keys.end());
 
-        // Copy children nếu không phải leaf
-        if (!left->isLeaf) {
+        // Copy children nếu không phải lá
+        if (!left->isLeaf && right->children.size() >= 2) {
             left->children.push_back(right->children[0]);
             left->children.push_back(right->children[1]);
-            
-            // Cập nhật parent pointer cho các children
             for (auto child : left->children) {
                 if (child) child->parent = left;
             }
@@ -238,34 +240,81 @@ bool Operation::Merge2Child() {
 
         // Xóa key trong parent
         node->keys.erase(node->keys.begin() + i);
-        
+
         // Xóa right child khỏi parent
         node->children.erase(node->children.begin() + i + 1);
-        
+
         // Giải phóng right node
         delete right;
 
         // Nếu parent trở thành rỗng và không phải root
         if (node->keys.empty() && node->parent) {
+            TreeNode* parent = node->parent;
 
-            left->parent = node->parent;
-            TreeNode * tempNode = node;
-            node = left;
-            delete tempNode;
+            // Tìm chỉ số của node trong parent->children
+            int nodeIndex = 0;
+            for (; nodeIndex < parent->children.size(); nodeIndex++) {
+                if (parent->children[nodeIndex] == node) break;
+            }
+
+            // Kiểm tra nodeIndex hợp lệ
+            if (nodeIndex >= parent->children.size()) return true;
+
+            // Tìm left_sibling và right_sibling
+            TreeNode* left_sibling = (nodeIndex > 0) ? parent->children[nodeIndex - 1] : nullptr;
+            TreeNode* right_sibling = (nodeIndex < parent->children.size() - 1) ? parent->children[nodeIndex + 1] : nullptr;
+
+            // Mượn từ left_sibling nếu có >= 2 keys
+            if (left_sibling && left_sibling->keys.size() >= 2 && nodeIndex > 0) {
+                node->keys.push_back(parent->keys[nodeIndex - 1]);
+                parent->keys[nodeIndex - 1] = left_sibling->keys.back();
+                left_sibling->keys.pop_back();
+
+                if (!node->isLeaf && !left_sibling->children.empty()) {
+                    node->children.insert(node->children.begin(), left_sibling->children.back());
+                    left_sibling->children.pop_back();
+                    if (!node->children.empty()) {
+                        node->children[0]->parent = node;
+                    }
+                }
+                root->calculateCoordinate({800, 100});
+                return true;
+            }
+            // Mượn từ right_sibling nếu có >= 2 keys
+            else if (right_sibling && right_sibling->keys.size() >= 2 && nodeIndex < parent->keys.size()) {
+                node->keys.push_back(parent->keys[nodeIndex]);
+                parent->keys[nodeIndex] = right_sibling->keys[0];
+                right_sibling->keys.erase(right_sibling->keys.begin());
+
+                if (!node->isLeaf && !right_sibling->children.empty()) {
+                    node->children.push_back(right_sibling->children[0]);
+                    right_sibling->children.erase(right_sibling->children.begin());
+                    if (!node->children.empty()) {
+                        node->children.back()->parent = node;
+                    }
+                }
+                root->calculateCoordinate({800, 100});
+                return true;
+            }
+
+            // Nếu không mượn được, không làm gì thêm
             return true;
         }
-        else if(node->keys.empty() && node->parent == nullptr){
+        else if (node->keys.empty() && !node->parent && left) {
             // Nếu parent là root và trở thành rỗng
-            TreeNode * tempNode = node;
+            TreeNode* tempNode = node;
             delete tempNode;
             root = left;
             node = left;
             root->parent = nullptr;
+            root->calculateCoordinate({800, 100});
+            return true;
         }
-        root->calculateCoordinate({800, 100});
 
+        root->calculateCoordinate({800, 100});
         return true;
     }
+
     return true;
 }
 

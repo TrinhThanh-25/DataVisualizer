@@ -11,8 +11,10 @@ bool Animation::DrawChosenNode() {
     node->isVisual = true;
     if (curAnimation < 1.0f) {
         curAnimation += speed;
-        node->colorCurrent = node->colorChosen;
-        node->textCurColor = node->textChosenColor;
+        // node->colorCurrent = node->colorChosen;
+        // node->textCurColor = node->textChosenColor;
+        node->colorCurrent = nodeHighlightColor;
+        node->textCurColor = nodeHighlightTextColor;
         node->isChosen = true;
         return false;
     }
@@ -27,8 +29,10 @@ bool Animation::DrawNormalNode(){
     node->isVisual = true;
     if(curAnimation < 1.0f){
         curAnimation += 1.0f;
-        node->colorCurrent = node->colorNormal;
-        node->textCurColor = node->textNorColor;
+        // node->colorCurrent = node->colorNormal;
+        // node->textCurColor = node->textNorColor;
+        node->colorCurrent = nodeColor;
+        node->textCurColor = nodeTextColor;
         node->isChosen = false;
         return true;
     }
@@ -43,7 +47,7 @@ bool Animation::DrawFadeInNode() {
 
     if (curAnimation < 1.0f) {
         curAnimation += speed;
-        node->colorCurrent = Fade(node->colorNormal, curAnimation);
+        node->colorCurrent = Fade(nodeColor, curAnimation);
 
         // // Tự vẽ node trong quá trình fade in
         // DrawCircle(node->position.x, node->position.y, node->size.x, node->colorCurrent);
@@ -55,7 +59,7 @@ bool Animation::DrawFadeInNode() {
         return false;
     }
 
-    node->colorCurrent = node->colorNormal;
+    node->colorCurrent = nodeColor;
     return true;
 }
 
@@ -63,7 +67,7 @@ bool Animation::DrawFadeOutNode() {
     if (!node) return true;
     if (curAnimation < 1.0f) {
         curAnimation += speed;
-        node->colorCurrent = Fade(node->colorNormal, 1.0f - curAnimation);
+        node->colorCurrent = Fade(nodeColor, 1.0f - curAnimation);
         return false;
     }
     node->isVisual = false; // Ẩn node sau khi fade out

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "GraphNode.h"
+#include "GUI/ColorTheme.h"
 #include <vector>
 
 class Graph {

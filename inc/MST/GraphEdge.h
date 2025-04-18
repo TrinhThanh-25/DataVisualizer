@@ -1,6 +1,7 @@
 #pragma once
 #include "raylib.h"
 #include "GraphNode.h"
+#include "GUI/ColorTheme.h"
 #include <vector>
 #include <string>
 

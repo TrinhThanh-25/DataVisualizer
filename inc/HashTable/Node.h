@@ -14,11 +14,11 @@ public:
     Vector2 size;          
     Vector2 finalSize;      
     Vector2 arrowPos;       
-    Color colorNormal;     
-    Color colorChosen;      
+    Color & colorNormal;     
+    Color & colorChosen;      
     Color colorCurrent;    
-    Color colorFinal;
-    Color textCurColor, textChosenColor, textNorColor;       
+    Color  colorFinal;
+    Color  textCurColor, &textChosenColor, &textNorColor;       
     bool isChosen = false; 
     bool isVisual = false;
 

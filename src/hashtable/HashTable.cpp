@@ -8,7 +8,9 @@ HashTable::HashTable(int size) {
     for (int i = 0; i < size; ++i) {
         table[i] = nullptr;
     }
+    isEmpty = false;
 }
+
 
 HashTable::HashTable(const HashTable& initHash) {
     this->size = initHash.size;
@@ -29,6 +31,7 @@ HashTable::HashTable(const HashTable& initHash) {
         }
     }
 }
+
 HashTable::~HashTable() {
     for (int i = 0; i < size; ++i) {
         Node* current = table[i];
@@ -67,6 +70,7 @@ void HashTable::Insert(int key, const std::string& value) {
         newNode->position = {current->position.x, current->position.y + 50};
         newNode->finalPosition = newNode->position;
     }
+    std::cout<<"INsert key: "<<key<<" thanh cong!!"<<std::endl;
 }
 
 void HashTable::Delete(int key) {
@@ -153,4 +157,46 @@ void HashTable::InitTable(int size, int numofKey) {
             Insert(key, ""); // Hàm Insert đã được định nghĩa để chèn vào bảng băm
         }
     }
+}
+
+void HashTable::CreateTableFile(std::vector<int> keys){
+    if(keys.empty()) return;
+
+    for(int i = 0; i < this->size; i++){
+        Node * current = table[i];
+        while(current != nullptr){
+            Node * next = current->next;
+            delete current;
+            current = next;
+        }
+    }
+    int size = 2 * keys.size();
+    for(int i = 0; i < size; i++){
+        if(isPrime(size + i)){
+            size +=i;
+            break;
+        }
+        else if(isPrime(size - i)){
+            size -= i;
+            break;
+        }
+    }
+
+    this->size = size;
+    table.clear();
+    table.resize(size, nullptr);
+    
+    for(int i = 0; i < keys.size(); i++){
+        std::cout<<keys[i]<<" ";
+        Insert(keys[i], "");
+    }
+    std::cout<<std::endl;
+}
+
+bool HashTable::isPrime(int number){
+    if(number <= 1) return false;
+    for(int i = 2; i < sqrt(number); i++){
+        if(number % i == 0) return false;
+    }
+    return true;
 }

@@ -7,8 +7,8 @@ HashTableVisualization::HashTableVisualization(const bool& isLightMode, float &s
                                     isLightMode(isLightMode), speed(speed), 
                                     historyState({}),currentPresentationIndex(-1), currentStateIndex(0),
                                     presentations(speed, hashTable, historyState, currentPresentationIndex, currentStateIndex),
-                                    inputPanel({30, 700}, {150, 200}, LIGHTGRAY), 
-                                    speedSlider(0.01f, 0.1f, 0.05f, 10), playbackControl({900, 600}, 200, 10) {
+                                    inputPanel({30, 700}, {150, 200}), 
+                                    speedSlider(0.01f, 0.1f, 0.05f, 10), playbackControl({900, 600}, 200, 10, speed) {
 
     //inputBox.isAppear = false;
     isRewindingStep = false;
@@ -113,7 +113,8 @@ bool HashTableVisualization::Find(int key) {
 
 void HashTableVisualization::Update(){
     inputPanel.Update();
-    playbackControl.UpdateHash(currentPresentationIndex, currentStateIndex, historyState);
+    //playbackControl.UpdateHash(currentPresentationIndex, currentStateIndex, historyState);
+    
     if(playbackControl.isPlaying){
         isRewindingStep = true;
     }
@@ -121,23 +122,84 @@ void HashTableVisualization::Update(){
         isRewindingStep = false;
     }
 
-    int inputValue = inputPanel.GetInputText();
-    int activeButton = inputPanel.GetActiveButtonIndex();
+    
+    
+     // Kiểm tra nếu người dùng chọn file để nhập dữ liệu
+     if (inputPanel.IsLoadFilePressed()) {
+        auto fileValues = inputPanel.GetFileValues2D();
+        int activeButton = inputPanel.GetActiveButtonIndex();
+        std::cout<<fileValues[0][0]<<std::endl;
 
-    if(inputValue != -1 && activeButton != -1){
-        switch (activeButton)
-        {
-        case 0: Init(inputValue, 2 * inputValue); break;
-        case 1: Find(inputValue); break;
-        case 2: Insert(inputValue); break;
-        case 3: Delete(inputValue); break;
+        if (!fileValues.empty()) {
+            switch (activeButton) {
+                case 0: { // Create/Init
+                    if (fileValues.size() >= 2 && !fileValues[0].empty()) {
+                        int size = fileValues[0][0]; // Dòng 1: số bucket
+                        std::vector<int> keys = fileValues[1]; // Dòng 2: các key
+                        hashTable.CreateTableFile(keys);
+                        presentations.clear();
+                        presentations.CreateTableAnimation(hashTable.GetSize());
+                    } else {
+                        std::cout << "File không đúng định dạng cho Init: cần ít nhất 2 dòng, dòng 1 là số bucket, dòng 2 là các key\n";
+                    }
+                    break;
+                }
+                case 1: { // Search
+                    if (!fileValues[0].empty()) {
+                        int key = fileValues[0][0];
+                        Find(key);
+                    }
+                    break;
+                }
+                case 2: { // Insert
+                    if (!fileValues[0].empty()) {
+                        int key = fileValues[0][0];
+                        std::cout<<"Co insert file"<<key<<std::endl;
+                        Insert(key);
+                    }
+                    break;
+                }
+                case 3: { // Delete
+                    if (!fileValues[0].empty()) {
+                        int key = fileValues[0][0];
+                        Delete(key);
+                    }
+                    break;
+                }
+            }
+            inputPanel.ResetInputState();
         }
-        inputPanel.ResetInputState();
-            
+    } else {
+        // Xử lý dữ liệu từ ô nhập liệu (nếu không dùng file)
+        int inputValue = inputPanel.GetInputText();
+        int activeButton = inputPanel.GetActiveButtonIndex();
+
+        if (inputValue != -1 && activeButton != -1) {
+            switch (activeButton) {
+                case 0: {
+                    Init(inputValue, 2 * inputValue);
+                    break;
+                }
+                case 1: Find(inputValue); break;
+                case 2: Insert(inputValue); break;
+                case 3: Delete(inputValue); break;
+            }
+            inputPanel.ResetInputState();
+        }
     }
     speedSlider.Update();
-    speed = speedSlider.val;
-
+    if(isPlaying == true){
+        if(playbackControl.isSkip == true){
+            this->isDrawTable = false;
+            speed = 1.0f;
+        }
+        else{
+            speed = speedSlider.val;
+        }
+    }
+    else{
+        speed = speedSlider.val;
+    }
 }
 
 
@@ -147,30 +209,41 @@ void HashTableVisualization::DrawHashTable() {
     int startY = 150;
 
     if (presentations.DrawPresentation()) {
+        speed = speedSlider.val;
+        this->isPlaying = false;
+        this->isDrawTable = true;
+        playbackControl.isSkip = false;
         if (deleting) {
             hashTable.Delete(key);
             deleting = false;
         }
     }
+    else{
+        this->isPlaying = true;
+    }
 
     if(!isRewindingStep){
-        for (int i = 0; i < hashTable.GetSize(); i++) {
-            Vector2 bucketPos = {(float)(startX + i * bucketSpacing), (float)startY};
-            DrawCircle(bucketPos.x, bucketPos.y, 10, nodeHighlightColor);
-            DrawText(std::to_string(i).c_str(), bucketPos.x - 5, bucketPos.y + 15, 15, nodeTextColor);
-    
-            Node* current = hashTable.getTable(i);
-            Vector2 prevPos = bucketPos;
-            while (current != nullptr) {
-                if (current->isVisual) {
-                    
-                    if (current->next) {
-                        DrawLink(current->position, {current->arrowPos.x, current->arrowPos.y - current->size.x});
+        if(isDrawTable){
+            if(!hashTable.isEmpty){
+                for (int i = 0; i < hashTable.GetSize(); i++) {
+                    Vector2 bucketPos = {(float)(startX + i * bucketSpacing), (float)startY};
+                    DrawCircle(bucketPos.x, bucketPos.y, 10, nodeHighlightColor);
+                    DrawText(std::to_string(i).c_str(), bucketPos.x - 5, bucketPos.y + 15, 15, nodeTextColor);
+            
+                    Node* current = hashTable.getTable(i);
+                    Vector2 prevPos = bucketPos;
+                    while (current != nullptr) {
+                        if (current->isVisual) {
+                            
+                            if (current->next) {
+                                DrawLink(current->position, {current->arrowPos.x, current->arrowPos.y - current->size.x});
+                            }
+                            DrawNode(current);
+                        }
+                        prevPos = current->position;
+                        current = current->next;
                     }
-                    DrawNode(current);
                 }
-                prevPos = current->position;
-                current = current->next;
             }
         }
     }

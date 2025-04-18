@@ -13,6 +13,9 @@ TreeNode::TreeNode(std::vector<int> keys, std::vector<TreeNode*> children, Vecto
     colorChosen = nodeColor;
     colorNormal = nodeHighlightColor;
     currentColor = colorNormal;
+    textNorColor = nodeTextColor;
+    textChosenColor = nodeHighlightTextColor;
+    textCurColor = textNorColor;
     fontNumber = buttonFont;
 }
 
@@ -29,6 +32,10 @@ TreeNode::TreeNode(TreeNode* node) : parent(nullptr), width(0) {
         colorChosen = nodeHighlightColor;
         colorNormal = nodeColor;
         currentColor = colorNormal;
+
+        textNorColor = nodeTextColor;
+        textChosenColor = nodeHighlightTextColor;
+        textCurColor = textNorColor;
         fontNumber = buttonFont;
         CalculateWidth();
         return;
@@ -44,6 +51,10 @@ TreeNode::TreeNode(TreeNode* node) : parent(nullptr), width(0) {
     currentColor = node->currentColor;
     colorChosen = node->colorChosen;
     colorNormal = node->colorNormal;
+    
+    textCurColor = node->textCurColor;
+    textNorColor = node->textNorColor;
+    textChosenColor = node->textCurColor;
     //CalculateWidth();
 
     // Sao chép đệ quy các node con
@@ -93,7 +104,7 @@ void TreeNode::DrawNode() {
             position.x + i * keyWidth + (keyWidth - textWidth) / 2, // Căn giữa theo chiều ngang
             position.y + (size.y - textHeight) / 2, // Căn giữa theo chiều dọc
             20, // Kích thước font
-            WHITE // Màu chữ
+            textCurColor // Màu chữ
         );
         
     }
@@ -192,6 +203,18 @@ TreeNode* TreeNode::CreateTree(int numofKey) {
 
     // Gán tọa độ
     //root->calculateCoordinate({400, 50});
+    return root;
+}
+
+TreeNode* TreeNode::CreateTreewithKey(std::vector<int> keys){
+    TreeNode * root = new TreeNode({}, {}, {400, 50});
+    root->isLeaf = true;
+    root->parent = nullptr;
+
+    for(int i = 0; i < keys.size(); i++){
+        insertKey(root, keys[i]);
+        root = getRoot(root);
+    }
     return root;
 }
 

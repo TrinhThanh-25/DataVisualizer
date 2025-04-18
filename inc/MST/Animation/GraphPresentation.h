@@ -3,6 +3,7 @@
 #include "GraphSetofOperation.h"
 #include "MST/Graph.h"
 #include <algorithm>
+#include <queue>
 
 class GraphPresentation{
     public:
@@ -20,6 +21,7 @@ class GraphPresentation{
         void initDisjointSet(int n);
         int find(int x);
         bool unionSets(int x, int y);
+        //void Prim();
 
 
         bool DrawPresentation();

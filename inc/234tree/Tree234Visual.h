@@ -19,6 +19,9 @@ public:
     int inputNumber;
     Rectangle insertButton;
     InputPanel inputPanel;
+    
+    bool isPlaying = false;
+    bool isDrawTree = true;
 
     std::vector<std::vector<TreeNode*>> historyState;
     int currentPresentationIndex;
@@ -36,4 +39,8 @@ public:
     void Draw();
     void DrawTree(TreeNode* root);
     void Insert(int key);
+    
+
+    void UpdateTheme(TreeNode * root);
+
 };

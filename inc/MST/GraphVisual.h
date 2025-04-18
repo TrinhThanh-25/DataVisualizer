@@ -1,5 +1,6 @@
 #pragma once
 #include "Graph.h"
+#include "GUI/ColorTheme.h"
 #include "MST/Animation/GraphPresentation.h"
 
 class GraphVisual {
@@ -14,5 +15,6 @@ public:
     void Draw();
     void CreateGraph(int numOfVer);
     void KruskalAlgo();
+    void PrimAlgo();
     void Update();
 };

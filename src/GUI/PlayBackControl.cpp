@@ -1,7 +1,7 @@
 #include "GUI/PlayBackControl.h"
 
-PlaybackControl::PlaybackControl(Vector2 position, float width, float height)
-    : position(position), width(width), height(height), 
+PlaybackControl::PlaybackControl(Vector2 position, float width, float height, float & speed)
+    : position(position), width(width), height(height), speed(speed),
       historySlider({position.x, position.y}, width, height, 0, 0, 0, 1),
       isPlaying(false) {
 
@@ -94,7 +94,11 @@ void PlaybackControl::UpdateHash(int& currentPresentationIndex, int& currentStat
             currentPresentationIndex = historyState.size() - 1;
             currentStateIndex = historyState[currentPresentationIndex].size() - 1;
             historySlider.val = currentStateIndex;
+            if(isPlaying == false){
+                speed = 1.0f;
+            }
             isPlaying = false;
+            this->isSkip = true;
         }
     }
 
@@ -155,7 +159,7 @@ void PlaybackControl::UpdateTree234(int& currentPresentationIndex, int& currentS
                     historySlider.val = currentStateIndex;
                 }
             }
-            isPlaying = false;
+            isPlaying = true;
         }
 
         // Skip Next: Nhảy tới trạng thái cuối
@@ -163,7 +167,11 @@ void PlaybackControl::UpdateTree234(int& currentPresentationIndex, int& currentS
             currentPresentationIndex = historyState.size() - 1;
             currentStateIndex = historyState[currentPresentationIndex].size() - 1;
             historySlider.val = currentStateIndex;
+            if(isPlaying = false){
+                speed = 1.0f;
+            }
             isPlaying = false;
+            isSkip = true;
         }
         //isPlaying = false;
         // std::cout<<"currentPresentationIndex: "<<currentPresentationIndex<<std::endl;

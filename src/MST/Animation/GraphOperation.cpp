@@ -120,7 +120,7 @@ bool GraphOperation::DrawGOperation(){
         case NORMAL_EDGE: return DrawNormalEdge();
         case FLUR_EDGE: return DrawFlurEdge();
         case NORMAL_NODE: return DrawNormalNode();
-        case CHOSEN_NODE: return DrawChosenEdge();
+        case CHOSEN_NODE: return DrawChosenNode();
         case MOVE_NODE: return DrawMoveNode();
     }
     std::cout<<"co animation"<<std::endl;

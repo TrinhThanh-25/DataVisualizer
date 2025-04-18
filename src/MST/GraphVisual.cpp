@@ -23,6 +23,10 @@ void GraphVisual::KruskalAlgo(){
     presentation.Kruskal();
 }
 
+void GraphVisual::PrimAlgo(){
+    //presentation.Prim();
+}
+
 void GraphVisual::Update() {
     if (IsKeyPressed(KEY_C)) {
         CreateGraph(13);
@@ -30,7 +34,9 @@ void GraphVisual::Update() {
     if(IsKeyPressed(KEY_K)){
         KruskalAlgo();
     }
-
+    if(IsKeyPressed(KEY_P)){
+        PrimAlgo();
+    }
     if (graph) {
         graph->Update();
     }

@@ -20,6 +20,7 @@ class TreeNode {
         std::vector<Vector2> arrowPos;
         Vector2 size;
         Color currentColor, colorChosen, colorNormal;
+        Color textCurColor, textNorColor, textChosenColor;
         Font fontNumber;
     
         bool isEmpty = false;
@@ -38,6 +39,7 @@ class TreeNode {
         void calculateCoordinate(Vector2 start);
     
         TreeNode* CreateTree(int numofKey);
+        TreeNode* CreateTreewithKey(std::vector<int> keys);
         TreeNode* getRoot(TreeNode* node);
         void insertKey(TreeNode*& root, int key);
         void splitNode(TreeNode* parent, int index, TreeNode* fullNode);
