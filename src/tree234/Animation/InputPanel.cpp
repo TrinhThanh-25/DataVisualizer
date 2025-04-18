@@ -2,12 +2,6 @@
 #include <cstdlib> // Để dùng std::stoi
 #include <iostream>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 50f6135 (Merge file)
 InputPanel::InputPanel()
     : inputBox(120,680,SLLBoxSize.x, SLLBoxSize.y,SLLBoxFontSize,boxColor, boxTextColor) {
     activeButtonIndex = -1; // Không có nút nào được chọn
@@ -23,55 +17,12 @@ InputPanel::InputPanel()
         inputFileButton.setPosition({320,740});
         inputFileButton.setSize({120, 30});
         inputFileButton.setText("Load File",SLLButtonFontSize);
-<<<<<<< HEAD
-=======
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-InputPanel::InputPanel(Vector2 pos, Vector2 panelSize)
-    : position(pos), size(panelSize), inputBox(pos.x + 10, pos.y + 10, 80, 30, 10, WHITE, BLACK) {
-    isOpen = true; // Mặc định panel mở
-    showInputBox = false; // Ban đầu không hiển thị inputBox
-    activeButtonIndex = -1; // Không có nút nào được chọn
-    lastInputValue = -1; // Giá trị mặc định ban đầu
-    panelColor = buttonNormal;
-
-    // Thiết lập nút bấm hình tam giác (toggle button)
-    toggleButton.setPosition({pos.x - 20, pos.y + panelSize.y / 2});
-    toggleButton.setSize({30, panelSize.y});
-    toggleButton.setText("", 0); // Không có text, sẽ vẽ hình tam giác
-    // toggleButton.setColor(GRAY, DARKGRAY, DARKGRAY);
-    // toggleButton.setRectangle();
-
-    // Thiết lập các nút chức năng (Create, Search, Insert, Remove)
-    const char* buttonLabels[] = {"Create(M,N)", "Search(v)", "Insert(v)", "Remove(v)"};
-    for (int i = 0; i < 4; i++) {
-        Button btn;
-        btn.setPosition({pos.x + size.x / 2, pos.y + 20 + i * 40}); // Căn giữa theo chiều ngang
-        btn.setSize({size.x - 20, 30});
-        btn.setText(buttonLabels[i], 20);
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-=======
->>>>>>> 50f6135 (Merge file)
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
         // btn.setColor(LIGHTGRAY, GRAY, DARKGRAY);
         // btn.setRectangle();
         buttons.push_back(btn);
     }
 
     // Thiết lập nút "Go" (ban đầu không hiển thị, sẽ cập nhật vị trí sau)
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 50f6135 (Merge file)
     goButton.setSize({260, 30});
     goButton.setText("Apply",SLLButtonFontSize);
     goButton.setPosition({250,780});
@@ -116,108 +67,11 @@ void InputPanel::update() {
             else{
                 fileValues2D.clear();
                 lastInputValue = -1;
-<<<<<<< HEAD
-=======
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-    goButton.setSize({30, 30});
-    goButton.setText("Go", 20);
-    //goButton.setColor(LIGHTGRAY, GRAY, DARKGRAY);
-
-    inputFileButton.setSize({30, 30});
-    inputFileButton.setText("File", 20);
-}
-
-void InputPanel::SetPosition(Vector2 pos) {
-    position = pos;
-
-    // Cập nhật vị trí của nút toggle
-    toggleButton.setPosition({pos.x - 20, pos.y + size.y / 2});
-    //toggleButton.setRectangle();
-
-    // Cập nhật vị trí của các nút chức năng
-    for (int i = 0; i < buttons.size(); i++) {
-        buttons[i].setPosition({pos.x + size.x / 2, pos.y + 20 + i * 40}); // Căn giữa theo chiều ngang
-        //buttons[i].setRectangle();
-    }
-
-    // Cập nhật vị trí của ô nhập liệu và nút "Go" nếu đang hiển thị
-    if (showInputBox && activeButtonIndex != -1) {
-        Vector2 btnPos = buttons[activeButtonIndex].getPosition();
-        inputBox = InputBox(btnPos.x + (size.x - 20) / 2 + 10, btnPos.y, 80, 30, 10, WHITE, BLACK);
-        goButton.setPosition({btnPos.x + (size.x - 20) / 2 + 100, btnPos.y});
-        //goButton.setRectangle();
-        inputFileButton.setPosition({btnPos.x + (size.x - 20) / 2 + 140, btnPos.y});
-    }
-}
-
-void InputPanel::Update() {
-    this->panelColor = buttonNormal;
-    // Cập nhật trạng thái của nút toggle
-    toggleButton.update();
-    if (toggleButton.isPressed()) {
-        isOpen = !isOpen;
-        if (!isOpen) {
-            showInputBox = false; // Ẩn inputBox khi đóng panel
-            activeButtonIndex = -1;
-            lastInputValue = -1; // Reset giá trị đã nhập
-            fileValues2D.clear();
-        }
-    }
-
-    // Chỉ cập nhật các thành phần bên trong panel nếu panel đang mở
-    if (isOpen) {
-        for (int i = 0; i < buttons.size(); i++) {
-            buttons[i].update();
-            if (buttons[i].isPressed()) {
-                // Khi một nút chức năng được nhấn, hiển thị inputBox kế bên nút đó
-                showInputBox = true;
-                activeButtonIndex = i;
-                Vector2 btnPos = buttons[i].getPosition();
-                inputBox = InputBox(btnPos.x + (size.x - 20) / 2 + 10, btnPos.y, 80, 30, 10, WHITE, BLACK);
-                goButton.setPosition({btnPos.x + (size.x - 20) / 2 + 100, btnPos.y});
-                //goButton.setRectangle();
-                inputFileButton.setPosition({btnPos.x + (size.x - 20)/2 + 140, btnPos.y});
-            }
-        }
-
-        if (showInputBox) {
-            inputBox.Update();
-            goButton.update();
-            inputFileButton.update();
-            if(inputFileButton.isPressed()){
-                static const char* filters[] = {"*.txt"};
-                const char * filepath = tinyfd_openFileDialog("Choose file", "", 1,filters, "Text file", 0);
-                if(filepath){
-                    fileValues2D = LoadFile(filepath);
-                    lastInputValue = -1;
-                }
-                else{
-                    fileValues2D.clear();
-                    lastInputValue = -1;
-                }
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-=======
->>>>>>> 50f6135 (Merge file)
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
             }
         }
     }
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 50f6135 (Merge file)
 
 void InputPanel::draw() {
     drawPanel();
@@ -246,72 +100,6 @@ int InputPanel::GetInputText() {
     if (isUsing && goButton.isPressed()) {
         std::string input = inputBox.GetText();
         inputBox.clearText(); // Xóa nội dung ô nhập sau khi nhấn "Go"
-<<<<<<< HEAD
-=======
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-void InputPanel::Draw() {
-    // Vẽ nút toggle (hình tam giác)
-    Vector2 togglePos = toggleButton.getPosition();
-    if (isOpen) {
-        // Tam giác chỉ về bên trái (panel mở)
-        DrawTriangle(
-            {togglePos.x - 5, togglePos.y - 5},
-            {togglePos.x - 5, togglePos.y + 5},
-            {togglePos.x + 5, togglePos.y},
-            toggleButton.isHovered() ? GRAY : DARKGRAY
-        );
-        
-    } else {
-        // Tam giác chỉ về bên phải (panel đóng)
-        DrawTriangle(
-            {togglePos.x + 5, togglePos.y - 5},
-            {togglePos.x + 5, togglePos.y + 5},
-            {togglePos.x - 5, togglePos.y},
-            toggleButton.isHovered() ? GRAY : DARKGRAY
-        );
-    }
-
-    // Chỉ vẽ panel nếu đang mở
-    if (isOpen) {
-        // Vẽ nền của panel
-        DrawRectangle(position.x, position.y, size.x, size.y, panelColor);
-
-        // Vẽ các nút chức năng
-        for (auto& btn : buttons) {
-            btn.drawRectangleRounded(3);
-            btn.drawOutlineRounded(1, 1, 3);
-            btn.drawText();
-        }
-
-        // Vẽ ô nhập liệu và nút "Go" nếu đang hiển thị
-        if (showInputBox) {
-            inputBox.Draw();
-            goButton.drawRectangleRounded(3);
-            goButton.drawText();
-            goButton.drawOutlineRounded(1, 1, 3);
-
-            inputFileButton.drawRectangleRounded(3);
-            inputFileButton.drawText();
-            inputFileButton.drawOutlineRounded(1, 1, 3);
-        }
-    }
-}
-
-int InputPanel::GetInputText() {
-    if (showInputBox && goButton.isPressed()) {
-        std::string input = inputBox.GetText();
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-=======
->>>>>>> 50f6135 (Merge file)
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
         if (input.empty()) {
             lastInputValue = -1; // Trả về -1 nếu ô nhập rỗng
         } else {
@@ -388,21 +176,6 @@ int InputPanel::GetActiveButtonIndex() const {
 }
 
 void InputPanel::ResetInputState() {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    showInputBox = false;
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-=======
->>>>>>> 50f6135 (Merge file)
-=======
-    showInputBox = false;
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-=======
-    showInputBox = false;
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
     activeButtonIndex = -1;
     lastInputValue = -1;
     fileValues2D.clear();
@@ -424,12 +197,6 @@ bool InputPanel::IsRemovePressed() {
     return activeButtonIndex == 3 && lastInputValue != -1;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 50f6135 (Merge file)
 bool InputPanel::isAnyButtonPressed() {
     for (auto & btn : buttons) {
         if (btn.isPressed()) {
@@ -439,15 +206,6 @@ bool InputPanel::isAnyButtonPressed() {
     return false; // Nếu không có nút nào được nhấn, trả về false
 }
 
-<<<<<<< HEAD
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-=======
->>>>>>> 50f6135 (Merge file)
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 bool InputPanel::IsLoadFilePressed(){
     return (activeButtonIndex >= 0 && activeButtonIndex <= 3) && !fileValues2D.empty();
 }

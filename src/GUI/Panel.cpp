@@ -43,13 +43,7 @@ void Panel::drawPanel(){
     DrawRectangleLinesEx(panelHolder,3,outlineButtonColor);
     this->Back.drawRectangleRounded(100);
     this->Back.drawTexture();
-<<<<<<< HEAD
-<<<<<<< HEAD
     this->Back.drawOutlineRounded(100,0,3);
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
     DrawTextEx(buttonFont, dataName, {GetScreenWidth()/2.0f-MeasureTextEx(buttonFont, dataName, dataTitleFontSize,0).x/2.0f,dataTitlePosition.y-dataTitleFontSize/2.0f}, dataTitleFontSize, 0, dataTitleTextColor);
 }
 

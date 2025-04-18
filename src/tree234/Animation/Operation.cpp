@@ -1,42 +1,9 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 #include <234tree/animation/Operation.h>
 #include <iostream> // Thêm để debug
 #include <memory> // Thêm để sử dụng std::unique_ptr
 
 Operation::Operation(float& speed, TreeNode*& node, TreeNode *& root, bool& isSplit) 
     : speed(speed), node(node), root(root), isSplit(isSplit) {
-<<<<<<< HEAD
-=======
-#include "Operation.h"
-#include <iostream> // Thêm để debug
-#include <memory> // Thêm để sử dụng std::unique_ptr
-
-Operation::Operation(Font fontNumber, Font fontText, float& speed, TreeNode*& node, TreeNode *& root, bool& isSplit) 
-    : fontNumber(fontNumber), fontText(fontText), speed(speed), node(node), root(root), isSplit(isSplit) {
->>>>>>> 14909f1 (234tree animation)
-    curAnimation = 0.0f;
-    type = NORMAL;
-    this->key = 0;
-    this->newKey = 0;
-}
-
-bool Operation::DrawNormalNode() {
-    if (!node) return true;
-    if (curAnimation < 1.0f) {
-        curAnimation += speed;
-        node->currentColor = node->colorNormal;
-        return false;
-    }
-    std::cout<<"xong normal nghen"<<std::endl;
-    std::cout<<"Current Key: ";
-    for(int i = 0; i < node->keys.size(); i++){
-        std::cout<<node->keys[i]<<" ";
-    }
-    std::cout<<std::endl;
-=======
     curAnimation = 0.0f;
     type = NORMAL;
     this->key = 0;
@@ -68,21 +35,10 @@ bool Operation::DrawChosenNode() {
         return false;
     }
     std::cout<<"xong hihghlight nghen"<<std::endl;
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
     curAnimation = 0.0f;
     return true;
 }
 
-<<<<<<< HEAD
-bool Operation::DrawChosenNode() {
-    if (!node) return true;
-    if (curAnimation < 1.0f) {
-        curAnimation += speed;
-        node->currentColor = node->colorChosen;
-        return false;
-    }
-    std::cout<<"xong hihghlight nghen"<<std::endl;
-=======
 bool Operation::DrawInsertEdge() {
     if (!node || node->children.empty()) return true;
     if (curAnimation < 1.0f) {
@@ -96,26 +52,10 @@ bool Operation::DrawInsertEdge() {
     for (int i = 0; i < node->children.size(); i++) {
         node->arrowPos[i] = node->children[i]->position;
     }
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
     curAnimation = 0.0f;
     return true;
 }
 
-<<<<<<< HEAD
-bool Operation::DrawInsertEdge() {
-    if (!node || node->children.empty()) return true;
-    if (curAnimation < 1.0f) {
-        curAnimation += speed;
-        for (int i = 0; i < node->children.size(); i++) {
-            node->arrowPos[i] = {node->position.x + (node->children[i]->position.x - node->position.x) * curAnimation, 
-                                 node->position.y + (node->children[i]->position.y - node->position.y) * curAnimation};
-        }
-        return false;
-    }
-    for (int i = 0; i < node->children.size(); i++) {
-        node->arrowPos[i] = node->children[i]->position;
-    }
-=======
 bool Operation::DrawMoveNode(){
     if(!node) return true;
     if(curAnimation < 1.0f){
@@ -132,43 +72,10 @@ bool Operation::DrawMoveNode(){
         }
         return false;
     }
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
     curAnimation = 0.0f;
     return true;
 }
 
-<<<<<<< HEAD
-bool Operation::DrawMoveNode(){
-    if(!node) return true;
-    if(curAnimation < 1.0f){
-        curAnimation += speed;
-        node->position.x = node->position.x * (1.0f - curAnimation) + node->finalPosition.x * curAnimation;
-        node->position.y = node->position.y * (1.0f - curAnimation) + node->finalPosition.y * curAnimation;
-        if(!node->isLeaf){
-            for(int i = 0; i < node->children.size(); i++){
-                node->arrowPos[i] = node->children[i]->position;
-            }
-        }
-        else{
-            node->arrowPos[0] = node->position;
-        }
-        return false;
-    }
-=======
-bool Operation::DrawMovetoFinalPos(){
-    if(!root) return true;
-    if(curAnimation < 1.0f){
-        curAnimation += speed;
-        MoveAllNodeToFinalPos(root, curAnimation);
-        return false;
-    }
-    std::cout<<"root: "<<root->keys[0]<<std::endl;
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-    curAnimation = 0.0f;
-    return true;
-}
-
-<<<<<<< HEAD
 bool Operation::DrawMovetoFinalPos(){
     if(!root) return true;
     if(curAnimation < 1.0f){
@@ -277,104 +184,6 @@ bool Operation::InsertToLeaf() {
     return true;
 }
 
-=======
-void Operation::MoveAllNodeToFinalPos(TreeNode * treeRoot, float curAnimation){
-    if(!treeRoot) return;
-    treeRoot->position.x = treeRoot->position.x * (1.0f - curAnimation) + treeRoot->finalPosition.x * curAnimation;
-    treeRoot->position.y = treeRoot->position.y * (1.0f - curAnimation) + treeRoot->finalPosition.y * curAnimation;
-    for(int i = 0; i < treeRoot->children.size(); i++){
-        MoveAllNodeToFinalPos(treeRoot->children[i], curAnimation);
-        treeRoot->arrowPos[i] = treeRoot->children[i]->position;
-    }
-}
-
-
-bool Operation::SplitNode() {
-    if(!node){
-        this->isSplit = false;
-        return true;
-    }
-    if(node->keys.size() < 3){
-        this->isSplit = false;
-        return true;
-    }
-
-    TreeNode * left = new TreeNode({node->keys[0]}, {}, {0, 0});
-    TreeNode * right = new TreeNode({node->keys[2]}, {}, {0, 0});
-    //node->children = {left, right};
-    node->keys = {node->keys[1]};
-    left->parent = node;
-    right->parent = node;
-    if(node->isLeaf == false){
-        std::cout<<"da vao day"<<std::endl;
-        left->children = {node->children[0], node->children[1]};
-        right->children = {node->children[2], node->children[3]};
-        std::cout<<"da vao day 2"<<std::endl;
-        for(int i = 0; i < left->children.size(); i++){
-            left->children[i]->parent = left;
-            right->children[i]->parent = right;
-        }
-
-        left->isLeaf = false;
-        right->isLeaf = false;
-    }
-    else{
-        left->isLeaf = true;
-        right->isLeaf = true;
-    }
-    node->children = {left, right};
-    node->isLeaf = false;
-    std::cout<<"tinh toa do"<<std::endl;
-
-    root->calculateCoordinate({800, 100});
-    std::cout<<"xong chia roi ne"<<std::endl;
-
-    isSplit = true;
-    
-
-    return true;
-}
-
-bool Operation::MergeKeyToParent() {
-    if(!node || node->parent == nullptr) return true;
-    if(node->keys.size() > 1) return true;
-    if(!isSplit) return true;
-
-    TreeNode * parent = node->parent;
-    int i = 0;
-    for(; i < parent->keys.size(); i++){
-        if(parent->keys[i] > node->keys[0]) break;
-    }
-    parent->keys.insert(parent->keys.begin() + i, node->keys[0]);
-    parent->children[i] = node->children[0];
-    parent->children.insert(parent->children.begin() + i + 1, node->children[1]);
-    TreeNode * tempNode = node;
-    node->children[0]->parent = parent;
-    node->children[1]->parent = parent;
-    node = node->parent;
-    delete tempNode;
-    
-    root->calculateCoordinate({800, 100});
-
-    return true;
-
-    
-}
-
-bool Operation::InsertToLeaf() {
-    if (!node) return true;
-    for(int i = 0; i < node->keys.size(); i++){
-        if(node->keys[i] > key){
-            node->keys.insert(node->keys.begin() + i, key);
-            return true;
-        }
-    }
-    node->keys.push_back(key);
-    root->calculateCoordinate({800, 100});
-    return true;
-}
-
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 bool Operation::MoveToChildrenNode(){
     if(!node) return true;
     if(node->isLeaf) return true;
@@ -390,29 +199,13 @@ bool Operation::MoveToChildrenNode(){
 }
 
 bool Operation::Merge2Child() {
-<<<<<<< HEAD
-<<<<<<< HEAD
     if (!node || node->isLeaf || node->keys.empty()) return true;
 
     // Tìm vị trí của key trong node cha
-=======
-    if (!node || node->isLeaf) return true;
-
-
->>>>>>> 14909f1 (234tree animation)
-=======
-    if (!node || node->isLeaf || node->keys.empty()) return true;
-
-    // Tìm vị trí của key trong node cha
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
     int i = 0;
     for (; i < node->keys.size(); i++) {
         if (node->keys[i] >= key) break;
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 
     // Đảm bảo i hợp lệ (cần ít nhất 2 con để merge)
     if (i >= node->children.size() - 1 || node->children.size() < 2) {
@@ -427,26 +220,10 @@ bool Operation::Merge2Child() {
     // Kiểm tra left và right hợp lệ
     if (!left || !right || left->keys.empty() || right->keys.empty()) return true;
 
-<<<<<<< HEAD
-=======
-    
-    // Đảm bảo i không vượt quá số con
-    if (i >= node->children.size() - 1) return false;
-
-    TreeNode* left = node->children[i];
-    TreeNode* right = node->children[i + 1];
-
->>>>>>> 14909f1 (234tree animation)
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
     // Chỉ merge khi cả hai node con có 1 key
     if (left->keys.size() == 1 && right->keys.size() == 1) {
         // Lấy key từ parent
         int parentKey = node->keys[i];
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 
         // Merge: đưa key từ parent xuống và kết hợp với keys của left và right
         left->keys.push_back(parentKey);
@@ -456,25 +233,6 @@ bool Operation::Merge2Child() {
         if (!left->isLeaf && right->children.size() >= 2) {
             left->children.push_back(right->children[0]);
             left->children.push_back(right->children[1]);
-<<<<<<< HEAD
-=======
-        
-        // Merge: đưa key từ parent xuống và kết hợp với keys của left và right
-        left->keys.push_back(parentKey);
-        left->keys.push_back(right->keys[0]);
-        
-        // Sắp xếp keys
-        //std::sort(left->keys.begin(), left->keys.end());
-
-        // Copy children nếu không phải leaf
-        if (!left->isLeaf) {
-            left->children.push_back(right->children[0]);
-            left->children.push_back(right->children[1]);
-            
-            // Cập nhật parent pointer cho các children
->>>>>>> 14909f1 (234tree animation)
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
             for (auto child : left->children) {
                 if (child) child->parent = left;
             }
@@ -482,32 +240,15 @@ bool Operation::Merge2Child() {
 
         // Xóa key trong parent
         node->keys.erase(node->keys.begin() + i);
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 
         // Xóa right child khỏi parent
         node->children.erase(node->children.begin() + i + 1);
 
-<<<<<<< HEAD
-=======
-        
-        // Xóa right child khỏi parent
-        node->children.erase(node->children.begin() + i + 1);
-        
->>>>>>> 14909f1 (234tree animation)
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
         // Giải phóng right node
         delete right;
 
         // Nếu parent trở thành rỗng và không phải root
         if (node->keys.empty() && node->parent) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
             TreeNode* parent = node->parent;
 
             // Tìm chỉ số của node trong parent->children
@@ -562,29 +303,10 @@ bool Operation::Merge2Child() {
         else if (node->keys.empty() && !node->parent && left) {
             // Nếu parent là root và trở thành rỗng
             TreeNode* tempNode = node;
-<<<<<<< HEAD
-=======
-
-            left->parent = node->parent;
-            TreeNode * tempNode = node;
-            node = left;
-            delete tempNode;
-            return true;
-        }
-        else if(node->keys.empty() && node->parent == nullptr){
-            // Nếu parent là root và trở thành rỗng
-            TreeNode * tempNode = node;
->>>>>>> 14909f1 (234tree animation)
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
             delete tempNode;
             root = left;
             node = left;
             root->parent = nullptr;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
             root->calculateCoordinate({800, 100});
             return true;
         }
@@ -593,16 +315,6 @@ bool Operation::Merge2Child() {
         return true;
     }
 
-<<<<<<< HEAD
-=======
-        }
-        root->calculateCoordinate({800, 100});
-
-        return true;
-    }
->>>>>>> 14909f1 (234tree animation)
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
     return true;
 }
 

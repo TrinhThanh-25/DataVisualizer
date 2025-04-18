@@ -11,14 +11,7 @@ STPanel::STPanel(){
 
     this->Setting.setText("Setting",panelButtonFontSize);
     this->Setting.setSize(panelButtonSize);
-<<<<<<< HEAD
     this->Setting.setPosition({panelButtonSize.x/2.0f+(panelButtonSize.y/2.0f-panelButtonFontSize/2.0f), 750+(panelButtonSize.y/2.0f)});
-=======
-    this->Setting.setPosition({Setting.getSize().x/2.0f+(Setting.getSize().y/2.0f-Setting.getfontSize()/2.0f), 750+(Setting.getSize().y/2.0f-Setting.getfontSize()/2.0f)});
-<<<<<<< HEAD
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 
     setDataName("Shortest Path");
 }

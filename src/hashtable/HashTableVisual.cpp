@@ -7,38 +7,12 @@ HashTableVisualization::HashTableVisualization(const bool& isLightMode, float &s
                                     isLightMode(isLightMode), speed(speed), 
                                     historyState({}),currentPresentationIndex(-1), currentStateIndex(0),
                                     presentations(speed, hashTable, historyState, currentPresentationIndex, currentStateIndex),
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 50f6135 (Merge file)
                                     inputPanel(), 
                                     speedSlider(0.01f, 0.1f, 0.05f, 10), playbackControl({900, 600}, 200, 10,speed) {
 
     //inputBox.isAppear = false;
     isRewindingStep = false;
     inputPanel.setDataName("Hash Table");
-<<<<<<< HEAD
-=======
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-                                    inputPanel({30, 700}, {150, 200}), 
-                                    speedSlider(0.01f, 0.1f, 0.05f, 10), playbackControl({900, 600}, 200, 10, speed) {
-
-    //inputBox.isAppear = false;
-    isRewindingStep = false;
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-=======
->>>>>>> 50f6135 (Merge file)
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
     //this->historyState = {};
     // currentPresentationIndex = 0;
     // currentStateIndex = 0;
@@ -139,33 +113,9 @@ bool HashTableVisualization::Find(int key) {
 // }
 
 void HashTableVisualization::Update(){
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     inputPanel.setBackActive();
     inputPanel.update();
     playbackControl.UpdateHash(currentPresentationIndex, currentStateIndex, historyState);
-=======
-    inputPanel.Update();
-    //playbackControl.UpdateHash(currentPresentationIndex, currentStateIndex, historyState);
-    
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-=======
-    inputPanel.setBackActive();
-    inputPanel.update();
-    playbackControl.UpdateHash(currentPresentationIndex, currentStateIndex, historyState);
->>>>>>> 50f6135 (Merge file)
-=======
-    inputPanel.Update();
-    //playbackControl.UpdateHash(currentPresentationIndex, currentStateIndex, historyState);
-    
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-=======
-    inputPanel.Update();
-    //playbackControl.UpdateHash(currentPresentationIndex, currentStateIndex, historyState);
-    
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
     if(playbackControl.isPlaying){
         isRewindingStep = true;
     }
@@ -375,12 +325,6 @@ void HashTableVisualization::DrawLink(Vector2 start, Vector2 end) {
 void HashTableVisualization::Draw() {
     DrawHashTable();
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 50f6135 (Merge file)
     inputPanel.draw();
     
     speedSlider.Draw();
@@ -398,23 +342,4 @@ bool HashTableVisualization::isBackPressed() {
         currentStateIndex = 0;
     }
     return res;
-<<<<<<< HEAD
-=======
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-    inputPanel.Draw();
-    
-    speedSlider.Draw();
-    playbackControl.Draw();
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-=======
->>>>>>> 50f6135 (Merge file)
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 }

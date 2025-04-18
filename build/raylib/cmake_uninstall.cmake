@@ -1,8 +1,8 @@
-if(NOT EXISTS "D:/test/Programming/project/DataVisualizer/build/install_manifest.txt")
-  message(FATAL_ERROR "Cannot find install manifest: D:/test/Programming/project/DataVisualizer/build/install_manifest.txt")
+if(NOT EXISTS "D:/Project CS163/DataVisualizer/build/install_manifest.txt")
+  message(FATAL_ERROR "Cannot find install manifest: D:/Project CS163/DataVisualizer/build/install_manifest.txt")
 endif()
 
-file(READ "D:/test/Programming/project/DataVisualizer/build/install_manifest.txt" files)
+file(READ "D:/Project CS163/DataVisualizer/build/install_manifest.txt" files)
 string(REGEX REPLACE "\n" ";" files "${files}")
 foreach(file ${files})
   message(STATUS "Uninstalling $ENV{DESTDIR}${file}")

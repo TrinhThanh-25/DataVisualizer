@@ -1,28 +1,8 @@
 #include <234tree/Tree234Visual.h>
 #include <string>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 Tree234Visual::Tree234Visual(float & speed) :speed(speed), root(nullptr), currentPresentationIndex(-1), currentStateIndex(0), historyState({}), inputPanel(), speedSlider(0.01f, 0.1f, 0.05f, 10), 
                                   playbackControl({900, 600}, 200, 10,speed) ,treePresentation(speed, root, historyState, currentPresentationIndex, currentStateIndex) {    
-=======
-Tree234Visual::Tree234Visual(float & speed) :speed(speed), root(nullptr), currentPresentationIndex(-1), currentStateIndex(0), historyState({}), inputPanel({30, 700}, {150, 200}), speedSlider(0.01f, 0.1f, 0.05f, 10), 
-                                  playbackControl({900, 600}, 200, 10, speed) ,treePresentation(speed, root, historyState, currentPresentationIndex, currentStateIndex) {    
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-=======
-Tree234Visual::Tree234Visual(float & speed) :speed(speed), root(nullptr), currentPresentationIndex(-1), currentStateIndex(0), historyState({}), inputPanel(), speedSlider(0.01f, 0.1f, 0.05f, 10), 
-                                  playbackControl({900, 600}, 200, 10,speed) ,treePresentation(speed, root, historyState, currentPresentationIndex, currentStateIndex) {    
->>>>>>> 50f6135 (Merge file)
-=======
-Tree234Visual::Tree234Visual(float & speed) :speed(speed), root(nullptr), currentPresentationIndex(-1), currentStateIndex(0), historyState({}), inputPanel({30, 700}, {150, 200}), speedSlider(0.01f, 0.1f, 0.05f, 10), 
-                                  playbackControl({900, 600}, 200, 10, speed) ,treePresentation(speed, root, historyState, currentPresentationIndex, currentStateIndex) {    
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-=======
-Tree234Visual::Tree234Visual(float & speed) :speed(speed), root(nullptr), currentPresentationIndex(-1), currentStateIndex(0), historyState({}), inputPanel({30, 700}, {150, 200}), speedSlider(0.01f, 0.1f, 0.05f, 10), 
-                                  playbackControl({900, 600}, 200, 10, speed) ,treePresentation(speed, root, historyState, currentPresentationIndex, currentStateIndex) {    
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
     //root = nullptr;
     //speed = 0.05f;
     //std::vector<std::vector<TreeNode*>> history;
@@ -36,20 +16,7 @@ Tree234Visual::Tree234Visual(float & speed) :speed(speed), root(nullptr), curren
     
     currentPresentationIndex = -1;
     currentStateIndex = 0;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     inputPanel.setDataName("234 Tree");
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-=======
-    inputPanel.setDataName("234 Tree");
->>>>>>> 50f6135 (Merge file)
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
     //inputPanel = InputPanel({150, 500}, {150, 200}, LIGHTGRAY);
 }
 
@@ -59,25 +26,8 @@ Tree234Visual::~Tree234Visual() {
 }
 
 void Tree234Visual::Update() {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     inputPanel.setBackActive();
     inputPanel.update();
-=======
-    inputPanel.Update();
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-=======
-    inputPanel.setBackActive();
-    inputPanel.update();
->>>>>>> 50f6135 (Merge file)
-=======
-    inputPanel.Update();
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-=======
-    inputPanel.Update();
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 
     if(inputPanel.IsLoadFilePressed()){
         auto fileValues = inputPanel.GetFileValues2D();
@@ -204,23 +154,7 @@ void Tree234Visual::Update() {
 }
 
 void Tree234Visual::Draw() {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     inputPanel.draw();
-=======
-    inputPanel.Draw();
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-=======
-    inputPanel.draw();
->>>>>>> 50f6135 (Merge file)
-=======
-    inputPanel.Draw();
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-=======
-    inputPanel.Draw();
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
     //std::cout<<"Drawing tree with keys: "<<std::endl;
     
     if(treePresentation.DrawPresentation()){
@@ -270,12 +204,6 @@ void Tree234Visual::Insert(int key) {
     //treePresentation->DrawPresentation();
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 50f6135 (Merge file)
 bool Tree234Visual::isBackPressed() {
     bool res = inputPanel.isBackPressed();
     if (res) {
@@ -288,35 +216,4 @@ bool Tree234Visual::isBackPressed() {
         isRewinding = false;
     }
     return res;
-<<<<<<< HEAD
-=======
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-void Tree234Visual::UpdateTheme(TreeNode * root){
-    if(root == nullptr) return;
-
-    root->colorNormal = nodeColor;
-    root->colorChosen = nodeHighlightColor;
-    root->currentColor = root->colorNormal;
-
-    root->textChosenColor = nodeHighlightTextColor;
-    root->textNorColor = nodeTextColor;
-    root->textCurColor = root->textNorColor;
-
-    for(int i = 0; i < root->children.size(); i++){
-        TreeNode * child = root->children[i];
-        UpdateTheme(child);
-    }
-
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-=======
->>>>>>> 50f6135 (Merge file)
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 }

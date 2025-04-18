@@ -19,14 +19,7 @@ SLLPanel::SLLPanel(){
 
     this->Update.setText("Update",panelButtonFontSize);
     this->Update.setSize(panelButtonSize);
-<<<<<<< HEAD
     this->Update.setPosition({panelButtonSize.x/2.0f+(panelButtonSize.y/2.0f-panelButtonFontSize/2.0f), 850+(panelButtonSize.y/2.0f)});
-=======
-    this->Update.setPosition({Update.getSize().x/2.0f+(Update.getSize().y/2.0f-Update.getfontSize()/2.0f), 850+(Update.getSize().y/2.0f-Update.getfontSize()/2.0f)});
-<<<<<<< HEAD
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 
     setDataName("Singly Linked List");
 }

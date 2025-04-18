@@ -25,9 +25,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{BBC17E23-AB90-371A-94C6-1AAE35872500}</ProjectGuid>
+    <ProjectGuid>{0FAD2AA4-4080-3F34-8E9B-AFA4CF9FCEDF}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.26100.0</WindowsTargetPlatformVersion>
     <Platform>x64</Platform>
     <ProjectName>ALL_BUILD</ProjectName>
     <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
@@ -69,7 +69,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>D:\test\Programming\project\DataVisualizer\inc;D:\test\Programming\project\DataVisualizer\raylib\src;D:\test\Programming\project\DataVisualizer\raylib\src\external\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Project CS163\DataVisualizer\inc;D:\Project CS163\DataVisualizer\raylib\src;D:\Project CS163\DataVisualizer\raylib\src\external\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -79,7 +79,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>D:\test\Programming\project\DataVisualizer\inc;D:\test\Programming\project\DataVisualizer\raylib\src;D:\test\Programming\project\DataVisualizer\raylib\src\external\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Project CS163\DataVisualizer\inc;D:\Project CS163\DataVisualizer\raylib\src;D:\Project CS163\DataVisualizer\raylib\src\external\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -89,7 +89,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>D:\test\Programming\project\DataVisualizer\inc;D:\test\Programming\project\DataVisualizer\raylib\src;D:\test\Programming\project\DataVisualizer\raylib\src\external\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Project CS163\DataVisualizer\inc;D:\Project CS163\DataVisualizer\raylib\src;D:\Project CS163\DataVisualizer\raylib\src\external\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -99,7 +99,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>D:\test\Programming\project\DataVisualizer\inc;D:\test\Programming\project\DataVisualizer\raylib\src;D:\test\Programming\project\DataVisualizer\raylib\src\external\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Project CS163\DataVisualizer\inc;D:\Project CS163\DataVisualizer\raylib\src;D:\Project CS163\DataVisualizer\raylib\src\external\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -108,11 +108,11 @@
     </Midl>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="D:\test\Programming\project\DataVisualizer\raylib\src\CMakeLists.txt">
+    <CustomBuild Include="D:\Project CS163\DataVisualizer\raylib\src\CMakeLists.txt">
       <UseUtf8Encoding>Always</UseUtf8Encoding>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule D:/test/Programming/project/DataVisualizer/raylib/src/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule D:/Project CS163/DataVisualizer/raylib/src/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SD:/test/Programming/project/DataVisualizer -BD:/test/Programming/project/DataVisualizer/build --check-stamp-file D:/test/Programming/project/DataVisualizer/build/raylib/raylib/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" "-SD:/Project CS163/DataVisualizer" "-BD:/Project CS163/DataVisualizer/build" --check-stamp-file "D:/Project CS163/DataVisualizer/build/raylib/raylib/CMakeFiles/generate.stamp"
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -120,12 +120,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-3.31\Modules\CPack.cmake;C:\Program Files\CMake\share\cmake-3.31\Modules\CPackComponent.cmake;C:\Program Files\CMake\share\cmake-3.31\Modules\FindOpenGL.cmake;C:\Program Files\CMake\share\cmake-3.31\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.31\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.31\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-3.31\Templates\CPackConfig.cmake.in;D:\test\Programming\project\DataVisualizer\raylib\cmake\CompileDefinitions.cmake;D:\test\Programming\project\DataVisualizer\raylib\cmake\GlfwImport.cmake;D:\test\Programming\project\DataVisualizer\raylib\cmake\InstallConfigurations.cmake;D:\test\Programming\project\DataVisualizer\raylib\cmake\JoinPaths.cmake;D:\test\Programming\project\DataVisualizer\raylib\cmake\LibraryConfigurations.cmake;D:\test\Programming\project\DataVisualizer\raylib\cmake\LibraryPathToLinkerFlags.cmake;D:\test\Programming\project\DataVisualizer\raylib\cmake\PackConfigurations.cmake;D:\test\Programming\project\DataVisualizer\raylib\cmake\PopulateConfigVariablesLocally.cmake;D:\test\Programming\project\DataVisualizer\raylib\cmake\raylib-config-version.cmake;D:\test\Programming\project\DataVisualizer\raylib\raylib.pc.in;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\test\Programming\project\DataVisualizer\build\raylib\raylib\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-4.0\Modules\CPack.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CPackComponent.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\FindOpenGL.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-4.0\Templates\CPackConfig.cmake.in;D:\Project CS163\DataVisualizer\raylib\cmake\CompileDefinitions.cmake;D:\Project CS163\DataVisualizer\raylib\cmake\GlfwImport.cmake;D:\Project CS163\DataVisualizer\raylib\cmake\InstallConfigurations.cmake;D:\Project CS163\DataVisualizer\raylib\cmake\JoinPaths.cmake;D:\Project CS163\DataVisualizer\raylib\cmake\LibraryConfigurations.cmake;D:\Project CS163\DataVisualizer\raylib\cmake\LibraryPathToLinkerFlags.cmake;D:\Project CS163\DataVisualizer\raylib\cmake\PackConfigurations.cmake;D:\Project CS163\DataVisualizer\raylib\cmake\PopulateConfigVariablesLocally.cmake;D:\Project CS163\DataVisualizer\raylib\cmake\raylib-config-version.cmake;D:\Project CS163\DataVisualizer\raylib\raylib.pc.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Project CS163\DataVisualizer\build\raylib\raylib\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule D:/test/Programming/project/DataVisualizer/raylib/src/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule D:/Project CS163/DataVisualizer/raylib/src/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SD:/test/Programming/project/DataVisualizer -BD:/test/Programming/project/DataVisualizer/build --check-stamp-file D:/test/Programming/project/DataVisualizer/build/raylib/raylib/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" "-SD:/Project CS163/DataVisualizer" "-BD:/Project CS163/DataVisualizer/build" --check-stamp-file "D:/Project CS163/DataVisualizer/build/raylib/raylib/CMakeFiles/generate.stamp"
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -133,12 +133,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\CMake\share\cmake-3.31\Modules\CPack.cmake;C:\Program Files\CMake\share\cmake-3.31\Modules\CPackComponent.cmake;C:\Program Files\CMake\share\cmake-3.31\Modules\FindOpenGL.cmake;C:\Program Files\CMake\share\cmake-3.31\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.31\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.31\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-3.31\Templates\CPackConfig.cmake.in;D:\test\Programming\project\DataVisualizer\raylib\cmake\CompileDefinitions.cmake;D:\test\Programming\project\DataVisualizer\raylib\cmake\GlfwImport.cmake;D:\test\Programming\project\DataVisualizer\raylib\cmake\InstallConfigurations.cmake;D:\test\Programming\project\DataVisualizer\raylib\cmake\JoinPaths.cmake;D:\test\Programming\project\DataVisualizer\raylib\cmake\LibraryConfigurations.cmake;D:\test\Programming\project\DataVisualizer\raylib\cmake\LibraryPathToLinkerFlags.cmake;D:\test\Programming\project\DataVisualizer\raylib\cmake\PackConfigurations.cmake;D:\test\Programming\project\DataVisualizer\raylib\cmake\PopulateConfigVariablesLocally.cmake;D:\test\Programming\project\DataVisualizer\raylib\cmake\raylib-config-version.cmake;D:\test\Programming\project\DataVisualizer\raylib\raylib.pc.in;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\test\Programming\project\DataVisualizer\build\raylib\raylib\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\CMake\share\cmake-4.0\Modules\CPack.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CPackComponent.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\FindOpenGL.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-4.0\Templates\CPackConfig.cmake.in;D:\Project CS163\DataVisualizer\raylib\cmake\CompileDefinitions.cmake;D:\Project CS163\DataVisualizer\raylib\cmake\GlfwImport.cmake;D:\Project CS163\DataVisualizer\raylib\cmake\InstallConfigurations.cmake;D:\Project CS163\DataVisualizer\raylib\cmake\JoinPaths.cmake;D:\Project CS163\DataVisualizer\raylib\cmake\LibraryConfigurations.cmake;D:\Project CS163\DataVisualizer\raylib\cmake\LibraryPathToLinkerFlags.cmake;D:\Project CS163\DataVisualizer\raylib\cmake\PackConfigurations.cmake;D:\Project CS163\DataVisualizer\raylib\cmake\PopulateConfigVariablesLocally.cmake;D:\Project CS163\DataVisualizer\raylib\cmake\raylib-config-version.cmake;D:\Project CS163\DataVisualizer\raylib\raylib.pc.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Project CS163\DataVisualizer\build\raylib\raylib\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule D:/test/Programming/project/DataVisualizer/raylib/src/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule D:/Project CS163/DataVisualizer/raylib/src/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SD:/test/Programming/project/DataVisualizer -BD:/test/Programming/project/DataVisualizer/build --check-stamp-file D:/test/Programming/project/DataVisualizer/build/raylib/raylib/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" "-SD:/Project CS163/DataVisualizer" "-BD:/Project CS163/DataVisualizer/build" --check-stamp-file "D:/Project CS163/DataVisualizer/build/raylib/raylib/CMakeFiles/generate.stamp"
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -146,12 +146,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Program Files\CMake\share\cmake-3.31\Modules\CPack.cmake;C:\Program Files\CMake\share\cmake-3.31\Modules\CPackComponent.cmake;C:\Program Files\CMake\share\cmake-3.31\Modules\FindOpenGL.cmake;C:\Program Files\CMake\share\cmake-3.31\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.31\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.31\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-3.31\Templates\CPackConfig.cmake.in;D:\test\Programming\project\DataVisualizer\raylib\cmake\CompileDefinitions.cmake;D:\test\Programming\project\DataVisualizer\raylib\cmake\GlfwImport.cmake;D:\test\Programming\project\DataVisualizer\raylib\cmake\InstallConfigurations.cmake;D:\test\Programming\project\DataVisualizer\raylib\cmake\JoinPaths.cmake;D:\test\Programming\project\DataVisualizer\raylib\cmake\LibraryConfigurations.cmake;D:\test\Programming\project\DataVisualizer\raylib\cmake\LibraryPathToLinkerFlags.cmake;D:\test\Programming\project\DataVisualizer\raylib\cmake\PackConfigurations.cmake;D:\test\Programming\project\DataVisualizer\raylib\cmake\PopulateConfigVariablesLocally.cmake;D:\test\Programming\project\DataVisualizer\raylib\cmake\raylib-config-version.cmake;D:\test\Programming\project\DataVisualizer\raylib\raylib.pc.in;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\test\Programming\project\DataVisualizer\build\raylib\raylib\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Program Files\CMake\share\cmake-4.0\Modules\CPack.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CPackComponent.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\FindOpenGL.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-4.0\Templates\CPackConfig.cmake.in;D:\Project CS163\DataVisualizer\raylib\cmake\CompileDefinitions.cmake;D:\Project CS163\DataVisualizer\raylib\cmake\GlfwImport.cmake;D:\Project CS163\DataVisualizer\raylib\cmake\InstallConfigurations.cmake;D:\Project CS163\DataVisualizer\raylib\cmake\JoinPaths.cmake;D:\Project CS163\DataVisualizer\raylib\cmake\LibraryConfigurations.cmake;D:\Project CS163\DataVisualizer\raylib\cmake\LibraryPathToLinkerFlags.cmake;D:\Project CS163\DataVisualizer\raylib\cmake\PackConfigurations.cmake;D:\Project CS163\DataVisualizer\raylib\cmake\PopulateConfigVariablesLocally.cmake;D:\Project CS163\DataVisualizer\raylib\cmake\raylib-config-version.cmake;D:\Project CS163\DataVisualizer\raylib\raylib.pc.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\Project CS163\DataVisualizer\build\raylib\raylib\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule D:/test/Programming/project/DataVisualizer/raylib/src/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule D:/Project CS163/DataVisualizer/raylib/src/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SD:/test/Programming/project/DataVisualizer -BD:/test/Programming/project/DataVisualizer/build --check-stamp-file D:/test/Programming/project/DataVisualizer/build/raylib/raylib/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" "-SD:/Project CS163/DataVisualizer" "-BD:/Project CS163/DataVisualizer/build" --check-stamp-file "D:/Project CS163/DataVisualizer/build/raylib/raylib/CMakeFiles/generate.stamp"
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -159,8 +159,8 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files\CMake\share\cmake-3.31\Modules\CPack.cmake;C:\Program Files\CMake\share\cmake-3.31\Modules\CPackComponent.cmake;C:\Program Files\CMake\share\cmake-3.31\Modules\FindOpenGL.cmake;C:\Program Files\CMake\share\cmake-3.31\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.31\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.31\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-3.31\Templates\CPackConfig.cmake.in;D:\test\Programming\project\DataVisualizer\raylib\cmake\CompileDefinitions.cmake;D:\test\Programming\project\DataVisualizer\raylib\cmake\GlfwImport.cmake;D:\test\Programming\project\DataVisualizer\raylib\cmake\InstallConfigurations.cmake;D:\test\Programming\project\DataVisualizer\raylib\cmake\JoinPaths.cmake;D:\test\Programming\project\DataVisualizer\raylib\cmake\LibraryConfigurations.cmake;D:\test\Programming\project\DataVisualizer\raylib\cmake\LibraryPathToLinkerFlags.cmake;D:\test\Programming\project\DataVisualizer\raylib\cmake\PackConfigurations.cmake;D:\test\Programming\project\DataVisualizer\raylib\cmake\PopulateConfigVariablesLocally.cmake;D:\test\Programming\project\DataVisualizer\raylib\cmake\raylib-config-version.cmake;D:\test\Programming\project\DataVisualizer\raylib\raylib.pc.in;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\test\Programming\project\DataVisualizer\build\raylib\raylib\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files\CMake\share\cmake-4.0\Modules\CPack.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CPackComponent.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\FindOpenGL.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-4.0\Templates\CPackConfig.cmake.in;D:\Project CS163\DataVisualizer\raylib\cmake\CompileDefinitions.cmake;D:\Project CS163\DataVisualizer\raylib\cmake\GlfwImport.cmake;D:\Project CS163\DataVisualizer\raylib\cmake\InstallConfigurations.cmake;D:\Project CS163\DataVisualizer\raylib\cmake\JoinPaths.cmake;D:\Project CS163\DataVisualizer\raylib\cmake\LibraryConfigurations.cmake;D:\Project CS163\DataVisualizer\raylib\cmake\LibraryPathToLinkerFlags.cmake;D:\Project CS163\DataVisualizer\raylib\cmake\PackConfigurations.cmake;D:\Project CS163\DataVisualizer\raylib\cmake\PopulateConfigVariablesLocally.cmake;D:\Project CS163\DataVisualizer\raylib\cmake\raylib-config-version.cmake;D:\Project CS163\DataVisualizer\raylib\raylib.pc.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\Project CS163\DataVisualizer\build\raylib\raylib\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
@@ -168,20 +168,20 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="D:\test\Programming\project\DataVisualizer\build\ZERO_CHECK.vcxproj">
-      <Project>{6D36577C-22C4-3235-BF8D-07A283FFE42F}</Project>
+    <ProjectReference Include="D:\Project CS163\DataVisualizer\build\ZERO_CHECK.vcxproj">
+      <Project>{D4122163-AA33-3EDA-88B6-E6A23C440511}</Project>
       <Name>ZERO_CHECK</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
-    <ProjectReference Include="D:\test\Programming\project\DataVisualizer\build\raylib\raylib\external\glfw\src\glfw.vcxproj">
-      <Project>{BE962625-6071-36F4-AA24-3E9A6FFCA9C6}</Project>
+    <ProjectReference Include="D:\Project CS163\DataVisualizer\build\raylib\raylib\external\glfw\src\glfw.vcxproj">
+      <Project>{FBF1B1EC-7E9C-3676-ABFE-97BE464C2B03}</Project>
       <Name>glfw</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
-    <ProjectReference Include="D:\test\Programming\project\DataVisualizer\build\raylib\raylib\raylib.vcxproj">
-      <Project>{6ABF7303-7514-3F96-AF65-EFB1C5CF5550}</Project>
+    <ProjectReference Include="D:\Project CS163\DataVisualizer\build\raylib\raylib\raylib.vcxproj">
+      <Project>{AB649E3C-D48A-3042-8A87-5893EDBD77A5}</Project>
       <Name>raylib</Name>
     </ProjectReference>
   </ItemGroup>

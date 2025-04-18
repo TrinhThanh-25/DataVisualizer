@@ -29,23 +29,9 @@ public:
     void Delete(int key);
     bool Find(int key);
     void Draw();
-
     void Update();
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     bool isBackPressed();
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-=======
-    bool isBackPressed();
->>>>>>> 50f6135 (Merge file)
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
     bool isPlaying = false;
     bool isDrawTable = true;
 

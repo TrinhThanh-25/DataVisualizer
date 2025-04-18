@@ -4,23 +4,7 @@
 #include <vector>
 #include <iostream>
 #include "TreeNode.h"
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 #include "234tree/animation/InputPanel.h"
-=======
-#include "animation/InputPanel.h"
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-=======
-#include "234tree/animation/InputPanel.h"
->>>>>>> 50f6135 (Merge file)
-=======
-#include "animation/InputPanel.h"
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-=======
-#include "animation/InputPanel.h"
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 #include "../GUI/Slider.h"
 #include "../GUI/PlayBackControl.h"
 
@@ -55,30 +39,6 @@ public:
     void Draw();
     void DrawTree(TreeNode* root);
     void Insert(int key);
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 
     bool isBackPressed();
-=======
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-    
-
-    void UpdateTheme(TreeNode * root);
-
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-=======
-
-    bool isBackPressed();
->>>>>>> 50f6135 (Merge file)
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
-=======
->>>>>>> eef9140bc23233bdd1bb6c4cd04b98d73a4dbe43
 };
