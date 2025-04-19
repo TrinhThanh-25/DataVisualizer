@@ -22,6 +22,7 @@ public:
     
     bool isPlaying = false;
     bool isDrawTree = true;
+    bool isSkipBack = false;
 
     std::vector<std::vector<TreeNode*>> historyState;
     int currentPresentationIndex;

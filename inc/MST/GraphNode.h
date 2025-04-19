@@ -16,6 +16,7 @@ public:
     Vector2 position, finalPos;
     float size;
     Color colorNormal, colorCurrent, colorChosen;
+    Color textCur, textNor, textCho;
 
     bool isVisited = false;
     bool isDragging = false;

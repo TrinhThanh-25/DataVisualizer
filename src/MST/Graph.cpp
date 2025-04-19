@@ -106,6 +106,104 @@ void Graph::createGraph(int numOfVer) {
     std::cout << "Da tao " << vertices.size() << " nut va " << edges.size() << " canh.\n";
 }
 
+void Graph::CreateGraphFromInput(std::vector<std::vector<int>> input) {
+    // Kiểm tra input hợp lệ
+    if (input.empty() || input[0].size() != 2) {
+        std::cout << "Lỗi: Input không hợp lệ\n";
+        return;
+    }
+
+    // Xóa dữ liệu cũ nếu có
+    if (!vertices.empty() || !edges.empty()) {
+        for (GraphNode* node : vertices) {
+            delete node;
+        }
+        for (GraphEdge* edge : edges) {
+            delete edge;
+        }
+        vertices.clear();
+        edges.clear();
+    }
+
+    // Lấy số đỉnh (n) và số cạnh (m) từ input[0]
+    int numOfVer = input[0][0];
+    int numOfEdges = input[0][1];
+
+    if (numOfVer <= 0 || numOfEdges < 0 || numOfEdges > numOfVer * (numOfVer - 1) / 2) {
+        std::cout << "Loi so dinh khong hop le\n";
+        return;
+    }
+
+    // Kiểm tra số lượng dòng input
+    if (input.size() != numOfEdges + 1) {
+        std::cout << "Loi so luongg canh khong khop\n";
+        return;
+    }
+
+    // --- Tạo các nút theo vòng tròn ---
+    float radius = 300.0f;
+    Vector2 center = {800.0f, 450.0f};
+    float angleStep = 2 * PI / numOfVer;
+
+    for (int i = 0; i < numOfVer; ++i) {
+        float angle = i * angleStep;
+        Vector2 pos = {
+            center.x + radius * cosf(angle),
+            center.y + radius * sinf(angle)
+        };
+
+        GraphNode* node = new GraphNode(i, {}, pos);
+        node->size = 30.0f;
+        node->colorNormal = BLACK;
+        node->colorCurrent = BLACK;
+        node->colorChosen = YELLOW;
+        vertices.push_back(node);
+    }
+
+    // --- Tạo các cạnh từ input ---
+    for (int i = 1; i <= numOfEdges; ++i) {
+        if (input[i].size() != 3) {
+            std::cout << "Lỗi: Dữ liệu cạnh không hợp lệ\n";
+            continue;
+        }
+
+        int u = input[i][0];
+        int v = input[i][1];
+        int weight = input[i][2];
+
+        // Kiểm tra đỉnh hợp lệ
+        if (u < 0 || u >= numOfVer || v < 0 || v >= numOfVer || u == v) {
+            std::cout << "Lỗi: Đỉnh không hợp lệ cho cạnh " << i << "\n";
+            continue;
+        }
+
+        // Kiểm tra trọng số hợp lệ
+        if (weight <= 0) {
+            std::cout << "Lỗi: Trọng số không hợp lệ cho cạnh " << i << "\n";
+            continue;
+        }
+
+        // Tạo cạnh
+        GraphEdge* edge = new GraphEdge(
+            std::vector<GraphNode*>{vertices[u], vertices[v]},
+            weight
+        );
+
+        edge->colorNormal = DARKGRAY;
+        edge->colorChosen = YELLOW;
+        edge->colorFlur = SKYBLUE;
+        edge->currentColor = edge->colorNormal;
+        edge->thick = 3.0f;
+
+        // Thêm cạnh vào danh sách cạnh của các đỉnh
+        vertices[u]->edge.push_back(edge);
+        vertices[v]->edge.push_back(edge);
+        edges.push_back(edge);
+    }
+
+    std::cout << "Đã tạo " << vertices.size() << " đỉnh và " << edges.size() << " cạnh.\n";
+}
+
 void Graph::DrawGraph() {
     if (vertices.empty()) return;
     for (GraphEdge* edge : edges) {

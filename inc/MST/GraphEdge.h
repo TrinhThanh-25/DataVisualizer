@@ -10,6 +10,7 @@ public:
     std::vector<GraphNode*> nodes; // Lưu con trỏ đến node
     int weight;
     Color currentColor, colorNormal, colorChosen, colorFlur;
+    
     float thick;
 
     GraphEdge(std::vector<GraphNode*> nodes, int weight);

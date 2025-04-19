@@ -21,6 +21,7 @@ InputPanel::InputPanel()
         // btn.setRectangle();
         buttons.push_back(btn);
     }
+    isShowLoadFile = false;
 
     // Thiết lập nút "Go" (ban đầu không hiển thị, sẽ cập nhật vị trí sau)
     goButton.setSize({260, 30});
@@ -50,6 +51,9 @@ void InputPanel::update() {
         }
         if(&buttons[i]==isUsing){
             activeButtonIndex = i;
+            if(i == 0){
+                isShowLoadFile = true;
+            }
         }
     }
 
@@ -57,16 +61,18 @@ void InputPanel::update() {
         inputBox.Update();
         goButton.update();
         inputFileButton.update();
-        if(inputFileButton.isPressed()){
-            static const char* filters[] = {"*.txt"};
-            const char * filepath = tinyfd_openFileDialog("Choose file", "", 1,filters, "Text file", 0);
-            if(filepath){
-                fileValues2D = LoadFile(filepath);
-                lastInputValue = -1;
-            }
-            else{
-                fileValues2D.clear();
-                lastInputValue = -1;
+        if(isShowLoadFile){
+            if(inputFileButton.isPressed()){
+                static const char* filters[] = {"*.txt"};
+                const char * filepath = tinyfd_openFileDialog("Choose file", "", 1,filters, "Text file", 0);
+                if(filepath){
+                    fileValues2D = LoadFile(filepath);
+                    lastInputValue = -1;
+                }
+                else{
+                    fileValues2D.clear();
+                    lastInputValue = -1;
+                }
             }
         }
     }
@@ -89,9 +95,11 @@ void InputPanel::draw() {
         goButton.drawOutlineRounded(100, 0, 3); // Vẽ viền cho nút "Go"
         goButton.drawText();
 
-        inputFileButton.drawRectangleRounded(100);
-        inputFileButton.drawText();
-        inputFileButton.drawOutlineRounded(100, 0, 3);
+        if(isShowLoadFile){
+            inputFileButton.drawRectangleRounded(100);
+            inputFileButton.drawText();
+            inputFileButton.drawOutlineRounded(100, 0, 3);
+        }
     }
 }
 

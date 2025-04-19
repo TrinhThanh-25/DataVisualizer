@@ -1,12 +1,14 @@
 #include "MST/Animation/GraphPresentation.h"
 
-GraphPresentation::GraphPresentation(float & speed, Graph * graph): speed(speed), graph(graph), currentStep(0) {
+GraphPresentation::GraphPresentation(float & speed, Graph * graph,
+                                        std::vector<std::vector<Graph*>>& historyState, int& currentPresentationIndex, int&currentStateIndex)
+                                        :speed(speed), graph(graph), currentStep(0), currentPresentationIndex(currentPresentationIndex), currentStateIndex(currentStateIndex), historyState(historyState) {
     parent.resize(3, 0);
     rank.resize(3, 0);
 }
 
 void GraphPresentation::CreateGraph(int numofNode){
-    graph->createGraph(numofNode);
+    //graph->createGraph(numofNode);
 
     //move to finpos
     GraphSetofOperation movetoFin(speed);
@@ -135,108 +137,115 @@ void GraphPresentation::Kruskal() {
     std::cout << "Kruskal completed with " << SetOperations.size() << " animation steps.\n";
 }
 
-// void GraphPresentation::Prim() {
-//     if (graph == nullptr || graph->vertices.empty()) return;
+void GraphPresentation::Prim() {
+    if (graph == nullptr || graph->vertices.empty()) return;
 
-//     int numVertices = graph->vertices.size();
-//     std::vector<bool> inMST(numVertices, false); // Đánh dấu node đã thuộc MST
-//     std::vector<int> key(numVertices, INT_MAX); // Trọng số nhỏ nhất để đến node
-//     std::vector<GraphEdge*> mstEdge(numVertices, nullptr); // Lưu cạnh thuộc MST
+    int numVertices = graph->vertices.size();
+    std::vector<bool> inMST(numVertices, false); // Đánh dấu node đã thuộc MST
+    std::vector<int> key(numVertices, INT_MAX);  // Trọng số nhỏ nhất để đến node
+    std::vector<GraphEdge*> mstEdge(numVertices, nullptr); // Lưu cạnh dẫn đến node trong MST
 
-//     // Hàng đợi ưu tiên để chọn cạnh có trọng số nhỏ nhất
-//     std::priority_queue<GraphEdge*> pq;
+    // Danh sách lưu thứ tự node được thăm và cạnh được chọn
+    std::vector<int> visitedNodes; // Thứ tự node được thăm
+    std::vector<GraphEdge*> mstEdges; // Các cạnh trong MST
 
-//     // Bắt đầu từ node 0
-//     int startVertex = 0;
-//     key[startVertex] = 0;
+    // Hàng đợi ưu tiên: {trọng số, cạnh}
+    using EdgePair = std::pair<int, GraphEdge*>;
+    std::priority_queue<EdgePair, std::vector<EdgePair>, std::greater<EdgePair>> pq;
 
-//     // Highlight node bắt đầu
-//     GraphSetofOperation startStep(speed);
-//     GraphOperation highlightStartNode(speed, graph->vertices[startVertex]);
-//     highlightStartNode.type = GraphOperation::CHOSEN_NODE;
-//     startStep.AddOperation(highlightStartNode);
-//     SetOperations.push_back(startStep);
+    // Bắt đầu từ node 0
+    int startVertex = 1;
+    key[startVertex] = 1;
 
-//     // Thêm tất cả các cạnh từ node bắt đầu vào hàng đợi
-//     inMST[startVertex] = true;
-//     for (GraphEdge* edge : graph->vertices[startVertex]->edge) {
-//         GraphNode* node1 = edge->nodes[0];
-//         GraphNode* node2 = edge->nodes[1];
-//         int otherVertex = (node1->data == startVertex) ? node2->data : node1->data;
-//         if (!inMST[otherVertex]) {
-//             key[otherVertex] = edge->weight;
-//             mstEdge[otherVertex] = edge;
-//             pq.push({edge->weight, edge, node1, node2});
-//         }
-//     }
+    // Thêm node bắt đầu vào danh sách
+    inMST[startVertex] = true;
+    visitedNodes.push_back(startVertex);
 
-//     // Lặp cho đến khi tất cả node được thêm vào MST
-//     while (!pq.empty()) {
-//         // Lấy cạnh có trọng số nhỏ nhất
-//         GraphEdge *  minEdge = pq.top();
-//         pq.pop();
+    // Thêm các cạnh từ node bắt đầu vào hàng đợi
+    for (GraphEdge* edge : graph->vertices[startVertex]->edge) {
+        GraphNode* otherNode = (edge->nodes[0]->data == startVertex) ? edge->nodes[1] : edge->nodes[0];
+        int otherVertex = otherNode->data;
+        if (!inMST[otherVertex]) {
+            key[otherVertex] = edge->weight;
+            mstEdge[otherVertex] = edge;
+            pq.push({edge->weight, edge});
+        }
+    }
 
-//         GraphEdge* edge = minEdge.edge;
-//         GraphNode* node1 = minEdge.node1;
-//         GraphNode* node2 = minEdge.node2;
+    // Tính toán MST: Xác định thứ tự node và cạnh
+    while (!pq.empty() && visitedNodes.size() < numVertices) {
+        // Lấy cạnh có trọng số nhỏ nhất
+        EdgePair pair = pq.top();
+        pq.pop();
 
-//         // Xác định node nào chưa thuộc MST
-//         int u = node1->data;
-//         int v = node2->data;
-//         int newVertex = inMST[u] ? v : u;
-//         if (inMST[newVertex]) continue; // Bỏ qua nếu cả hai node đã thuộc MST
+        int weight = pair.first;
+        GraphEdge* edge = pair.second;
+        // Xác định node chưa thuộc MST
+        GraphNode* node1 = edge->nodes[0];
+        GraphNode* node2 = edge->nodes[1];
+        int u = node1->data;
+        int v = node2->data;
+        int newVertex = inMST[u] ? v : u;
+        if (inMST[newVertex]) continue; // Bỏ qua nếu node đã thuộc MST
 
-//         // Highlight cạnh và hai node
-//         GraphSetofOperation highlightStep(speed);
-//         GraphOperation highlightEdgeOp(speed, edge);
-//         highlightEdgeOp.type = GraphOperation::FLUR_EDGE;
-//         highlightStep.AddOperation(highlightEdgeOp);
+        // Thêm node mới vào MST
+        inMST[newVertex] = true;
+        visitedNodes.push_back(newVertex);
+        mstEdges.push_back(edge); // Lưu cạnh được chọn
 
-//         GraphOperation highlightNode1(speed, node1);
-//         highlightNode1.type = GraphOperation::CHOSEN_NODE;
-//         highlightStep.AddOperation(highlightNode1);
+        // Thêm các cạnh mới từ node vừa thêm vào hàng đợi
+        for (GraphEdge* nextEdge : graph->vertices[newVertex]->edge) {
+            GraphNode* nextNode = (nextEdge->nodes[0]->data == newVertex) ? nextEdge->nodes[1] : nextEdge->nodes[0];
+            int otherVertex = nextNode->data;
+            if (!inMST[otherVertex] && nextEdge->weight < key[otherVertex]) {
+                key[otherVertex] = nextEdge->weight;
+                mstEdge[otherVertex] = nextEdge;
+                pq.push({nextEdge->weight, nextEdge});
+            }
+        }
+    }
 
-//         GraphOperation highlightNode2(speed, node2);
-//         highlightNode2.type = GraphOperation::CHOSEN_NODE;
-//         highlightStep.AddOperation(highlightNode2);
+    // Tạo kịch bản animation dựa trên thứ tự node và cạnh
+    // Bước 1: Highlight node bắt đầu
+    GraphSetofOperation startStep(speed);
+    GraphOperation highlightStartNode(speed, graph->vertices[startVertex]);
+    highlightStartNode.type = GraphOperation::CHOSEN_NODE;
+    startStep.AddOperation(highlightStartNode);
+    SetOperations.push_back(startStep);
 
-//         SetOperations.push_back(highlightStep);
+    // Bước 2: Highlight các node và cạnh theo thứ tự
+    for (size_t i = 1; i < visitedNodes.size(); i++) {
+        int nodeIdx = visitedNodes[i];
+        GraphEdge* edge = mstEdges[i - 1]; // Cạnh dẫn đến node này
 
-//         // Thêm node mới vào MST
-//         inMST[newVertex] = true;
+        // Animation: Highlight node
+        GraphSetofOperation highlightNodeStep(speed);
+        GraphOperation highlightNodeOp(speed, graph->vertices[nodeIdx]);
+        highlightNodeOp.type = GraphOperation::CHOSEN_NODE;
+        highlightNodeStep.AddOperation(highlightNodeOp);
+        SetOperations.push_back(highlightNodeStep);
 
-//         // Thêm cạnh vào MST
-//         GraphSetofOperation addEdgeStep(speed);
-//         GraphOperation addEdgeOp(speed, edge);
-//         addEdgeOp.type = GraphOperation::CHOSEN_EDGE;
-//         addEdgeStep.AddOperation(addEdgeOp);
+        // Animation: Highlight cạnh
+        GraphSetofOperation highlightEdgeStep(speed);
+        GraphOperation highlightEdgeOp(speed, edge);
+        highlightEdgeOp.type = GraphOperation::CHOSEN_EDGE;
+        highlightEdgeStep.AddOperation(highlightEdgeOp);
+        SetOperations.push_back(highlightEdgeStep);
+    }
 
-//         // Trả node về trạng thái bình thường
-//         GraphOperation resetNode1(speed, node1);
-//         resetNode1.type = GraphOperation::NORMAL_NODE;
-//         addEdgeStep.AddOperation(resetNode1);
+    // Bước 3: Highlight tất cả node khi hoàn thành (để đồng bộ)
+    GraphSetofOperation highlightAll(speed);
+    for (int i = 0; i < numVertices; i++) {
+        if (inMST[i]) {
+            GraphOperation hl(speed, graph->vertices[i]);
+            hl.type = GraphOperation::CHOSEN_NODE;
+            highlightAll.AddOperation(hl);
+        }
+    }
+    SetOperations.push_back(highlightAll);
 
-//         GraphOperation resetNode2(speed, node2);
-//         resetNode2.type = GraphOperation::NORMAL_NODE;
-//         addEdgeStep.AddOperation(resetNode2);
-
-//         SetOperations.push_back(addEdgeStep);
-
-//         // Thêm các cạnh mới từ node vừa thêm vào hàng đợi
-//         for (GraphEdge* nextEdge : graph->vertices[newVertex]->edge) {
-//             GraphNode* nextNode1 = nextEdge->nodes[0];
-//             GraphNode* nextNode2 = nextEdge->nodes[1];
-//             int otherVertex = (nextNode1->data == newVertex) ? nextNode2->data : nextNode1->data;
-//             if (!inMST[otherVertex] && nextEdge->weight < key[otherVertex]) {
-//                 key[otherVertex] = nextEdge->weight;
-//                 mstEdge[otherVertex] = nextEdge;
-//                 pq.push({nextEdge->weight, nextEdge, nextNode1, nextNode2});
-//             }
-//         }
-//     }
-
-//     std::cout << "Prim completed with " << SetOperations.size() << " animation steps.\n";
-// }
+    std::cout << "Prim completed with " << SetOperations.size() << " animation steps.\n";
+}
 
 bool GraphPresentation::DrawPresentation(){
     if(SetOperations.empty() || currentStep >= SetOperations.size()){
@@ -248,6 +257,11 @@ bool GraphPresentation::DrawPresentation(){
 
     if(SetOperations[currentStep].Draw()){
         std::cout<<"CO ANIMATION NGHEN.\n";
+        if(currentStep == 0){
+            currentPresentationIndex++;
+            std::vector<Graph*> tempVec = {};
+            
+        }
         currentStep++;
     }
     if(currentStep >= SetOperations.size()){

@@ -1,6 +1,6 @@
-^D:\PROJECT CS163\DATAVISUALIZER\BUILD\CMAKEFILES\39ADD60CB0B4E5FED1CDFE55C3B44BA9\GENERATE.STAMP.RULE
+^D:\TEST\PROGRAMMING\PROJECT\DATAVISUALIZER\BUILD\CMAKEFILES\5F1FF9C75D2E3EE57F19B169AE1EBF69\GENERATE.STAMP.RULE
 setlocal
-"C:\Program Files\CMake\bin\cmake.exe" "-SD:/Project CS163/DataVisualizer" "-BD:/Project CS163/DataVisualizer/build" --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file "D:/Project CS163/DataVisualizer/build/DATAVISUALIZER.sln"
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/test/Programming/project/DataVisualizer -BD:/test/Programming/project/DataVisualizer/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file D:/test/Programming/project/DataVisualizer/build/DATAVISUALIZER.sln
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone

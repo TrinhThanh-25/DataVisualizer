@@ -22,6 +22,7 @@ private:
     std::vector<std::vector<int>> fileValues2D;
     std::vector<std::vector<int>> LoadFile(const std::string & filepath);
     bool showInputBox; // Trạng thái hiển thị của inputBox và nút Go
+    bool isShowLoadFile;
     int activeButtonIndex; // Lưu nút nào đang được chọn để hiển thị inputBox (-1 nếu không có)
     int lastInputValue; // Lưu giá trị số đã nhập sau khi nhấn "Go"
 

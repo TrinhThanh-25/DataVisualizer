@@ -40,7 +40,7 @@ void Tree234Visual::Update() {
                 if(fileValues.size() >= 2 && !fileValues[0].empty()){
                     int size = fileValues[0][0];
                     std::vector<int> keys = fileValues[1];
-                    root->CreateTreewithKey(keys);
+                    root = root->CreateTreewithKey(keys);
                     root->calculateCoordinate({800, 100});
                     treePresentation.clear();
                     treePresentation.CreateTree(size);
@@ -129,8 +129,13 @@ void Tree234Visual::Update() {
 
     speedSlider.Update();
     if(isPlaying == true){
-        if(playbackControl.isSkip == true){
-            this->isDrawTree = false;
+        isRewinding = false;
+        if(inputPanel.isEndPressed() == true){
+            isSkipBack = true;
+        }
+        
+        if(isSkipBack){
+            isDrawTree = false;
             speed = 1.0f;
         }
         else{
@@ -139,17 +144,53 @@ void Tree234Visual::Update() {
     }
     else{
         speed = speedSlider.val;
+        if(inputPanel.isNextPressed()){
+            this->isRewinding = true;
+            currentStateIndex++;
+            if(currentStateIndex == historyState[currentPresentationIndex].size()){
+                currentPresentationIndex++;
+                currentStateIndex = 0;
+                if(currentPresentationIndex == historyState.size()){
+                    this->isRewinding = false;
+                    currentPresentationIndex = historyState.size() - 1;
+                    currentStateIndex = historyState.back().size() - 1;
+                }
+            }
+        }
+        else if(inputPanel.isEndPressed()){
+            this->isRewinding = false;
+            currentPresentationIndex = historyState.size() - 1;
+            currentStateIndex = historyState.back().size() - 1;
+        }
+        else if(inputPanel.isPrevPressed()){
+            this->isRewinding = true;
+            currentStateIndex--;
+            if(currentStateIndex < 0){
+                currentPresentationIndex--;
+                if(currentPresentationIndex < 0){
+                    currentPresentationIndex = 0;
+                    currentStateIndex = 0;
+                }
+                else{
+                    currentStateIndex = historyState[currentPresentationIndex].size() - 1;
+                }
+            }
+        }
+        else if(inputPanel.isStartPressed()){
+            this->isRewinding = true;
+            currentPresentationIndex--;
+            if(currentPresentationIndex < 0){
+                currentPresentationIndex = 0;
+            }
+            currentStateIndex = historyState[currentPresentationIndex].size() - 1;
+        }
     }
+    //inputPanel.reset();
     
 
-    playbackControl.UpdateTree234(currentPresentationIndex, currentStateIndex, historyState);
+    //playbackControl.UpdateTree234(currentPresentationIndex, currentStateIndex, historyState);
 
-    if(playbackControl.isPlaying){
-        this->isRewinding = true;
-    }
-    else{
-        this->isRewinding = false;
-    }
+    
 
 }
 
@@ -161,13 +202,14 @@ void Tree234Visual::Draw() {
         speed = speedSlider.val;
         this->isPlaying = false;
         isDrawTree = true;
-        playbackControl.isSkip = false;
+        isSkipBack = false;
+        //playbackControl.isSkip = false;
     }
     else{
         this->isPlaying = true;
     }
     speedSlider.Draw();
-    playbackControl.Draw();
+    //playbackControl.Draw();
     //root->calculateCoordinate({800, 100});
 
     //std::cout<<"isRewinding: "<<isRewinding<<std::endl;
@@ -189,6 +231,10 @@ void Tree234Visual::DrawTree(TreeNode* root) {
     //root->LayoutTree(0, 800, 0, 100); // Căn chỉnh vị trí của cây
     //std::cout<<"Drawing tree with keys: "<<std::endl;
     if (root) {
+        root->colorChosen = nodeHighlightColor;
+        root->colorNormal = nodeColor;
+        root->textChosenColor = nodeHighlightTextColor;
+        root->textNorColor = nodeTextColor;
         
         root->DrawLinktoChild();
         root->DrawNode();
@@ -210,7 +256,9 @@ bool Tree234Visual::isBackPressed() {
         inputPanel.reset();
         speedSlider.reset();
         treePresentation.clear();
+        root->deleteTree(root);
         root = nullptr;
+        speed = 0.05f;
         currentPresentationIndex = -1;
         currentStateIndex = 0;
         isRewinding = false;

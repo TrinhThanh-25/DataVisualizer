@@ -2,7 +2,8 @@
 #include <iostream> // Thêm để debug
 
 TreeNode::TreeNode(std::vector<int> keys, std::vector<TreeNode*> children, Vector2 position) 
-    : keys(keys), children(children), position(position) {
+    : keys(keys), children(children), position(position), colorChosen(nodeHighlightColor),
+    colorNormal(nodeColor), textNorColor(nodeTextColor), textChosenColor(nodeHighlightTextColor) {
     this->isLeaf = true;
     this->isEmpty = false;
     finalPosition = position;
@@ -10,16 +11,17 @@ TreeNode::TreeNode(std::vector<int> keys, std::vector<TreeNode*> children, Vecto
     size = {3 * 50.0f, 50.0f}; // Chiều cao cố định
     isLeaf = children.empty();
     arrowPos.resize(4, {position.x + size.x / 2, position.y + size.y / 2});
-    colorChosen = nodeColor;
-    colorNormal = nodeHighlightColor;
-    currentColor = colorNormal;
-    textNorColor = nodeTextColor;
-    textChosenColor = nodeHighlightTextColor;
+    // colorChosen = nodeColor;
+    // colorNormal = nodeHighlightColor;
+    currentColor = nodeColor;
+    // textNorColor = nodeTextColor;
+    // textChosenColor = nodeHighlightTextColor;
     textCurColor = textNorColor;
     fontNumber = buttonFont;
 }
 
-TreeNode::TreeNode(TreeNode* node) : parent(nullptr), width(0) {
+TreeNode::TreeNode(TreeNode* node) : parent(nullptr), width(0), currentColor(node->currentColor), textCurColor(node->textCurColor),
+colorNormal(node->colorNormal), colorChosen(node->colorChosen), textChosenColor(node->textChosenColor), textNorColor(node->textNorColor) {
     if (!node) {
         keys = {};
         children = {};
@@ -91,7 +93,7 @@ void TreeNode::DrawNode() {
 
     float keyWidth = size_x / (keys.size() > 0 ? keys.size() : 1); // Chia đều chiều rộng cho số keys
     for (int i = 0; i < keys.size(); i++) {
-        DrawRectangleLines(position.x + i * keyWidth, position.y, keyWidth, size_y, WHITE);
+        DrawRectangleLines(position.x + i * keyWidth, position.y, keyWidth, size_y, lineColor);
 
         char buffer[5]; // Buffer để chứa chuỗi 4 chữ số + ký tự null
         snprintf(buffer, sizeof(buffer), "%04d", keys[i]); // Định dạng số với 4 chữ số, thêm 0 vào bên trái
