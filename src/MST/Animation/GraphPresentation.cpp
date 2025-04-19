@@ -257,10 +257,17 @@ bool GraphPresentation::DrawPresentation(){
 
     if(SetOperations[currentStep].Draw()){
         std::cout<<"CO ANIMATION NGHEN.\n";
+        Graph * temp = new Graph(this->graph);
         if(currentStep == 0){
             currentPresentationIndex++;
             std::vector<Graph*> tempVec = {};
-            
+            tempVec.push_back(temp);
+            historyState.push_back(tempVec);
+            currentStateIndex = historyState.back().size() - 1;
+        }
+        else{
+            historyState.back().push_back(temp);
+            currentStateIndex = historyState.back().size() - 1;
         }
         currentStep++;
     }

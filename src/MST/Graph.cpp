@@ -6,11 +6,83 @@
 #include <cstdlib>
 #include <algorithm>
 #include <random> // Thêm để dùng std::shuffle
+#include <map>
 
 Graph::Graph() : vertices(0), edges(0) {}
 
 Graph::Graph(std::vector<GraphNode*> vertices, std::vector<GraphEdge*> edges)
     : vertices(vertices), edges(edges) {
+}
+
+Graph::Graph(Graph* graph) {
+    // Xóa dữ liệu hiện tại nếu có
+    if (!vertices.empty() || !edges.empty()) {
+        for (GraphNode* node : vertices) {
+            delete node;
+        }
+        for (GraphEdge* edge : edges) {
+            delete edge;
+        }
+        vertices.clear();
+        edges.clear();
+    }
+
+    // Kiểm tra graph null
+    if (!graph) {
+        vertices = {};
+        edges = {};
+        return;
+    }
+
+    // Map để theo dõi các node mới tương ứng với node cũ
+    std::map<GraphNode*, GraphNode*> nodeMap;
+
+    // 1. Sao chép các đỉnh (GraphNode)
+    for (GraphNode* oldNode : graph->vertices) {
+        GraphNode* newNode = new GraphNode(
+            oldNode->data,
+            {}, // Danh sách cạnh sẽ được cập nhật sau
+            oldNode->position
+        );
+        newNode->size = oldNode->size;
+        newNode->colorNormal = oldNode->colorNormal;
+        newNode->colorCurrent = oldNode->colorCurrent;
+        newNode->colorChosen = oldNode->colorChosen;
+        newNode->textCur = oldNode->textCur;
+        newNode->textNor = oldNode->textNor;
+        newNode->textCho = oldNode->textCho;
+        newNode->isVisited = oldNode->isVisited;
+        newNode->isDragging = oldNode->isDragging;
+        newNode->dragOffset = oldNode->dragOffset;
+        newNode->finalPos = oldNode->finalPos;
+        vertices.push_back(newNode);
+        nodeMap[oldNode] = newNode;
+    }
+
+    // 2. Sao chép các cạnh (GraphEdge) và cập nhật danh sách cạnh của đỉnh
+    for (GraphEdge* oldEdge : graph->edges) {
+        // Lấy hai đỉnh của cạnh cũ và ánh xạ sang đỉnh mới
+        GraphNode* oldNode1 = oldEdge->nodes[0];
+        GraphNode* oldNode2 = oldEdge->nodes[1];
+        GraphNode* newNode1 = nodeMap[oldNode1];
+        GraphNode* newNode2 = nodeMap[oldNode2];
+
+        // Tạo cạnh mới
+        GraphEdge* newEdge = new GraphEdge(
+            std::vector<GraphNode*>{newNode1, newNode2},
+            oldEdge->weight
+        );
+        newEdge->colorNormal = oldEdge->colorNormal;
+        newEdge->colorChosen = oldEdge->colorChosen;
+        newEdge->colorFlur = oldEdge->colorFlur;
+        newEdge->currentColor = oldEdge->currentColor;
+        newEdge->thick = oldEdge->thick;
+
+        // Thêm cạnh vào danh sách cạnh của các đỉnh mới
+        newNode1->edge.push_back(newEdge);
+        newNode2->edge.push_back(newEdge);
+        edges.push_back(newEdge);
+    }
 }
 
 Graph::~Graph() {

@@ -12,6 +12,15 @@ public:
     float &speed;
     GraphPresentation presentation;
 
+    bool isPlaying = false;
+    bool isDrawGraph = true;
+    bool isSkipBack = false;
+    bool isRewinding = false;
+
+    std::vector<std::vector<Graph*>> historyState;
+    int currentPresentationIndex;
+    int currentStateIndex;
+
     GraphInputPanel inputPanel;
 
     Slider speedSlider;

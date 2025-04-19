@@ -2,7 +2,7 @@
 #include <raylib.h>
 
 GraphVisual::GraphVisual(float &speed)
-    : speed(speed), graph(new Graph()), presentation(speed, graph), inputPanel(), speedSlider(0.01f, 0.1f, 0.05f, 100) {}
+    : speed(speed), graph(new Graph()), currentPresentationIndex(-1), currentStateIndex(0), historyState({}), presentation(speed, graph, historyState, currentPresentationIndex, currentStateIndex), inputPanel(), speedSlider(0.01f, 0.1f, 0.05f, 100) {}
 
 GraphVisual::~GraphVisual() {
     delete graph;
@@ -10,11 +10,26 @@ GraphVisual::~GraphVisual() {
 
 void GraphVisual::Draw() {
     inputPanel.draw();
-    if (graph) {
-        graph->Draw();
+    
+    if(presentation.DrawPresentation()){
+        speed = speedSlider.val;
+        this->isPlaying = false;
+        isDrawGraph = true;
+        isSkipBack = false;
     }
-    presentation.DrawPresentation();
+    else{
+        this->isPlaying = true;
+    }
     speedSlider.Draw();
+
+    if (graph) {
+        if(this->isRewinding){
+            historyState[currentPresentationIndex][currentStateIndex]->Draw();
+        }
+        else{
+            graph->Draw();
+        }
+    }
 }
 
 void GraphVisual::CreateGraph(int numOfVer) {
@@ -39,7 +54,6 @@ void GraphVisual::Update() {
     inputPanel.setBackActive();
     inputPanel.update();
     speedSlider.Update();
-    speed = speedSlider.val;
     
     if(IsKeyPressed(KEY_C)){
         CreateGraph(13);
@@ -96,6 +110,64 @@ void GraphVisual::Update() {
         //inputPanel.ResetInputState();
     }
     //inputPanel.ResetInputState();
+
+    if(isPlaying){
+        isRewinding = false;
+        if(inputPanel.isEndPressed()){
+            isSkipBack = true;
+        }
+
+        if(isSkipBack){
+            isDrawGraph = false;
+            speed = 1.0f;
+        }
+        else{
+            speed = speedSlider.val;
+        }
+    }
+    else{
+        speed = speedSlider.val;
+        if(inputPanel.isNextPressed()){
+            this->isRewinding = true;
+            currentStateIndex++;
+            if(currentStateIndex == historyState[currentPresentationIndex].size()){
+                currentPresentationIndex++;
+                currentStateIndex = 0;
+                if(currentPresentationIndex == historyState.size()){
+                    this->isRewinding = false;
+                    currentPresentationIndex = historyState.size() - 1;
+                    currentStateIndex = historyState.back().size() - 1;
+                }
+            }
+        }
+        else if(inputPanel.isEndPressed()){
+            this->isRewinding = false;
+            currentPresentationIndex = historyState.size() - 1;
+            currentStateIndex = historyState.back().size() - 1;
+        }
+        else if(inputPanel.isPrevPressed()){
+            this->isRewinding = true;
+            currentStateIndex--;
+            if(currentStateIndex < 0){
+                currentPresentationIndex--;
+                if(currentPresentationIndex < 0){
+                    currentPresentationIndex = 0;
+                    currentStateIndex = 0;
+                }
+                else{
+                    currentStateIndex = historyState[currentPresentationIndex].size() - 1;
+                }
+            }
+        }
+        else if(inputPanel.isStartPressed()){
+            this->isRewinding = true;
+            currentPresentationIndex--;
+            if(currentPresentationIndex < 0){
+                currentPresentationIndex = 0;
+            }
+            currentStateIndex = historyState[currentPresentationIndex].size() - 1;
+        }
+    }
 
     if (graph) {
         graph->Update();
