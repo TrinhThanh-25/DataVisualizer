@@ -10,7 +10,7 @@
 #include <GUI/Slider.h>
 
 enum class AVLAnimationMode{
-    IDLE, INSERT, REMOVE, SEARCH
+    IDLE, INSERT, REMOVE, SEARCH, UPDATE, UPDATEINS
 };
 
 class AVLState {   
@@ -55,6 +55,8 @@ class AVLState {
         
         InputBox createBox;
         InputBox valueBox;
+        InputBox initialValue;
+        InputBox finalValue;
 
         Button Random;
         Button LoadFile;
@@ -79,6 +81,8 @@ class AVLState {
 
         std::string createText;
         std::string valueText;
+        std::string initialValueText;
+        std::string finalValueText;
 };
 
 #endif

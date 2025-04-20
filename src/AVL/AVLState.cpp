@@ -1,7 +1,7 @@
 //FIX LOAD FILE
 #include <AVL/AVLState.h>
 
-AVLState::AVLState(): createBox(120,680,AVLBoxSize.x, AVLBoxSize.y,AVLBoxFontSize,boxColor, boxTextColor), valueBox(120,680,AVLBoxSize.x, AVLBoxSize.y,AVLBoxFontSize,boxColor, boxTextColor), speedSlider(0.1,5,1,50){
+AVLState::AVLState(): createBox(120,680,AVLBoxSize.x, AVLBoxSize.y,AVLBoxFontSize,boxColor, boxTextColor), valueBox(120,680,AVLBoxSize.x, AVLBoxSize.y,AVLBoxFontSize,boxColor, boxTextColor), initialValue(120,680,SLLBoxSize.x, SLLBoxSize.y,SLLBoxFontSize,boxColor, boxTextColor), finalValue(120,750,SLLBoxSize.x, SLLBoxSize.y,SLLBoxFontSize,boxColor, boxTextColor), speedSlider(0.1,5,1,50){
     this->Random.setText("Random",AVLButtonFontSize);
     this->Random.setSize({120, 30});
     this->Random.setPosition({180,740});
@@ -16,6 +16,8 @@ AVLState::AVLState(): createBox(120,680,AVLBoxSize.x, AVLBoxSize.y,AVLBoxFontSiz
 
     createBox.setNameBox("Input Elements");
     valueBox.setNameBox("Value");
+    initialValue.setNameBox("Current Value");
+    finalValue.setNameBox("New Value");
 }
 
 void AVLState::updateTheme(){
@@ -25,6 +27,8 @@ void AVLState::updateTheme(){
     Apply.update();
     createBox.Update();
     valueBox.Update();
+    initialValue.Update();
+    finalValue.Update();
 }
 
 void AVLState::update(){
@@ -94,6 +98,19 @@ void AVLState::update(){
             }
             animateSearch(std::stoi(valueText));
             break;
+        case AVLAnimationMode::UPDATE:
+            if (!isStateSaved) {
+                code.setCode(Remove);
+                saveRemoveState(std::stoi(initialValueText));
+                code.setCode(Insert);
+                saveInsertState(std::stoi(finalValueText));
+                isStateSaved = true;
+            }
+            animateRemove(std::stoi(initialValueText));
+            break;
+        case AVLAnimationMode::UPDATEINS:
+            animateInsert(std::stoi(finalValueText));
+            break;
         case AVLAnimationMode::IDLE:
             break;
         default:
@@ -112,6 +129,12 @@ void AVLState::update(){
         Apply.setActive();
         Apply.setPosition({250,740});
     }
+    else if(panel.isUpdateUsed()){
+        Random.deActive();
+        LoadFile.deActive();
+        Apply.setActive();
+        Apply.setPosition({250,810});
+    }
     else{
         Random.deActive();
         LoadFile.deActive();
@@ -122,16 +145,16 @@ void AVLState::update(){
     }
     else if(LoadFile.isPressed()){
         std::string input=panel.loadFileContent();
-        if(input!=""){
-            AVLTree.createTree(input);
-        }
+        AVLTree.createTree(input);
     }
     else if(IsKeyPressed(KEY_ENTER)||Apply.isPressed()){
         AVLTree.resetHighlight();
         valueText=valueBox.GetText();
         createText=createBox.GetText();
+        initialValueText=initialValue.GetText();
+        finalValueText=finalValue.GetText();
         resetBox();
-        if(panel.isCreateUsed()&&createText!=""){
+        if(panel.isCreateUsed()){
             AVLTree.createTree(createText);
         }
         else if(panel.isAddUsed()&&valueText!=""){
@@ -157,7 +180,14 @@ void AVLState::update(){
             isPaused=false;
             code.setCode(Search);
             animationState=AVLAnimationMode::SEARCH;
-        } 
+        }
+        else if(panel.isUpdateUsed()&&initialValueText!=""&&finalValueText!=""&&AVLTree.root){
+            isStateSaved=false;
+            clearState();
+            isPlaying=true;
+            isPaused=false;
+            animationState=AVLAnimationMode::UPDATE;
+        }
     }
     else if(panel.isAnyButtonPressed()){
         moveEnd();
@@ -175,6 +205,11 @@ void AVLState::update(){
     }
     else if(panel.isAddUsed()||panel.isRemoveUsed()||panel.isSearchUsed()){
         valueBox.Update();
+        this->Apply.update();
+    }
+    else if(panel.isUpdateUsed()){
+        initialValue.Update();
+        finalValue.Update();
         this->Apply.update();
     }
 }
@@ -198,6 +233,13 @@ void AVLState::draw(){
     }
     else if(panel.isAddUsed()||panel.isRemoveUsed()||panel.isSearchUsed()){
         valueBox.Draw();
+        this->Apply.drawRectangleRounded(100);
+        this->Apply.drawText();
+        this->Apply.drawOutlineRounded(100, 0, 3);
+    }
+    else if(panel.isUpdateUsed()){
+        initialValue.Draw();
+        finalValue.Draw();
         this->Apply.drawRectangleRounded(100);
         this->Apply.drawText();
         this->Apply.drawOutlineRounded(100, 0, 3);
@@ -376,8 +418,7 @@ void AVLState::saveRemoveState(int value){
             if(AVLTree.curNode){
                 AVLTree.curNode->setHighlight();
             }
-            if(AVLTree.curNode)
-                saveState();
+            saveState();
         }
         else if(AVLTree.animationStep==2){
             if(AVLTree.curNode->isLeaf()){
@@ -485,9 +526,15 @@ void AVLState::saveRemoveState(int value){
                         AVLTree.animationStep++;
                     } else {
                         AVLTree.resetHighlight();
-                        animationState = AVLAnimationMode::IDLE;
                         AVLTree.animationStep=0;
                         code.clearHighlight();
+                        if(animationState==AVLAnimationMode::UPDATE){
+                            animationState = AVLAnimationMode::UPDATEINS;
+                            code.setCode(Insert);
+                            saveState();
+                            return;
+                        }
+                        animationState = AVLAnimationMode::IDLE;
                         saveState();
                         currentStep=0;
                         applyState();
@@ -497,9 +544,15 @@ void AVLState::saveRemoveState(int value){
             }
             else{
                 AVLTree.resetHighlight();
-                animationState = AVLAnimationMode::IDLE;
                 AVLTree.animationStep=0;
                 code.clearHighlight();
+                if(animationState==AVLAnimationMode::UPDATE){
+                    animationState = AVLAnimationMode::UPDATEINS;
+                    code.setCode(Insert);
+                    saveState();
+                    return;
+                }
+                animationState = AVLAnimationMode::IDLE;
                 saveState();
                 currentStep=0;
                 applyState();
@@ -824,7 +877,6 @@ void AVLState::animateRemove(int value){
             AVLTree.curNode=AVLTree.curNode->left;
             delete del;
             AVLTree.calculateHeight();
-            currentStep++;
         }
         else if(AVLTree.curNode->right){
             AVLNode* del = AVLTree.curNode;
@@ -841,7 +893,6 @@ void AVLState::animateRemove(int value){
             AVLTree.curNode=AVLTree.curNode->right;
             delete del;
             AVLTree.calculateHeight();
-            currentStep++;
         }
     }
     else if(AVLTree.animationStep==3){ 
@@ -881,14 +932,19 @@ void AVLState::animateRemove(int value){
                     AVLTree.curNode->deHighlight();
                     if (!AVLTree.curNode->parent){
                         AVLTree.resetHighlight();
-                        animationState = AVLAnimationMode::IDLE;
                         checkTimer=0;
-                        currentStep++;
-                        isPlaying=false;
-                        isPaused=true;
                         AVLTree.animationStep=0;
                         currentStep++;
                         code.clearHighlight();
+                        if(animationState==AVLAnimationMode::UPDATE){
+                            animationState = AVLAnimationMode::UPDATEINS;
+                            code.setCode(Insert);
+                            currentStep++;
+                            return;
+                        }
+                        animationState = AVLAnimationMode::IDLE;
+                        isPlaying=false;
+                        isPaused=true;
                         return;
                     }
                     checkTimer = 0;
@@ -999,6 +1055,8 @@ int AVLState::getBalanceFactor(AVLNode* root){
 void AVLState::resetBox(){
     createBox.resetBox();
     valueBox.resetBox();
+    initialValue.resetBox();
+    finalValue.resetBox();
 }
 
 std::string AVLState::getRandomInput(){

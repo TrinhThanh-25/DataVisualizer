@@ -196,15 +196,14 @@ void SLLState::update(){
     }
     else if(LoadFile.isPressed()){
         std::string input=panel.loadFileContent();
-        if(input!="")
-            SLL.createList(input);
+        SLL.createList(input);
     }
     else if(IsKeyPressed(KEY_ENTER)||Apply.isPressed()){
         indexText=indexBox.GetText();
         valueText=valueBox.GetText();
         createText=createBox.GetText();
         resetBox();
-        if(panel.isCreateUsed()&&createText!=""){
+        if(panel.isCreateUsed()){
             SLL.createList(createText);
         }
         else if(panel.isAddUsed()&&indexText!=""&&valueText!=""){
