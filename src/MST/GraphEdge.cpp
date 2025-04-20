@@ -3,8 +3,8 @@
 GraphEdge::GraphEdge(std::vector<GraphNode*> nodes, int weight)
     : nodes(nodes), weight(weight) {
     colorNormal = lineColor;
-    colorChosen = YELLOW;
-    colorFlur = GRAY;
+    colorChosen = nodeHighlightColor;
+    colorFlur = Fade(lineColor, 0.5f);
     currentColor = colorNormal;
     thick = 3.0f;
 }

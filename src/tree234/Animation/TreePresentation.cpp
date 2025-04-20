@@ -334,8 +334,24 @@ void TreePresentation::DeleteKeyOperation(int key){
     if(isFound){
         int newKey = curr->keys[0];
         std::cout<<"newKey: "<<newKey<<std::endl;
-        //this->current = this->tree;
-        
+    //     //this->current = this->tree;
+    //     if(count == countMerge){
+    //         SetofOperation highLight(speed);
+    //         Operation hl(speed, this->current, this->tree, this->isSplit);
+    //         hl.type = Operation::HIGHLIGHT;
+    //         hl.SetKey(key);
+    //         highLight.AddOperation(hl);
+    //         this->SetOperations.push_back(highLight);
+
+    //         SetofOperation normal(speed);
+    //         Operation nm(speed, this->current, this->tree, this->isSplit);
+    //         nm.type = Operation::NORMAL;
+    //         nm.SetKey(key);
+    //         normal.AddOperation(nm);
+    //         this->SetOperations.push_back(normal);
+
+
+    //     }
         for(int i = 0; i < count - countMerge; i++){
             //highlight
             SetofOperation highlight(speed);

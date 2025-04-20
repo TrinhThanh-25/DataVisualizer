@@ -3,9 +3,12 @@
 
 GraphNode::GraphNode(int data, std::vector<GraphEdge*> edge, Vector2 position)
     : data(data), edge(edge), finalPos(position) {
-    this->colorChosen = YELLOW;
-    this->colorNormal = BLACK;
+    this->colorChosen = nodeColor;
+    this->colorNormal = nodeHighlightColor;
     this->colorCurrent = this->colorNormal;
+    this->textNor = nodeTextColor;
+    this->textCho = nodeHighlightTextColor;
+    this->textCur = this->textNor;
     this->size = 50.0f;
     this->position = {800, 450};
 }
@@ -13,14 +16,14 @@ GraphNode::GraphNode(int data, std::vector<GraphEdge*> edge, Vector2 position)
 void GraphNode::DrawNode() {
     if (this == nullptr) return;
 
-    DrawCircleV(position, size / 2, colorCurrent);
+    DrawCircleV(position, size / 2, BLUE);
 
     char text[16];
     snprintf(text, sizeof(text), "%d", data);
     int fontSize = 20;
     Vector2 textSize = MeasureTextEx(GetFontDefault(), text, fontSize, 1);
     Vector2 textPos = { position.x - textSize.x / 2, position.y - textSize.y / 2 };
-    DrawText(text, textPos.x, textPos.y, fontSize, WHITE);
+    DrawText(text, textPos.x, textPos.y, fontSize, textCur);
 }
 
 void GraphNode::UpdatePosition() {

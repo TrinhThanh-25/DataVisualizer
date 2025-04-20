@@ -115,14 +115,7 @@ bool HashTableVisualization::Find(int key) {
 void HashTableVisualization::Update(){
     inputPanel.setBackActive();
     inputPanel.update();
-    playbackControl.UpdateHash(currentPresentationIndex, currentStateIndex, historyState);
-    if(playbackControl.isPlaying){
-        isRewindingStep = true;
-    }
-    else{
-        isRewindingStep = false;
-    }
-
+    //playbackControl.UpdateHash(currentPresentationIndex, currentStateIndex, historyState);
     
     
      // Kiểm tra nếu người dùng chọn file để nhập dữ liệu
@@ -189,9 +182,14 @@ void HashTableVisualization::Update(){
         }
     }
     speedSlider.Update();
+    
     if(isPlaying == true){
-        if(playbackControl.isSkip == true){
-            this->isDrawTable = false;
+        isRewindingStep = false;
+        if(inputPanel.isEndPressed()){
+            this->isSkipBack = true;
+        }
+        if(this->isSkipBack){
+            isDrawTable = false;
             speed = 1.0f;
         }
         else{
@@ -200,6 +198,47 @@ void HashTableVisualization::Update(){
     }
     else{
         speed = speedSlider.val;
+        if(inputPanel.isNextPressed()){
+            this->isRewindingStep = true;
+            currentStateIndex++;
+            if(currentStateIndex == historyState[currentPresentationIndex].size()){
+                currentPresentationIndex++;
+                currentStateIndex = 0;
+                if(currentPresentationIndex == historyState.size()){
+                    this->isRewindingStep = false;
+                    currentPresentationIndex = historyState.size() - 1;
+                    currentStateIndex = historyState.back().size() - 1;
+                }
+            }
+        }
+        else if(inputPanel.isEndPressed()){
+            this->isRewindingStep = false;
+            currentPresentationIndex = historyState.size() - 1;
+            currentStateIndex = historyState.back().size() - 1;
+        }
+        else if(inputPanel.isPrevPressed()){
+            this->isRewindingStep = true;
+            currentStateIndex--;
+            if(currentStateIndex < 0){
+                currentPresentationIndex--;
+                if(currentPresentationIndex < 0){
+                    currentPresentationIndex = 0;
+                    currentStateIndex = 0;
+                }
+                else{
+                    currentStateIndex = historyState[currentPresentationIndex].size() - 1;
+                }
+            }
+        }
+        else if(inputPanel.isStartPressed()){
+            this->isRewindingStep = true;
+            currentPresentationIndex--;
+            if(currentPresentationIndex < 0){
+                currentPresentationIndex = 0;
+            }
+            currentStateIndex = historyState[0].size() - 1;
+        }
+        
     }
 }
 
@@ -213,7 +252,7 @@ void HashTableVisualization::DrawHashTable() {
         speed = speedSlider.val;
         this->isPlaying = false;
         this->isDrawTable = true;
-        playbackControl.isSkip = false;
+        this->isSkipBack = false;
         if (deleting) {
             hashTable.Delete(key);
             deleting = false;
@@ -328,7 +367,7 @@ void HashTableVisualization::Draw() {
     inputPanel.draw();
     
     speedSlider.Draw();
-    playbackControl.Draw();
+    //playbackControl.Draw();
 }
 
 bool HashTableVisualization::isBackPressed() {
@@ -338,8 +377,11 @@ bool HashTableVisualization::isBackPressed() {
         speedSlider.reset();
         presentations.clear();
         isRewindingStep = false;
-        currentPresentationIndex = 0;
+        currentPresentationIndex = -1;
         currentStateIndex = 0;
+        historyState.clear();
+        hashTable = HashTable(MAX_TABLE_SIZE);
+        
     }
     return res;
 }

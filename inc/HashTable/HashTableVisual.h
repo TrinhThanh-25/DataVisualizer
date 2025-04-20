@@ -34,6 +34,7 @@ public:
     bool isBackPressed();
     bool isPlaying = false;
     bool isDrawTable = true;
+    bool isSkipBack = false;
 
     CodeBlock codeBlock;
 

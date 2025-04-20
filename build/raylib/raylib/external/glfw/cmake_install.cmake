@@ -1,4 +1,4 @@
-# Install script for directory: D:/Project CS163/DataVisualizer/raylib/src/external/glfw
+# Install script for directory: D:/test/Programming/project/DataVisualizer/raylib/src/external/glfw
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,12 +34,12 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/Project CS163/DataVisualizer/build/raylib/raylib/external/glfw/src/cmake_install.cmake")
+  include("D:/test/Programming/project/DataVisualizer/build/raylib/raylib/external/glfw/src/cmake_install.cmake")
 endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
 if(CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "D:/Project CS163/DataVisualizer/build/raylib/raylib/external/glfw/install_local_manifest.txt"
+  file(WRITE "D:/test/Programming/project/DataVisualizer/build/raylib/raylib/external/glfw/install_local_manifest.txt"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()

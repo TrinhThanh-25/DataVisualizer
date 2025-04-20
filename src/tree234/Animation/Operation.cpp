@@ -15,6 +15,7 @@ bool Operation::DrawNormalNode() {
     if (curAnimation < 1.0f) {
         curAnimation += speed;
         node->currentColor = node->colorNormal;
+        node->textCurColor = node->textNorColor;
         return false;
     }
     std::cout<<"xong normal nghen"<<std::endl;
@@ -32,6 +33,7 @@ bool Operation::DrawChosenNode() {
     if (curAnimation < 1.0f) {
         curAnimation += speed;
         node->currentColor = node->colorChosen;
+        node->textCurColor = node->textChosenColor;
         return false;
     }
     std::cout<<"xong hihghlight nghen"<<std::endl;
