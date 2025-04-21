@@ -341,6 +341,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\GUI\Console.cpp" />
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\GUI\Panel.cpp" />
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\GUI\PlayBackControl.cpp" />
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\GUI\Resources.cpp" />
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\GUI\Slider.cpp" />
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\GUI\inputBox.cpp" />
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\MST\Animation\GraphInputPanel.cpp" />

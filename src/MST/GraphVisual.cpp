@@ -2,7 +2,9 @@
 #include <raylib.h>
 
 GraphVisual::GraphVisual(float &speed)
-    : speed(speed), graph(new Graph()), currentPresentationIndex(-1), currentStateIndex(0), historyState({}), presentation(speed, graph, historyState, currentPresentationIndex, currentStateIndex), inputPanel(), speedSlider(0.01f, 0.1f, 0.05f, 100) {}
+    : speed(speed), graph(new Graph()), currentPresentationIndex(-1), currentStateIndex(0), historyState({}), presentation(speed, graph, historyState, currentPresentationIndex, currentStateIndex), inputPanel(), speedSlider(0.01f, 0.1f, 0.05f, 100) {
+        inputPanel.setDataName("Min Spanning Tree");
+    }
 
 GraphVisual::~GraphVisual() {
     delete graph;
@@ -27,7 +29,9 @@ void GraphVisual::Draw() {
             historyState[currentPresentationIndex][currentStateIndex]->Draw();
         }
         else{
-            graph->Draw();
+            if(isDrawGraph){
+                graph->Draw();
+            }
         }
     }
 }
@@ -55,9 +59,7 @@ void GraphVisual::Update() {
     inputPanel.update();
     speedSlider.Update();
     
-    if(IsKeyPressed(KEY_C)){
-        CreateGraph(13);
-    }
+    
     // Xử lý tải file
     if (inputPanel.IsLoadFilePressed()) {
         auto fileValues = inputPanel.GetFileValues2D();
@@ -76,6 +78,14 @@ void GraphVisual::Update() {
             std::cout << "Loi file rui nghennn\n";
         }
         //inputPanel.ResetInputState();
+    }
+    
+    if(inputPanel.IsKeyboardPressed()){
+        auto fileValues = inputPanel.GetFileValues2D();
+        if(!fileValues.empty()){
+            CreateGraphFromInput(fileValues);
+            inputPanel.ResetInputState();
+        }
     }
 
     // Xử lý các nút thuật toán khác
@@ -119,7 +129,7 @@ void GraphVisual::Update() {
 
         if(isSkipBack){
             isDrawGraph = false;
-            speed = 1.0f;
+            speed = 2.0f;
         }
         else{
             speed = speedSlider.val;
@@ -127,6 +137,8 @@ void GraphVisual::Update() {
     }
     else{
         speed = speedSlider.val;
+        // std::cout<<"PresentationCur: "<<currentPresentationIndex<<std::endl;
+        // std::cout<<"StateCur: "<<currentStateIndex<<std::endl; 
         if(inputPanel.isNextPressed()){
             this->isRewinding = true;
             currentStateIndex++;
@@ -141,6 +153,7 @@ void GraphVisual::Update() {
             }
         }
         else if(inputPanel.isEndPressed()){
+            std::cout<<"Size: "<<historyState.size()<<std::endl;
             this->isRewinding = false;
             currentPresentationIndex = historyState.size() - 1;
             currentStateIndex = historyState.back().size() - 1;

@@ -85,4 +85,13 @@ const Vector2 controllerButtonSize({60,60});
 const Vector2 controllerPosition({800,860});
 const Vector2 controllerSize({400,2*(900-controllerPosition.y)});
 
+//sound 
+namespace Resource {
+    extern Sound clickSound;
+
+    void InitResource();
+
+    void UnloadResource() ;
+};
+
 #endif

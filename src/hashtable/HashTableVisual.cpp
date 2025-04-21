@@ -88,6 +88,16 @@ bool HashTableVisualization::Find(int key) {
     return hashTable.Find(key);
 }
 
+void HashTableVisualization::UpdateKey(int initValue, int finalValue){
+    if(!hashTable.Find(initValue)){
+        return;
+    }
+
+    Delete(initValue);
+    Insert(finalValue);
+    return;
+}
+
 // void HashTableVisualization::HandleInput() {
 //     if(IsKeyPressed(KEY_T)){
 //         isRewindingStep = true;
@@ -240,6 +250,9 @@ void HashTableVisualization::Update(){
         }
         
     }
+    if(IsKeyPressed(KEY_U)){
+        UpdateKey(10, 13);
+    }
 }
 
 
@@ -315,6 +328,14 @@ void HashTableVisualization::DrawHashTable() {
 }
 
 void HashTableVisualization::DrawNode(Node* node) {
+    if(node->isChosen){
+        node->colorCurrent = nodeHighlightColor;
+        node->textCurColor = nodeHighlightTextColor;
+    }
+    else{
+        node->colorCurrent = nodeColor;
+        node->textCurColor = nodeTextColor;
+    }
     DrawCircle(node->position.x, node->position.y, node->size.x, node->colorCurrent);
     DrawCircleLines(node->position.x, node->position.y, node->size.x, WHITE);
     std::string text = std::to_string(node->data);
@@ -323,7 +344,7 @@ void HashTableVisualization::DrawNode(Node* node) {
 }
 
 void HashTableVisualization::DrawLine(Vector2 start, Vector2 end) {
-    DrawLineEx(start, end, 2, BLACK);
+    DrawLineEx(start, end, 3, appTitleColor);
 }
 
 void HashTableVisualization::DrawArrow(Vector2 start, Vector2 end) {
@@ -341,7 +362,7 @@ void HashTableVisualization::DrawArrow(Vector2 start, Vector2 end) {
 
 void HashTableVisualization::DrawLink(Vector2 start, Vector2 end) {
     // Vẽ đường thẳng từ start đến end
-    DrawLineEx(start, end, 2, BLACK);
+    DrawLineEx(start, end, 2, appTitleColor);
 
     // Tính toán hướng và kích thước của mũi tên
     Vector2 diff = Vector2Subtract(end, start);
@@ -357,7 +378,7 @@ void HashTableVisualization::DrawLink(Vector2 start, Vector2 end) {
     Vector2 baseRight = Vector2Add(end, Vector2Scale(Vector2Rotate(dir, 210.0f), arrowSize));
 
     // Vẽ tam giác đầy (filled triangle) làm đầu mũi tên
-    DrawTriangle(tip, baseLeft, baseRight, BLACK);
+    DrawTriangle(tip, baseLeft, baseRight, appTitleColor);
 }
 
 

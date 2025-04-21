@@ -40,63 +40,76 @@ GraphInputPanel::GraphInputPanel()
 }
 
 void GraphInputPanel::ProcessKeyboardInput(const char* input) {
-    if (!input) {
-        std::cout << "No input provided." << std::endl;
-        return;
-    }
-
     fileValues2D.clear();
     numVertices = 0;
     numEdges = 0;
 
+    if (!input || std::string(input).empty()) {
+        std::cout << "No input provided." << std::endl;
+        return;
+    }
+
     std::stringstream ss(input);
-    std::string line;
-    bool firstLine = true;
 
-    while (std::getline(ss, line)) {
-        std::stringstream lineStream(line);
-        if (firstLine) {
-            // Đọc số đỉnh và số cạnh từ dòng đầu tiên
-            try {
-                lineStream >> numVertices >> numEdges;
-                if (numVertices <= 0 || numEdges < 0) {
-                    std::cout << "Invalid number of vertices or edges." << std::endl;
-                    numVertices = 0;
-                    numEdges = 0;
-                    return;
-                }
-            } catch (...) {
-                std::cout << "Error reading number of vertices or edges." << std::endl;
-                return;
+    // Đọc số đỉnh và số cạnh
+    try {
+        ss >> numVertices >> numEdges;
+        if (numVertices <= 0 || numEdges < 0) {
+            std::cout << "Invalid number of vertices or edges." << std::endl;
+            numVertices = 0;
+            numEdges = 0;
+            return;
+        }
+        // Lưu số đỉnh và số cạnh vào fileValues2D
+        fileValues2D.push_back({numVertices, numEdges});
+    } catch (...) {
+        std::cout << "Error reading number of vertices or edges." << std::endl;
+        return;
+    }
+
+    // Đọc các cạnh
+    int actualEdges = 0;
+    while (ss.good() && actualEdges < numEdges) {
+        int v1, v2, weight;
+        try {
+            ss >> v1 >> v2 >> weight;
+            if (ss.fail()) {
+                std::cout << "Error: Edge data not in correct format (v1 v2 weight)." << std::endl;
+                break;
             }
-            firstLine = false;
-        } else {
-            // Đọc thông tin cạnh: đỉnh 1, đỉnh 2, trọng số
-            int v1, v2, weight;
-            try {
-                lineStream >> v1 >> v2 >> weight;
-                if (v1 <= 0 || v2 <= 0 || v1 > numVertices || v2 > numVertices) {
-                    std::cout << "Invalid vertex in edge: " << v1 << " " << v2 << std::endl;
-                    continue;
-                }
-                fileValues2D.push_back({v1, v2, weight});
-            } catch (...) {
-                std::cout << "Error reading edge: " << line << std::endl;
+            if (v1 <= 0 || v2 <= 0 || v1 > numVertices || v2 > numVertices) {
+                std::cout << "Invalid vertex in edge: " << v1 << " " << v2 << std::endl;
+                continue;
             }
+            fileValues2D.push_back({v1, v2, weight});
+            actualEdges++;
+        } catch (...) {
+            std::cout << "Error reading edge data." << std::endl;
+            break;
         }
     }
 
-    if (fileValues2D.size() != numEdges) {
-        std::cout << "Number of edges entered (" << fileValues2D.size() << ") does not match specified (" << numEdges << ")." << std::endl;
-        numEdges = fileValues2D.size();
+    // Kiểm tra số cạnh thực tế
+    if (actualEdges != numEdges) {
+        std::cout << "Number of edges entered (" << actualEdges << ") does not match specified (" << numEdges << ")." << std::endl;
+        numEdges = actualEdges;
+        fileValues2D[0][1] = numEdges; // Cập nhật numEdges trong fileValues2D
     }
 
-    if (!fileValues2D.empty()) {
-        std::cout << "Graph input successfully processed:" << std::endl;
-        std::cout << "Vertices: " << numVertices << ", Edges: " << numEdges << std::endl;
-        for (const auto& edge : fileValues2D) {
-            std::cout << edge[0] << " " << edge[1] << " " << edge[2] << std::endl;
+    if (fileValues2D.size() <= 1) { // Chỉ có dòng numVertices, numEdges, không có cạnh
+        if (numEdges > 0) {
+            std::cout << "No valid edges were provided." << std::endl;
+            fileValues2D.clear();
+            numVertices = 0;
+            numEdges = 0;
         }
+        return;
+    }
+
+    std::cout << "Graph input successfully processed:" << std::endl;
+    std::cout << "Vertices: " << numVertices << ", Edges: " << numEdges << std::endl;
+    for (size_t i = 1; i < fileValues2D.size(); ++i) {
+        std::cout << fileValues2D[i][0] << " " << fileValues2D[i][1] << " " << fileValues2D[i][2] << std::endl;
     }
 }
 

@@ -61,6 +61,7 @@ void GraphPresentation::Kruskal() {
     // Khởi tạo Disjoint Set
     int numVertices = graph->vertices.size();
     initDisjointSet(numVertices);
+    if(!SetOperations.empty()) SetOperations.clear();
 
     // Sắp xếp các cạnh theo trọng số
     std::vector<GraphEdge*> sortedEdges = graph->edges;
@@ -139,6 +140,8 @@ void GraphPresentation::Kruskal() {
 
 void GraphPresentation::Prim() {
     if (graph == nullptr || graph->vertices.empty()) return;
+
+    if(!SetOperations.empty()) SetOperations.clear();
 
     int numVertices = graph->vertices.size();
     std::vector<bool> inMST(numVertices, false); // Đánh dấu node đã thuộc MST
@@ -272,6 +275,7 @@ bool GraphPresentation::DrawPresentation(){
         currentStep++;
     }
     if(currentStep >= SetOperations.size()){
+        std::cout<<"Presentation Size: "<<SetOperations.size()<<std::endl;
         currentStep = 0;
         this->SetOperations.clear();
         return true;

@@ -7,8 +7,10 @@ void Application::run(){
     InitWindow(1600, 900, "Data Structure Visualization");
     SetTargetFPS(60);
     LoadFontsAndTextures();
+    Resource::InitResource();
     srand(time(NULL));
     while (!WindowShouldClose()){
+
         BeginDrawing();
         ClearBackground(backgroundColor);
         colorThemeManager.update();

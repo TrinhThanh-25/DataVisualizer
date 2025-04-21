@@ -22,6 +22,7 @@ public:
     void DeleteNodeAnimation(int key);
     void FindNodeAnimation(int key);
     void CreateTableAnimation(int size);
+    //void UpdateAnimation(int initValue, int finalValue, Node* newNode);
     bool DrawPresentation();
     void clear();
     //void RewindStep();

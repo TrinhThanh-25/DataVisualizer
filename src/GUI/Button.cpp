@@ -226,7 +226,11 @@ int Button::getfontSize(){
 }
 
 bool Button::isPressed(){
-    return isActive&&IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && CheckCollisionPointRec(GetMousePosition(), {this->position.x-this->size.x/2, this->position.y-(this->size.y/2-this->fontSize/2), this->size.x, this->size.y});
+    bool ispress = isActive&&IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && CheckCollisionPointRec(GetMousePosition(), {this->position.x-this->size.x/2, this->position.y-(this->size.y/2-this->fontSize/2), this->size.x, this->size.y});
+    if(ispress){
+        PlaySound(Resource::clickSound);
+    }
+    return ispress;
 }
 
 bool Button::isHovered(){

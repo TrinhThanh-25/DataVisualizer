@@ -28,6 +28,7 @@ public:
     void Insert(int key);
     void Delete(int key);
     bool Find(int key);
+    void UpdateKey(int initValue, int finalValue);
     void Draw();
     void Update();
 

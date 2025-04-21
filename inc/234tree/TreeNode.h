@@ -15,12 +15,13 @@ class TreeNode {
         std::vector<TreeNode*> children;
         TreeNode* parent;
         bool isLeaf;
+        bool isChosen = false;
         Vector2 position;
         Vector2 finalPosition;
         std::vector<Vector2> arrowPos;
         Vector2 size;
-        Color currentColor,& colorChosen, &colorNormal;
-        Color textCurColor, &textNorColor,& textChosenColor;
+        Color currentColor,colorChosen, colorNormal;
+        Color textCurColor, textNorColor, textChosenColor;
         Font fontNumber;
     
         bool isEmpty = false;

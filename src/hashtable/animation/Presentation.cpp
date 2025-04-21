@@ -152,6 +152,15 @@ void Presentation::CreateTableAnimation(int size) {
     SetAnimations.push_back(drawEdge);
 }
 
+// void Presentation::UpdateAnimation(int initValue, int finalValue, Node*newNode){
+//     if(!table.Find(initValue)){
+//         return;
+//     }
+//     DeleteNodeAnimation(initValue);
+//     InsertNodeAnimation(finalValue, newNode);
+//     return;
+// }
+
 bool Presentation::DrawPresentation() {
     if (SetAnimations.empty() || currentStep >= SetAnimations.size()) return true;
 

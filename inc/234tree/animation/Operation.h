@@ -2,6 +2,7 @@
 #include "raylib.h"
 #include "raymath.h"
 #include "234tree/TreeNode.h"
+#include "GUI/CodeBlock.h"
 #include <string>
 #include <algorithm>
 #include <vector>
@@ -20,7 +21,8 @@ public:
         MOVE_TO_CHILDREN_NODE = 9,
         MERGE_TO_CHILDREN = 10,
         REMOVE_LEAF = 11,
-        CHANGE_KEY = 12
+        CHANGE_KEY = 12,
+        RESET_CURRENT = 13
     };
     float& speed;
     TreeNode*& node;
@@ -29,9 +31,10 @@ public:
     float curAnimation;
     int key, newKey;
 
+    CodeBlock & codeBlock;
     bool& isSplit;
     
-    Operation(float& speed, TreeNode*& node, TreeNode *& root, bool& isSplit);
+    Operation(float& speed, TreeNode*& node, TreeNode *& root, bool& isSplit, CodeBlock & codeBlock);
     void SetKey(int key) { this->key = key; this->newKey = key; }
     void SetNewKey(int newKey) { this->newKey = newKey; }
 
@@ -48,6 +51,7 @@ public:
     bool Merge2Child();
     bool RemoveLeaf();
     bool Changekey();
+    bool ResetCur();
 
     bool DrawOperation();
 };

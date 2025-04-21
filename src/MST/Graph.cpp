@@ -55,6 +55,7 @@ Graph::Graph(Graph* graph) {
         newNode->isDragging = oldNode->isDragging;
         newNode->dragOffset = oldNode->dragOffset;
         newNode->finalPos = oldNode->finalPos;
+        newNode->position = oldNode->position;
         vertices.push_back(newNode);
         nodeMap[oldNode] = newNode;
     }

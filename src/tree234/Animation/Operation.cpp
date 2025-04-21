@@ -2,8 +2,8 @@
 #include <iostream> // Thêm để debug
 #include <memory> // Thêm để sử dụng std::unique_ptr
 
-Operation::Operation(float& speed, TreeNode*& node, TreeNode *& root, bool& isSplit) 
-    : speed(speed), node(node), root(root), isSplit(isSplit) {
+Operation::Operation(float& speed, TreeNode*& node, TreeNode *& root, bool& isSplit, CodeBlock & codeBlock)
+    : speed(speed), node(node), root(root), isSplit(isSplit), codeBlock(codeBlock) {
     curAnimation = 0.0f;
     type = NORMAL;
     this->key = 0;
@@ -16,6 +16,7 @@ bool Operation::DrawNormalNode() {
         curAnimation += speed;
         node->currentColor = node->colorNormal;
         node->textCurColor = node->textNorColor;
+        node->isChosen = false;
         return false;
     }
     std::cout<<"xong normal nghen"<<std::endl;
@@ -34,6 +35,7 @@ bool Operation::DrawChosenNode() {
         curAnimation += speed;
         node->currentColor = node->colorChosen;
         node->textCurColor = node->textChosenColor;
+        node->isChosen = true;
         return false;
     }
     std::cout<<"xong hihghlight nghen"<<std::endl;
@@ -111,6 +113,8 @@ bool Operation::SplitNode() {
         return true;
     }
 
+    codeBlock.setHighlight({1});
+
     TreeNode * left = new TreeNode({node->keys[0]}, {}, {0, 0});
     TreeNode * right = new TreeNode({node->keys[2]}, {}, {0, 0});
     //node->children = {left, right};
@@ -152,6 +156,7 @@ bool Operation::MergeKeyToParent() {
     if(node->keys.size() > 1) return true;
     if(!isSplit) return true;
 
+
     TreeNode * parent = node->parent;
     int i = 0;
     for(; i < parent->keys.size(); i++){
@@ -175,6 +180,13 @@ bool Operation::MergeKeyToParent() {
 
 bool Operation::InsertToLeaf() {
     if (!node) return true;
+
+    codeBlock.setHighlight({3});
+    if(node->keys.empty()){
+        node->keys.push_back(key);
+        root->calculateCoordinate({800, 100});
+        return true;
+    }
     for(int i = 0; i < node->keys.size(); i++){
         if(node->keys[i] > key){
             node->keys.insert(node->keys.begin() + i, key);
@@ -190,6 +202,8 @@ bool Operation::MoveToChildrenNode(){
     if(!node) return true;
     if(node->isLeaf) return true;
     if(node->children.empty()) return true;
+
+    codeBlock.setHighlight({2});
     for(int i = 0; i < node->keys.size(); i++){
         if(node->keys[i] > key){
             node = node->children[i];
@@ -203,7 +217,8 @@ bool Operation::MoveToChildrenNode(){
 bool Operation::Merge2Child() {
     if (!node || node->isLeaf || node->keys.empty()) return true;
 
-    // Tìm vị trí của key trong node cha
+    codeBlock.setHighlight({1});
+
     int i = 0;
     for (; i < node->keys.size(); i++) {
         if (node->keys[i] >= key) break;
@@ -324,6 +339,8 @@ bool Operation::RemoveLeaf() {
     if (!node || !node->isLeaf) return false;
     
     bool isChange = true;
+
+    codeBlock.setHighlight({4});
     for(int i = 0; i < node->keys.size(); i++){
         if(node->keys[i] == key){
             isChange = false;
@@ -335,7 +352,10 @@ bool Operation::RemoveLeaf() {
     }
     // Tìm và xóa key
     auto it = std::find(node->keys.begin(), node->keys.end(), key);
-    if (it == node->keys.end()) return true; // Key không tồn tại
+    if (it == node->keys.end()){
+        codeBlock.setHighlight({5});
+        return true;
+    }
     node->keys.erase(it);
 
     // Nếu node vẫn có ít nhất 1 key (không underflow) hoặc là root
@@ -406,7 +426,7 @@ bool Operation::RemoveLeaf() {
         key = parent->keys.empty() ? INT_MAX : parent->keys[0]; // Cập nhật node và key để xử lý parent
         return RemoveLeaf(); // Gọi lại để xử lý parent
     }
-
+    
     return true;
 }
 
@@ -419,6 +439,12 @@ bool Operation::Changekey(){
             return true;
         }
     }
+    return true;
+}
+
+bool Operation::ResetCur(){
+    if(!node) return true;
+    this->node = this->root;
     return true;
 }
 
@@ -437,6 +463,7 @@ bool Operation::DrawOperation() {
         case MERGE_TO_CHILDREN: return Merge2Child();
         case REMOVE_LEAF: return RemoveLeaf();
         case CHANGE_KEY: return Changekey();
+        case RESET_CURRENT: return ResetCur();
         default: return true;
     }
 }

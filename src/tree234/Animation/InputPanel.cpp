@@ -7,8 +7,8 @@ InputPanel::InputPanel()
     activeButtonIndex = -1; // Không có nút nào được chọn
     lastInputValue = -1; // Giá trị mặc định ban đầu
     // Thiết lập các nút chức năng (Create, Search, Insert, Remove)
-    const char* buttonLabels[] = {"Create", "Search", "Insert", "Remove"};
-    for (int i = 0; i < 4; i++) {
+    const char* buttonLabels[] = {"Create", "Search", "Insert", "Remove", "Update"};
+    for (int i = 0; i < 5; i++) {
         Button btn;
         btn.setPosition({panelButtonSize.x/2.0f+(panelButtonSize.y/2.0f-panelButtonFontSize/2.0f), 650+50*i+(panelButtonSize.y/2.0f)}); // Căn giữa theo chiều ngang
         btn.setSize(panelButtonSize);
@@ -53,6 +53,9 @@ void InputPanel::update() {
             activeButtonIndex = i;
             if(i == 0){
                 isShowLoadFile = true;
+            }
+            if(i == 4){
+                isShowUpdate = true;
             }
         }
     }
@@ -205,6 +208,9 @@ bool InputPanel::IsRemovePressed() {
     return activeButtonIndex == 3 && lastInputValue != -1;
 }
 
+bool InputPanel::IsUpdatePressed(){
+    return activeButtonIndex == 4 && lastInputValue != -1;
+}
 bool InputPanel::isAnyButtonPressed() {
     for (auto & btn : buttons) {
         if (btn.isPressed()) {

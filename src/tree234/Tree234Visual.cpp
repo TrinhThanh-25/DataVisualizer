@@ -1,8 +1,8 @@
 #include <234tree/Tree234Visual.h>
 #include <string>
 
-Tree234Visual::Tree234Visual(float & speed) :speed(speed), root(nullptr), currentPresentationIndex(-1), currentStateIndex(0), historyState({}), inputPanel(), speedSlider(0.01f, 0.1f, 0.05f, 10), 
-                                  playbackControl({900, 600}, 200, 10,speed) ,treePresentation(speed, root, historyState, currentPresentationIndex, currentStateIndex) {    
+Tree234Visual::Tree234Visual(float & speed) :speed(speed), root(nullptr), currentPresentationIndex(-1), currentStateIndex(0), historyState({}), inputPanel(), speedSlider(0.01f, 0.1f, 0.05f, 10), codeBlock(),
+                                  playbackControl({900, 600}, 200, 10,speed) ,treePresentation(speed, root, historyState, currentPresentationIndex, currentStateIndex, codeBlock) {    
     //root = nullptr;
     //speed = 0.05f;
     //std::vector<std::vector<TreeNode*>> history;
@@ -185,6 +185,10 @@ void Tree234Visual::Update() {
             currentStateIndex = historyState[currentPresentationIndex].size() - 1;
         }
     }
+
+    if(IsKeyPressed(KEY_U)){
+        treePresentation.UpdateTree(10, 99);
+    }
     //inputPanel.reset();
     
 
@@ -223,6 +227,8 @@ void Tree234Visual::Draw() {
         //std::cout<<"draw history"<<std::endl;
         DrawTree(historyState[currentPresentationIndex][currentStateIndex]);
     }
+
+    codeBlock.draw();
 }
 
 void Tree234Visual::DrawTree(TreeNode* root) {
@@ -231,10 +237,10 @@ void Tree234Visual::DrawTree(TreeNode* root) {
     //root->LayoutTree(0, 800, 0, 100); // Căn chỉnh vị trí của cây
     //std::cout<<"Drawing tree with keys: "<<std::endl;
     if (root) {
-        root->colorChosen = nodeHighlightColor;
-        root->colorNormal = nodeColor;
-        root->textChosenColor = nodeHighlightTextColor;
-        root->textNorColor = nodeTextColor;
+        // root->colorChosen = nodeHighlightColor;
+        // root->colorNormal = nodeColor;
+        // root->textChosenColor = nodeHighlightTextColor;
+        // root->textNorColor = nodeTextColor;
         
         root->DrawLinktoChild();
         root->DrawNode();

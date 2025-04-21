@@ -40,6 +40,9 @@
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\GUI\PlayBackControl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\GUI\Resources.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="D:\test\Programming\project\DataVisualizer\src\GUI\Slider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

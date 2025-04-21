@@ -7,6 +7,7 @@
 #include "234tree/animation/InputPanel.h"
 #include "../GUI/Slider.h"
 #include "../GUI/PlayBackControl.h"
+#include "../GUI/CodeBlock.h"
 
 class Tree234Visual {
 public:
@@ -30,6 +31,8 @@ public:
 
     Slider speedSlider;
     bool isRewinding;
+
+    CodeBlock codeBlock;
 
     PlaybackControl playbackControl;
 

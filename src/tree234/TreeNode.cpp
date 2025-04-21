@@ -6,6 +6,7 @@ TreeNode::TreeNode(std::vector<int> keys, std::vector<TreeNode*> children, Vecto
     colorNormal(nodeColor), textNorColor(nodeTextColor), textChosenColor(nodeHighlightTextColor) {
     this->isLeaf = true;
     this->isEmpty = false;
+    this->isChosen = false;
     finalPosition = position;
     parent = nullptr;
     size = {3 * 50.0f, 50.0f}; // Chiều cao cố định
@@ -89,6 +90,15 @@ void TreeNode::deleteTree(TreeNode * node){
 void TreeNode::DrawNode() {
     float size_x = 50.0f * keys.size();
     float size_y = 50.0f;
+    if(!isChosen){
+        currentColor = nodeColor;
+        textCurColor = nodeTextColor;
+    }
+    else{
+        currentColor = nodeHighlightColor;
+        textCurColor = nodeHighlightTextColor;
+    }
+    
     DrawRectangle(position.x, position.y, size_x, size_y, currentColor);
 
     float keyWidth = size_x / (keys.size() > 0 ? keys.size() : 1); // Chia đều chiều rộng cho số keys
