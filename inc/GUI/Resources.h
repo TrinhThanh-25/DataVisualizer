@@ -70,7 +70,7 @@ const float centerX=800, centerY=350;
 const float rangeX=1400,rangeY=500;
 
 const Vector2 STNodeSize({40,40});
-const int STNodeCostFontSize(12);
+const int STNodeCostFontSize(16);
 const int STNodeIDFontSize(24);
 
 const Vector2 STBoxSize({260,40});

@@ -10,6 +10,7 @@ AVL::~AVL(){
 
 void AVL::createTree(std::string text){
     clearTree();
+    if(text.empty()) return;
     for (char& c : text) {
         if (c == ';' || c == ' ') {
             c = ',';

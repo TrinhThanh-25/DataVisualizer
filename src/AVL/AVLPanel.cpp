@@ -16,12 +16,16 @@ AVLPanel::AVLPanel(){
     this->Search.setText("Search",panelButtonFontSize);
     this->Search.setSize(panelButtonSize);
     this->Search.setPosition({panelButtonSize.x/2.0f+(panelButtonSize.y/2.0f-panelButtonFontSize/2.0f), 800+(panelButtonSize.y/2.0f)});
+    
+    this->Update.setText("Update",panelButtonFontSize);
+    this->Update.setSize(panelButtonSize);
+    this->Update.setPosition({panelButtonSize.x/2.0f+(panelButtonSize.y/2.0f-panelButtonFontSize/2.0f), 850+(panelButtonSize.y/2.0f)});
 
     setDataName("AVL Tree");
 }
 
 bool AVLPanel::isAnyButtonPressed(){
-    return Create.isPressed()||Add.isPressed()||Remove.isPressed()||Search.isPressed();
+    return Create.isPressed()||Add.isPressed()||Remove.isPressed()||Search.isPressed()||Update.isPressed();
 }
 
 void AVLPanel::draw(){
@@ -34,11 +38,14 @@ void AVLPanel::draw(){
     this->Remove.drawText();
     this->Search.drawRectangleRounded(100);
     this->Search.drawText();
+    this->Update.drawRectangleRounded(100);
+    this->Update.drawText();
     this->Back.drawOutlineRounded(100,0,3);
     this->Create.drawOutlineRounded(100,0,3);
     this->Add.drawOutlineRounded(100,0,3);
     this->Remove.drawOutlineRounded(100,0,3);
     this->Search.drawOutlineRounded(100,0,3);
+    this->Update.drawOutlineRounded(100,0,3);
 }
 
 void AVLPanel::update(){
@@ -87,11 +94,23 @@ void AVLPanel::update(){
             this->isUsing = &this->Search;
         }
     }
+    else if(this->Update.isPressed()){
+        if(isUsing&&isUsing==&Update) {
+            isUsing->deSelected();
+            isUsing=nullptr;
+        }
+        else{
+            this->Update.Selected();
+            if(isUsing&&isUsing!=&Update) this->isUsing->deSelected();
+            this->isUsing = &this->Update;
+        }
+    }
     this->Back.update();
     this->Create.update();
     this->Add.update();
     this->Remove.update();
     this->Search.update();
+    this->Update.update();
 }
 
 bool AVLPanel::isCreateUsed(){
@@ -108,4 +127,8 @@ bool AVLPanel::isRemoveUsed(){
 
 bool AVLPanel::isSearchUsed(){
     return (isUsing == &Search);
+}
+
+bool AVLPanel::isUpdateUsed(){
+    return (isUsing == &Update);
 }

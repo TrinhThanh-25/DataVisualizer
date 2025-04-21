@@ -12,12 +12,14 @@ class AVLPanel : public Panel{
         bool isAddUsed();
         bool isRemoveUsed();
         bool isSearchUsed();
+        bool isUpdateUsed();
         bool isAnyButtonPressed() override;
     private: 
         Button Create;
         Button Add;
         Button Remove;
         Button Search;
+        Button Update;
 };
 
 #endif
