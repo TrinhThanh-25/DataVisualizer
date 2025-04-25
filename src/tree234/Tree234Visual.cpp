@@ -1,7 +1,7 @@
 #include <234tree/Tree234Visual.h>
 #include <string>
 
-Tree234Visual::Tree234Visual(float & speed) :speed(speed), currentPresentationIndex(-1), currentStateIndex(0), historyState({}), historyCodeBlock({}), inputPanel(), speedSlider(0.01f, 0.1f, 0.05f, 10), codeBlock(),
+Tree234Visual::Tree234Visual(float & speed) :speed(speed), currentPresentationIndex(-1), currentStateIndex(0), historyState({}), historyCodeBlock({}), inputPanel(), speedSlider(0.1f, 5.0f, 1.0f, 100), codeBlock(),
                                   playbackControl({900, 600}, 200, 10,speed) ,treePresentation(speed, root, historyState, historyCodeBlock, currentPresentationIndex, currentStateIndex, codeBlock) {    
     //root = nullptr;
     //speed = 0.05f;
@@ -9,6 +9,7 @@ Tree234Visual::Tree234Visual(float & speed) :speed(speed), currentPresentationIn
     //int presIndex = 0, stateIndex = 0;
 
     root = new TreeNode({}, {}, {800, 100});
+    codeBlock.clearCode();
     
     showInputBox = false;
     inputText = "";
@@ -39,6 +40,7 @@ void Tree234Visual::Update() {
 
         int randomNum = dis(gen); // Random một số
         this->root = this->root->CreateTree(randomNum);
+        isCreate = true;
         this->root->calculateCoordinate({800, 100});
         std::cout<<"da tao tree roi"<<std::endl;
 
@@ -59,6 +61,7 @@ void Tree234Visual::Update() {
                     int size = fileValues[0][0];
                     std::vector<int> keys = fileValues[1];
                     root = root->CreateTreewithKey(keys);
+                    isCreate = true;
                     root->calculateCoordinate({800, 100});
                     treePresentation.clear();
                     treePresentation.CreateTree(size);
@@ -68,6 +71,7 @@ void Tree234Visual::Update() {
             case 1:{
                 if(!fileValues[0].empty()){
                     int key = fileValues[0][0];
+                    isCreate = false;
                     treePresentation.clear();
                     treePresentation.FindKeyOperation(key);
                 }
@@ -77,6 +81,7 @@ void Tree234Visual::Update() {
                 if(!fileValues[0].empty()){
                     int key = fileValues[0][0];
                     std::cout<<"INSERT: "<<key<<std::endl;
+                    isCreate = false;
                     treePresentation.clear();
                     treePresentation.InsertKeyOperation(key);
                     break;
@@ -86,6 +91,7 @@ void Tree234Visual::Update() {
                 if(!fileValues[0].empty()){
                     int key = fileValues[0][0];
                     treePresentation.clear();
+                    isCreate = false;
                     treePresentation.DeleteKeyOperation(key);
                 }
                 break;
@@ -114,6 +120,7 @@ void Tree234Visual::Update() {
                     */
                     this->root = this->root->CreateTree(inputValue[0]);
                     this->root->calculateCoordinate({800, 100});
+                    isCreate = true;
                     std::cout<<"da tao tree roi"<<std::endl;
             
                     treePresentation.clear();
@@ -124,29 +131,35 @@ void Tree234Visual::Update() {
                     treePresentation.clear();
                     inputNumber = inputValue[0];
                     treePresentation.FindKeyOperation(inputNumber);
+                    isCreate = false;
                     std::cout << "Search key: " << inputNumber << std::endl;
                     break;
                 case 2: // Insert
                     treePresentation.clear();
                     Insert(inputValue[0]);
+                    isCreate = false;
                     std::cout << "Insert key: " << inputValue[0] << std::endl;
                     break;
                 case 3: // Remove
                     treePresentation.clear();
                     inputNumber = inputValue[0];
                     treePresentation.DeleteKeyOperation(inputNumber);
+                    isCreate = false;
                     std::cout << "Remove key: " << inputNumber << std::endl;
                     break;
                 case 4:
                     treePresentation.clear();
                     if(inputValue.size() == 2){
                         treePresentation.UpdateTree(inputValue[0], inputValue[1]);
+                        isCreate = false;
                     }
             }
             // Reset trạng thái của InputPanel sau khi thực hiện hành động
             inputPanel.ResetInputState();
         }
     }
+
+    
 
     if(IsKeyPressed(KEY_R)){
         historyState.pop_back();
@@ -158,8 +171,52 @@ void Tree234Visual::Update() {
         treePresentation.current = this->root;
         this->isPlaying = true;
     }
-    if(IsKeyPressed(KEY_SPACE)){
-        this->isPlaying = !this->isPlaying;
+    if(inputPanel.isPlayPressed()){
+        if(!historyState.empty() && this->isPlaying == false && treePresentation.currentStep == 0 && !isCreate){
+            historyState.pop_back();
+            historyCodeBlock.pop_back();
+            this->root = new TreeNode(historyState.back().back());
+            currentPresentationIndex = historyState.size() - 1;
+            currentStateIndex = historyState.back().size() - 1;
+            treePresentation.tree = this->root;
+            treePresentation.current = this->root;
+            this->isPlaying = true;
+        }
+        else if(this->isPlaying){
+            this->isPlaying = false;
+            //inputPanel.setPause();
+        }
+        else if(!this->isPlaying){
+            this->isPlaying = true;
+            //inputPanel.dePause();
+        }
+    }
+
+
+    if(this->isPlaying){
+        if(treePresentation.DrawPresentation()){
+            speed = speedSlider.val * 0.02f;
+            this->isPlaying = false;
+            isDrawTree = true;
+            isSkipBack = false;
+            isPause = false;
+            inputPanel.setEnd();
+            //playbackControl.isSkip = false;
+        }
+        else{
+            inputPanel.deEnd();
+            this->isPlaying = true;
+        }
+    }
+    if(isCreate){
+        inputPanel.deEnd();
+        inputPanel.setPause();
+    }
+    if(this->isPlaying){
+        inputPanel.dePause();
+    }
+    else if(!this->isPlaying){
+        inputPanel.setPause();
     }
 
     speedSlider.Update();
@@ -174,11 +231,11 @@ void Tree234Visual::Update() {
             speed = 1.0f;
         }
         else{
-            speed = speedSlider.val;
+            speed = speedSlider.val * 0.02f;
         }
     }
     else{
-        speed = speedSlider.val;
+        speed = speedSlider.val * 0.02f;
         if(inputPanel.isNextPressed()){
             this->isRewinding = true;
             currentStateIndex++;
@@ -237,18 +294,7 @@ void Tree234Visual::Draw() {
     inputPanel.draw();
     //std::cout<<"Drawing tree with keys: "<<std::endl;
 
-    if(this->isPlaying){
-        if(treePresentation.DrawPresentation()){
-            speed = speedSlider.val;
-            this->isPlaying = false;
-            isDrawTree = true;
-            isSkipBack = false;
-            //playbackControl.isSkip = false;
-        }
-        else{
-            this->isPlaying = true;
-        }
-    }
+    
     
     
     speedSlider.Draw();

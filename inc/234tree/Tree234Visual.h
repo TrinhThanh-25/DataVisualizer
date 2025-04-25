@@ -24,7 +24,7 @@ public:
     bool isPlaying = false;
     bool isDrawTree = true;
     bool isSkipBack = false;
-    bool isRestart = false;
+    bool isCreate = false;
 
     std::vector<std::vector<TreeNode*>> historyState;
     std::vector<std::vector<int>> historyCodeBlock;
@@ -33,6 +33,7 @@ public:
 
     Slider speedSlider;
     bool isRewinding;
+    bool isPause = false;
 
     CodeBlock codeBlock;
 

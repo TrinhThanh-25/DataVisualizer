@@ -128,11 +128,11 @@ bool Animation::SetCode(){
 bool Animation::DrawAnimation() {
     if (!node) return true;
     switch (type) {
-        case 1: return DrawChosenNode();
-        case 2: return DrawFadeInNode(); // DrawFadeInNode sẽ được gọi trực tiếp từ SetofAnimation
-        case 3: return DrawFadeOutNode();
-        case 4: return DrawMoveNodeAnimation();
-        case 5: return DrawNormalNode();
+        case 1: return DrawChosenNode(); break;
+        case 2: return DrawFadeInNode();  break;// DrawFadeInNode sẽ được gọi trực tiếp từ SetofAnimation
+        case 3: return DrawFadeOutNode(); break;
+        case 4: return DrawMoveNodeAnimation(); break;
+        case 5: return DrawNormalNode(); break;
         case 6: return DrawInsertEdgeAnimation();
         case 7: return DrawDeleteEdgeAnimation();
         case 8: return SetCode();

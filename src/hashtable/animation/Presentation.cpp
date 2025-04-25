@@ -211,6 +211,7 @@ bool Presentation::DrawPresentation() {
             
         }
         else{
+            std::cout<<"Dang chay"<<std::endl;
             historyState.back().push_back(tempHash);
             historyCode.back().push_back(codeBlock.getBackHighlightID());
             currentStateIndex = historyState.back().size() - 1;

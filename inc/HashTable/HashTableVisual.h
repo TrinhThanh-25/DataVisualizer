@@ -33,9 +33,10 @@ public:
     void Update();
 
     bool isBackPressed();
-    bool isPlaying = false;
+    bool isPlaying = true;
     bool isDrawTable = true;
     bool isSkipBack = false;
+    bool isCreate = false;
 
     CodeBlock codeBlock;
 

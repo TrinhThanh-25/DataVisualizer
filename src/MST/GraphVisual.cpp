@@ -3,7 +3,7 @@
 #include <random>
 
 GraphVisual::GraphVisual(float &speed)
-    : speed(speed), graph(new Graph()), currentPresentationIndex(-1), currentStateIndex(0), historyState({}), historyCode({}), codeBlock(), presentation(speed, graph, historyState, historyCode, codeBlock, currentPresentationIndex, currentStateIndex), inputPanel(), speedSlider(0.01f, 0.1f, 0.05f, 100) {
+    : speed(speed), graph(new Graph()), currentPresentationIndex(-1), currentStateIndex(0), historyState({}), historyCode({}), codeBlock(), presentation(speed, graph, historyState, historyCode, codeBlock, currentPresentationIndex, currentStateIndex), inputPanel(), speedSlider(0.1, 5.0f, 1.0f, 100) {
         inputPanel.setDataName("Min Spanning Tree");
     }
 
@@ -15,17 +15,7 @@ void GraphVisual::Draw() {
     inputPanel.draw();
     codeBlock.draw();
     
-    if(this->isPlaying){
-        if(presentation.DrawPresentation()){
-            speed = speedSlider.val;
-            this->isPlaying = false;
-            isDrawGraph = true;
-            isSkipBack = false;
-        }
-        else{
-            this->isPlaying = true;
-        }
-    }
+    
 
     speedSlider.Draw();
 
@@ -65,10 +55,7 @@ void GraphVisual::Update() {
     inputPanel.update();
     speedSlider.Update();
 
-    if(IsKeyPressed(KEY_SPACE)){
-        this->isPlaying = !this->isPlaying;
-    }
-
+    
     if(inputPanel.keyboardButton.isPressed()){
         auto fileValues = inputPanel.GetFileValues2D();
         if(!fileValues.empty()){
@@ -172,11 +159,11 @@ void GraphVisual::Update() {
             speed = 2.0f;
         }
         else{
-            speed = speedSlider.val;
+            speed = speedSlider.val * 0.02f;
         }
     }
     else{
-        speed = speedSlider.val;
+        speed = speedSlider.val * 0.02f;
         // std::cout<<"PresentationCur: "<<currentPresentationIndex<<std::endl;
         // std::cout<<"StateCur: "<<currentStateIndex<<std::endl; 
         if(inputPanel.isNextPressed()){
@@ -229,6 +216,52 @@ void GraphVisual::Update() {
         case 2: {graph->ResetGraphColor(); presentation.SetOperations.clear(); if(lastinputValue != -1) PrimAlgo(lastinputValue); this->isPlaying = true;}
         }
     }
+    if(IsKeyPressed(KEY_SPACE)){
+        this->isPlaying = !this->isPlaying;
+    }
+    if(inputPanel.isPlayPressed()){
+        if(!historyState.empty() && this->isPlaying == false && presentation.currentStep == 0 && lastactiveButton != 0){
+            switch (lastactiveButton)
+            {
+            case 1: {graph->ResetGraphColor(); presentation.SetOperations.clear(); KruskalAlgo(); this->isPlaying = true; break;}
+            case 2: {graph->ResetGraphColor(); presentation.SetOperations.clear(); if(lastinputValue != -1) PrimAlgo(lastinputValue); this->isPlaying = true;}
+            }
+        }
+        else if(this->isPlaying){
+            this->isPlaying = false;
+        }
+        else if(!this->isPlaying){
+            this->isPlaying = true;
+        }
+    }
+
+    if(this->isPlaying){
+        if(presentation.DrawPresentation()){
+            speed = speedSlider.val * 0.02f;
+            this->isPlaying = false;
+            isDrawGraph = true;
+            isSkipBack = false;
+            inputPanel.setEnd();
+        }
+        else{
+            this->isPlaying = true;
+            inputPanel.deEnd();
+        }
+    }
+
+    if(lastactiveButton == 0){
+        inputPanel.deEnd();
+        inputPanel.setPause();
+    }
+
+    if(this->isPlaying){
+        inputPanel.dePause();
+    }
+    else if(!this->isPlaying){
+        inputPanel.setPause();
+    }
+
+
 
     if (graph) {
         graph->Update();

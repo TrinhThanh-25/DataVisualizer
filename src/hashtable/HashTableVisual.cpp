@@ -8,7 +8,7 @@ HashTableVisualization::HashTableVisualization(const bool& isLightMode, float &s
                                     historyState({}), historyCode({}), hashcodeBlock(), currentPresentationIndex(-1), currentStateIndex(0),
                                     presentations(speed, hashTable, historyState, historyCode, hashcodeBlock, currentPresentationIndex, currentStateIndex),
                                     inputPanel(), 
-                                    speedSlider(0.01f, 0.1f, 0.05f, 10), playbackControl({900, 600}, 200, 10,speed) {
+                                    speedSlider(0.1, 5.0f, 1.0f, 100), playbackControl({900, 600}, 200, 10,speed) {
 
     //inputBox.isAppear = false;
     isRewindingStep = false;
@@ -67,6 +67,7 @@ void HashTableVisualization::Init(int size, int numofKey) {
 void HashTableVisualization::Insert(int key) {
     if(key == -1) return;
     hashTable.Insert(key, "");
+    std::cout<<"Co co"<<std::endl;
     Node* newNode = hashTable.getTable(key % hashTable.GetSize());
     while (newNode && newNode->data != key) newNode = newNode->next;
     presentations.clear();
@@ -135,6 +136,8 @@ void HashTableVisualization::Update(){
     
 
     if(inputPanel.IsRandomPressed()){
+        this->isPlaying = true;
+        this->isCreate = true;
         std::random_device rd; // Tạo seed
         std::mt19937 gen(rd()); // Engine ngẫu nhiên
         std::uniform_int_distribution<> dis(10, 20); // Khoảng [1, 100]
@@ -154,6 +157,7 @@ void HashTableVisualization::Update(){
         fileValues = inputPanel.GetFileValues2D();
         activeButton = inputPanel.GetActiveButtonIndex();
         std::cout<<fileValues[0][0]<<std::endl;
+        this->isPlaying = true;
 
         if (!fileValues.empty()) {
             switch (activeButton) {
@@ -162,6 +166,7 @@ void HashTableVisualization::Update(){
                         int size = fileValues[0][0]; // Dòng 1: số bucket
                         std::vector<int> keys = fileValues[1]; // Dòng 2: các key
                         hashTable.CreateTableFile(keys);
+                        this->isCreate = true;
                         presentations.clear();
                         presentations.CreateTableAnimation(hashTable.GetSize());
                     } else {
@@ -172,6 +177,7 @@ void HashTableVisualization::Update(){
                 case 1: { // Search
                     if (!fileValues[0].empty()) {
                         int key = fileValues[0][0];
+                        this->isCreate = false;
                         Find(key);
                     }
                     break;
@@ -179,6 +185,7 @@ void HashTableVisualization::Update(){
                 case 2: { // Insert
                     if (!fileValues[0].empty()) {
                         int key = fileValues[0][0];
+                        this->isCreate = false;
                         std::cout<<"Co insert file"<<key<<std::endl;
                         Insert(key);
                     }
@@ -187,6 +194,7 @@ void HashTableVisualization::Update(){
                 case 3: { // Delete
                     if (!fileValues[0].empty()) {
                         int key = fileValues[0][0];
+                        this->isCreate = false;
                         Delete(key);
                     }
                     break;
@@ -203,16 +211,19 @@ void HashTableVisualization::Update(){
         if (inputValue.empty() == false && activeButton != -1 ) {
             lastactiveButton = activeButton;
             lastinputValue = inputValue;
+            this->isPlaying = true;
             switch (activeButton) {
                 case 0: {
                     Init(inputValue[0], 2 * inputValue[0]);
+                    this->isCreate = true;
                     break;
                 }
-                case 1: Find(inputValue[0]); break;
-                case 2: Insert(inputValue[0]); break;
-                case 3: Delete(inputValue[0]); break;
+                case 1: this->isCreate = false; Find(inputValue[0]); break;
+                case 2: this->isCreate = false; Insert(inputValue[0]); break;
+                case 3: this->isCreate = false; Delete(inputValue[0]); break;
                 case 4:{
                     if(inputValue.size() == 2){
+                        this->isCreate = false;
                         UpdateKey(inputValue[0], inputValue[1]);
                     }
                     break;
@@ -231,12 +242,13 @@ void HashTableVisualization::Update(){
             switch (activeButton)
             {
             case 1: Find(lastinputValue[0]); break;
-            case 2: hashTable.Delete(lastinputValue[0]); Insert(lastinputValue[0]); break;
-            case 3: hashTable.Insert(lastinputValue[0], ""); Delete(lastinputValue[0]); break;
+            case 2: {hashTable.Delete(lastinputValue[0]); Insert(lastinputValue[0]); this->isPlaying = true; break;}
+            case 3: {hashTable.Insert(lastinputValue[0], ""); Delete(lastinputValue[0]); this->isPlaying = true; break;}
             case 4:{
                 if(inputValue.size() == 2){
                     hashTable.Insert(lastinputValue[0], "");
                     hashTable.Delete(lastinputValue[1]);
+                    this->isPlaying = true;
                     UpdateKey(lastinputValue[0], lastinputValue[1]);
                 }
                 break;
@@ -244,6 +256,72 @@ void HashTableVisualization::Update(){
             }
         }
     }
+    if(IsKeyPressed(KEY_SPACE)){
+        this->isPlaying = !this->isPlaying;
+    }
+
+    if(inputPanel.isPlayPressed()){
+        if(!historyState.empty() && this->isPlaying == false && presentations.currentStep >= presentations.SetAnimations.size() && !this->isCreate){
+            historyState.pop_back();
+            historyCode.pop_back();
+            currentPresentationIndex = historyState.size() - 1;
+            currentStateIndex = historyState.back().size() - 1;
+            if(isfile == false){
+                switch (activeButton)
+                {
+                case 1: Find(lastinputValue[0]); break;
+                case 2: {hashTable.Delete(lastinputValue[0]); Insert(lastinputValue[0]); this->isPlaying = true; break;}
+                case 3: {hashTable.Insert(lastinputValue[0], ""); Delete(lastinputValue[0]); this->isPlaying = true; break;}
+                case 4:{
+                    if(inputValue.size() == 2){
+                        hashTable.Insert(lastinputValue[0], "");
+                        hashTable.Delete(lastinputValue[1]);
+                        this->isPlaying = true;
+                        UpdateKey(lastinputValue[0], lastinputValue[1]);
+                    }
+                    break;
+                }
+                }
+            }
+        }
+        else if(this->isPlaying){
+            this->isPlaying = false;
+        }
+        else if(!this->isPlaying){
+            this->isPlaying = true;
+        }
+    }
+    
+
+    if(this->isPlaying){
+        if (presentations.DrawPresentation()) {
+            speed = speedSlider.val * 0.02f;
+            this->isPlaying = false;
+            this->isDrawTable = true;
+            this->isSkipBack = false;
+            inputPanel.setEnd();
+            if (deleting) {
+                hashTable.Delete(key);
+                deleting = false;
+            }
+        }
+        else{
+            inputPanel.deEnd();
+            this->isPlaying = true;
+        }
+    }
+
+    if(this->isCreate){
+        inputPanel.deEnd();
+        inputPanel.setPause();
+    }
+    if(this->isPlaying){
+        inputPanel.dePause();
+    }
+    else if(!this->isPlaying){
+        inputPanel.setPause();
+    }
+
     speedSlider.Update();
     
     if(isPlaying == true){
@@ -256,11 +334,11 @@ void HashTableVisualization::Update(){
             speed = 1.0f;
         }
         else{
-            speed = speedSlider.val;
+            speed = speedSlider.val * 0.02f;
         }
     }
     else{
-        speed = speedSlider.val;
+        speed = speedSlider.val * 0.02f;
         if(inputPanel.isNextPressed()){
             this->isRewindingStep = true;
             currentStateIndex++;
@@ -312,19 +390,7 @@ void HashTableVisualization::DrawHashTable() {
     int startX = 200;
     int startY = 150;
 
-    if (presentations.DrawPresentation()) {
-        speed = speedSlider.val;
-        this->isPlaying = false;
-        this->isDrawTable = true;
-        this->isSkipBack = false;
-        if (deleting) {
-            hashTable.Delete(key);
-            deleting = false;
-        }
-    }
-    else{
-        this->isPlaying = true;
-    }
+    
 
     if(!isRewindingStep){
         if(isDrawTable){
