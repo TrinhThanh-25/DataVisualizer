@@ -200,6 +200,11 @@ void SLLState::update(){
             SLL.createList(input);
     }
     else if(IsKeyPressed(KEY_ENTER)||Apply.isPressed()){
+        moveEnd();
+        clearState();
+        SLL.resetHighlight();
+        code.clearCode();
+        code.clearHighlight();
         indexText=indexBox.GetText();
         valueText=valueBox.GetText();
         createText=createBox.GetText();

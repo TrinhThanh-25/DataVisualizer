@@ -152,6 +152,11 @@ void AVLState::update(){
             AVLTree.createTree(input);
     }
     else if(IsKeyPressed(KEY_ENTER)||Apply.isPressed()){
+        moveEnd();
+        clearState();
+        AVLTree.resetHighlight();
+        code.clearCode();
+        code.clearHighlight();
         AVLTree.resetHighlight();
         valueText=valueBox.GetText();
         createText=createBox.GetText();
