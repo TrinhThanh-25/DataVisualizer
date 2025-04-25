@@ -148,7 +148,8 @@ void AVLState::update(){
     }
     else if(LoadFile.isPressed()){
         std::string input=panel.loadFileContent();
-        AVLTree.createTree(input);
+        if(checkText(input))
+            AVLTree.createTree(input);
     }
     else if(IsKeyPressed(KEY_ENTER)||Apply.isPressed()){
         AVLTree.resetHighlight();
@@ -157,10 +158,10 @@ void AVLState::update(){
         initialValueText=initialValue.GetText();
         finalValueText=finalValue.GetText();
         resetBox();
-        if(panel.isCreateUsed()){
+        if(panel.isCreateUsed()&&checkText(createText)){
             AVLTree.createTree(createText);
         }
-        else if(panel.isAddUsed()&&valueText!=""){
+        else if(panel.isAddUsed()&&valueText!=""&&checkText(valueText)){
             isStateSaved=false;
             clearState();
             isPlaying=true;
@@ -168,7 +169,7 @@ void AVLState::update(){
             code.setCode(Insert);
             animationState=AVLAnimationMode::INSERT;
         }
-        else if(panel.isRemoveUsed()&&valueText!=""&&AVLTree.root){
+        else if(panel.isRemoveUsed()&&valueText!=""&&AVLTree.root&&checkText(valueText)){
             isStateSaved=false;
             clearState();
             isPlaying=true;
@@ -176,7 +177,7 @@ void AVLState::update(){
             code.setCode(Remove);
             animationState=AVLAnimationMode::REMOVE;
         }
-        else if(panel.isSearchUsed()&&valueText!=""&&AVLTree.root){
+        else if(panel.isSearchUsed()&&valueText!=""&&AVLTree.root&&checkText(valueText)){
             isStateSaved=false;
             clearState();
             isPlaying=true;
@@ -184,7 +185,7 @@ void AVLState::update(){
             code.setCode(Search);
             animationState=AVLAnimationMode::SEARCH;
         }
-        else if(panel.isUpdateUsed()&&initialValueText!=""&&finalValueText!=""&&AVLTree.root){
+        else if(panel.isUpdateUsed()&&initialValueText!=""&&finalValueText!=""&&AVLTree.root&&checkText(initialValueText)&&checkText(finalValueText)){
             isStateSaved=false;
             clearState();
             isPlaying=true;
@@ -1182,4 +1183,14 @@ void AVLState::clearState(){
         }
     }
     stateList.clear();
+}
+
+bool AVLState::checkText(const std::string& text){
+    for (int i=0;i<text.size();i++){
+        if((text[i]>='0'&&text[i]<='9')||text[i]==','||text[i]==';'||text[i]==' '){
+            continue;
+        }
+        else return false;
+    }
+    return true;
 }

@@ -54,6 +54,9 @@ class SLLState{
         void applyState();
         void clearState();
 
+        
+        bool checkText(const std::string& text);
+
     private:
         SinglyLinkedList SLL;
         SLLPanel panel;

@@ -195,7 +195,9 @@ void ShortestPathState::update(){
         ST.deDirected();
     }
     else if(isLoadFile&&panel.isCreateUsed()){
-        ST.createGraph(panel.loadFileContent());
+        std::string input = panel.loadFileContent();
+        if(checkText(input))
+            ST.createGraph(input);
         if(Weighted.isSelected())
             ST.setWeighted();
         else if(Unweighted.isSelected())
@@ -213,11 +215,11 @@ void ShortestPathState::update(){
         edgesText=EdgesBox.GetText();
         resetBox();
         ST.deltaTime=0;
-        if(panel.isCreateUsed()&&nodesText!=""&&edgesText!=""&&std::stoi(nodesText)>0&&std::stoi(edgesText)>0&&std::stoi(edgesText)<=(std::stoi(nodesText)*(std::stoi(nodesText)-1)/2)){
+        if(panel.isCreateUsed()&&checkText(nodesText)&&checkText(edgesText)&&nodesText!=""&&edgesText!=""&&std::stoi(nodesText)>0&&std::stoi(edgesText)>0&&std::stoi(edgesText)<=(std::stoi(nodesText)*(std::stoi(nodesText)-1)/2)){
             ST.createGraph(std::stoi(nodesText),std::stoi(edgesText));
             animationState=STAnimationMode::CREATE;
         }
-        else if(!ST.graph.empty()&&panel.isDijkstraUsed()&&startNodeText!=""&&std::stoi(startNodeText)<ST.graph.size()&&std::stoi(startNodeText)>=0){
+        else if(!ST.graph.empty()&&panel.isDijkstraUsed()&&checkText(startNodeText)&&startNodeText!=""&&std::stoi(startNodeText)<ST.graph.size()&&std::stoi(startNodeText)>=0){
             isStateSaved=false;
             clearState();
             isPlaying=true;
@@ -804,4 +806,14 @@ void ShortestPathState::clearState() {
         }
     }
     stateList.clear();
+}
+
+bool ShortestPathState::checkText(const std::string& text){
+    for (int i=0;i<text.size();i++){
+        if((text[i]>='0'&&text[i]<='9')||text[i]==','||text[i]==';'||text[i]==' '){
+            continue;
+        }
+        else return false;
+    }
+    return true;
 }

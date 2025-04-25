@@ -42,6 +42,8 @@ class ShortestPathState{
         void applyState();
         void clearState();
 
+        bool checkText(const std::string& text);
+
     private:
         ShortestPath ST;
         STPanel panel;

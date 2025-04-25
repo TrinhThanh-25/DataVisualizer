@@ -48,6 +48,8 @@ class AVLState {
         void applyState();
         void clearState();
         
+        bool checkText(const std::string& text);
+        
     private:
         AVL AVLTree;
         AVLPanel panel;

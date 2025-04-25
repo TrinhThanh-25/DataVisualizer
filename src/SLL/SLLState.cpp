@@ -196,17 +196,18 @@ void SLLState::update(){
     }
     else if(LoadFile.isPressed()){
         std::string input=panel.loadFileContent();
-        SLL.createList(input);
+        if(checkText(input))
+            SLL.createList(input);
     }
     else if(IsKeyPressed(KEY_ENTER)||Apply.isPressed()){
         indexText=indexBox.GetText();
         valueText=valueBox.GetText();
         createText=createBox.GetText();
         resetBox();
-        if(panel.isCreateUsed()){
+        if(panel.isCreateUsed()&&checkText(createText)){
             SLL.createList(createText);
         }
-        else if(panel.isAddUsed()&&indexText!=""&&valueText!=""){
+        else if(panel.isAddUsed()&&indexText!=""&&valueText!=""&&checkText(indexText)&&checkText(valueText)){
             isStateSaved=false;
             clearState();
             isPlaying=true;
@@ -220,7 +221,7 @@ void SLLState::update(){
                 animationState=SLLAnimationMode::INSERT_MID;
             }
         }
-        else if(panel.isRemoveUsed()&&indexText!=""){
+        else if(panel.isRemoveUsed()&&indexText!=""&&checkText(indexText)){
             isStateSaved=false;
             clearState();
             isPlaying=true;
@@ -234,7 +235,7 @@ void SLLState::update(){
                 animationState=SLLAnimationMode::REMOVE_MID;
             }
         }
-        else if(panel.isUpdateUsed()&&valueText!=""){
+        else if(panel.isUpdateUsed()&&valueText!=""&&checkText(valueText)){
             isStateSaved=false;
             clearState();
             isPlaying=true;
@@ -242,7 +243,7 @@ void SLLState::update(){
             code.setCode(updateCode);
             animationState=SLLAnimationMode::UPDATE;
         }
-        else if(panel.isSearchUsed()&&valueText!=""){
+        else if(panel.isSearchUsed()&&valueText!=""&&checkText(valueText)){
             isStateSaved=false;
             clearState();
             isPlaying=true;
@@ -1451,4 +1452,14 @@ void SLLState::clearState() {
         }
     }
     stateList.clear();
+}
+
+bool SLLState::checkText(const std::string& text){
+    for (int i=0;i<text.size();i++){
+        if((text[i]>='0'&&text[i]<='9')||text[i]==','||text[i]==';'||text[i]==' '){
+            continue;
+        }
+        else return false;
+    }
+    return true;
 }
