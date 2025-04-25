@@ -810,7 +810,7 @@ void ShortestPathState::clearState() {
 
 bool ShortestPathState::checkText(const std::string& text){
     for (int i=0;i<text.size();i++){
-        if((text[i]>='0'&&text[i]<='9')||text[i]==','||text[i]==';'||text[i]==' '){
+        if((text[i]>='0'&&text[i]<='9')||text[i]==','||text[i]==';'||text[i]==' '||text[i]=='\n'){
             continue;
         }
         else return false;
