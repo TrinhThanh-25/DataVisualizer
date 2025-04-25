@@ -12,6 +12,7 @@ public:
     ~HashTable();
 
     void Insert(int key, const std::string& value);
+    void insert(int key);
     void Delete(int key);
     bool Find(int key) const;
     void InitTable(int size, int numofKey); // Hàm khởi tạo HashTable với dữ liệu ngẫu nhiên

@@ -70,7 +70,7 @@ void HashTableVisualization::Insert(int key) {
     std::cout<<"Co co"<<std::endl;
     Node* newNode = hashTable.getTable(key % hashTable.GetSize());
     while (newNode && newNode->data != key) newNode = newNode->next;
-    presentations.clear();
+    //presentations.clear();
     presentations.InsertNodeAnimation(key, newNode);
     // isInserting = false;
     // inputBox.isAppear = false;
@@ -178,6 +178,7 @@ void HashTableVisualization::Update(){
                     if (!fileValues[0].empty()) {
                         int key = fileValues[0][0];
                         this->isCreate = false;
+                        presentations.clear();
                         Find(key);
                     }
                     break;
@@ -187,6 +188,7 @@ void HashTableVisualization::Update(){
                         int key = fileValues[0][0];
                         this->isCreate = false;
                         std::cout<<"Co insert file"<<key<<std::endl;
+                        presentations.clear();
                         Insert(key);
                     }
                     break;
@@ -195,6 +197,7 @@ void HashTableVisualization::Update(){
                     if (!fileValues[0].empty()) {
                         int key = fileValues[0][0];
                         this->isCreate = false;
+                        presentations.clear();
                         Delete(key);
                     }
                     break;
@@ -218,12 +221,13 @@ void HashTableVisualization::Update(){
                     this->isCreate = true;
                     break;
                 }
-                case 1: this->isCreate = false; Find(inputValue[0]); break;
-                case 2: this->isCreate = false; Insert(inputValue[0]); break;
-                case 3: this->isCreate = false; Delete(inputValue[0]); break;
+                case 1: this->isCreate = false; presentations.clear(); Find(inputValue[0]); break;
+                case 2: this->isCreate = false; presentations.clear(); Insert(inputValue[0]); break;
+                case 3: this->isCreate = false; presentations.clear(); Delete(inputValue[0]); break;
                 case 4:{
                     if(inputValue.size() == 2){
                         this->isCreate = false;
+                        presentations.clear();
                         UpdateKey(inputValue[0], inputValue[1]);
                     }
                     break;
@@ -273,8 +277,8 @@ void HashTableVisualization::Update(){
                 case 2: {hashTable.Delete(lastinputValue[0]); Insert(lastinputValue[0]); this->isPlaying = true; break;}
                 case 3: {hashTable.Insert(lastinputValue[0], ""); Delete(lastinputValue[0]); this->isPlaying = true; break;}
                 case 4:{
-                    if(inputValue.size() == 2){
-                        hashTable.Insert(lastinputValue[0], "");
+                    if(lastinputValue.size() == 2){
+                        hashTable.insert(lastinputValue[0]);
                         hashTable.Delete(lastinputValue[1]);
                         this->isPlaying = true;
                         UpdateKey(lastinputValue[0], lastinputValue[1]);

@@ -72,6 +72,30 @@ void HashTable::Insert(int key, const std::string& value) {
     std::cout<<"INsert key: "<<key<<" thanh cong!!"<<std::endl;
 }
 
+void HashTable::insert(int key){
+    int index = key % size;
+    Node* newNode = new Node(key, {static_cast<float>(index * 50 + 200), 200.0f}, {15, 15});
+    newNode->finalPosition = newNode->position;
+    newNode->finalSize = newNode->size;
+    newNode->colorFinal = newNode->colorNormal;
+    newNode->isVisual = true;
+    
+    if (table[index] == nullptr) {
+        table[index] = newNode;
+    } else {
+        Node* current = table[index];
+        while (current->next != nullptr) {
+            if(current->data == key) return;
+            current = current->next;
+        }
+        current->next = newNode;
+        newNode->position = {current->position.x, current->position.y + 50};
+        newNode->finalPosition = newNode->position;
+        current->arrowPos = newNode->position;
+    }
+    std::cout<<"INsert key: "<<key<<" thanh cong!!"<<std::endl;
+}
+
 void HashTable::Delete(int key) {
     int index = key % size;
     Node* current = table[index];
