@@ -219,7 +219,7 @@ void GraphVisual::Update() {
     if(IsKeyPressed(KEY_SPACE)){
         this->isPlaying = !this->isPlaying;
     }
-    if(inputPanel.isPlayPressed()){
+    if(inputPanel.isPlayPressed() && !graph->vertices.empty()){
         if(!historyState.empty() && this->isPlaying == false && presentation.currentStep == 0 && lastactiveButton != 0){
             switch (lastactiveButton)
             {
@@ -277,7 +277,9 @@ bool GraphVisual::isBackPressed(){
         this->currentPresentationIndex = -1;
         this->currentStateIndex = 0;
         this->isRewinding = false;
-        this->isPlaying = true;
+        //this->isPlaying = false;
+        codeBlock.clearCode();
+        codeBlock.clearHighlight();
     }
     return res;
 }

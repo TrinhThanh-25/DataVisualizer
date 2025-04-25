@@ -35,8 +35,10 @@ void CodeBlock::setHighlight(std::vector<int> ID){
 }
 
 void CodeBlock::drawHighlight(){
-    for (int x : highlightID){
-        DrawRectangle(codeBlockRec.x,codeBlockRec.y+x*(codeBlockFontSize+5)+2.5f,codeBlockRec.width,codeBlockFontSize+5.0f,codeBlockHighlightColor);
+    if(!code.empty()){
+        for (int x : highlightID){
+            DrawRectangle(codeBlockRec.x,codeBlockRec.y+x*(codeBlockFontSize+5)+2.5f,codeBlockRec.width,codeBlockFontSize+5.0f,codeBlockHighlightColor);
+        }
     }
 }
 

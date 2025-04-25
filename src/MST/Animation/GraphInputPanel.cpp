@@ -343,6 +343,10 @@ void GraphInputPanel::ResetInputState() {
     fileValues2D.clear();
     numVertices = 0;
     numEdges = 0;
+    this->showInputBox = false;
+    this->isShowLoadFile = false;
+    this->isShowPrim = false;
+    this->setPause();
 }
 
 bool GraphInputPanel::IsCreateGraphPressed() {

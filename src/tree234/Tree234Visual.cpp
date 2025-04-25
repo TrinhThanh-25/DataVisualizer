@@ -171,7 +171,7 @@ void Tree234Visual::Update() {
         treePresentation.current = this->root;
         this->isPlaying = true;
     }
-    if(inputPanel.isPlayPressed()){
+    if(inputPanel.isPlayPressed() && !root->keys.empty()){
         if(!historyState.empty() && this->isPlaying == false && treePresentation.currentStep == 0 && !isCreate){
             historyState.pop_back();
             historyCodeBlock.pop_back();
@@ -354,6 +354,9 @@ bool Tree234Visual::isBackPressed() {
         currentPresentationIndex = -1;
         currentStateIndex = 0;
         isRewinding = false;
+        codeBlock.clearCode();
+        codeBlock.clearHighlight();
+        //inputPanel.reset();
     }
     return res;
 }
