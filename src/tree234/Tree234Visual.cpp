@@ -62,6 +62,7 @@ void Tree234Visual::Update() {
                     std::vector<int> keys = fileValues[1];
                     root = root->CreateTreewithKey(keys);
                     isCreate = true;
+                    this->isPlaying = true;
                     root->calculateCoordinate({800, 100});
                     treePresentation.clear();
                     treePresentation.CreateTree(size);

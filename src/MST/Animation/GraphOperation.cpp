@@ -114,12 +114,12 @@ bool GraphOperation::DrawMoveNode(){
         curAnimation += speed;
         vertice->position.x = vertice->position.x * (1.0f - curAnimation) + vertice->finalPos.x * curAnimation;
         vertice->position.y = vertice->position.y * (1.0f - curAnimation) + vertice->finalPos.y * curAnimation;
-        std::cout << "Animating node " << vertice->data << ":( "<<vertice->position.x<<"; "<<vertice->position.y<<"), fin: ("<<vertice->finalPos.x<<"; "<<vertice->finalPos.y<<") " <<", curAnimation: " << curAnimation << std::endl;
+        //std::cout << "Animating node " << vertice->data << ":( "<<vertice->position.x<<"; "<<vertice->position.y<<"), fin: ("<<vertice->finalPos.x<<"; "<<vertice->finalPos.y<<") " <<", curAnimation: " << curAnimation << std::endl;
         return false;
     }
     curAnimation = 0.0f;
     vertice->position = vertice->finalPos;
-    std::cout << "node " << vertice->data << ": (" << vertice->position.x << "; " << vertice->position.y << ")" << std::endl;
+    //std::cout << "node " << vertice->data << ": (" << vertice->position.x << "; " << vertice->position.y << ")" << std::endl;
     return true;
 }
 

@@ -47,6 +47,7 @@ void GraphVisual::KruskalAlgo(){
 }
 
 void GraphVisual::PrimAlgo(int source){
+    if(source >= graph->vertices.size()) return;
     presentation.Prim(source);
 }
 
@@ -100,7 +101,7 @@ void GraphVisual::Update() {
             if (inputPanel.showInputBox && inputPanel.randomButton.isPressed()) {
                 std::random_device rd; // Tạo seed
                 std::mt19937 gen(rd()); // Engine ngẫu nhiên
-                std::uniform_int_distribution<> dis(3, 13); // Khoảng [1, 100]
+                std::uniform_int_distribution<> dis(3, 9); 
 
                 int inputValue = dis(gen); // Random một số
 
@@ -280,6 +281,9 @@ bool GraphVisual::isBackPressed(){
         //this->isPlaying = false;
         codeBlock.clearCode();
         codeBlock.clearHighlight();
+        inputPanel.isShowLoadFile = false;
+        inputPanel.isShowPrim = false;
+        inputPanel.showInputBox = false;
     }
     return res;
 }
