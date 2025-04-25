@@ -96,7 +96,7 @@ void HashTable::insert(int key){
     std::cout<<"INsert key: "<<key<<" thanh cong!!"<<std::endl;
 }
 
-void HashTable::Delete(int key) {
+void HashTable::  Delete(int key) {
     int index = key % size;
     Node* current = table[index];
     Node* prev = nullptr;

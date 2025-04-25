@@ -157,9 +157,10 @@ void HashTableVisualization::Update(){
         fileValues = inputPanel.GetFileValues2D();
         activeButton = inputPanel.GetActiveButtonIndex();
         std::cout<<fileValues[0][0]<<std::endl;
-        this->isPlaying = true;
+        //this->isPlaying = true;
 
         if (!fileValues.empty()) {
+            this->isPlaying = true;
             switch (activeButton) {
                 case 0: { // Create/Init
                     if (fileValues.size() >= 2 && !fileValues[0].empty()) {
@@ -214,16 +215,17 @@ void HashTableVisualization::Update(){
         if (inputValue.empty() == false && activeButton != -1 ) {
             lastactiveButton = activeButton;
             lastinputValue = inputValue;
-            this->isPlaying = true;
+            //this->isPlaying = true;
             switch (activeButton) {
                 case 0: {
                     Init(inputValue[0], 2 * inputValue[0]);
+                    this->isPlaying = true;
                     this->isCreate = true;
                     break;
                 }
-                case 1: this->isCreate = false; presentations.clear(); Find(inputValue[0]); break;
-                case 2: this->isCreate = false; presentations.clear(); Insert(inputValue[0]); break;
-                case 3: this->isCreate = false; presentations.clear(); Delete(inputValue[0]); break;
+                case 1: this->isCreate = false; presentations.clear(); Find(inputValue[0]); this->isPlaying = true; break;
+                case 2: this->isCreate = false; presentations.clear(); Insert(inputValue[0]); this->isPlaying = true; break;
+                case 3: this->isCreate = false; presentations.clear(); Delete(inputValue[0]); this->isPlaying = true; break;
                 case 4:{
                     if(inputValue.size() == 2){
                         this->isCreate = false;
@@ -237,45 +239,47 @@ void HashTableVisualization::Update(){
         }
     }
 
-    if(IsKeyPressed(KEY_R)){
-        historyState.pop_back();
-        historyCode.pop_back();
-        currentPresentationIndex = historyState.size() - 1;
-        currentStateIndex = historyState.back().size() - 1;
-        if(isfile == false){
-            switch (activeButton)
-            {
-            case 1: Find(lastinputValue[0]); break;
-            case 2: {hashTable.Delete(lastinputValue[0]); Insert(lastinputValue[0]); this->isPlaying = true; break;}
-            case 3: {hashTable.Insert(lastinputValue[0], ""); Delete(lastinputValue[0]); this->isPlaying = true; break;}
-            case 4:{
-                if(inputValue.size() == 2){
-                    hashTable.Insert(lastinputValue[0], "");
-                    hashTable.Delete(lastinputValue[1]);
-                    this->isPlaying = true;
-                    UpdateKey(lastinputValue[0], lastinputValue[1]);
-                }
-                break;
-            }
-            }
-        }
-    }
-    if(IsKeyPressed(KEY_SPACE)){
-        this->isPlaying = !this->isPlaying;
-    }
+    // if(IsKeyPressed(KEY_R)){
+    //     historyState.pop_back();
+    //     historyCode.pop_back();
+    //     currentPresentationIndex = historyState.size() - 1;
+    //     currentStateIndex = historyState.back().size() - 1;
+    //     if(isfile == false){
+    //         switch (activeButton)
+    //         {
+    //         case 1: Find(lastinputValue[0]); break;
+    //         case 2: {hashTable.Delete(lastinputValue[0]); Insert(lastinputValue[0]); this->isPlaying = true; break;}
+    //         case 3: {hashTable.Insert(lastinputValue[0], ""); Delete(lastinputValue[0]); this->isPlaying = true; break;}
+    //         case 4:{
+    //             if(inputValue.size() == 2){
+    //                 hashTable.Insert(lastinputValue[0], "");
+    //                 hashTable.Delete(lastinputValue[1]);
+    //                 this->isPlaying = true;
+    //                 UpdateKey(lastinputValue[0], lastinputValue[1]);
+    //             }
+    //             break;
+    //         }
+    //         }
+    //     }
+    // }
+    // if(IsKeyPressed(KEY_SPACE)){
+    //     this->isPlaying = !this->isPlaying;
+    // }
 
     if(inputPanel.isPlayPressed()){
         if(!historyState.empty() && this->isPlaying == false && presentations.currentStep >= presentations.SetAnimations.size() && !this->isCreate){
             historyState.pop_back();
             historyCode.pop_back();
             currentPresentationIndex = historyState.size() - 1;
+            
             currentStateIndex = historyState.back().size() - 1;
+            std::cout<<historyState.size()<<std::endl;
             if(isfile == false){
                 switch (activeButton)
                 {
                 case 1: Find(lastinputValue[0]); break;
                 case 2: {hashTable.Delete(lastinputValue[0]); Insert(lastinputValue[0]); this->isPlaying = true; break;}
-                case 3: {hashTable.Insert(lastinputValue[0], ""); Delete(lastinputValue[0]); this->isPlaying = true; break;}
+                case 3: {hashTable.insert(lastinputValue[0]); Delete(lastinputValue[0]); this->isPlaying = true; break;}
                 case 4:{
                     if(lastinputValue.size() == 2){
                         hashTable.insert(lastinputValue[0]);
@@ -523,8 +527,11 @@ bool HashTableVisualization::isBackPressed() {
         currentPresentationIndex = -1;
         currentStateIndex = 0;
         historyState.clear();
+        historyCode.clear();
         hashTable = HashTable(MAX_TABLE_SIZE);
-        
+        hashcodeBlock.clearCode();
+        hashcodeBlock.clearHighlight();
+        //this->isPlaying = true;
     }
     return res;
 }

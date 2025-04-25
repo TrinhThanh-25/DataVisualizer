@@ -210,16 +210,16 @@ void GraphVisual::Update() {
         }
     }
 
-    if(IsKeyPressed(KEY_R)){
-        switch (lastactiveButton)
-        {
-        case 1: {graph->ResetGraphColor(); presentation.SetOperations.clear(); KruskalAlgo(); this->isPlaying = true; break;}
-        case 2: {graph->ResetGraphColor(); presentation.SetOperations.clear(); if(lastinputValue != -1) PrimAlgo(lastinputValue); this->isPlaying = true;}
-        }
-    }
-    if(IsKeyPressed(KEY_SPACE)){
-        this->isPlaying = !this->isPlaying;
-    }
+    // if(IsKeyPressed(KEY_R)){
+    //     switch (lastactiveButton)
+    //     {
+    //     case 1: {graph->ResetGraphColor(); presentation.SetOperations.clear(); KruskalAlgo(); this->isPlaying = true; break;}
+    //     case 2: {graph->ResetGraphColor(); presentation.SetOperations.clear(); if(lastinputValue != -1) PrimAlgo(lastinputValue); this->isPlaying = true;}
+    //     }
+    // }
+    // if(IsKeyPressed(KEY_SPACE)){
+    //     this->isPlaying = !this->isPlaying;
+    // }
     if(inputPanel.isPlayPressed() && !graph->vertices.empty()){
         if(!historyState.empty() && this->isPlaying == false && presentation.currentStep == 0 && lastactiveButton != 0){
             switch (lastactiveButton)

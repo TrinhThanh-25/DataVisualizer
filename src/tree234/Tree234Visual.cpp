@@ -162,16 +162,16 @@ void Tree234Visual::Update() {
 
     
 
-    if(IsKeyPressed(KEY_R)){
-        historyState.pop_back();
-        historyCodeBlock.pop_back();
-        this->root = new TreeNode(historyState.back().back());
-        currentPresentationIndex = historyState.size() - 1;
-        currentStateIndex = historyState.back().size() - 1;
-        treePresentation.tree = this->root;
-        treePresentation.current = this->root;
-        this->isPlaying = true;
-    }
+    // if(IsKeyPressed(KEY_R)){
+    //     historyState.pop_back();
+    //     historyCodeBlock.pop_back();
+    //     this->root = new TreeNode(historyState.back().back());
+    //     currentPresentationIndex = historyState.size() - 1;
+    //     currentStateIndex = historyState.back().size() - 1;
+    //     treePresentation.tree = this->root;
+    //     treePresentation.current = this->root;
+    //     this->isPlaying = true;
+    // }
     if(inputPanel.isPlayPressed() && !root->keys.empty()){
         if(!historyState.empty() && this->isPlaying == false && treePresentation.currentStep == 0 && !isCreate){
             historyState.pop_back();
@@ -355,6 +355,8 @@ bool Tree234Visual::isBackPressed() {
         currentPresentationIndex = -1;
         currentStateIndex = 0;
         isRewinding = false;
+        historyState.clear();
+        historyCodeBlock.clear();
         codeBlock.clearCode();
         codeBlock.clearHighlight();
         //inputPanel.reset();

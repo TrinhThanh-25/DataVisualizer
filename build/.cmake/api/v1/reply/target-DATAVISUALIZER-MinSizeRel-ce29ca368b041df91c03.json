@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "Release/DATAVISUALIZER.exe"
+			"path" : "MinSizeRel/DATAVISUALIZER.exe"
 		},
 		{
-			"path" : "Release/DATAVISUALIZER.pdb"
+			"path" : "MinSizeRel/DATAVISUALIZER.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -68,7 +68,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "/DWIN32 /D_WINDOWS /GR /EHsc /FS /O2 /Ob2 /DNDEBUG -MD"
+					"fragment" : "/DWIN32 /D_WINDOWS /GR /EHsc /FS /O1 /Ob1 /DNDEBUG -MD"
 				}
 			],
 			"defines" : 
@@ -154,7 +154,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "/DWIN32 /D_WINDOWS /O2 /Ob2 /DNDEBUG -MD"
+					"fragment" : "/DWIN32 /D_WINDOWS /O1 /Ob1 /DNDEBUG -MD"
 				}
 			],
 			"defines" : 
@@ -194,11 +194,11 @@
 	[
 		{
 			"backtrace" : 2,
-			"id" : "glfw::@a896dd99b4a5c6eab3d9"
+			"id" : "raylib::@7d429ebd5d102775094d"
 		},
 		{
 			"backtrace" : 2,
-			"id" : "raylib::@7d429ebd5d102775094d"
+			"id" : "glfw::@a896dd99b4a5c6eab3d9"
 		},
 		{
 			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"
@@ -210,7 +210,7 @@
 		"commandFragments" : 
 		[
 			{
-				"fragment" : "/DWIN32 /D_WINDOWS /GR /EHsc /FS /O2 /Ob2 /DNDEBUG -MD",
+				"fragment" : "/DWIN32 /D_WINDOWS /GR /EHsc /FS /O1 /Ob1 /DNDEBUG -MD",
 				"role" : "flags"
 			},
 			{
@@ -219,7 +219,7 @@
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "raylib\\raylib\\Release\\raylib.lib",
+				"fragment" : "raylib\\raylib\\MinSizeRel\\raylib.lib",
 				"role" : "libraries"
 			},
 			{
