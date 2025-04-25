@@ -14,6 +14,7 @@ public:
     std::vector<SetofOperation> SetOperations;
     int currentStep;
     std::vector<std::vector<TreeNode*>>& historyState;
+    std::vector<std::vector<int>> & historyCodeBlock;
     int& currentPresentationIndex;
     int& currentStateIndex;
     bool isFinished = false;
@@ -23,7 +24,7 @@ public:
     bool isSplit = false;
 
     TreePresentation(float& speed, TreeNode*& tree,
-                     std::vector<std::vector<TreeNode*>>& historyState, 
+                     std::vector<std::vector<TreeNode*>>& historyState, std::vector<std::vector<int>> & historyCodeBlock,
                      int& currentPresentationIndex, int& currentStateIndex, CodeBlock & codeBlock);
 
    // ~TreePresentation();

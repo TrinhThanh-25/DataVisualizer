@@ -19,6 +19,8 @@ class CodeBlock{
         void drawHighlight();
         void clearHighlight();
 
+        int getBackHighlightID();
+
         CodeBlock clone() const;
     private:
         std::string code;

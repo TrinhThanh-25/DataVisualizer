@@ -1,8 +1,9 @@
 #include "MST/Animation/GraphPresentation.h"
 
 GraphPresentation::GraphPresentation(float & speed, Graph * graph,
-                                        std::vector<std::vector<Graph*>>& historyState, int& currentPresentationIndex, int&currentStateIndex)
-                                        :speed(speed), graph(graph), currentStep(0), currentPresentationIndex(currentPresentationIndex), currentStateIndex(currentStateIndex), historyState(historyState) {
+                                        std::vector<std::vector<Graph*>>& historyState, std::vector<std::vector<int>> &historyCode, CodeBlock & codeBlock, int& currentPresentationIndex, int&currentStateIndex)
+                                        :speed(speed), graph(graph), currentStep(0), currentPresentationIndex(currentPresentationIndex), currentStateIndex(currentStateIndex), historyState(historyState), codeBlock(codeBlock), historyCode
+                                        (historyCode) {
     parent.resize(3, 0);
     rank.resize(3, 0);
 }
@@ -14,9 +15,10 @@ void GraphPresentation::CreateGraph(int numofNode){
     GraphSetofOperation movetoFin(speed);
     for(int i = 0; i < graph->vertices.size(); i++){
         //std::cout<<"toi day"<<std::endl;
-        GraphOperation move(speed, graph->vertices[i]);
+        GraphOperation move(speed, graph->vertices[i], codeBlock);
         move.type = GraphOperation::MOVE_NODE;
         movetoFin.AddOperation(move);
+        std::cout<<"Trong animation: POSITION node "<<i<<": ("<<graph->vertices[i]->finalPos.x<<"; "<<graph->vertices[i]->finalPos.y<<")"<<std::endl;
     }
     this->SetOperations.push_back(movetoFin);
     return;
@@ -58,6 +60,8 @@ bool GraphPresentation::unionSets(int x, int y) {
 void GraphPresentation::Kruskal() {
     if (graph == nullptr || graph->vertices.empty()) return;
 
+    codeBlock.clearCode();
+    codeBlock.setCode(KruskalCode);
     // Khởi tạo Disjoint Set
     int numVertices = graph->vertices.size();
     initDisjointSet(numVertices);
@@ -78,15 +82,15 @@ void GraphPresentation::Kruskal() {
 
         // Animation: Làm sáng cạnh đang xét
         GraphSetofOperation highlightEdge(speed);
-        GraphOperation highlightEdgeOp(speed, edge);
+        GraphOperation highlightEdgeOp(speed, edge, codeBlock);
         highlightEdgeOp.type = GraphOperation::FLUR_EDGE;
         highlightEdge.AddOperation(highlightEdgeOp);
 
         // Animation: Làm sáng hai node liên quan
-        GraphOperation highlightNode1(speed, node1);
+        GraphOperation highlightNode1(speed, node1, codeBlock);
         highlightNode1.type = GraphOperation::CHOSEN_NODE;
         highlightEdge.AddOperation(highlightNode1);
-        GraphOperation highlightNode2(speed, node2);
+        GraphOperation highlightNode2(speed, node2, codeBlock);
         highlightNode2.type = GraphOperation::CHOSEN_NODE;
         highlightEdge.AddOperation(highlightNode2);
 
@@ -96,15 +100,15 @@ void GraphPresentation::Kruskal() {
         if (unionSets(u, v)) {
             // Không tạo chu trình, thêm cạnh vào MST
             GraphSetofOperation addEdgeToMST(speed);
-            GraphOperation addEdgeOp(speed, edge);
+            GraphOperation addEdgeOp(speed, edge, codeBlock);
             addEdgeOp.type = GraphOperation::CHOSEN_EDGE;
             addEdgeToMST.AddOperation(addEdgeOp);
 
             // Đổi màu node về bình thường
-            GraphOperation resetNode1(speed, node1);
+            GraphOperation resetNode1(speed, node1, codeBlock);
             resetNode1.type = GraphOperation::NORMAL_NODE;
             addEdgeToMST.AddOperation(resetNode1);
-            GraphOperation resetNode2(speed, node2);
+            GraphOperation resetNode2(speed, node2, codeBlock);
             resetNode2.type = GraphOperation::NORMAL_NODE;
             addEdgeToMST.AddOperation(resetNode2);
 
@@ -112,15 +116,15 @@ void GraphPresentation::Kruskal() {
         } else {
             // Tạo chu trình, bỏ qua cạnh này
             GraphSetofOperation rejectEdge(speed);
-            GraphOperation rejectEdgeOp(speed, edge);
+            GraphOperation rejectEdgeOp(speed, edge, codeBlock);
             rejectEdgeOp.type = GraphOperation::NORMAL_EDGE;
             rejectEdge.AddOperation(rejectEdgeOp);
 
             // Đổi màu node về bình thường
-            GraphOperation resetNode1(speed, node1);
+            GraphOperation resetNode1(speed, node1, codeBlock);
             resetNode1.type = GraphOperation::NORMAL_NODE;
             rejectEdge.AddOperation(resetNode1);
-            GraphOperation resetNode2(speed, node2);
+            GraphOperation resetNode2(speed, node2, codeBlock);
             resetNode2.type = GraphOperation::NORMAL_NODE;
             rejectEdge.AddOperation(resetNode2);
 
@@ -129,7 +133,7 @@ void GraphPresentation::Kruskal() {
     }
     GraphSetofOperation highlightAll(speed);
     for(int i = 0; i < graph->vertices.size(); i++){
-        GraphOperation hl(speed, graph->vertices[i]);
+        GraphOperation hl(speed, graph->vertices[i], codeBlock);
         hl.type = GraphOperation::CHOSEN_NODE;
         highlightAll.AddOperation(hl);
     }
@@ -138,10 +142,13 @@ void GraphPresentation::Kruskal() {
     std::cout << "Kruskal completed with " << SetOperations.size() << " animation steps.\n";
 }
 
-void GraphPresentation::Prim() {
+void GraphPresentation::Prim(int source) {
     if (graph == nullptr || graph->vertices.empty()) return;
 
     if(!SetOperations.empty()) SetOperations.clear();
+
+    codeBlock.clearCode();
+    codeBlock.setCode(PrimCode);
 
     int numVertices = graph->vertices.size();
     std::vector<bool> inMST(numVertices, false); // Đánh dấu node đã thuộc MST
@@ -157,7 +164,7 @@ void GraphPresentation::Prim() {
     std::priority_queue<EdgePair, std::vector<EdgePair>, std::greater<EdgePair>> pq;
 
     // Bắt đầu từ node 0
-    int startVertex = 1;
+    int startVertex = source;
     key[startVertex] = 1;
 
     // Thêm node bắt đầu vào danh sách
@@ -211,7 +218,7 @@ void GraphPresentation::Prim() {
     // Tạo kịch bản animation dựa trên thứ tự node và cạnh
     // Bước 1: Highlight node bắt đầu
     GraphSetofOperation startStep(speed);
-    GraphOperation highlightStartNode(speed, graph->vertices[startVertex]);
+    GraphOperation highlightStartNode(speed, graph->vertices[startVertex], codeBlock);
     highlightStartNode.type = GraphOperation::CHOSEN_NODE;
     startStep.AddOperation(highlightStartNode);
     SetOperations.push_back(startStep);
@@ -223,14 +230,14 @@ void GraphPresentation::Prim() {
 
         // Animation: Highlight node
         GraphSetofOperation highlightNodeStep(speed);
-        GraphOperation highlightNodeOp(speed, graph->vertices[nodeIdx]);
+        GraphOperation highlightNodeOp(speed, graph->vertices[nodeIdx], codeBlock);
         highlightNodeOp.type = GraphOperation::CHOSEN_NODE;
         highlightNodeStep.AddOperation(highlightNodeOp);
         SetOperations.push_back(highlightNodeStep);
 
         // Animation: Highlight cạnh
         GraphSetofOperation highlightEdgeStep(speed);
-        GraphOperation highlightEdgeOp(speed, edge);
+        GraphOperation highlightEdgeOp(speed, edge, codeBlock);
         highlightEdgeOp.type = GraphOperation::CHOSEN_EDGE;
         highlightEdgeStep.AddOperation(highlightEdgeOp);
         SetOperations.push_back(highlightEdgeStep);
@@ -240,7 +247,7 @@ void GraphPresentation::Prim() {
     GraphSetofOperation highlightAll(speed);
     for (int i = 0; i < numVertices; i++) {
         if (inMST[i]) {
-            GraphOperation hl(speed, graph->vertices[i]);
+            GraphOperation hl(speed, graph->vertices[i], codeBlock);
             hl.type = GraphOperation::CHOSEN_NODE;
             highlightAll.AddOperation(hl);
         }
@@ -252,9 +259,9 @@ void GraphPresentation::Prim() {
 
 bool GraphPresentation::DrawPresentation(){
     if(SetOperations.empty() || currentStep >= SetOperations.size()){
-        // if(SetOperations.empty()){
-        //     //std::cout<<"empty mat roi.\n";
-        // }
+        if(SetOperations.empty()){
+            //std::cout<<"empty mat roi.\n";
+        }
         return true;
     }
 
@@ -266,10 +273,16 @@ bool GraphPresentation::DrawPresentation(){
             std::vector<Graph*> tempVec = {};
             tempVec.push_back(temp);
             historyState.push_back(tempVec);
+
+            std::vector<int> temp = {};
+            temp.push_back(codeBlock.getBackHighlightID());
+            historyCode.push_back(temp);
+
             currentStateIndex = historyState.back().size() - 1;
         }
         else{
             historyState.back().push_back(temp);
+            historyCode.back().push_back(codeBlock.getBackHighlightID());
             currentStateIndex = historyState.back().size() - 1;
         }
         currentStep++;
@@ -277,7 +290,7 @@ bool GraphPresentation::DrawPresentation(){
     if(currentStep >= SetOperations.size()){
         std::cout<<"Presentation Size: "<<SetOperations.size()<<std::endl;
         currentStep = 0;
-        this->SetOperations.clear();
+        //this->SetOperations.clear();
         return true;
     }
     return false;

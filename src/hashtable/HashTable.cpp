@@ -122,6 +122,7 @@ bool HashTable::Find(int key) const {
 }   
 
 void HashTable::InitTable(int size, int numofKey) {
+    if(numofKey < 0) return;
     srand(static_cast<unsigned>(time(nullptr))); // Khởi tạo seed ngẫu nhiên
 
     // Xóa dữ liệu cũ và khởi tạo lại bảng

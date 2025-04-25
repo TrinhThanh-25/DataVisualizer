@@ -22,7 +22,8 @@ public:
         MERGE_TO_CHILDREN = 10,
         REMOVE_LEAF = 11,
         CHANGE_KEY = 12,
-        RESET_CURRENT = 13
+        RESET_CURRENT = 13,
+        IS_FOUND = 14
     };
     float& speed;
     TreeNode*& node;
@@ -33,6 +34,7 @@ public:
 
     CodeBlock & codeBlock;
     bool& isSplit;
+    bool isFound = false;
     
     Operation(float& speed, TreeNode*& node, TreeNode *& root, bool& isSplit, CodeBlock & codeBlock);
     void SetKey(int key) { this->key = key; this->newKey = key; }
@@ -52,6 +54,7 @@ public:
     bool RemoveLeaf();
     bool Changekey();
     bool ResetCur();
+    bool IsFound();
 
     bool DrawOperation();
 };

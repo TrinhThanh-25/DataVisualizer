@@ -1,2 +1,0 @@
-D:/test/Programming/project/DataVisualizer/build/CMakeFiles/CMakeScratch/TryCompile-qd8d1a/CMakeFiles/cmTC_83bfe.dir
-D:/test/Programming/project/DataVisualizer/build/CMakeFiles/CMakeScratch/TryCompile-qd8d1a/CMakeFiles/ALL_BUILD.dir

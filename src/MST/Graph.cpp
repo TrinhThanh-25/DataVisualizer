@@ -78,6 +78,8 @@ Graph::Graph(Graph* graph) {
         newEdge->colorFlur = oldEdge->colorFlur;
         newEdge->currentColor = oldEdge->currentColor;
         newEdge->thick = oldEdge->thick;
+        newEdge->isChosen = oldEdge->isChosen;
+        newEdge->isFlur = oldEdge->isFlur;
 
         // Thêm cạnh vào danh sách cạnh của các đỉnh mới
         newNode1->edge.push_back(newEdge);
@@ -213,6 +215,14 @@ void Graph::CreateGraphFromInput(std::vector<std::vector<int>> input) {
         return;
     }
 
+    for(int i = 0; i < input.size(); i++){
+        for(int j = 0; j < input[i].size(); j++){
+            std::cout<<input[i][j]<<" ";
+        }
+        std::cout<<std::endl;
+    }
+    std::cout<<std::endl;
+
     // --- Tạo các nút theo vòng tròn ---
     float radius = 300.0f;
     Vector2 center = {800.0f, 450.0f};
@@ -231,6 +241,7 @@ void Graph::CreateGraphFromInput(std::vector<std::vector<int>> input) {
         node->colorCurrent = BLACK;
         node->colorChosen = YELLOW;
         vertices.push_back(node);
+        std::cout<<"Position node "<<node->data<<":("<<node->finalPos.x<<"; "<<node->finalPos.y<<")"<<std::endl;
     }
 
     // --- Tạo các cạnh từ input ---
@@ -274,7 +285,7 @@ void Graph::CreateGraphFromInput(std::vector<std::vector<int>> input) {
         edges.push_back(edge);
     }
 
-    std::cout << "Đã tạo " << vertices.size() << " đỉnh và " << edges.size() << " cạnh.\n";
+    std::cout << "Tao tao " << vertices.size() << " dinh dinh và " << edges.size() << " canhcanh.\n";
 }
 
 void Graph::DrawGraph() {
@@ -284,6 +295,17 @@ void Graph::DrawGraph() {
     }
     for (GraphNode* node : vertices) {
         if (node) node->DrawNode();
+    }
+}
+
+void Graph::ResetGraphColor(){
+    for(int i = 0; i < vertices.size(); i++){
+        vertices[i]->isVisited = false;
+    }
+
+    for(int i = 0; i < edges.size(); i++){
+        edges[i]->isChosen = false;
+        edges[i]->isFlur = false;
     }
 }
 

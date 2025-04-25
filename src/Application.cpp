@@ -14,7 +14,7 @@ void Application::run(){
         BeginDrawing();
         ClearBackground(backgroundColor);
         colorThemeManager.update();
-        if(SLL.isBackPressed()||AVL.isBackPressed()||ST.isBackPressed()||hashTable.isBackPressed()||TREE234.isBackPressed()){
+        if(SLL.isBackPressed()||AVL.isBackPressed()||ST.isBackPressed()||hashTable.isBackPressed()||TREE234.isBackPressed() || graph.isBackPressed()){
             menuState.currentSelection=MenuSelection::NONE;
         }
         switch (menuState.currentSelection) {

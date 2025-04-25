@@ -5,8 +5,8 @@
 HashTableVisualization::HashTableVisualization(const bool& isLightMode, float &speed)
                                     : hashTable(MAX_TABLE_SIZE), 
                                     isLightMode(isLightMode), speed(speed), 
-                                    historyState({}),currentPresentationIndex(-1), currentStateIndex(0),
-                                    presentations(speed, hashTable, historyState, currentPresentationIndex, currentStateIndex),
+                                    historyState({}), historyCode({}), hashcodeBlock(), currentPresentationIndex(-1), currentStateIndex(0),
+                                    presentations(speed, hashTable, historyState, historyCode, hashcodeBlock, currentPresentationIndex, currentStateIndex),
                                     inputPanel(), 
                                     speedSlider(0.01f, 0.1f, 0.05f, 10), playbackControl({900, 600}, 200, 10,speed) {
 
@@ -65,15 +65,19 @@ void HashTableVisualization::Init(int size, int numofKey) {
 }
 
 void HashTableVisualization::Insert(int key) {
+    if(key == -1) return;
     hashTable.Insert(key, "");
     Node* newNode = hashTable.getTable(key % hashTable.GetSize());
     while (newNode && newNode->data != key) newNode = newNode->next;
+    presentations.clear();
     presentations.InsertNodeAnimation(key, newNode);
     // isInserting = false;
     // inputBox.isAppear = false;
 }
 
 void HashTableVisualization::Delete(int key) {
+    if(key == -1) return;
+    presentations.clear();
     presentations.DeleteNodeAnimation(key);
     this->key = key; // Lưu key để dùng trong DrawHashTable
     deleting = true; // Đánh dấu để xóa sau khi animation hoàn tất
@@ -82,6 +86,7 @@ void HashTableVisualization::Delete(int key) {
 }
 
 bool HashTableVisualization::Find(int key) {
+    if(key == -1) return false;
     presentations.FindNodeAnimation(key);
     //isFinding = false;
     //inputBox.isAppear = false;
@@ -89,6 +94,7 @@ bool HashTableVisualization::Find(int key) {
 }
 
 void HashTableVisualization::UpdateKey(int initValue, int finalValue){
+    if(initValue == -1 || finalValue == -1) return;
     if(!hashTable.Find(initValue)){
         return;
     }
@@ -127,11 +133,26 @@ void HashTableVisualization::Update(){
     inputPanel.update();
     //playbackControl.UpdateHash(currentPresentationIndex, currentStateIndex, historyState);
     
+
+    if(inputPanel.IsRandomPressed()){
+        std::random_device rd; // Tạo seed
+        std::mt19937 gen(rd()); // Engine ngẫu nhiên
+        std::uniform_int_distribution<> dis(10, 20); // Khoảng [1, 100]
+
+        int randomNum = dis(gen); // Random một số
+
+        Init(randomNum, 2 * randomNum);
+    }
     
      // Kiểm tra nếu người dùng chọn file để nhập dữ liệu
+     int activeButton;
+     bool isfile = false;
+     std::vector<int> inputValue;
+     std::vector<std::vector<int>> fileValues;
      if (inputPanel.IsLoadFilePressed()) {
-        auto fileValues = inputPanel.GetFileValues2D();
-        int activeButton = inputPanel.GetActiveButtonIndex();
+        isfile = true;
+        fileValues = inputPanel.GetFileValues2D();
+        activeButton = inputPanel.GetActiveButtonIndex();
         std::cout<<fileValues[0][0]<<std::endl;
 
         if (!fileValues.empty()) {
@@ -174,21 +195,53 @@ void HashTableVisualization::Update(){
             inputPanel.ResetInputState();
         }
     } else {
+        isfile = false;
         // Xử lý dữ liệu từ ô nhập liệu (nếu không dùng file)
-        int inputValue = inputPanel.GetInputText();
-        int activeButton = inputPanel.GetActiveButtonIndex();
+        inputValue = inputPanel.GetInputText();
+        activeButton = inputPanel.GetActiveButtonIndex();
 
-        if (inputValue != -1 && activeButton != -1) {
+        if (inputValue.empty() == false && activeButton != -1 ) {
+            lastactiveButton = activeButton;
+            lastinputValue = inputValue;
             switch (activeButton) {
                 case 0: {
-                    Init(inputValue, 2 * inputValue);
+                    Init(inputValue[0], 2 * inputValue[0]);
                     break;
                 }
-                case 1: Find(inputValue); break;
-                case 2: Insert(inputValue); break;
-                case 3: Delete(inputValue); break;
+                case 1: Find(inputValue[0]); break;
+                case 2: Insert(inputValue[0]); break;
+                case 3: Delete(inputValue[0]); break;
+                case 4:{
+                    if(inputValue.size() == 2){
+                        UpdateKey(inputValue[0], inputValue[1]);
+                    }
+                    break;
+                }
             }
             inputPanel.ResetInputState();
+        }
+    }
+
+    if(IsKeyPressed(KEY_R)){
+        historyState.pop_back();
+        historyCode.pop_back();
+        currentPresentationIndex = historyState.size() - 1;
+        currentStateIndex = historyState.back().size() - 1;
+        if(isfile == false){
+            switch (activeButton)
+            {
+            case 1: Find(lastinputValue[0]); break;
+            case 2: hashTable.Delete(lastinputValue[0]); Insert(lastinputValue[0]); break;
+            case 3: hashTable.Insert(lastinputValue[0], ""); Delete(lastinputValue[0]); break;
+            case 4:{
+                if(inputValue.size() == 2){
+                    hashTable.Insert(lastinputValue[0], "");
+                    hashTable.Delete(lastinputValue[1]);
+                    UpdateKey(lastinputValue[0], lastinputValue[1]);
+                }
+                break;
+            }
+            }
         }
     }
     speedSlider.Update();
@@ -250,9 +303,7 @@ void HashTableVisualization::Update(){
         }
         
     }
-    if(IsKeyPressed(KEY_U)){
-        UpdateKey(10, 13);
-    }
+
 }
 
 
@@ -303,6 +354,7 @@ void HashTableVisualization::DrawHashTable() {
     else{
         //std::cout<<currentPresentationIndex<<" "<<currentStateIndex;
         // if(currentPresentationIndex == 0) return;
+        codeBlock.setHighlight({historyCode[currentPresentationIndex][currentStateIndex]});
         for(int i = 0; i < historyState[currentPresentationIndex][currentStateIndex].size; i++){
 
             Vector2 bucketPos = {(float)(startX + i * bucketSpacing), (float)startY};
@@ -324,7 +376,7 @@ void HashTableVisualization::DrawHashTable() {
             }
         }
     }
-    
+    hashcodeBlock.draw();
 }
 
 void HashTableVisualization::DrawNode(Node* node) {

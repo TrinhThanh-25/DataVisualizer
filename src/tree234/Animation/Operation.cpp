@@ -82,6 +82,7 @@ bool Operation::DrawMoveNode(){
 
 bool Operation::DrawMovetoFinalPos(){
     if(!root) return true;
+    codeBlock.setHighlight({codeBlock.getBackHighlightID()});
     if(curAnimation < 1.0f){
         curAnimation += speed;
         MoveAllNodeToFinalPos(root, curAnimation);
@@ -94,6 +95,7 @@ bool Operation::DrawMovetoFinalPos(){
 
 void Operation::MoveAllNodeToFinalPos(TreeNode * treeRoot, float curAnimation){
     if(!treeRoot) return;
+    
     treeRoot->position.x = treeRoot->position.x * (1.0f - curAnimation) + treeRoot->finalPosition.x * curAnimation;
     treeRoot->position.y = treeRoot->position.y * (1.0f - curAnimation) + treeRoot->finalPosition.y * curAnimation;
     for(int i = 0; i < treeRoot->children.size(); i++){
@@ -155,6 +157,8 @@ bool Operation::MergeKeyToParent() {
     if(!node || node->parent == nullptr) return true;
     if(node->keys.size() > 1) return true;
     if(!isSplit) return true;
+
+    codeBlock.setHighlight({1});
 
 
     TreeNode * parent = node->parent;
@@ -442,6 +446,17 @@ bool Operation::Changekey(){
     return true;
 }
 
+bool Operation::IsFound(){
+    //codeBlock.setHighlight({4});
+    if(isFound){
+        codeBlock.setHighlight({3});
+    }
+    else{
+        codeBlock.setHighlight({4});
+    }
+    return true;
+}
+
 bool Operation::ResetCur(){
     if(!node) return true;
     this->node = this->root;
@@ -464,6 +479,7 @@ bool Operation::DrawOperation() {
         case REMOVE_LEAF: return RemoveLeaf();
         case CHANGE_KEY: return Changekey();
         case RESET_CURRENT: return ResetCur();
+        case IS_FOUND: return IsFound();
         default: return true;
     }
 }

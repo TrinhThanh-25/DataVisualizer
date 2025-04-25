@@ -18,3 +18,14 @@ const std::string removeCode = {
     "KEY NOT FOUND\n"
 };
 
+const std::string findCode = {
+    "Node * curr = root\n"
+    "\n"
+    "if(!curr->leaf && notfound) MovetoChild\n"
+    "FOUND\n"
+    "NOT FOUND\n"
+};
+
+const std::string createCode = {
+    
+};

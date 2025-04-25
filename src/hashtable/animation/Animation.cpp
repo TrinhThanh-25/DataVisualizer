@@ -1,15 +1,16 @@
 #include "HashTable/animation/Animation.h"
 
-Animation::Animation(float& speed, Node* node)
-    : speed(speed), node(node), curAnimation(0.0f), type(0) {}
+Animation::Animation(float& speed, Node* node, CodeBlock & codeBlock)
+    : speed(speed), node(node), curAnimation(0.0f), type(0), codeBlock(codeBlock) {}
 
-Animation::Animation(float& speed, Node* node, Vector2 target)
-    : speed(speed), node(node), target(target), curAnimation(0.0f), type(0) {}
+Animation::Animation(float& speed, Node* node, Vector2 target, CodeBlock & codeBlock)
+    : speed(speed), node(node), target(target), curAnimation(0.0f), type(0), codeBlock(codeBlock){}
 
 bool Animation::DrawChosenNode() {
     if (!node) return true;
     node->isVisual = true;
     if (curAnimation < 1.0f) {
+        codeBlock.setHighlight({2});
         curAnimation += speed;
         // node->colorCurrent = node->colorChosen;
         // node->textCurColor = node->textChosenColor;
@@ -46,6 +47,7 @@ bool Animation::DrawFadeInNode() {
     node->isVisual = true;
 
     if (curAnimation < 1.0f) {
+        codeBlock.setHighlight({3});
         curAnimation += speed;
         node->colorCurrent = Fade(nodeColor, curAnimation);
 
@@ -66,6 +68,7 @@ bool Animation::DrawFadeInNode() {
 bool Animation::DrawFadeOutNode() {
     if (!node) return true;
     if (curAnimation < 1.0f) {
+        codeBlock.setHighlight({3});
         curAnimation += speed;
         node->colorCurrent = Fade(nodeColor, 1.0f - curAnimation);
         return false;
@@ -117,6 +120,10 @@ bool Animation::DrawDeleteEdgeAnimation() {
     }
     return true;
 }
+bool Animation::SetCode(){
+    codeBlock.setHighlight({code});
+    return true;
+}
 
 bool Animation::DrawAnimation() {
     if (!node) return true;
@@ -128,6 +135,7 @@ bool Animation::DrawAnimation() {
         case 5: return DrawNormalNode();
         case 6: return DrawInsertEdgeAnimation();
         case 7: return DrawDeleteEdgeAnimation();
+        case 8: return SetCode();
         default: return true;
     }
 }

@@ -10,13 +10,13 @@ Color GraphOperation::LerpColor(Color start, Color end, float t) {
     return result;
 }
 
-GraphOperation::GraphOperation(float & speed, GraphNode * vertice): speed(speed), vertice(vertice){
+GraphOperation::GraphOperation(float & speed, GraphNode * vertice, CodeBlock & codeBlock): speed(speed), vertice(vertice), codeBlock(codeBlock){
     this->curAnimation = 0.0f;
     this->type = CHOSEN_EDGE; // Có thể cần sửa nếu bạn muốn type khác cho vertice
     this->edge = nullptr;
 }
 
-GraphOperation::GraphOperation(float & speed, GraphEdge * edge): speed(speed), edge(edge){
+GraphOperation::GraphOperation(float & speed, GraphEdge * edge, CodeBlock & codeBlock): speed(speed), edge(edge), codeBlock(codeBlock){
     this->curAnimation = 0.0f;
     this->type = CHOSEN_EDGE;
     this->vertice = nullptr;
@@ -30,6 +30,7 @@ bool GraphOperation::DrawNormalNode(){
         Color targetColor = vertice->colorNormal;
         vertice->colorCurrent = LerpColor(vertice->colorCurrent, targetColor, curAnimation);
         curAnimation += speed;
+        vertice->isVisited = false;
         return false; // Animation chưa hoàn tất
     } else {
         vertice->colorCurrent = vertice->colorNormal;
@@ -45,6 +46,7 @@ bool GraphOperation::DrawChosenNode(){
         Color targetColor = vertice->colorChosen;
         vertice->colorCurrent = LerpColor(vertice->colorCurrent, targetColor, curAnimation);
         curAnimation += speed;
+        vertice->isVisited = true;
         return false; // Animation chưa hoàn tất
     } else {
         vertice->colorCurrent = vertice->colorChosen;
@@ -56,10 +58,13 @@ bool GraphOperation::DrawNormalEdge(){
     if (edge == nullptr) return true;
 
     if (curAnimation < 1.0f) {
+        codeBlock.setHighlight({5});
         // Nội suy màu từ màu hiện tại sang màu bình thường
         Color targetColor = edge->colorNormal;
         edge->currentColor = LerpColor(edge->currentColor, targetColor, curAnimation);
         curAnimation += speed;
+        edge->isChosen = false;
+        edge->isFlur = false;
         return false; // Animation chưa hoàn tất
     } else {
         edge->currentColor = edge->colorNormal;
@@ -71,10 +76,13 @@ bool GraphOperation::DrawFlurEdge(){
     if (edge == nullptr) return true;
 
     if (curAnimation < 1.0f) {
+        codeBlock.setHighlight({3});
         // Nội suy màu từ màu hiện tại sang màu mờ
         Color targetColor = edge->colorFlur;
         edge->currentColor = LerpColor(edge->currentColor, targetColor, curAnimation);
         curAnimation += speed;
+        edge->isFlur = true;
+        edge->isChosen = false;
         return false; // Animation chưa hoàn tất
     } else {
         edge->currentColor = edge->colorFlur;
@@ -86,10 +94,12 @@ bool GraphOperation::DrawChosenEdge(){
     if (edge == nullptr) return true;
 
     if (curAnimation < 1.0f) {
+        codeBlock.setHighlight({4});
         // Nội suy màu từ màu hiện tại sang màu được chọn
         Color targetColor = edge->colorChosen;
         edge->currentColor = LerpColor(edge->currentColor, targetColor, curAnimation);
         curAnimation += speed;
+        edge->isChosen = true;
         return false; // Animation chưa hoàn tất
     } else {
         edge->currentColor = edge->colorChosen;
@@ -104,7 +114,7 @@ bool GraphOperation::DrawMoveNode(){
         curAnimation += speed;
         vertice->position.x = vertice->position.x * (1.0f - curAnimation) + vertice->finalPos.x * curAnimation;
         vertice->position.y = vertice->position.y * (1.0f - curAnimation) + vertice->finalPos.y * curAnimation;
-        std::cout << "Animating node " << vertice->data << ", curAnimation: " << curAnimation << std::endl;
+        std::cout << "Animating node " << vertice->data << ":( "<<vertice->position.x<<"; "<<vertice->position.y<<"), fin: ("<<vertice->finalPos.x<<"; "<<vertice->finalPos.y<<") " <<", curAnimation: " << curAnimation << std::endl;
         return false;
     }
     curAnimation = 0.0f;

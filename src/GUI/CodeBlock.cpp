@@ -44,6 +44,11 @@ void CodeBlock::clearHighlight(){
     highlightID.clear();
 }
 
+int CodeBlock::getBackHighlightID(){
+    if(highlightID.empty()) return -1;
+    return highlightID.back();
+}
+
 CodeBlock CodeBlock::clone() const {
     CodeBlock newCodeBlock;
     newCodeBlock.code = this->code;

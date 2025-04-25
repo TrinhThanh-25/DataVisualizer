@@ -27,6 +27,7 @@ colorNormal(node->colorNormal), colorChosen(node->colorChosen), textChosenColor(
         keys = {};
         children = {};
         isLeaf = true;
+        isChosen = false;
         position = {0, 0};
         finalPosition = {0, 0};
         arrowPos = {};
@@ -47,6 +48,7 @@ colorNormal(node->colorNormal), colorChosen(node->colorChosen), textChosenColor(
     // Sao chép thuộc tính của node
     keys = node->keys;
     isLeaf = node->isLeaf;
+    isChosen = node->isChosen;
     position = node->position;
     finalPosition = node->finalPosition;
     arrowPos = node->arrowPos;

@@ -4,6 +4,7 @@
 #include "GUI/Slider.h"
 #include "MST/Animation/GraphPresentation.h"
 #include "MST/Animation/GraphInputPanel.h"
+#include "GUI/CodeBlock.h"
 
 
 class GraphVisual {
@@ -18,10 +19,14 @@ public:
     bool isRewinding = false;
 
     std::vector<std::vector<Graph*>> historyState;
+    std::vector<std::vector<int>> historyCode;
     int currentPresentationIndex;
     int currentStateIndex;
-
+    CodeBlock codeBlock;
     GraphInputPanel inputPanel;
+
+    int lastactiveButton = -1;
+    int lastinputValue = -1;
 
     Slider speedSlider;
 
@@ -32,6 +37,7 @@ public:
     void CreateGraph(int numOfVer);
     void CreateGraphFromInput(std::vector<std::vector<int>> input);
     void KruskalAlgo();
-    void PrimAlgo();
+    void PrimAlgo(int source);
     void Update();
+    bool isBackPressed();
 };

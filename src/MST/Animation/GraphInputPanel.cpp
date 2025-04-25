@@ -39,78 +39,77 @@ GraphInputPanel::GraphInputPanel()
     Apply.setPosition({250, 750});
 }
 
-void GraphInputPanel::ProcessKeyboardInput(const char* input) {
-    fileValues2D.clear();
-    numVertices = 0;
-    numEdges = 0;
+std::vector<std::vector<int>> GraphInputPanel::ProcessKeyboardInput(const char* input) {
+    std::vector<std::vector<int>> result;
 
-    if (!input || std::string(input).empty()) {
-        std::cout << "No input provided." << std::endl;
-        return;
+    if (!input || input[0] == '\0') {
+        std::cout << "Error: Empty keyboard input\n";
+        return result;
     }
 
+    // Chuyển chuỗi input thành vector các số
+    std::vector<int> numbers;
     std::stringstream ss(input);
+    int num;
+    while (ss >> num) {
+        numbers.push_back(num);
+    }
 
-    // Đọc số đỉnh và số cạnh
-    try {
-        ss >> numVertices >> numEdges;
-        if (numVertices <= 0 || numEdges < 0) {
-            std::cout << "Invalid number of vertices or edges." << std::endl;
-            numVertices = 0;
-            numEdges = 0;
-            return;
+    // Kiểm tra số lượng phần tử tối thiểu
+    if (numbers.size() < 2) {
+        std::cout << "Error: Input must contain at least num_vertices and num_edges\n";
+        return result;
+    }
+
+    // Lấy num_vertices và num_edges
+    int num_vertices = numbers[0];
+    int num_edges = numbers[1];
+
+    // Kiểm tra hợp lệ
+    if (num_vertices <= 0 || num_edges < 0 || num_edges > num_vertices * (num_vertices - 1) / 2) {
+        std::cout << "Error: Invalid num_vertices or num_edges\n";
+        return result;
+    }
+
+    // Kiểm tra số lượng phần tử đủ cho các cạnh
+    if (numbers.size() != 2 + num_edges * 3) {
+        std::cout << "Error: Incorrect number of edge data (expected " << (2 + num_edges * 3) << " numbers, got " << numbers.size() << ")\n";
+        return result;
+    }
+
+    // Thêm dòng đầu: [num_vertices, num_edges]
+    result.push_back({num_vertices, num_edges});
+
+    // Thêm các cạnh: [v1, v2, weight]
+    for (int i = 0; i < num_edges; ++i) {
+        int idx = 2 + i * 3;
+        int v1 = numbers[idx];
+        int v2 = numbers[idx + 1];
+        int weight = numbers[idx + 2];
+
+        // Kiểm tra hợp lệ
+        if (v1 < 0 || v1 > num_vertices || v2 < 0 || v2 > num_vertices || v1 == v2) {
+            std::cout << "Error: Invalid vertices for edge " << i + 1 << ": v1=" << v1 << ", v2=" << v2 << "\n";
+            return {};
         }
-        // Lưu số đỉnh và số cạnh vào fileValues2D
-        fileValues2D.push_back({numVertices, numEdges});
-    } catch (...) {
-        std::cout << "Error reading number of vertices or edges." << std::endl;
-        return;
-    }
-
-    // Đọc các cạnh
-    int actualEdges = 0;
-    while (ss.good() && actualEdges < numEdges) {
-        int v1, v2, weight;
-        try {
-            ss >> v1 >> v2 >> weight;
-            if (ss.fail()) {
-                std::cout << "Error: Edge data not in correct format (v1 v2 weight)." << std::endl;
-                break;
-            }
-            if (v1 <= 0 || v2 <= 0 || v1 > numVertices || v2 > numVertices) {
-                std::cout << "Invalid vertex in edge: " << v1 << " " << v2 << std::endl;
-                continue;
-            }
-            fileValues2D.push_back({v1, v2, weight});
-            actualEdges++;
-        } catch (...) {
-            std::cout << "Error reading edge data." << std::endl;
-            break;
+        if (weight <= 0) {
+            std::cout << "Error: Invalid weight for edge " << i + 1 << ": weight=" << weight << "\n";
+            return {};
         }
+
+        result.push_back({v1, v2, weight});
     }
 
-    // Kiểm tra số cạnh thực tế
-    if (actualEdges != numEdges) {
-        std::cout << "Number of edges entered (" << actualEdges << ") does not match specified (" << numEdges << ")." << std::endl;
-        numEdges = actualEdges;
-        fileValues2D[0][1] = numEdges; // Cập nhật numEdges trong fileValues2D
-    }
-
-    if (fileValues2D.size() <= 1) { // Chỉ có dòng numVertices, numEdges, không có cạnh
-        if (numEdges > 0) {
-            std::cout << "No valid edges were provided." << std::endl;
-            fileValues2D.clear();
-            numVertices = 0;
-            numEdges = 0;
+    // In result để debug
+    std::cout << "Processed keyboard input, fileValues2D:\n";
+    for (const auto& row : result) {
+        for (int val : row) {
+            std::cout << val << " ";
         }
-        return;
+        std::cout << std::endl;
     }
 
-    std::cout << "Graph input successfully processed:" << std::endl;
-    std::cout << "Vertices: " << numVertices << ", Edges: " << numEdges << std::endl;
-    for (size_t i = 1; i < fileValues2D.size(); ++i) {
-        std::cout << fileValues2D[i][0] << " " << fileValues2D[i][1] << " " << fileValues2D[i][2] << std::endl;
-    }
+    return result;
 }
 
 void GraphInputPanel::update() {
@@ -151,7 +150,7 @@ void GraphInputPanel::update() {
     }
 
     if (activeButtonIndex == 0) {
-        inputBox.Update();
+        //inputBox.Update();
         randomButton.update();
         loadFileButton.update();
         keyboardButton.update();
@@ -168,14 +167,34 @@ void GraphInputPanel::update() {
             }
         }
 
-        if (keyboardButton.isPressed()) {
+        else if (keyboardButton.isPressed()) {
             // Mở hộp thoại nhập liệu văn bản
             const char* input = tinyfd_inputBox(
                 "Graph Input",
-                "Enter graph (format: num_vertices num_edges\\n v1 v2 weight\\n ...):",
+                "Enter graph (format: num_vertices num_edges v1 v2 weight1 ...):",
                 ""
             );
-            ProcessKeyboardInput(input);
+            if (input) {
+                std::cout << "Raw keyboard input: " << input << std::endl;
+                fileValues2D = ProcessKeyboardInput(input);
+                if (!fileValues2D.empty()) {
+                    std::cout << "Processed keyboard input, fileValues2D:\n";
+                    for (const auto& row : fileValues2D) {
+                        for (int val : row) {
+                            std::cout << val << " ";
+                        }
+                        std::cout << std::endl;
+                    }
+                    lastInputValue = -1;
+                } else {
+                    std::cout << "Failed to process keyboard input\n";
+                    fileValues2D.clear();
+                }
+            } else {
+                std::cout << "No keyboard input provided\n";
+                fileValues2D.clear();
+            }
+        
         }
     }
     else if(activeButtonIndex == 2){
@@ -195,7 +214,7 @@ void GraphInputPanel::draw() {
 
     // Vẽ ô nhập liệu và các nút liên quan nếu đang hiển thị
     if (showInputBox) {
-        inputBox.Draw();
+        //inputBox.Draw();
         randomButton.drawRectangleRounded(100);
         randomButton.drawOutlineRounded(100, 0, 3);
         randomButton.drawText();
@@ -218,6 +237,24 @@ void GraphInputPanel::draw() {
 
 int GraphInputPanel::GetInputText() {
     if (showInputBox && randomButton.isPressed()) {
+        std::string input = inputBox.GetText();
+        inputBox.clearText(); // Xóa nội dung ô nhập sau khi nhấn "Random"
+        if (input.empty()) {
+            lastInputValue = -1; // Trả về -1 nếu ô nhập rỗng
+        } else {
+            try {
+                size_t pos;
+                lastInputValue = std::stoi(input, &pos);
+                if (pos != input.length() || lastInputValue <= 0) {
+                    lastInputValue = -1; // Trả về -1 nếu không phải số hợp lệ hoặc số đỉnh <= 0
+                }
+            } catch (...) {
+                lastInputValue = -1; // Trả về -1 nếu có lỗi
+            }
+        }
+        return lastInputValue;
+    }
+    if(isShowPrim && Apply.isPressed()){
         std::string input = inputBox.GetText();
         inputBox.clearText(); // Xóa nội dung ô nhập sau khi nhấn "Random"
         if (input.empty()) {
@@ -306,8 +343,6 @@ void GraphInputPanel::ResetInputState() {
     fileValues2D.clear();
     numVertices = 0;
     numEdges = 0;
-    showInputBox = false;
-    isShowLoadFile = false;
 }
 
 bool GraphInputPanel::IsCreateGraphPressed() {
@@ -323,7 +358,7 @@ bool GraphInputPanel::IsLoadFilePressed() {
 }
 
 bool GraphInputPanel::IsKeyboardPressed() {
-    return showInputBox && keyboardButton.isPressed() && !fileValues2D.empty();
+    return showInputBox && !fileValues2D.empty();
 }
 
 bool GraphInputPanel::IsApplyPressed(){

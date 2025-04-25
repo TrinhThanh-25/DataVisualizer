@@ -102,8 +102,11 @@ void AVLState::update(){
             if (!isStateSaved) {
                 code.setCode(Remove);
                 saveRemoveState(std::stoi(initialValueText));
-                code.setCode(Insert);
-                saveInsertState(std::stoi(finalValueText));
+                if(animationState == AVLAnimationMode::UPDATEINS){
+                    code.setCode(Insert);
+                    saveInsertState(std::stoi(finalValueText));
+                }
+                
                 isStateSaved = true;
             }
             animateRemove(std::stoi(initialValueText));

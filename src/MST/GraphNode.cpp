@@ -16,14 +16,26 @@ GraphNode::GraphNode(int data, std::vector<GraphEdge*> edge, Vector2 position)
 void GraphNode::DrawNode() {
     if (this == nullptr) return;
 
-    DrawCircleV(position, size / 2, BLUE);
+    if(this->isVisited){
+        DrawCircleV(position, size / 2, nodeHighlightColor);
 
-    char text[16];
-    snprintf(text, sizeof(text), "%d", data);
-    int fontSize = 20;
-    Vector2 textSize = MeasureTextEx(GetFontDefault(), text, fontSize, 1);
-    Vector2 textPos = { position.x - textSize.x / 2, position.y - textSize.y / 2 };
-    DrawText(text, textPos.x, textPos.y, fontSize, textCur);
+        char text[16];
+        snprintf(text, sizeof(text), "%d", data);
+        int fontSize = 20;
+        Vector2 textSize = MeasureTextEx(GetFontDefault(), text, fontSize, 1);
+        Vector2 textPos = { position.x - textSize.x / 2, position.y - textSize.y / 2 };
+        DrawText(text, textPos.x, textPos.y, fontSize, nodeHighlightTextColor);
+    }
+    else{
+        DrawCircleV(position, size / 2, nodeColor);
+
+        char text[16];
+        snprintf(text, sizeof(text), "%d", data);
+        int fontSize = 20;
+        Vector2 textSize = MeasureTextEx(GetFontDefault(), text, fontSize, 1);
+        Vector2 textPos = { position.x - textSize.x / 2, position.y - textSize.y / 2 };
+        DrawText(text, textPos.x, textPos.y, fontSize, nodeTextColor);
+    }
 }
 
 void GraphNode::UpdatePosition() {
@@ -45,7 +57,7 @@ void GraphNode::UpdatePosition() {
 
     if (mouseReleased) {
         isDragging = false;
-        finalPos = position;
+        //finalPos = position;
         colorCurrent = colorNormal;
     }
 }

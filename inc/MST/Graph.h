@@ -16,6 +16,7 @@ public:
 
     void createGraph(int numOfVer);
     void CreateGraphFromInput(std::vector<std::vector<int>> input);
+    void ResetGraphColor();
     void DrawGraph();
     void Draw();
     void Update();

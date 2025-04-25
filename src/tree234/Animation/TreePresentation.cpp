@@ -1,10 +1,10 @@
 #include <234tree/animation/TreePresentation.h>
 
 TreePresentation::TreePresentation(float& speed, TreeNode*& tree,
-                                  std::vector<std::vector<TreeNode*>>& historyState, 
+                                  std::vector<std::vector<TreeNode*>>& historyState, std::vector<std::vector<int>> &historyCodeBlock, 
                                   int& currentPresentationIndex, int& currentStateIndex, CodeBlock & codeBlock) 
     : speed(speed), tree(tree), codeBlock(codeBlock),
-      historyState(historyState), currentPresentationIndex(currentPresentationIndex), 
+      historyState(historyState), historyCodeBlock(historyCodeBlock), currentPresentationIndex(currentPresentationIndex), 
       currentStateIndex(currentStateIndex), currentStep(0) {
         this->current = this->tree;
       }      
@@ -34,10 +34,14 @@ bool TreePresentation::DrawPresentation() {
                 tempVec.push_back(temp);
                 historyState.push_back(tempVec);
                 currentStateIndex = historyState.back().size() - 1;
+                std::vector<int> temp = {};
+                temp.push_back(codeBlock.getBackHighlightID());
+                historyCodeBlock.push_back(temp);
                 
             }
             else{
                 historyState.back().push_back(temp);
+                historyCodeBlock.back().push_back(codeBlock.getBackHighlightID());
                 currentStateIndex = historyState.back().size() - 1;
             }
         }
@@ -47,7 +51,7 @@ bool TreePresentation::DrawPresentation() {
         currentStep = 0;
         this->current = tree;
         std::cout<<"xong roi"<<std::endl;
-        this->SetOperations.clear();
+        //this->SetOperations.clear();
         //this->isFinished = true;
         return true;
     }
@@ -208,12 +212,15 @@ void TreePresentation::InsertKeyOperation(int key){
 void TreePresentation::FindKeyOperation(int key){
     if(tree == nullptr) return;
     
+
+    codeBlock.clearCode();
+    codeBlock.setCode(findCode);
     TreeNode * curr = tree;
     int count = 0;
     bool isFound = false;
     while(true){
         if(curr->isLeaf) break;
-        count++;
+        
         
         int i = 0;
         for(; i < curr->keys.size(); i++){
@@ -226,8 +233,10 @@ void TreePresentation::FindKeyOperation(int key){
             }
         }
         if(isFound) break;
+        count++;
         curr = curr->children[i];
     }
+
 
     if(isFound){
         for(int i = 0; i < count; i++){
@@ -254,8 +263,32 @@ void TreePresentation::FindKeyOperation(int key){
             opMoveToChild.SetKey(key);
             moveTOchildNode.AddOperation(opMoveToChild);
             this->SetOperations.push_back(moveTOchildNode);
-            return;
+
+            
         }
+
+        SetofOperation highlight(speed);
+        Operation opHL(speed, this->current, this->tree, this->isSplit, codeBlock);
+        opHL.type = Operation::HIGHLIGHT;
+        opHL.SetKey(key);
+        highlight.AddOperation(opHL);
+        this->SetOperations.push_back(highlight);
+
+        //normal
+        SetofOperation normal(speed);
+        Operation opN(speed, this->current, this->tree, this->isSplit, codeBlock);
+        opN.type = Operation::NORMAL;
+        opN.SetKey(key);
+        normal.AddOperation(opN);
+        this->SetOperations.push_back(normal);
+
+        Operation isfound(speed, this->current, this->tree, this->isSplit, codeBlock);
+        isfound.isFound = true;
+        isfound.type = Operation::IS_FOUND;
+        SetofOperation found(speed);
+        found.AddOperation(isfound);
+        this->SetOperations.push_back(found);
+        return;
     }
     else{
         int i = 0;
@@ -308,6 +341,22 @@ void TreePresentation::FindKeyOperation(int key){
             opN.SetKey(key);
             normal.AddOperation(opN);
             this->SetOperations.push_back(normal);
+    }
+    if(isFound){
+        Operation isfound(speed, this->current, this->tree, this->isSplit, codeBlock);
+        isfound.isFound = true;
+        isfound.type = Operation::IS_FOUND;
+        SetofOperation found(speed);
+        found.AddOperation(isfound);
+        this->SetOperations.push_back(found);
+    }
+    else{
+        Operation isfound(speed, this->current, this->tree, this->isSplit, codeBlock);
+        isfound.isFound = false;
+        isfound.type = Operation::IS_FOUND;
+        SetofOperation found(speed);
+        found.AddOperation(isfound);
+        this->SetOperations.push_back(found);
     }
     return;
 }
@@ -531,6 +580,8 @@ void TreePresentation::CreateTree(int numofKey){
     // this->tree = this->tree->CreateTree(numofKey);
     // this->tree->calculateCoordinate({800, 100});
     // std::cout<<"da tao tree roi"<<std::endl;
+
+    if(numofKey < 0) return;
 
     //move to finpos
     SetofOperation moveToFinPos(speed);

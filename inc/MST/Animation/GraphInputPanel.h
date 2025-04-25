@@ -24,7 +24,7 @@ private:
     
     int activeButtonIndex; // Lưu nút nào đang được chọn (-1 nếu không có)
     int lastInputValue; // Lưu số đỉnh đã nhập sau khi nhấn "Random"
-    void ProcessKeyboardInput(const char* input); // Xử lý dữ liệu nhập từ hộp thoại
+    std::vector<std::vector<int>> ProcessKeyboardInput(const char* input); // Xử lý dữ liệu nhập từ hộp thoại
 
 public:
     GraphInputPanel();

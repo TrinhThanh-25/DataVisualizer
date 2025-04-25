@@ -24,8 +24,10 @@ public:
     bool isPlaying = false;
     bool isDrawTree = true;
     bool isSkipBack = false;
+    bool isRestart = false;
 
     std::vector<std::vector<TreeNode*>> historyState;
+    std::vector<std::vector<int>> historyCodeBlock;
     int currentPresentationIndex;
     int currentStateIndex;
 

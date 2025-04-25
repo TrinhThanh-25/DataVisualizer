@@ -48,8 +48,13 @@ private:
     //Slider rewindSlider;
 
     std::vector<std::vector<HashTable>> historyState;
+    std::vector<std::vector<int>> historyCode;
+    CodeBlock hashcodeBlock;
     int currentPresentationIndex;
     int currentStateIndex;
+
+    std::vector<int> lastinputValue = {};
+    int lastactiveButton = -1;
 
     PlaybackControl playbackControl;
 

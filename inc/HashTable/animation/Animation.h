@@ -1,6 +1,7 @@
 #pragma once
 #include "raylib.h"
 #include "../Node.h"
+#include "GUI/CodeBlock.h"
 
 class Animation {
 public:
@@ -9,9 +10,12 @@ public:
     int type;
     float curAnimation;
     Node* node;
+    int code = 0;
 
-    Animation(float &speed, Node* node);
-    Animation(float &speed, Node* node, Vector2 target);
+    CodeBlock & codeBlock;
+
+    Animation(float &speed, Node* node, CodeBlock & codeBlock);
+    Animation(float &speed, Node* node, Vector2 target, CodeBlock & codeBlock);
 
     bool DrawChosenNode();
     bool DrawNormalNode();
@@ -20,5 +24,6 @@ public:
     bool DrawMoveNodeAnimation();
     bool DrawInsertEdgeAnimation();
     bool DrawDeleteEdgeAnimation();
+    bool SetCode();
     bool DrawAnimation();
 };

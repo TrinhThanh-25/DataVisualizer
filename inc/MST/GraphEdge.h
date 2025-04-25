@@ -12,6 +12,8 @@ public:
     Color currentColor, colorNormal, colorChosen, colorFlur;
     
     float thick;
+    bool isChosen = false;
+    bool isFlur = false;
 
     GraphEdge(std::vector<GraphNode*> nodes, int weight);
     ~GraphEdge() = default;

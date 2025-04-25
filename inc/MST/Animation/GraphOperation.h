@@ -4,6 +4,7 @@
 #include "MST/Graph.h"
 #include "MST/GraphEdge.h"
 #include "MST/GraphNode.h"
+#include "GUI/CodeBlock.h"
 
 class GraphOperation{
     public:
@@ -22,8 +23,10 @@ class GraphOperation{
         GraphNode * vertice;
         GraphEdge * edge;
 
-        GraphOperation(float & speed, GraphNode * vertice);
-        GraphOperation(float & speed, GraphEdge * edge);
+        CodeBlock & codeBlock;
+
+        GraphOperation(float & speed, GraphNode * vertice, CodeBlock & codeBlock);
+        GraphOperation(float & speed, GraphEdge * edge, CodeBlock & codeBlock);
 
         Color LerpColor(Color start, Color end, float t);
         

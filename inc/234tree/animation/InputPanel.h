@@ -16,23 +16,22 @@ class InputPanel : public Panel {
 private:
     std::vector<Button> buttons; // Các nút chức năng (Create, Search, Insert, Remove)
     InputBox inputBox; // Ô nhập liệu
-    //InputBox inputBoxFin;
+    InputBox inputBoxFin; //just for update
     Button goButton; // Nút "Go"
-
+    Button random;
     Button inputFileButton;
     std::vector<std::vector<int>> fileValues2D;
     std::vector<std::vector<int>> LoadFile(const std::string & filepath);
     bool showInputBox; // Trạng thái hiển thị của inputBox và nút Go
     bool isShowLoadFile;
-    bool isShowUpdate;
     int activeButtonIndex; // Lưu nút nào đang được chọn để hiển thị inputBox (-1 nếu không có)
-    int lastInputValue; // Lưu giá trị số đã nhập sau khi nhấn "Go"
+    std::vector<int> lastInputValue; // Lưu giá trị số đã nhập sau khi nhấn "Go"
 
 public:
     InputPanel();
     void update() override;
     void draw() override;
-    int GetInputText();
+    std::vector<int> GetInputText();
     int GetActiveButtonIndex() const; // Thêm hàm để lấy activeButtonIndex
     void ResetInputState(); // Thêm hàm để reset trạng thái
     bool IsCreatePressed();
@@ -44,6 +43,7 @@ public:
 
     std::vector<std::vector<int>> GetFileValues2D() const;
     bool IsLoadFilePressed();
+    bool IsRandomPressed();
 };
 
 #endif // INPUTPANEL_H

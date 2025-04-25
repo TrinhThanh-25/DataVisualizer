@@ -1,8 +1,9 @@
 #include "MST/GraphVisual.h"
 #include <raylib.h>
+#include <random>
 
 GraphVisual::GraphVisual(float &speed)
-    : speed(speed), graph(new Graph()), currentPresentationIndex(-1), currentStateIndex(0), historyState({}), presentation(speed, graph, historyState, currentPresentationIndex, currentStateIndex), inputPanel(), speedSlider(0.01f, 0.1f, 0.05f, 100) {
+    : speed(speed), graph(new Graph()), currentPresentationIndex(-1), currentStateIndex(0), historyState({}), historyCode({}), codeBlock(), presentation(speed, graph, historyState, historyCode, codeBlock, currentPresentationIndex, currentStateIndex), inputPanel(), speedSlider(0.01f, 0.1f, 0.05f, 100) {
         inputPanel.setDataName("Min Spanning Tree");
     }
 
@@ -12,20 +13,25 @@ GraphVisual::~GraphVisual() {
 
 void GraphVisual::Draw() {
     inputPanel.draw();
+    codeBlock.draw();
     
-    if(presentation.DrawPresentation()){
-        speed = speedSlider.val;
-        this->isPlaying = false;
-        isDrawGraph = true;
-        isSkipBack = false;
+    if(this->isPlaying){
+        if(presentation.DrawPresentation()){
+            speed = speedSlider.val;
+            this->isPlaying = false;
+            isDrawGraph = true;
+            isSkipBack = false;
+        }
+        else{
+            this->isPlaying = true;
+        }
     }
-    else{
-        this->isPlaying = true;
-    }
+
     speedSlider.Draw();
 
     if (graph) {
         if(this->isRewinding){
+            codeBlock.setHighlight({historyCode[currentPresentationIndex][currentStateIndex]});
             historyState[currentPresentationIndex][currentStateIndex]->Draw();
         }
         else{
@@ -50,21 +56,35 @@ void GraphVisual::KruskalAlgo(){
     presentation.Kruskal();
 }
 
-void GraphVisual::PrimAlgo(){
-    presentation.Prim();
+void GraphVisual::PrimAlgo(int source){
+    presentation.Prim(source);
 }
 
 void GraphVisual::Update() {
     inputPanel.setBackActive();
     inputPanel.update();
     speedSlider.Update();
+
+    if(IsKeyPressed(KEY_SPACE)){
+        this->isPlaying = !this->isPlaying;
+    }
+
+    if(inputPanel.keyboardButton.isPressed()){
+        auto fileValues = inputPanel.GetFileValues2D();
+        if(!fileValues.empty()){
+            presentation.SetOperations.clear();
+            CreateGraphFromInput(fileValues);
+            this->isPlaying = true;
+            inputPanel.ResetInputState();
+        }
+    }
     
     
     // Xử lý tải file
     if (inputPanel.IsLoadFilePressed()) {
         auto fileValues = inputPanel.GetFileValues2D();
         if (!fileValues.empty()) {
-            std::cout<<"Co do day\n";
+            std::cout<<"Co do day trong file neeeee\n";
             for(int i = 0; i < fileValues.size(); i++){
                 for(int j = 0; j < fileValues[i].size(); j++){
                     std::cout<<fileValues[i][j]<<" ";
@@ -72,7 +92,9 @@ void GraphVisual::Update() {
                 std::cout<<std::endl;
             }
             std::cout<<std::endl;
+            presentation.SetOperations.clear();
             CreateGraphFromInput(fileValues);
+            this->isPlaying = true;
             inputPanel.ResetInputState();
         } else {
             std::cout << "Loi file rui nghennn\n";
@@ -80,39 +102,57 @@ void GraphVisual::Update() {
         //inputPanel.ResetInputState();
     }
     
-    if(inputPanel.IsKeyboardPressed()){
-        auto fileValues = inputPanel.GetFileValues2D();
-        if(!fileValues.empty()){
-            CreateGraphFromInput(fileValues);
-            inputPanel.ResetInputState();
-        }
-    }
+    
 
     // Xử lý các nút thuật toán khác
     if (inputPanel.isAnyButtonPressed()) {
         int activeButtonIndex = inputPanel.GetActiveButtonIndex();
+        auto inputValue = inputPanel.GetInputText();
+        std::cout<<inputValue<<std::endl;
         if(activeButtonIndex == 0){
             if (inputPanel.showInputBox && inputPanel.randomButton.isPressed()) {
-                int inputValue = inputPanel.GetInputText();
+                std::random_device rd; // Tạo seed
+                std::mt19937 gen(rd()); // Engine ngẫu nhiên
+                std::uniform_int_distribution<> dis(3, 13); // Khoảng [1, 100]
+
+                int inputValue = dis(gen); // Random một số
+
                 std::cout << "So dinh: " << inputValue << std::endl;
                 if (inputValue > 0) {
+                    presentation.SetOperations.clear();
                     CreateGraph(inputValue);
+                    this->isPlaying = true;
                     // Không gọi ResetInputState để giữ giao diện
                     inputPanel.ResetInputState();
                 } else {
                     std::cout << "Lỗi: Số đỉnh phải lớn hơn 0. Vui lòng nhập số nguyên dương vào ô nhập liệu.\n";
                 }
             }
+
+
             std::cout<<"Ra toi day ui"<<std::endl;
         }
         else if(activeButtonIndex == 1){
+            lastactiveButton = activeButtonIndex;
+            lastinputValue = inputValue;
+            presentation.SetOperations.clear();
+            graph->ResetGraphColor();
             KruskalAlgo();
+            this->isPlaying = true;
             inputPanel.ResetInputState();
         }
         else if (activeButtonIndex == 2) {
+                
+                if(inputValue != -1 && inputPanel.Apply.isPressed()){
+                    lastactiveButton = activeButtonIndex;
+                    lastinputValue = inputValue;
+                    presentation.SetOperations.clear();
+                    graph->ResetGraphColor();
+                    PrimAlgo(inputValue);
+                    this->isPlaying = true;
+                    inputPanel.ResetInputState();
+                }
             
-                PrimAlgo();
-                inputPanel.ResetInputState();
             
         } else {
             std::cout << "loi o duoi nay noeee " << activeButtonIndex << ")\n";
@@ -182,7 +222,29 @@ void GraphVisual::Update() {
         }
     }
 
+    if(IsKeyPressed(KEY_R)){
+        switch (lastactiveButton)
+        {
+        case 1: {graph->ResetGraphColor(); presentation.SetOperations.clear(); KruskalAlgo(); this->isPlaying = true; break;}
+        case 2: {graph->ResetGraphColor(); presentation.SetOperations.clear(); if(lastinputValue != -1) PrimAlgo(lastinputValue); this->isPlaying = true;}
+        }
+    }
+
     if (graph) {
         graph->Update();
     }
+}
+
+bool GraphVisual::isBackPressed(){
+    bool res = inputPanel.isBackPressed();
+    if(res){
+        inputPanel.reset();
+        speedSlider.reset();
+        graph = new Graph();
+        this->currentPresentationIndex = -1;
+        this->currentStateIndex = 0;
+        this->isRewinding = false;
+        this->isPlaying = true;
+    }
+    return res;
 }
