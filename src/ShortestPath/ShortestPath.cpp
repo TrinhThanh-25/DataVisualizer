@@ -269,7 +269,8 @@ void ShortestPath::updateLine(){
         }
         return;
     }
-    while(cur&&cur->prev){
+    while(cur&&cur->prev&&countStep<=graph.size()){
+        countStep++;
         cur->prev->setLine();
         for (auto arr : cur->arrow){
             if(arr->getTo()==cur->prev->getID()){
@@ -285,4 +286,5 @@ void ShortestPath::updateLine(){
         }
         cur=cur->prev;
     }
+    countStep=0;
 }

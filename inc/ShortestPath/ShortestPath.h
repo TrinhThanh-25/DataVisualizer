@@ -44,6 +44,7 @@ class ShortestPath{
         int findSmall = -1;  
         int minCost = INT_MAX;
         int index=0;
+        int countStep=0;
 };
 
 #endif
