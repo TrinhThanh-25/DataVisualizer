@@ -263,7 +263,7 @@ int GraphInputPanel::GetInputText() {
             try {
                 size_t pos;
                 lastInputValue = std::stoi(input, &pos);
-                if (pos != input.length() || lastInputValue <= 0) {
+                if (pos != input.length() || lastInputValue < 0) {
                     lastInputValue = -1; // Trả về -1 nếu không phải số hợp lệ hoặc số đỉnh <= 0
                 }
             } catch (...) {
