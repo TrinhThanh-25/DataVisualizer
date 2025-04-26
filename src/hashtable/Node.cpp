@@ -31,20 +31,20 @@ Node::Node(int data):  colorChosen(nodeHighlightColor), colorNormal(nodeColor), 
     this->isVisual = false;
 }
 
-Node::Node(Node & other): data(other.data),
+Node::Node(Node * other): data(other->data),
                             next(nullptr), // Không sao chép next, để HashTable xử lý
-                            position(other.position),
-                            finalPosition(other.finalPosition),
-                            size(other.size),
-                            finalSize(other.finalSize),
-                            arrowPos(other.arrowPos),
-                            colorNormal(other.colorNormal),
-                            colorChosen(other.colorChosen),
-                            colorCurrent(other.colorCurrent),
-                            colorFinal(other.colorFinal),
-                            textChosenColor(other.textChosenColor),
-                            textNorColor(other.textNorColor),
-                            textCurColor(other.textCurColor),
-                            isChosen(other.isChosen),
-                            isVisual(other.isVisual) {}
+                            position(other->position),
+                            finalPosition(other->finalPosition),
+                            size(other->size),
+                            finalSize(other->finalSize),
+                            arrowPos(other->arrowPos),
+                            colorNormal(other->colorNormal),
+                            colorChosen(other->colorChosen),
+                            colorCurrent(other->colorCurrent),
+                            colorFinal(other->colorFinal),
+                            textChosenColor(other->textChosenColor),
+                            textNorColor(other->textNorColor),
+                            textCurColor(other->textCurColor),
+                            isChosen(other->isChosen),
+                            isVisual(other->isVisual) {}
 

@@ -41,14 +41,14 @@ public:
     CodeBlock codeBlock;
 
 private:
-    HashTable hashTable;
+    HashTable* hashTable;
     InputPanel inputPanel;
     Presentation presentations;
 
     Slider speedSlider;
     //Slider rewindSlider;
 
-    std::vector<std::vector<HashTable>> historyState;
+    std::vector<std::vector<HashTable*>> historyState;
     std::vector<std::vector<int>> historyCode;
     CodeBlock hashcodeBlock;
     int currentPresentationIndex;

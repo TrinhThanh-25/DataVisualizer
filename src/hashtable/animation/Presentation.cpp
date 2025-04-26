@@ -1,16 +1,16 @@
 #include "HashTable/animation/Presentation.h"
 #include "HashTable/animation/hashtableCode.h"
 
-Presentation::Presentation(float &speed, HashTable& table, std::vector<std::vector<HashTable>> &historyState, std::vector<std::vector<int>> & historyCode, CodeBlock & codeBlock, int &currentPresentationIndex, int&currentStateIndex)
+Presentation::Presentation(float &speed, HashTable*& table, std::vector<std::vector<HashTable*>> &historyState, std::vector<std::vector<int>> & historyCode, CodeBlock & codeBlock, int &currentPresentationIndex, int&currentStateIndex)
     : speed(speed), table(table), historyState(historyState), historyCode(historyCode), codeBlock(codeBlock), currentStep(0), currentPresentationIndex(currentPresentationIndex), currentStateIndex(currentStateIndex){}
 
 void Presentation::InsertNodeAnimation(int key, Node* newNode) {
     
-    int bucket = key % table.GetSize();
+    int bucket = key % table->GetSize();
     codeBlock.setCode(hashinsertCode);
     
     // Duyệt qua các node trong bucket để tạo animation tuần tự
-    Node* current = table.getTable(bucket);
+    Node* current = table->getTable(bucket);
     Node* prev = nullptr;
 
     // Bước 1: Highlight lần lượt từng node trong bucket
@@ -41,7 +41,7 @@ void Presentation::InsertNodeAnimation(int key, Node* newNode) {
     SetAnimations.push_back(fadeInSet);
 
     // Bước 3: Vẽ mũi tên từ node trước đó (node 30) đến node mới (node 40)
-    if (prev) {
+    if (prev && !newNode->next) {
         SetofAnimation edgeSet(speed);
         Animation edge(speed, prev, codeBlock);
         edge.type = 6; // Vẽ mũi tên
@@ -51,8 +51,8 @@ void Presentation::InsertNodeAnimation(int key, Node* newNode) {
 }
 
 void Presentation::DeleteNodeAnimation(int key) {
-    int bucket = key % table.GetSize();
-    Node* current = table.getTable(bucket);
+    int bucket = key % table->GetSize();
+    Node* current = table->getTable(bucket);
     Node* prev = nullptr;
     Node* nodeToDelete = nullptr;
     codeBlock.setCode(hashremoveCode);
@@ -120,8 +120,8 @@ void Presentation::DeleteNodeAnimation(int key) {
 }
 
 void Presentation::FindNodeAnimation(int key) {
-    int bucket = key % table.GetSize();
-    Node* current = table.getTable(bucket);
+    int bucket = key % table->GetSize();
+    Node* current = table->getTable(bucket);
     codeBlock.setCode(hashfindCode);
 
     while (current != nullptr) {
@@ -163,7 +163,7 @@ void Presentation::CreateTableAnimation(int size) {
     SetofAnimation fadeInNode(speed);
     SetofAnimation drawEdge(speed);
     for (int i = 0; i < size; i++) {
-        Node* current = table.getTable(i);
+        Node* current = table->getTable(i);
         while (current != nullptr) {
             Animation fadein(speed, current, codeBlock);
             Animation drawedge(speed, current, codeBlock);
@@ -182,7 +182,7 @@ void Presentation::CreateTableAnimation(int size) {
 }
 
 // void Presentation::UpdateAnimation(int initValue, int finalValue, Node*newNode){
-//     if(!table.Find(initValue)){
+//     if(!table->Find(initValue)){
 //         return;
 //     }
 //     DeleteNodeAnimation(initValue);
@@ -195,10 +195,10 @@ bool Presentation::DrawPresentation() {
 
     if (SetAnimations[currentStep].Draw()) {
         
-        HashTable tempHash(table);
+        HashTable * tempHash = new HashTable(table);
         if(currentStep == 0){
             currentPresentationIndex++;
-            std::vector<HashTable> temp = {};
+            std::vector<HashTable*> temp = {};
             temp.push_back(tempHash);
             historyState.push_back(temp);
 
@@ -206,7 +206,7 @@ bool Presentation::DrawPresentation() {
             tempVec.push_back(codeBlock.getBackHighlightID());
             historyCode.push_back(tempVec);
 
-            currentStateIndex = historyState.back().size() - 1;
+            currentStateIndex = 0;
             
             
         }

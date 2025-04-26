@@ -8,10 +8,10 @@
 class HashTable {
 public:
     HashTable(int size);
-    HashTable(const HashTable & initHash);
+    HashTable(const HashTable * initHash);
     ~HashTable();
 
-    void Insert(int key, const std::string& value);
+    void Insert(int key);
     void insert(int key);
     void Delete(int key);
     bool Find(int key) const;

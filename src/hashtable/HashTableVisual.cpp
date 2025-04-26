@@ -3,7 +3,7 @@
 #include <iostream>
 
 HashTableVisualization::HashTableVisualization(const bool& isLightMode, float &speed)
-                                    : hashTable(MAX_TABLE_SIZE), 
+                                    :  
                                     isLightMode(isLightMode), speed(speed), 
                                     historyState({}), historyCode({}), hashcodeBlock(), currentPresentationIndex(-1), currentStateIndex(0),
                                     presentations(speed, hashTable, historyState, historyCode, hashcodeBlock, currentPresentationIndex, currentStateIndex),
@@ -13,6 +13,7 @@ HashTableVisualization::HashTableVisualization(const bool& isLightMode, float &s
     //inputBox.isAppear = false;
     isRewindingStep = false;
     inputPanel.setDataName("Hash Table");
+    hashTable = new HashTable(MAX_TABLE_SIZE);
     //this->historyState = {};
     // currentPresentationIndex = 0;
     // currentStateIndex = 0;
@@ -39,8 +40,8 @@ HashTableVisualization::HashTableVisualization(const bool& isLightMode, float &s
 }
 
 // HashTableVisualization::~HashTableVisualization() {
-//     for (int i = 0; i < hashTable.GetSize(); i++) {
-//         Node* current = hashTable.getTable(i);
+//     for (int i = 0; i < hashTable->GetSize(); i++) {
+//         Node* current = hashTable->getTable(i);
 //         while (current != nullptr) {
 //             Node* temp = current;
 //             current = current->next;
@@ -48,12 +49,12 @@ HashTableVisualization::HashTableVisualization(const bool& isLightMode, float &s
 //         }
 //     }
 
-//     hashTable.table.clear();
+//     hashTable->table.clear();
 // }
 
 void HashTableVisualization::Init(int size, int numofKey) {
     // Xóa dữ liệu hiện tại của hashTable
-    hashTable.InitTable(size, numofKey);
+    hashTable->InitTable(size, numofKey);
     // Xóa các animation hiện tại trong presentations
     presentations.clear();
 
@@ -66,9 +67,9 @@ void HashTableVisualization::Init(int size, int numofKey) {
 
 void HashTableVisualization::Insert(int key) {
     if(key == -1) return;
-    hashTable.Insert(key, "");
+    hashTable->Insert(key);
     std::cout<<"Co co"<<std::endl;
-    Node* newNode = hashTable.getTable(key % hashTable.GetSize());
+    Node* newNode = hashTable->getTable(key % hashTable->GetSize());
     while (newNode && newNode->data != key) newNode = newNode->next;
     //presentations.clear();
     presentations.InsertNodeAnimation(key, newNode);
@@ -91,12 +92,12 @@ bool HashTableVisualization::Find(int key) {
     presentations.FindNodeAnimation(key);
     //isFinding = false;
     //inputBox.isAppear = false;
-    return hashTable.Find(key);
+    return hashTable->Find(key);
 }
 
 void HashTableVisualization::UpdateKey(int initValue, int finalValue){
     if(initValue == -1 || finalValue == -1) return;
-    if(!hashTable.Find(initValue)){
+    if(!hashTable->Find(initValue)){
         return;
     }
 
@@ -143,6 +144,7 @@ void HashTableVisualization::Update(){
         std::uniform_int_distribution<> dis(10, 20); // Khoảng [1, 100]
 
         int randomNum = dis(gen); // Random một số
+        presentations.clear();
 
         Init(randomNum, 2 * randomNum);
     }
@@ -166,10 +168,10 @@ void HashTableVisualization::Update(){
                     if (fileValues.size() >= 2 && !fileValues[0].empty()) {
                         int size = fileValues[0][0]; // Dòng 1: số bucket
                         std::vector<int> keys = fileValues[1]; // Dòng 2: các key
-                        hashTable.CreateTableFile(keys);
+                        hashTable->CreateTableFile(keys);
                         this->isCreate = true;
                         presentations.clear();
-                        presentations.CreateTableAnimation(hashTable.GetSize());
+                        presentations.CreateTableAnimation(hashTable->GetSize());
                     } else {
                         std::cout << "File không đúng định dạng cho Init: cần ít nhất 2 dòng, dòng 1 là số bucket, dòng 2 là các key\n";
                     }
@@ -218,6 +220,7 @@ void HashTableVisualization::Update(){
             //this->isPlaying = true;
             switch (activeButton) {
                 case 0: {
+                    presentations.clear();
                     Init(inputValue[0], 2 * inputValue[0]);
                     this->isPlaying = true;
                     this->isCreate = true;
@@ -248,12 +251,12 @@ void HashTableVisualization::Update(){
     //         switch (activeButton)
     //         {
     //         case 1: Find(lastinputValue[0]); break;
-    //         case 2: {hashTable.Delete(lastinputValue[0]); Insert(lastinputValue[0]); this->isPlaying = true; break;}
-    //         case 3: {hashTable.Insert(lastinputValue[0], ""); Delete(lastinputValue[0]); this->isPlaying = true; break;}
+    //         case 2: {hashTable->Delete(lastinputValue[0]); Insert(lastinputValue[0]); this->isPlaying = true; break;}
+    //         case 3: {hashTable->Insert(lastinputValue[0], ""); Delete(lastinputValue[0]); this->isPlaying = true; break;}
     //         case 4:{
     //             if(inputValue.size() == 2){
-    //                 hashTable.Insert(lastinputValue[0], "");
-    //                 hashTable.Delete(lastinputValue[1]);
+    //                 hashTable->Insert(lastinputValue[0], "");
+    //                 hashTable->Delete(lastinputValue[1]);
     //                 this->isPlaying = true;
     //                 UpdateKey(lastinputValue[0], lastinputValue[1]);
     //             }
@@ -267,23 +270,22 @@ void HashTableVisualization::Update(){
     // }
 
     if(inputPanel.isPlayPressed()){
-        if(!historyState.empty() && this->isPlaying == false && presentations.currentStep >= presentations.SetAnimations.size() && !this->isCreate){
+        if(historyState.size() >= 2 && this->isPlaying == false && presentations.currentStep >= presentations.SetAnimations.size() && !this->isCreate){
             historyState.pop_back();
             historyCode.pop_back();
             currentPresentationIndex = historyState.size() - 1;
             
             currentStateIndex = historyState.back().size() - 1;
-            std::cout<<historyState.size()<<std::endl;
+            hashTable = new HashTable(historyState.back().back());
+            // std::cout<<historyState.size()<<std::endl;
             if(isfile == false){
                 switch (activeButton)
                 {
                 case 1: Find(lastinputValue[0]); break;
-                case 2: {hashTable.Delete(lastinputValue[0]); Insert(lastinputValue[0]); this->isPlaying = true; break;}
-                case 3: {hashTable.insert(lastinputValue[0]); Delete(lastinputValue[0]); this->isPlaying = true; break;}
+                case 2: {presentations.clear(); Insert(lastinputValue[0]); this->isPlaying = true; break;}
+                case 3: {presentations.clear(); Delete(lastinputValue[0]); this->isPlaying = true; break;}
                 case 4:{
                     if(lastinputValue.size() == 2){
-                        hashTable.insert(lastinputValue[0]);
-                        hashTable.Delete(lastinputValue[1]);
                         this->isPlaying = true;
                         UpdateKey(lastinputValue[0], lastinputValue[1]);
                     }
@@ -309,7 +311,7 @@ void HashTableVisualization::Update(){
             this->isSkipBack = false;
             inputPanel.setEnd();
             if (deleting) {
-                hashTable.Delete(key);
+                hashTable->Delete(key);
                 deleting = false;
             }
         }
@@ -385,7 +387,7 @@ void HashTableVisualization::Update(){
             if(currentPresentationIndex < 0){
                 currentPresentationIndex = 0;
             }
-            currentStateIndex = historyState[0].size() - 1;
+            currentStateIndex = historyState[currentPresentationIndex].size() - 1;
         }
         
     }
@@ -402,13 +404,13 @@ void HashTableVisualization::DrawHashTable() {
 
     if(!isRewindingStep){
         if(isDrawTable){
-            if(!hashTable.isEmpty){
-                for (int i = 0; i < hashTable.GetSize(); i++) {
+            if(!hashTable->isEmpty){
+                for (int i = 0; i < hashTable->GetSize(); i++) {
                     Vector2 bucketPos = {(float)(startX + i * bucketSpacing), (float)startY};
                     DrawCircle(bucketPos.x, bucketPos.y, 10, nodeHighlightColor);
                     DrawText(std::to_string(i).c_str(), bucketPos.x - 5, bucketPos.y + 15, 15, nodeTextColor);
             
-                    Node* current = hashTable.getTable(i);
+                    Node* current = hashTable->getTable(i);
                     Vector2 prevPos = bucketPos;
                     while (current != nullptr) {
                         if (current->isVisual) {
@@ -429,13 +431,13 @@ void HashTableVisualization::DrawHashTable() {
         //std::cout<<currentPresentationIndex<<" "<<currentStateIndex;
         // if(currentPresentationIndex == 0) return;
         codeBlock.setHighlight({historyCode[currentPresentationIndex][currentStateIndex]});
-        for(int i = 0; i < historyState[currentPresentationIndex][currentStateIndex].size; i++){
+        for(int i = 0; i < historyState[currentPresentationIndex][currentStateIndex]->size; i++){
 
             Vector2 bucketPos = {(float)(startX + i * bucketSpacing), (float)startY};
             DrawCircle(bucketPos.x, bucketPos.y, 10, nodeHighlightColor);
             DrawText(std::to_string(i).c_str(), bucketPos.x - 5, bucketPos.y + 15, 15, nodeTextColor);
     
-            Node* current = historyState[currentPresentationIndex][currentStateIndex].getTable(i);
+            Node* current = historyState[currentPresentationIndex][currentStateIndex]->getTable(i);
             Vector2 prevPos = bucketPos;
             while (current != nullptr) {
                 if (current->isVisual) {
@@ -528,7 +530,7 @@ bool HashTableVisualization::isBackPressed() {
         currentStateIndex = 0;
         historyState.clear();
         historyCode.clear();
-        hashTable = HashTable(MAX_TABLE_SIZE);
+        hashTable = new HashTable(MAX_TABLE_SIZE);
         hashcodeBlock.clearCode();
         hashcodeBlock.clearHighlight();
         //this->isPlaying = true;

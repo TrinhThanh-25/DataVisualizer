@@ -26,6 +26,6 @@ public:
 
     Node(int data);
 
-    Node(Node & other);
+    Node(Node * other);
 
 };

@@ -4,7 +4,7 @@
 
 HashTable::HashTable(int size) {
     this->size = size;
-    table.resize(size);
+    this->table.resize(size);
     for (int i = 0; i < size; ++i) {
         table[i] = nullptr;
     }
@@ -12,14 +12,14 @@ HashTable::HashTable(int size) {
 }
 
 
-HashTable::HashTable(const HashTable& initHash) {
-    this->size = initHash.size;
+HashTable::HashTable(const HashTable * initHash) {
+    this->size = initHash->size;
     table.resize(size, nullptr);
     for (int i = 0; i < size; i++) {
-        Node* current = initHash.table[i];
+        Node* current = initHash->table[i];
         Node* prevCopy = nullptr;
         while (current != nullptr) {
-            Node* newNode = new Node(*current); // Sao chép node
+            Node* newNode = new Node(current); // Sao chép node
             newNode->next = nullptr;
             if (prevCopy == nullptr) {
                 table[i] = newNode;
@@ -50,7 +50,7 @@ int HashTable::GetSize() const {
     return size;
 }
 
-void HashTable::Insert(int key, const std::string& value) {
+void HashTable::Insert(int key) {
     int index = key % size;
     Node* newNode = new Node(key, {static_cast<float>(index * 50 + 200), 200.0f}, {15, 15});
     newNode->finalPosition = newNode->position;
@@ -178,7 +178,7 @@ void HashTable::InitTable(int size, int numofKey) {
                 key = rand() % (numofKey * 10); // Chọn key ngẫu nhiên, tránh trùng lặp
             } while (usedKeys.count(key));
             usedKeys.insert(key);
-            Insert(key, ""); // Hàm Insert đã được định nghĩa để chèn vào bảng băm
+            Insert(key); // Hàm Insert đã được định nghĩa để chèn vào bảng băm
         }
     }
 }
@@ -212,7 +212,7 @@ void HashTable::CreateTableFile(std::vector<int> keys){
     
     for(int i = 0; i < keys.size(); i++){
         std::cout<<keys[i]<<" ";
-        Insert(keys[i], "");
+        Insert(keys[i]);
     }
     std::cout<<std::endl;
 }
