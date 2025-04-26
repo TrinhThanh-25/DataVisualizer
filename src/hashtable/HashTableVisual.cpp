@@ -217,7 +217,7 @@ void HashTableVisualization::Update(){
         if (inputValue.empty() == false && activeButton != -1 ) {
             lastactiveButton = activeButton;
             lastinputValue = inputValue;
-            //this->isPlaying = true;
+            this->isPlaying = true;
             switch (activeButton) {
                 case 0: {
                     presentations.clear();
