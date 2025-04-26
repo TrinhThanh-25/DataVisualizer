@@ -284,6 +284,10 @@ bool GraphVisual::isBackPressed(){
         inputPanel.isShowLoadFile = false;
         inputPanel.isShowPrim = false;
         inputPanel.showInputBox = false;
+        lastactiveButton = -1;
+        lastinputValue = -1;
+        historyState.clear();
+        historyCode.clear();
     }
     return res;
 }

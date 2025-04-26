@@ -1,6 +1,6 @@
 #include "MST/Animation/GraphPresentation.h"
 
-GraphPresentation::GraphPresentation(float & speed, Graph * graph,
+GraphPresentation::GraphPresentation(float & speed, Graph *& graph,
                                         std::vector<std::vector<Graph*>>& historyState, std::vector<std::vector<int>> &historyCode, CodeBlock & codeBlock, int& currentPresentationIndex, int&currentStateIndex)
                                         :speed(speed), graph(graph), currentStep(0), currentPresentationIndex(currentPresentationIndex), currentStateIndex(currentStateIndex), historyState(historyState), codeBlock(codeBlock), historyCode
                                         (historyCode) {

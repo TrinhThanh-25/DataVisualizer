@@ -10,7 +10,7 @@
 class GraphPresentation{
     public:
         float & speed;
-        Graph * graph;
+        Graph *& graph;
         std::vector<GraphSetofOperation> SetOperations;
         int currentStep;
         std::vector<std::vector<Graph*>> & historyState;
@@ -21,7 +21,7 @@ class GraphPresentation{
         std::vector<int> parent;
         std::vector<int> rank;
 
-        GraphPresentation(float & speed, Graph * graph,
+        GraphPresentation(float & speed, Graph *& graph,
                             std::vector<std::vector<Graph*>> & historyState, std::vector<std::vector<int>> & historyCode, CodeBlock& codeBlock, int & currentPresentationIndex, int & currentStateIndex);
 
         void CreateGraph(int numofNode);
