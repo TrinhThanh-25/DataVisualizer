@@ -210,6 +210,10 @@ void ShortestPathState::update(){
         animationState=STAnimationMode::CREATE;
     }
     else if(IsKeyPressed(KEY_ENTER)||Apply.isPressed()){
+        moveEnd();
+        clearState();
+        code.clearCode();
+        code.clearHighlight();
         startNodeText=StartNodesBox.GetText();
         nodesText=NodesBox.GetText();
         edgesText=EdgesBox.GetText();

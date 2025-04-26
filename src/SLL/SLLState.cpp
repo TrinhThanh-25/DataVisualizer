@@ -200,6 +200,11 @@ void SLLState::update(){
             SLL.createList(input);
     }
     else if(IsKeyPressed(KEY_ENTER)||Apply.isPressed()){
+        moveEnd();
+        clearState();
+        SLL.resetHighlight();
+        code.clearCode();
+        code.clearHighlight();
         indexText=indexBox.GetText();
         valueText=valueBox.GetText();
         createText=createBox.GetText();
@@ -596,6 +601,9 @@ void SLLState::saveRemoveMidState(int index){
         saveState();
     }
     if(SLL.animationStep==3&&index>=SLL.list.size()-1){
+        for (int i=index;i<SLL.list.size();i++){
+            SLL.list[i]->setPosition({SLL.head->getPosition().x+ArrowLength + i * (SLLNodeSize.x+ArrowLength), SLLposition.y});
+        }
         SLL.animationStep=0;
         SLL.indexStep=-1;
         animationState=SLLAnimationMode::IDLE;
@@ -1024,10 +1032,10 @@ void SLLState::animateRemoveFront(int index){
     }
     else if(SLL.animationStep==2){
         code.setHighlight({1});
-        currentStep++;
         if(SLL.head->getDestination().x==SLL.list[index]->getStartPos().x&&SLL.head->getDestination().y==SLL.list[index]->getStartPos().y){
             checkTimer+=GetFrameTime();
             if(checkTimer>=delayTime){
+                currentStep++;
                 code.setHighlight({2});
                 checkTimer=0;
                 SLL.isNewNode=false;
@@ -1106,7 +1114,7 @@ void SLLState::animateRemoveMid(int index){
             }
         }
     }
-    else if(SLL.animationStep==2&&index>=SLL.list.size()-1){
+    else if(SLL.animationStep==2&&index>=SLL.list.size()-1&&SLL.checkNewNodeinList){
         SLL.list.erase(SLL.list.begin()+index);
         SLL.checkNewNodeinList=false;
         SLL.animationStep++;
@@ -1129,6 +1137,9 @@ void SLLState::animateRemoveMid(int index){
         }
     }
     else if(SLL.animationStep==3&&index>=SLL.list.size()-1){
+        for (int i=index;i<SLL.list.size();i++){
+            SLL.list[i]->setTargetPosition({SLL.head->getPosition().x+ArrowLength + i * (SLLNodeSize.x+ArrowLength), SLLposition.y});
+        }
         checkTimer+=GetFrameTime();
         if(checkTimer>=delayTime){
             checkTimer=0;
@@ -1187,6 +1198,7 @@ void SLLState::animateSearch(int value){
         checkTimer+=GetFrameTime();
         code.setHighlight({0});
         if(checkTimer>=delayTime){
+            currentStep++;
             checkTimer=0;
             animationState=SLLAnimationMode::IDLE;
             currentStep++;
@@ -1200,6 +1212,7 @@ void SLLState::animateSearch(int value){
     SLL.resetHighlight(); 
     if((SLL.cur->getDestination().x!=SLL.list[SLL.indexStep+1]->getStartPos().x||SLL.cur->getDestination().y!=SLL.list[SLL.indexStep+1]->getStartPos().y)){
         if(!SLL.isCur){
+            currentStep++;
             SLL.isCur=true;
             resetCursorPosition();
             currentStep++;
@@ -1225,6 +1238,7 @@ void SLLState::animateSearch(int value){
             if(SLL.list[SLL.indexStep+1]->getValue()==value||SLL.list.size()<SLL.indexStep+3){
                 if(SLL.list[SLL.indexStep+1]->getValue()==value)
                     SLL.list[SLL.indexStep+1]->setHighlight();
+                currentStep++;
                 SLL.isCur=false;
                 SLL.cur->setPosition({SLLposition.x,SLLposition.y+SLLNodeSize.y/2.0f+ArrowLength});
                 SLL.cur->setDestination({SLLposition.x+ArrowLength,SLLposition.y+SLLNodeSize.y/2.0f+ArrowLength});
