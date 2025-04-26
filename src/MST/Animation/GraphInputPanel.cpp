@@ -37,6 +37,8 @@ GraphInputPanel::GraphInputPanel()
     Apply.setSize({260, 30});
     Apply.setText("Apply", SLLButtonFontSize);
     Apply.setPosition({250, 750});
+
+    inputBox.setNameBox("Start Vectice");
 }
 
 std::vector<std::vector<int>> GraphInputPanel::ProcessKeyboardInput(const char* input) {

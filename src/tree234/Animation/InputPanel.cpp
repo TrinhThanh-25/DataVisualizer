@@ -41,6 +41,15 @@ void InputPanel::update() {
     for (int i = 0; i < buttons.size(); i++) {
         buttons[i].update();
         if (buttons[i].isPressed()) {
+            if(i==1||i==2|i==3){
+                inputBox.setNameBox("Value");
+            }
+            else if(i==4){
+                inputBox.setNameBox("Current Value and New Value");
+            }
+            else if(i==0){
+                inputBox.setNameBox("Number of elements");
+            }
             // Khi một nút chức năng được nhấn, hiển thị inputBox kế bên nút đó
             activeButtonIndex = i;
             if(isUsing&&isUsing==&buttons[i]) {
